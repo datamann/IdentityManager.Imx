@@ -1,0 +1,39 @@
+#!/bin/sh
+# The official Nginx entrypoint sources .envsh files before rendering templates.
+set -eu
+
+: "${API_SERVER_URL:?Set API_SERVER_URL to the reachable Identity Manager API server URL}"
+
+# Restrict input to HTTP(S) origins and optional paths that can be rendered
+# literally into Nginx configuration. Credentials, query strings and fragments
+# belong in the authentication flow rather than the upstream base URL.
+if [ "$(printf '%s' "$API_SERVER_URL" | tr -d '\r\n')" != "$API_SERVER_URL" ] ||
+    ! printf '%s\n' "$API_SERVER_URL" | grep -Eq '^https?://([A-Za-z0-9._-]+|\[[A-Fa-f0-9:]+\])(:[0-9]+)?(/[A-Za-z0-9._~%/-]*)?$'; then
+    echo 'API_SERVER_URL must be an http(s) URL with an optional base path.' >&2
+    exit 1
+fi
+
+API_SERVER_URL=$(printf '%s' "$API_SERVER_URL" | sed 's:/*$::')
+api_scheme=${API_SERVER_URL%%://*}
+API_SERVER_AUTHORITY=${API_SERVER_URL#*://}
+API_SERVER_AUTHORITY=${API_SERVER_AUTHORITY%%/*}
+API_SERVER_ORIGIN="$api_scheme://$API_SERVER_AUTHORITY"
+API_SERVER_PATH=${API_SERVER_URL#"$API_SERVER_ORIGIN"}
+API_SERVER_URL_PATTERN=$(printf '%s' "$API_SERVER_URL" | sed -e 's/[.]/\\&/g' -e 's/[[]/\\&/g' -e 's/[]]/\\&/g')
+
+case "$API_SERVER_AUTHORITY" in
+    \[*\]*)
+        API_SERVER_HOST=${API_SERVER_AUTHORITY#\[}
+        API_SERVER_HOST=${API_SERVER_HOST%%\]*}
+        ;;
+    *) API_SERVER_HOST=${API_SERVER_AUTHORITY%%:*} ;;
+esac
+
+: "${API_SERVER_CA_BUNDLE:=/etc/ssl/certs/ca-certificates.crt}"
+if [ "$(printf '%s' "$API_SERVER_CA_BUNDLE" | tr -d '\r\n')" != "$API_SERVER_CA_BUNDLE" ] ||
+    ! printf '%s\n' "$API_SERVER_CA_BUNDLE" | grep -Eq '^/[A-Za-z0-9._/-]+$' || [ ! -r "$API_SERVER_CA_BUNDLE" ]; then
+    echo 'API_SERVER_CA_BUNDLE must be an absolute path to a readable PEM CA bundle.' >&2
+    exit 1
+fi
+
+export API_SERVER_URL API_SERVER_AUTHORITY API_SERVER_HOST API_SERVER_PATH API_SERVER_URL_PATTERN API_SERVER_CA_BUNDLE
