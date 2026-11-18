@@ -21,6 +21,28 @@ Nginx bruker `API_SERVER_URL` ved containeroppstart. En endret API-adresse kreve
 
 Compose bruker intern port 80. Dokploy håndterer den offentlige HTTPS-tilkoblingen. [Dokploy-dokumentasjon](https://docs.dokploy.com/docs/core/docker-compose/domains)
 
+## Eksisterende Application-tjeneste med Dockerfile
+
+En eksisterende Application-tjeneste kan bruke Dockerfile direkte. Bruk disse innstillingene når Git-repositoriet er klonet med prosjektets vanlige mappestruktur.
+
+| Innstilling           | Verdi               |
+| --------------------- | ------------------- |
+| Branch                | `development`       |
+| Build Type            | `Dockerfile`        |
+| Build Path            | `/imxweb`           |
+| Dockerfile Path       | `Dockerfile`        |
+| Docker Context Path   | `/imxweb`           |
+| Docker Build Stage    | La feltet være tomt |
+| Domain Container Port | `80`                |
+
+Docker Context Path tolkes relativt til repositoryets rot. Med `/imxweb` som verdi finner Docker både `package.json`, `imx-modules` og `docker/15-configure-api.envsh` i byggkonteksten. Dockerfile Path tolkes relativt til Build Path. [Dokploys beregning av filstier](https://github.com/Dokploy/dokploy/blob/canary/packages/server/src/utils/filesystem/directory.ts)
+
+Branchnavn skiller mellom store og små bokstaver. Velg `development` med liten `d`, og kontroller at branchen inneholder `imxweb/Dockerfile`. `Development` er en separat branch dersom begge navnene finnes på GitHub.
+
+Sett `API_SERVER_URL` under tjenestens miljøvariabler, slik at den finnes når containeren starter. Hvis Dokploy viser valget **Create .env File**, kan dette slås av for denne Application-tjenesten. API-adressen brukes ved containeroppstart.
+
+Feilen `cannot create .../applications/.../code/imxweb/imxweb/.env` viser at Dokploy forsøker å opprette miljøfilen i en dobbelt undermappe. Kontroller både Build Path og Dockerfile Path. Med Build Path `/imxweb` skal Dockerfile Path være `Dockerfile`. Lagre endringene før neste deploy. [Dokploys Dockerfile-innstillinger](https://docs.dokploy.com/docs/core/applications/build-type)
+
 ## Tilkobling til API-serveren
 
 Produksjonskonfigurasjonen har allerede `clientUrl: ''`. `AppConfigService` bruker derfor nettleserens domene som API-base. Nettleseren sender eksempelvis `/portal/...` og `/imx/...` til portaldomenet. Nginx sender forespørslene videre til `API_SERVER_URL` med samme metode, innhold og spørringsparametere.
@@ -37,6 +59,14 @@ Følgende må kontrolleres i miljøet.
 - Ved OAuth/OIDC må identitetsleverandøren og API-serveren bruke korrekte offentlige callback- og logout-adresser. Eksterne redirects til identitetsleverandøren beholdes. Kontroller hele innloggings- og utloggingsflyten.
 - Ved Windows-integrert autentisering må Kerberos/NTLM og eventuell delegering vurderes særskilt. Oppsettet er ikke verifisert for denne innloggingsformen.
 - Lenker til andre Identity Manager-apper under `/html/`, som passordportalen, sendes videre til API-serveren. Disse appene må være tilgjengelige der hvis lenkene skal brukes.
+
+## OAuth-retur til Docker-portalen
+
+For innlogging i Docker-portalen skal OIM-applikasjonens Redirect URI være portalens offentlige rotadresse, for eksempel `https://webportal.lab.sbsivertsen.no/`. Samme adresse må tillates som Valid redirect URI i Keycloak. `API_SERVER_URL` skal fortsatt peke til API-serveren, for eksempel `https://api.lab.sbsivertsen.no/ApiServer/`.
+
+Nginx sender forespørsler til portalroten med en ikke-tom `state`-parameter videre til API-serverens rot under `API_SERVER_URL`. API-serveren behandler OAuth-state og returnerer nettleseren til portalen med `Module` og `code`. Rotforespørsler uten `state` laster Angular som vanlig. Ikke legg en egen videresending fra portalroten til IIS-roten på API-domenet.
+
+Test hele innloggingen etter deploy; korrekt videresending alene bekrefter ikke tokenvalidering eller at en innlogget sesjon opprettes. Utlogging må også kontrolleres separat.
 
 ## HTTPS mot en intern API-server
 

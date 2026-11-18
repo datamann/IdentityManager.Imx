@@ -9,6 +9,12 @@ map $http_upgrade $connection_upgrade {
     '' '';
 }
 
+# The API decodes OAuth state before returning Module and code to Angular.
+map $arg_state $oauth_callback {
+    '' 0;
+    default 1;
+}
+
 server {
     listen 80;
     server_name _;
@@ -27,6 +33,11 @@ server {
     }
 
     location = / {
+        # Keep the callback on the portal origin, but let the API process it.
+        error_page 418 = @api;
+        if ($oauth_callback) {
+            return 418;
+        }
         add_header Cache-Control "no-store" always;
         try_files /index.html =404;
     }
