@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -35,10 +35,11 @@ import { RulesMitigatingControls } from '../mitigating-controls-rules/rules-miti
 import { RulesService } from '../rules.service';
 
 @Component({
-    selector: 'imx-rules-sidesheet',
-    templateUrl: './rules-sidesheet.component.html',
-    styleUrls: ['./rules-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-rules-sidesheet',
+  templateUrl: './rules-sidesheet.component.html',
+  styleUrls: ['./rules-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RulesSidesheetComponent implements OnDestroy {
   public reportDownload: EuiDownloadOptions;

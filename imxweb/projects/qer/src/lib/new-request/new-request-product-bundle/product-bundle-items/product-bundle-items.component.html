@@ -9,7 +9,7 @@
       </h3>
       @if (!!selectedProductBundle?.Description?.Column?.GetDisplayValue()?.length) {
         <imx-info-button
-          [title]="selectedProductBundle?.GetEntity()?.GetColumn('Ident_ShoppingCartPattern')?.GetValue()"
+          [title]="$safeNavigationMigration(selectedProductBundle?.GetEntity()?.GetColumn('Ident_ShoppingCartPattern')?.GetValue())"
           [templateRef]="infoDialogContent"
         >
         </imx-info-button>

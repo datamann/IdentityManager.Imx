@@ -25,7 +25,7 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
@@ -51,7 +51,8 @@ import { ShoppingCartValidator } from './shopping-cart-validator';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
   selector: 'imx-shopping-cart',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ShoppingCartComponent implements OnInit {
   public shoppingCart: ShoppingCart;
@@ -77,7 +78,7 @@ export class ShoppingCartComponent implements OnInit {
     private readonly patternCreateService: ItshopPatternCreateService,
     private readonly snackBarService: SnackBarService,
     private readonly sideSheet: EuiSidesheetService,
-  ) { }
+  ) {}
 
   public ngOnInit() {
     this.setup();
@@ -88,8 +89,6 @@ export class ShoppingCartComponent implements OnInit {
     this.canCreateRequestTemplates = this.itshopConfig?.VI_ITShop_ProductSelectionFromTemplate || false;
     await this.getData(true);
   }
-
-
 
   public async validate(): Promise<void> {
     await this.checkTermsOfUse();

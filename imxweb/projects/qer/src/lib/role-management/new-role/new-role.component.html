@@ -7,7 +7,8 @@
 
     <form class="imx-cdr-group" [formGroup]="formGroup">
       @for (cdr of cdrList; track cdr) {
-        <imx-cdr-editor [cdr]="cdr" (controlCreated)="addControl(cdr?.column?.ColumnName, $event)"> </imx-cdr-editor>
+        <imx-cdr-editor [cdr]="cdr" (controlCreated)="addControl($safeNavigationMigration(cdr?.column?.ColumnName), $event)">
+        </imx-cdr-editor>
       }
     </form>
   </mat-card>
@@ -19,7 +20,7 @@
     color="primary"
     [disabled]="formGroup.invalid || !formGroup.dirty"
     (click)="save()"
-    >
+  >
     <span translate>#LDS#Create</span>
   </button>
 </div>

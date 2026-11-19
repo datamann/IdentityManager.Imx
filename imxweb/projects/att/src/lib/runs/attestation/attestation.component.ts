@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { FilterData, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -44,7 +44,8 @@ export interface AttestationParameters {
   selector: 'imx-attestation',
   templateUrl: './attestation.component.html',
   styleUrls: ['./attestation.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationComponent implements OnDestroy {
   public get canDecide(): boolean {

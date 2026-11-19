@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { DeviceConfig, PortalCandidatesHardwaretype, PortalDevices } from '@imx-modules/imx-api-qer';
 import {
@@ -59,11 +59,12 @@ import { ViewDevicesSidesheetComponent } from '../view-devices-sidesheet/view-de
 import { ViewDevicesService } from '../view-devices.service';
 
 @Component({
-    selector: 'imx-view-devices-home',
-    templateUrl: './view-devices.component.html',
-    styleUrls: ['./view-devices.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-view-devices-home',
+  templateUrl: './view-devices.component.html',
+  styleUrls: ['./view-devices.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ViewDevicesComponent implements OnInit, OnDestroy, SideNavigationComponent {
   public entitySchema: EntitySchema;
@@ -98,7 +99,7 @@ export class ViewDevicesComponent implements OnInit, OnDestroy, SideNavigationCo
     this.entitySchema = this.viewDevicesService.devicesSchema;
     this.sessionResponse$ = this.authService.onSessionResponse.subscribe(async (session: ISessionState) => {
       if (session.IsLoggedIn) {
-        (this.currentUser = session.UserUid || ''), (this.isManagerForPersons = await qerPermissionService.isPersonManager());
+        ((this.currentUser = session.UserUid || ''), (this.isManagerForPersons = await qerPermissionService.isPersonManager()));
         this.isAuditor = await qerPermissionService.isStructStatistics();
       }
     });

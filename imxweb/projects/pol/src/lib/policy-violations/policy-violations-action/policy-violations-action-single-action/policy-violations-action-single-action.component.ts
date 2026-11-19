@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 import { PolicyViolation } from '../../policy-violation';
@@ -38,10 +38,11 @@ import { PolicyViolationsAction } from '../policy-violations-action.interface';
  *  well: {@link PolicyViolationActionMultiActionComponent}.
  */
 @Component({
-    selector: 'imx-policy-violations-action-single-action',
-    templateUrl: './policy-violations-action-single-action.component.html',
-    styleUrls: ['./policy-violations-action-single-action.component.scss'],
-    standalone: false
+  selector: 'imx-policy-violations-action-single-action',
+  templateUrl: './policy-violations-action-single-action.component.html',
+  styleUrls: ['./policy-violations-action-single-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyViolationsActionSingleActionComponent implements OnInit {
   /**

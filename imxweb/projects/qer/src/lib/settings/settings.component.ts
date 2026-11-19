@@ -24,8 +24,7 @@
  *
  */
 
-
-import { Component, ErrorHandler, Inject, OnDestroy, OnInit, ViewChild, DOCUMENT } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnDestroy, OnInit, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { EuiLoadingService, EuiTheme, EuiThemeService, EuiThemeSwitcherComponent } from '@elemental-ui/core';
 import { ProfileSettings } from '@imx-modules/imx-api-qer';
@@ -43,10 +42,11 @@ import { Subscription } from 'rxjs';
 import { QerApiService } from '../qer-api-client.service';
 
 @Component({
-    selector: 'imx-settings',
-    templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.scss'],
-    standalone: false
+  selector: 'imx-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SettingsComponent implements OnInit, OnDestroy {
   @ViewChild('themeSwitcherControl') themeSwitcherControl: EuiThemeSwitcherComponent;

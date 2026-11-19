@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -53,11 +53,12 @@ import { RequestsService } from '../requests.service';
 const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShop`;
 
 @Component({
-    selector: 'imx-requests',
-    templateUrl: './requests.component.html',
-    styleUrls: ['./requests.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-requests',
+  templateUrl: './requests.component.html',
+  styleUrls: ['./requests.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestsComponent implements OnInit, OnDestroy {
   public get showHelperAlert(): boolean {

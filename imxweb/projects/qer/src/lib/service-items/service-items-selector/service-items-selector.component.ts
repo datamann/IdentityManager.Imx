@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { CollectionLoadParameters, TypedEntity, TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-service-items-selector',
-    templateUrl: './service-items-selector.component.html',
-    styleUrls: ['./service-items-selector.component.scss'],
-    standalone: false
+  selector: 'imx-service-items-selector',
+  templateUrl: './service-items-selector.component.html',
+  styleUrls: ['./service-items-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemsSelectorComponent {
   public selectedItems: TypedEntity[];

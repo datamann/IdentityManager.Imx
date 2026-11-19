@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -39,10 +39,11 @@ import { ItshopPatternService } from '../itshop-pattern.service';
  * Component displayed in a sidesheet with a form to create a itshop pattern.
  */
 @Component({
-    selector: 'imx-itshop-pattern-create-sidesheet',
-    templateUrl: './itshop-pattern-create-sidesheet.component.html',
-    styleUrls: ['./itshop-pattern-create-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-itshop-pattern-create-sidesheet',
+  templateUrl: './itshop-pattern-create-sidesheet.component.html',
+  styleUrls: ['./itshop-pattern-create-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ItshopPatternCreateSidesheetComponent implements OnInit, OnDestroy {
   public get formArray(): UntypedFormArray {

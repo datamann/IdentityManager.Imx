@@ -24,7 +24,7 @@
       (selectionChanged)="onSelectionChanged($event)"
     >
       <imx-data-table-column
-        [entityColumn]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
+        [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
         data-imx-identifier="role-select-identities-column-display"
       >
         <ng-template let-item>

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSelectOption, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { FormControl } from '@angular/forms';
@@ -39,6 +39,7 @@ import { PolicyViolationsService } from '../policy-violations.service';
   selector: 'imx-policy-violations-sidesheet',
   templateUrl: './policy-violations-sidesheet.component.html',
   styleUrls: ['./policy-violations-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PolicyViolationsSidesheetComponent implements OnInit, OnDestroy {
@@ -76,7 +77,7 @@ export class PolicyViolationsSidesheetComponent implements OnInit, OnDestroy {
     private readonly confirmationService: ConfirmationService,
     private readonly euiLoadingService: EuiLoadingService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.cdrList = this.data.policyViolation.properties;

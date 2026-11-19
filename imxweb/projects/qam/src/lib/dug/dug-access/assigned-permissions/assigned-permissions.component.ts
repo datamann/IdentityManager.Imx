@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { DataSourceToolbarSettings } from 'qbm';
@@ -32,10 +32,11 @@ import { AssignedResourceAccessData } from '../../../TypedClient';
 import { TrusteeEntity } from './trustee-entity';
 
 @Component({
-    selector: 'imx-assigned-permissions',
-    templateUrl: './assigned-permissions.component.html',
-    styleUrls: ['./assigned-permissions.component.scss'],
-    standalone: false
+  selector: 'imx-assigned-permissions',
+  templateUrl: './assigned-permissions.component.html',
+  styleUrls: ['./assigned-permissions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AssignedPermissionsComponent implements OnChanges {
   @Input() trustees: AssignedResourceAccessData;

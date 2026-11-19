@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -41,10 +41,11 @@ import { EntityColumnContainer } from '../entity-column-container';
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-multi-value',
-    templateUrl: './edit-multi-value.component.html',
-    styleUrls: ['./edit-multi-value.component.scss'],
-    standalone: false
+  selector: 'imx-edit-multi-value',
+  templateUrl: './edit-multi-value.component.html',
+  styleUrls: ['./edit-multi-value.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditMultiValueComponent implements CdrEditor, OnDestroy {
   /**

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -46,10 +46,11 @@ import { RoleService } from '../role.service';
 import { RemoveMembershipComponent } from './remove-membership.component';
 
 @Component({
-    selector: 'imx-secondary-memberships',
-    templateUrl: './secondary-memberships.component.html',
-    styleUrls: ['./secondary-memberships.component.scss', '../sidesheet.scss', './role-sidesheet-tabs.scss'],
-    standalone: false
+  selector: 'imx-secondary-memberships',
+  templateUrl: './secondary-memberships.component.html',
+  styleUrls: ['./secondary-memberships.component.scss', '../sidesheet.scss', './role-sidesheet-tabs.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecondaryMembershipsComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings | undefined;

@@ -25,8 +25,7 @@
  */
 
 import { DatePipe } from '@angular/common';
-import { Component, computed, effect, signal, Signal } from '@angular/core';
-import { MatCommonModule } from '@angular/material/core';
+import { Component, computed, effect, signal, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { EuiCoreModule, EuiMaterialModule, EuiSidesheetRef } from '@elemental-ui/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
@@ -41,10 +40,11 @@ import {
 } from 'qbm';
 
 @Component({
-    selector: 'imx-queue-sidesheet',
-    imports: [EuiCoreModule, EuiMaterialModule, MatCommonModule, LdsReplaceModule, TranslateModule, DateModule, DatePipe],
-    templateUrl: './queue-sidesheet.component.html',
-    styleUrls: ['./queue-sidesheet.component.scss']
+  selector: 'imx-queue-sidesheet',
+  imports: [EuiCoreModule, EuiMaterialModule, LdsReplaceModule, TranslateModule, DateModule, DatePipe],
+  templateUrl: './queue-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./queue-sidesheet.component.scss'],
 })
 export class QueueSidesheetComponent {
   public stateOptions = QueuedActionState;
@@ -68,7 +68,9 @@ export class QueueSidesheetComponent {
     effect(() => {
       this.totalCount = this.queueService.totalCount();
       this.hasActions = this.totalCount > 0;
-      const text = this.queueService.isAllGroupsCompleted() ? '#LDS#Heading View Background Processes ({0})' : '#LDS#Heading View Background Processes ({0})';
+      const text = this.queueService.isAllGroupsCompleted()
+        ? '#LDS#Heading View Background Processes ({0})'
+        : '#LDS#Heading View Background Processes ({0})';
       this.sidesheetRef.componentInstance!.title = this.ldsReplace.transform(this.translate.instant(text), this.totalCount);
       this.hasErrors = this.queueService.errorCount() > 0;
       this.hasCompletedGroups = this.queueService.hasCompletedGroups();

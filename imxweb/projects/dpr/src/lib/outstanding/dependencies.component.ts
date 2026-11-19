@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { DependencyToConfirm, OutstandingAction } from '@imx-modules/imx-api-dpr';
 
 @Component({
-    templateUrl: './dependencies.component.html',
-    styleUrls: ['./dependencies.component.scss'],
-    standalone: false
+  templateUrl: './dependencies.component.html',
+  styleUrls: ['./dependencies.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DependenciesComponent {
   constructor(

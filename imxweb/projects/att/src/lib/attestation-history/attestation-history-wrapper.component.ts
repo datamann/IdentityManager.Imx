@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -34,10 +34,11 @@ import { AttestationHistoryCase } from './attestation-history-case';
 import { AttestationHistoryComponent } from './attestation-history.component';
 
 @Component({
-    selector: 'imx-attestation-history-wrapper',
-    templateUrl: './attestation-history-wrapper.component.html',
-    styleUrls: ['./attestation-history-wrapper.component.scss'],
-    standalone: false
+  selector: 'imx-attestation-history-wrapper',
+  templateUrl: './attestation-history-wrapper.component.html',
+  styleUrls: ['./attestation-history-wrapper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationHistoryWrapperComponent implements OnDestroy, AfterViewInit {
   @ViewChild('attestationHistoryComponent', { static: false }) public attestationHistoryComponent: AttestationHistoryComponent;

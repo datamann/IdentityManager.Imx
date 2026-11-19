@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService } from '@elemental-ui/core';
 import {
   CollectionLoadParameters,
@@ -36,10 +36,11 @@ import {
 import { DataSourceToolbarSettings } from 'qbm';
 
 @Component({
-    selector: 'imx-identity-rule-violations-mitigation-control',
-    templateUrl: './identity-rule-violations-mitigation-control.component.html',
-    styleUrls: ['./identity-rule-violations-mitigation-control.component.scss'],
-    standalone: false
+  selector: 'imx-identity-rule-violations-mitigation-control',
+  templateUrl: './identity-rule-violations-mitigation-control.component.html',
+  styleUrls: ['./identity-rule-violations-mitigation-control.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityRuleViolationsMitigationControlComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

@@ -38,6 +38,7 @@ import {
   Renderer2,
   ViewChild,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { ShapeData } from '@imx-modules/imx-api-qbm';
@@ -74,6 +75,7 @@ export enum ShapeType {
   selector: 'imx-hyperview',
   templateUrl: './hyperview.component.html',
   styleUrls: ['./hyperview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewChecked {
@@ -228,7 +230,7 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
 
   public get selectedHyperviewCaption(): string {
     const centerObj = this.shapes.filter((shape) => shape.LayoutType === 'MiddleCenter')?.[0];
-    return !!centerObj?.HeaderText ? `${centerObj.HeaderText}: ${centerObj.Caption}` : centerObj?.Caption ?? '';
+    return !!centerObj?.HeaderText ? `${centerObj.HeaderText}: ${centerObj.Caption}` : (centerObj?.Caption ?? '');
   }
 
   private scrollToMiddleCenterShape(layoutResult: LayoutResult) {

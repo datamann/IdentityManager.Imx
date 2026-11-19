@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetConfig, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalCalls } from '@imx-modules/imx-api-hds';
 import {
@@ -51,11 +51,12 @@ import { HdsApiService } from '../hds-api-client.service';
 import { CallsSidesheetComponent, CallsSidesheetData } from './calls-sidesheet/calls-sidesheet.component';
 
 @Component({
-    selector: 'imx-calls',
-    templateUrl: './calls.component.html',
-    styleUrls: ['./calls.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-calls',
+  templateUrl: './calls.component.html',
+  styleUrls: ['./calls.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsComponent implements OnInit {
   public entitySchema: EntitySchema;

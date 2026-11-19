@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -50,6 +50,7 @@ import { NewRequestTabModel } from '../new-request-tab/new-request-tab-model';
   selector: 'imx-new-request-content',
   templateUrl: './new-request-content.component.html',
   styleUrls: ['./new-request-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class NewRequestContentComponent implements OnDestroy {

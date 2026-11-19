@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import moment from 'moment-timezone';
 import { ExtendedObjectHistoryEvent, TimelineEventsGroupedByDate } from './timeline';
 import { EventChangeTypes, HistoryEventChangeType } from './timeline.model';
 
 @Component({
-    selector: 'imx-timeline',
-    templateUrl: './timeline.component.html',
-    styleUrls: ['./timeline.component.scss'],
-    standalone: false
+  selector: 'imx-timeline',
+  templateUrl: './timeline.component.html',
+  styleUrls: ['./timeline.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TimelineComponent implements OnInit, OnChanges {
   @Input() public data: ExtendedObjectHistoryEvent[];

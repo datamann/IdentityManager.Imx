@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,10 +35,11 @@ import { ServiceItemsSelectorComponent } from '../service-items-selector/service
 import { TypedEntitySelectionData } from './typed-entity-selection-data.interface';
 
 @Component({
-    selector: 'imx-service-item-select',
-    templateUrl: './service-item-select.component.html',
-    styleUrls: ['./service-item-select.component.scss'],
-    standalone: false
+  selector: 'imx-service-item-select',
+  templateUrl: './service-item-select.component.html',
+  styleUrls: ['./service-item-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemSelectComponent implements OnChanges {
   @Input() data: TypedEntitySelectionData;

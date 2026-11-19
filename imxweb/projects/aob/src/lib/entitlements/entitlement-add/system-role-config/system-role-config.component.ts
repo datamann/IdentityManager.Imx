@@ -26,7 +26,7 @@
 
 import { ListRange } from '@angular/cdk/collections';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSelectionListChange } from '@angular/material/list';
 import { MatRadioChange } from '@angular/material/radio';
@@ -38,9 +38,10 @@ import { SettingsService } from 'qbm';
 import { SystemRoleConfigService } from './system-role-config.service';
 
 @Component({
-    templateUrl: './system-role-config.component.html',
-    styleUrls: ['./system-role-config.component.scss'],
-    standalone: false
+  templateUrl: './system-role-config.component.html',
+  styleUrls: ['./system-role-config.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SystemRoleConfigComponent implements AfterViewInit, OnDestroy {
   public readonly form: UntypedFormGroup;

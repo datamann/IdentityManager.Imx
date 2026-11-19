@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { EUI_SIDESHEET_DATA, EuiCoreModule } from '@elemental-ui/core';
 import { ChartDto } from '@imx-modules/imx-api-aob';
@@ -33,9 +33,10 @@ import { Chart, ChartOptions, line, zoom } from 'billboard.js';
 import { isAllIntegers, ShortDatePipe } from 'qbm';
 
 @Component({
-    imports: [EuiCoreModule, MatCardModule, TranslateModule],
-    templateUrl: './application-kpi-sidesheet.component.html',
-    styleUrl: './application-kpi-sidesheet.component.scss'
+  imports: [EuiCoreModule, MatCardModule, TranslateModule],
+  templateUrl: './application-kpi-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './application-kpi-sidesheet.component.scss',
 })
 export class ApplicationKpiSidesheetComponent implements OnInit {
   // Injected services

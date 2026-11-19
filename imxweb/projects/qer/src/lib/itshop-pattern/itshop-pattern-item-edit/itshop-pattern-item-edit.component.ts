@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalItshopPatternItem } from '@imx-modules/imx-api-qer';
@@ -37,10 +37,11 @@ import { ItshopPatternService } from '../itshop-pattern.service';
 import { ItshopPatternItemEditParameter } from './itshop-pattern-item-edit-parameter.interface';
 
 @Component({
-    selector: 'imx-itshop-pattern-item-edit',
-    templateUrl: './itshop-pattern-item-edit.component.html',
-    styleUrls: ['./itshop-pattern-item-edit.component.scss'],
-    standalone: false
+  selector: 'imx-itshop-pattern-item-edit',
+  templateUrl: './itshop-pattern-item-edit.component.html',
+  styleUrls: ['./itshop-pattern-item-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ItshopPatternItemEditComponent implements OnInit {
   public readonly requestParamForm = new FormGroup({});

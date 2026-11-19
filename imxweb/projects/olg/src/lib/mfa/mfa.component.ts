@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -44,9 +44,10 @@ interface AuthForm {
  * Can be displayed in a side sheet, that will be closed, if one authentication method was successful
  */
 @Component({
-    templateUrl: './mfa.component.html',
-    styleUrls: ['./mfa.component.scss'],
-    standalone: false
+  templateUrl: './mfa.component.html',
+  styleUrls: ['./mfa.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MfaComponent implements OnDestroy {
   public authForm = new FormGroup<AuthForm>({

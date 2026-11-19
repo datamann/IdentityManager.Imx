@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -36,10 +36,11 @@ import { RulesViolationsDetailsComponent } from '../../../rules-violations/rules
 import { RulesViolationsService } from '../../../rules-violations/rules-violations.service';
 
 @Component({
-    selector: 'imx-violations-per-rule',
-    templateUrl: './violations-per-rule.component.html',
-    styleUrls: ['./violations-per-rule.component.scss'],
-    standalone: false
+  selector: 'imx-violations-per-rule',
+  templateUrl: './violations-per-rule.component.html',
+  styleUrls: ['./violations-per-rule.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ViolationsPerRuleComponent implements OnInit {
   public dataModelWrapper: DataModelWrapper;

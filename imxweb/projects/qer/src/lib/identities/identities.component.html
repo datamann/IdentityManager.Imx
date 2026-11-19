@@ -27,20 +27,20 @@
           <div data-imx-identifier="identities-tabledata-display">{{ item.GetEntity().GetDisplay() }}</div>
           <div subtitle data-imx-identifier="identities-tabledata-description">
             <span>{{ item.DefaultEmailAddress.Column.GetDisplayValue() }}</span>
-            @if (item.DefaultEmailAddress.Column.GetDisplayValue() && getSubtitleText(item?.GetEntity())) {
+            @if (item.DefaultEmailAddress.Column.GetDisplayValue() && getSubtitleText($safeNavigationMigration(item?.GetEntity()))) {
               <span class="imx-padding-right-4">;</span>
             }
-            <span>{{ getSubtitleText(item?.GetEntity()) }}</span>
+            <span>{{ getSubtitleText($safeNavigationMigration(item?.GetEntity())) }}</span>
           </div>
         </td>
       </ng-container>
       <ng-container [matColumnDef]="entitySchemaPersonReports.Columns.IsSecurityIncident.ColumnName">
-        @if (dataSource.isSortable(entitySchemaPersonReports.Columns.IsSecurityIncident?.ColumnName)) {
+        @if (dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IsSecurityIncident?.ColumnName))) {
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ entitySchemaPersonReports?.Columns?.IsSecurityIncident?.Display }}
           </th>
         }
-        @if (!dataSource.isSortable(entitySchemaPersonReports.Columns.IsSecurityIncident?.ColumnName)) {
+        @if (!dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IsSecurityIncident?.ColumnName))) {
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchemaPersonReports?.Columns?.IsSecurityIncident?.Display }}
           </th>
@@ -64,12 +64,12 @@
         </td>
       </ng-container>
       <ng-container [matColumnDef]="entitySchemaPersonReports.Columns.XMarkedForDeletion.ColumnName">
-        @if (dataSource.isSortable(entitySchemaPersonReports.Columns.XMarkedForDeletion?.ColumnName)) {
+        @if (dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.XMarkedForDeletion?.ColumnName))) {
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ entitySchemaPersonReports?.Columns?.XMarkedForDeletion?.Display }}
           </th>
         }
-        @if (!dataSource.isSortable(entitySchemaPersonReports.Columns.XMarkedForDeletion?.ColumnName)) {
+        @if (!dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.XMarkedForDeletion?.ColumnName))) {
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchemaPersonReports?.Columns?.XMarkedForDeletion?.Display }}
           </th>
@@ -84,12 +84,12 @@
       </ng-container>
       @if (!isAdmin) {
         <ng-container [matColumnDef]="entitySchemaPersonReports.Columns.IdentityType.ColumnName">
-          @if (dataSource.isSortable(entitySchemaPersonReports.Columns.IdentityType?.ColumnName)) {
+          @if (dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IdentityType?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               {{ entitySchemaPersonReports?.Columns?.IdentityType?.Display }}
             </th>
           }
-          @if (!dataSource.isSortable(entitySchemaPersonReports.Columns.IdentityType?.ColumnName)) {
+          @if (!dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IdentityType?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchemaPersonReports?.Columns?.IdentityType?.Display }}
             </th>
@@ -103,12 +103,12 @@
       }
       @if (!isAdmin) {
         <ng-container [matColumnDef]="entitySchemaPersonReports.Columns.EmployeeType.ColumnName">
-          @if (dataSource.isSortable(entitySchemaPersonReports.Columns.EmployeeType?.ColumnName)) {
+          @if (dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.EmployeeType?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               {{ entitySchemaPersonReports?.Columns?.EmployeeType?.Display }}
             </th>
           }
-          @if (!dataSource.isSortable(entitySchemaPersonReports.Columns.EmployeeType?.ColumnName)) {
+          @if (!dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.EmployeeType?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchemaPersonReports?.Columns?.EmployeeType?.Display }}
             </th>
@@ -122,12 +122,12 @@
       }
       @if (!isAdmin) {
         <ng-container [matColumnDef]="entitySchemaPersonReports.Columns.IsExternal.ColumnName">
-          @if (dataSource.isSortable(entitySchemaPersonReports.Columns.IsExternal?.ColumnName)) {
+          @if (dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IsExternal?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               {{ entitySchemaPersonReports?.Columns?.IsExternal?.Display }}
             </th>
           }
-          @if (!dataSource.isSortable(entitySchemaPersonReports.Columns.IsExternal?.ColumnName)) {
+          @if (!dataSource.isSortable($safeNavigationMigration(entitySchemaPersonReports.Columns.IsExternal?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchemaPersonReports?.Columns?.IsExternal?.Display }}
             </th>
@@ -170,7 +170,9 @@
     }
     <!-- Created this way because of the accessibility -->
     @for (extension of extensions; track extension) {
-      <button mat-menu-item (click)="showDynamicReport(extension)">{{ extension?.inputData?.caption | translate }}</button>
+      <button mat-menu-item (click)="showDynamicReport(extension)">
+        {{ $safeNavigationMigration(extension?.inputData?.caption) | translate }}
+      </button>
     }
   </mat-menu>
 </div>

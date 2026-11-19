@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { ClientPropertyForTableColumns } from '../../../data-source-toolbar/client-property-for-table-columns';
@@ -34,11 +34,12 @@ import { ChartDataTyped } from '../chart-data-typed';
 import { ChartTableService } from './chart-table-service.service';
 
 @Component({
-    selector: 'imx-chart-table',
-    templateUrl: './chart-table.component.html',
-    styleUrls: ['./chart-table.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-chart-table',
+  templateUrl: './chart-table.component.html',
+  styleUrls: ['./chart-table.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ChartTableComponent implements OnInit {
   @Input() public tableData: TypedEntityCollectionData<ChartDataTyped>;

@@ -25,7 +25,7 @@
  */
 
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PortalItshopPatternRequestable } from '@imx-modules/imx-api-qer';
 import {
   CollectionLoadParameters,
@@ -48,6 +48,7 @@ import { NewRequestSelectionService } from '../../new-request-selection.service'
   styleUrls: ['./product-bundle-list.component.scss'],
   providers: [DataViewSource],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('expandSearch', [
       state(

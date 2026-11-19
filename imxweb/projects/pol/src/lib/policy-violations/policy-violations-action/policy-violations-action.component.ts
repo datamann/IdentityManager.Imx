@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PolicyViolationsAction } from './policy-violations-action.interface';
@@ -44,9 +44,10 @@ import { PolicyViolationsAction } from './policy-violations-action.interface';
  *
  */
 @Component({
-    templateUrl: './policy-violations-action.component.html',
-    styleUrls: ['./policy-violations-action.component.scss'],
-    standalone: false
+  templateUrl: './policy-violations-action.component.html',
+  styleUrls: ['./policy-violations-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyViolationsActionComponent {
   /**

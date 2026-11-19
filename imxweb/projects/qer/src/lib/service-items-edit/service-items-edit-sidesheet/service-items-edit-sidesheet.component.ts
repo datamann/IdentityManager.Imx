@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PortalServiceitems } from '@imx-modules/imx-api-qer';
@@ -35,10 +35,11 @@ import { ServiceItemsEditService } from '../../service-items-edit/service-items-
 import { ServiceItemsEditFormComponent } from '../service-items-edit-form/service-items-edit-form.component';
 
 @Component({
-    selector: 'imx-service-items-edit-sidesheet',
-    templateUrl: './service-items-edit-sidesheet.component.html',
-    styleUrls: ['./service-items-edit-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-service-items-edit-sidesheet',
+  templateUrl: './service-items-edit-sidesheet.component.html',
+  styleUrls: ['./service-items-edit-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemsEditSidesheetComponent implements OnDestroy {
   @ViewChild('serviceItemsEditForm') public serviceItemsEditForm: ServiceItemsEditFormComponent;

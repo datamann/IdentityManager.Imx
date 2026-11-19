@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { MessageDialogResult } from './message-dialog-result.enum';
@@ -35,7 +35,8 @@ import { MessageParameter } from './message-parameter.interface';
   selector: 'imx-message-dialog',
   templateUrl: './message-dialog.component.html',
   styleUrls: ['./message-dialog.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MessageDialogComponent {
   public readonly MessageDialogResult = MessageDialogResult; // Enables use of this Enum in Angular Templates.
@@ -47,7 +48,7 @@ export class MessageDialogComponent {
     public dialogRef: MatDialogRef<MessageDialogComponent>,
     public messageDialogService: MessageDialogService,
     @Inject(MAT_DIALOG_DATA) public data: MessageParameter,
-  ) { }
+  ) {}
 
   public click(state: MessageDialogResult): void {
     this.dialogRef.close(state);

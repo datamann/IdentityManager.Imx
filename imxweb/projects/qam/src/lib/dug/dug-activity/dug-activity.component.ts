@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { DataSourceToolbarSettings } from 'qbm';
 import { PortalDgeResourcesActivity } from '../../TypedClient';
 
 @Component({
-    selector: 'imx-dug-activity',
-    templateUrl: './dug-activity.component.html',
-    styleUrls: ['./dug-activity.component.scss'],
-    standalone: false
+  selector: 'imx-dug-activity',
+  templateUrl: './dug-activity.component.html',
+  styleUrls: ['./dug-activity.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DugActivityComponent implements OnInit {
   @Input() public interval: number;

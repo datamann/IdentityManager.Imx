@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { ListReportDataProvider } from '../../list-report-viewer/list-report-data-provider.interface';
 import { ReportSubscription } from '../report-subscription/report-subscription';
@@ -37,10 +37,11 @@ import { ReportSubscriptionService } from '../report-subscription/report-subscri
  *  subscription:  an optional {@link ReportSubscription}
  */
 @Component({
-    selector: 'imx-list-report-viewer-sidesheet',
-    templateUrl: './list-report-viewer-sidesheet.component.html',
-    styleUrls: ['./list-report-viewer-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-list-report-viewer-sidesheet',
+  templateUrl: './list-report-viewer-sidesheet.component.html',
+  styleUrls: ['./list-report-viewer-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ListReportViewerSidesheetComponent {
   /**

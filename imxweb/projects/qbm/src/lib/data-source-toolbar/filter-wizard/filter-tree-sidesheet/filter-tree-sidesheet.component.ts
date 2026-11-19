@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { FlatTreeControl } from '@angular/cdk/tree';
 import _ from 'lodash';
 import { DynamicDataApiControls, DynamicDataSource } from '../../../sidenav-tree/sidenav-tree-dynamic-extension';
 import { FilterTreeNode, FilterTreeParameterData, FilterTreeSelectionParameter } from './filter-tree-sidesheet.model';
 @Component({
-    selector: 'imx-filter-tree-sidesheet',
-    templateUrl: './filter-tree-sidesheet.component.html',
-    styleUrls: ['./filter-tree-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-filter-tree-sidesheet',
+  templateUrl: './filter-tree-sidesheet.component.html',
+  styleUrls: ['./filter-tree-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FilterTreeSidesheetComponent implements OnInit {
   public currentlySelectedFilter: FilterTreeSelectionParameter;

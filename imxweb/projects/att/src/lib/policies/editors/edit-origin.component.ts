@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormGroup, UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -34,10 +34,11 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    templateUrl: './edit-origin.component.html',
-    selector: 'imx-edit-origin',
-    styleUrls: ['./edit-origin.component.scss'],
-    standalone: false
+  templateUrl: './edit-origin.component.html',
+  selector: 'imx-edit-origin',
+  styleUrls: ['./edit-origin.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditOriginComponent implements OnChanges, OnDestroy {
   public candidates: ParmOpt[];

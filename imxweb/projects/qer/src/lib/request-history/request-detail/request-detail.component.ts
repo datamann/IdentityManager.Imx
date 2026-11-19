@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -32,10 +32,11 @@ import { RequestActionService } from '../request-action/request-action.service';
 import { RequestDetailParameter } from './request-detail-parameter.interface';
 
 @Component({
-    templateUrl: './request-detail.component.html',
-    selector: 'imx-request-detail',
-    styleUrls: ['./request-detail.component.scss'],
-    standalone: false
+  templateUrl: './request-detail.component.html',
+  selector: 'imx-request-detail',
+  styleUrls: ['./request-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestDetailComponent implements OnDestroy {
   public readonly allowedActionCount: number;

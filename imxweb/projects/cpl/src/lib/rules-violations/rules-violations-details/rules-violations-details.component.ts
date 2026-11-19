@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, Type, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Type, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { MatTabGroup } from '@angular/material/tabs';
@@ -47,10 +47,11 @@ export interface DynamicTabItem extends IExtension {
  * A sidesheet component to show some information about the selected rules violation.
  */
 @Component({
-    selector: 'imx-rules-violations-details',
-    templateUrl: './rules-violations-details.component.html',
-    styleUrls: ['./rules-violations-details.component.scss'],
-    standalone: false
+  selector: 'imx-rules-violations-details',
+  templateUrl: './rules-violations-details.component.html',
+  styleUrls: ['./rules-violations-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RulesViolationsDetailsComponent implements OnInit, OnDestroy {
   @ViewChild(MatTabGroup) public matTabGroup: MatTabGroup;

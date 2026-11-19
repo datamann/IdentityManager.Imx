@@ -25,14 +25,15 @@
  */
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { EuiTheme } from '@elemental-ui/core';
 
 @Component({
-    selector: 'imx-ordered-list',
-    templateUrl: './ordered-list.component.html',
-    styleUrls: ['./ordered-list.component.scss'],
-    standalone: false
+  selector: 'imx-ordered-list',
+  templateUrl: './ordered-list.component.html',
+  styleUrls: ['./ordered-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OrderedListComponent {
   @Input() addNewText: string;

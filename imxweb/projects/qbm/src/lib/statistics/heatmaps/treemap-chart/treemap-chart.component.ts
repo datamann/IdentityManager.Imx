@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Block } from '../block-properties.interface';
 import { HeatmapSidesheetService } from '../heatmap-sidesheet/heatmap-sidesheet.service';
 
 @Component({
-    selector: 'imx-treemap-chart',
-    templateUrl: './treemap-chart.component.html',
-    styleUrls: ['./treemap-chart.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'imx-treemap-chart',
+  templateUrl: './treemap-chart.component.html',
+  styleUrls: ['./treemap-chart.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TreemapChartComponent {
   @Input() public blocks: Block[];

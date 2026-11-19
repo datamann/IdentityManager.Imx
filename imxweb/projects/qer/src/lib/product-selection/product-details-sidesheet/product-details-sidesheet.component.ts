@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { PortalShopServiceitems, QerProjectConfig } from '@imx-modules/imx-api-qer';
@@ -32,10 +32,11 @@ import { DisplayColumns } from '@imx-modules/imx-qbm-dbts';
 import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-product-details-sidesheet',
-    templateUrl: './product-details-sidesheet.component.html',
-    styleUrls: ['./product-details-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-product-details-sidesheet',
+  templateUrl: './product-details-sidesheet.component.html',
+  styleUrls: ['./product-details-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProductDetailsSidesheetComponent implements OnInit {
   public cdrList: ColumnDependentReference[] = [];

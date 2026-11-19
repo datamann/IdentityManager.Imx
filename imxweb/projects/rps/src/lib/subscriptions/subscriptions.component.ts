@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -51,6 +51,7 @@ import { SubscriptionsService } from './subscriptions.service';
   selector: 'imx-subscriptions',
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SubscriptionsComponent implements OnInit {

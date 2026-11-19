@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { MatExpansionPanel } from '@angular/material/expansion';
 
@@ -35,10 +35,11 @@ import { BulkItem, BulkItemStatus } from './bulk-item';
 import { BulkItemIcon } from './bulk-item-icon';
 
 @Component({
-    selector: 'imx-bulk-item',
-    templateUrl: './bulk-item.component.html',
-    styleUrls: ['./bulk-item.component.scss'],
-    standalone: false
+  selector: 'imx-bulk-item',
+  templateUrl: './bulk-item.component.html',
+  styleUrls: ['./bulk-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BulkItemComponent implements OnInit {
   public get icon(): BulkItemIcon {
@@ -118,7 +119,7 @@ export class BulkItemComponent implements OnInit {
   }
 
   public onPendingChanged(value: boolean) {
-    this.formGroupIsPending = value;    
+    this.formGroupIsPending = value;
   }
 
   public onValueChanged(): void {

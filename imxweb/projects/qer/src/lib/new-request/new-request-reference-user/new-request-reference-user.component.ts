@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, effect, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, effect, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -66,6 +66,7 @@ import { NewRequestSelectionService } from '../new-request-selection.service';
   templateUrl: './new-request-reference-user.component.html',
   styleUrls: ['./new-request-reference-user.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class NewRequestReferenceUserComponent implements AfterViewInit, OnDestroy {

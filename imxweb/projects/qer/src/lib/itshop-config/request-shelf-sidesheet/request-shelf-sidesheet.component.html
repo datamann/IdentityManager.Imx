@@ -5,10 +5,7 @@
     </ng-template>
     <div eui-sidesheet-content [ngClass]="!data.isNew ? 'eui-sidesheet-content--no-padding-top' : ''">
       @if (!data.isNew) {
-        <imx-help-contextual
-          [contextId]="detailsContextIds"
-          [title]="'#LDS#Information about this tab:'"
-        ></imx-help-contextual>
+        <imx-help-contextual [contextId]="detailsContextIds" [title]="'#LDS#Information about this tab:'"></imx-help-contextual>
       }
       <mat-card>
         <form [formGroup]="detailsFormGroup">
@@ -21,12 +18,7 @@
     <mat-card eui-sidesheet-actions class="eui-sidesheet-actions--flex">
       <span class="justify-start" [matTooltip]="deleteHelperTooltip | translate">
         @if (!data.isNew) {
-          <button
-            [disabled]="shelfHasEntitlements || entitlementRecentlyDeleted"
-            mat-stroked-button
-            color="warn"
-            (click)="delete()"
-            >
+          <button [disabled]="shelfHasEntitlements || entitlementRecentlyDeleted" mat-stroked-button color="warn" (click)="delete()">
             <eui-icon icon="delete"></eui-icon>
             <span translate>#LDS#Delete shelf</span>
             @if (shelfHasEntitlements || entitlementRecentlyDeleted) {
@@ -63,9 +55,9 @@
       <ng-template matTabContent>
         <div eui-sidesheet-content>
           <imx-object-hyperview
-            [objectType]="data?.requestConfig?.GetEntity()?.TypeName"
+            [objectType]="$safeNavigationMigration(data?.requestConfig?.GetEntity()?.TypeName)"
             [objectUid]="data?.requestConfig?.GetEntity()?.GetKeys()?.[0] || ''"
-            >
+          >
           </imx-object-hyperview>
         </div>
       </ng-template>

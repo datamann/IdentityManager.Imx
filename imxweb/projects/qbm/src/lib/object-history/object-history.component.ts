@@ -25,7 +25,7 @@
  */
 
 // eslint-disable-next-line max-classes-per-file
-import { Component, ErrorHandler, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EuiLoadingService, EuiSelectOption } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -41,12 +41,12 @@ import { ElementalUiConfigService } from '../configuration/elemental-ui-config.s
 import { ExtendedObjectHistoryEvent, TimelineDateTimeFilter } from '../timeline/timeline';
 import { EventChangeType, EventChangeTypes, HistoryEventChangeType } from '../timeline/timeline.model';
 
-
 @Component({
   selector: 'imx-object-history',
   templateUrl: './object-history.component.html',
   styleUrls: ['./object-history.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ObjectHistoryComponent implements OnInit, OnDestroy {
   @Input() public looks: string[] = ['timeline', 'table'];
@@ -127,7 +127,7 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
     public elementalUiConfigService: ElementalUiConfigService,
     private historyService: ObjectHistoryService,
     private readonly errorHandler: ErrorHandler,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.setTimeline();

@@ -22,13 +22,16 @@
       noMatchingDataText="#LDS#There are no shelves matching your search."
       data-imx-identifier="request-shelves-tabledata-table"
     >
-      <imx-data-table-column [entityColumn]="entitySchemaShopStructure?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]">
+      <imx-data-table-column
+        [entityColumn]="$safeNavigationMigration(entitySchemaShopStructure?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
+      >
         <ng-template let-item>
           <div data-imx-identifier="request-shelves-tabledata-display">{{ item.GetEntity().GetDisplay() }}</div>
           <div subtitle data-imx-identifier="request-shelves-tabledata-description">{{ item.Description.Column.GetDisplayValue() }}</div>
         </ng-template>
       </imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchemaShopStructure?.Columns?.UID_OrgAttestator"> </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaShopStructure?.Columns?.UID_OrgAttestator)">
+      </imx-data-table-column>
     </imx-data-table>
     <imx-data-source-paginator [dst]="dst"></imx-data-source-paginator>
   </mat-card>

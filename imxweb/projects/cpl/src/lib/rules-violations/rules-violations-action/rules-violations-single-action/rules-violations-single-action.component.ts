@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 import { ColumnDependentReference } from 'qbm';
@@ -39,10 +39,11 @@ import { RulesViolationsApproval } from '../../rules-violations-approval';
  * violations as well: {@link RulesViolationsMultiActionComponent}.
  */
 @Component({
-    selector: 'imx-rules-violations-single-action',
-    templateUrl: './rules-violations-single-action.component.html',
-    styleUrls: ['./rules-violations-single-action.component.scss'],
-    standalone: false
+  selector: 'imx-rules-violations-single-action',
+  templateUrl: './rules-violations-single-action.component.html',
+  styleUrls: ['./rules-violations-single-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RulesViolationsSingleActionComponent implements OnInit {
   /**

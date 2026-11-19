@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Globals } from '@imx-modules/imx-qbm-dbts';
 import { AppConfigService } from '../../appConfig/appConfig.service';
 import { SideNavigationComponent } from '../../side-navigation-view/side-navigation-view-interfaces';
@@ -32,10 +32,11 @@ import { SideNavigationComponent } from '../../side-navigation-view/side-navigat
 declare const SwaggerUIBundle: any;
 
 @Component({
-    selector: 'imx-swagger',
-    templateUrl: './swagger.component.html',
-    styleUrls: ['./swagger.component.scss'],
-    standalone: false
+  selector: 'imx-swagger',
+  templateUrl: './swagger.component.html',
+  styleUrls: ['./swagger.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SwaggerComponent implements AfterViewInit, SideNavigationComponent {
   @Input() public isAdmin: boolean;

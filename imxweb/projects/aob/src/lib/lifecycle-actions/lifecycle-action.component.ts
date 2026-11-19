@@ -25,7 +25,7 @@
  */
 
 import { Platform } from '@angular/cdk/platform';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormGroup, UntypedFormControl, ValidatorFn } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -51,11 +51,12 @@ import { LifecycleAction } from './lifecycle-action.enum';
  *
  */
 @Component({
-    selector: 'imx-entitlements-action',
-    templateUrl: './lifecycle-action.component.html',
-    styleUrls: ['./lifecycle-action.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-entitlements-action',
+  templateUrl: './lifecycle-action.component.html',
+  styleUrls: ['./lifecycle-action.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LifecycleActionComponent implements OnDestroy, OnInit {
   public readonly DisplayColumns = DisplayColumns; // Enables use of this static class in Angular Templates.

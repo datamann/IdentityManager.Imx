@@ -25,7 +25,7 @@
  */
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectionListChange } from '@angular/material/list';
 import { DataModel, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -35,6 +35,7 @@ import { ClientPropertyForTableColumns } from '../client-property-for-table-colu
   selector: 'imx-additional-infos',
   templateUrl: './additional-infos.component.html',
   styleUrls: ['./additional-infos.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AdditionalInfosComponent implements OnInit {
@@ -68,11 +69,11 @@ export class AdditionalInfosComponent implements OnInit {
 
   public ngOnInit(): void {
     this.possibleProperties = this.data.additionalPropertyNames.slice();
-    this.data.displayedColumns.forEach(column => {
+    this.data.displayedColumns.forEach((column) => {
       // Only add if this is a new column name, we also use the display for __Display === DisplayName conflicts
-      if (this.possibleProperties.find(prop => prop.ColumnName === column.ColumnName || prop.Display === column.Display)) return
-      this.possibleProperties.push(column)
-    })
+      if (this.possibleProperties.find((prop) => prop.ColumnName === column.ColumnName || prop.Display === column.Display)) return;
+      this.possibleProperties.push(column);
+    });
     this.possibleProperties.sort((prop1, prop2) => this.compareNames(prop1, prop2));
   }
 
@@ -86,7 +87,9 @@ export class AdditionalInfosComponent implements OnInit {
   }
 
   public isChecked(property: IClientProperty): boolean {
-    return this.data.preselectedProperties.find((elem) => elem.ColumnName === property.ColumnName || elem.Display === property.Display) != null;
+    return (
+      this.data.preselectedProperties.find((elem) => elem.ColumnName === property.ColumnName || elem.Display === property.Display) != null
+    );
   }
 
   public updateSelected(event: MatSelectionListChange): void {

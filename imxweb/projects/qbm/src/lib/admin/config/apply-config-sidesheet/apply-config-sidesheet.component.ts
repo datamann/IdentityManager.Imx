@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef } from '@elemental-ui/core';
 import { ConfigService } from '../config.service';
 
 @Component({
   templateUrl: './apply-config-sidesheet.component.html',
   styleUrls: ['./apply-config-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ApplyConfigSidesheetComponent implements OnInit {

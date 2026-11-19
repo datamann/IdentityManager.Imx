@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { EntityValue } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-column-info',
-    templateUrl: './column-info.component.html',
-    styleUrls: ['./column-info.component.scss'],
-    standalone: false
+  selector: 'imx-column-info',
+  templateUrl: './column-info.component.html',
+  styleUrls: ['./column-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ColumnInfoComponent<T> {
   @Input() public property: EntityValue<T>;

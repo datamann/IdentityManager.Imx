@@ -24,7 +24,16 @@
  *
  */
 
-import { ChangeDetectorRef, Component, HostListener, Input, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Input,
+  OnDestroy,
+  ViewChild,
+  ViewContainerRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { isMobile } from '../base/sidesheet-helper';
@@ -33,9 +42,10 @@ import { HelpContextualValues } from '../help-contextual/help-contextual.service
 import { SideNavigationExtension, SideNavigationItem } from './side-navigation-view-interfaces';
 
 @Component({
-    selector: 'imx-side-navigation-view',
-    templateUrl: './side-navigation-view.component.html',
-    standalone: false
+  selector: 'imx-side-navigation-view',
+  templateUrl: './side-navigation-view.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SideNavigationViewComponent implements OnDestroy {
   @Input() public baseUrl = '';

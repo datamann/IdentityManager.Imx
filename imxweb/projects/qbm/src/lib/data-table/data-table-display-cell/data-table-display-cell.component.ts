@@ -24,21 +24,22 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { IClientProperty, TypedEntity, ValType } from '@imx-modules/imx-qbm-dbts';
 import { buildAdditionalElementsString } from '../data-table-additional-info.model';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataView instead.
  */
 @Component({
-    selector: 'imx-data-table-display-cell',
-    templateUrl: './data-table-display-cell.component.html',
-    styleUrls: ['./data-table-display-cell.component.scss'],
-    standalone: false
+  selector: 'imx-data-table-display-cell',
+  templateUrl: './data-table-display-cell.component.html',
+  styleUrls: ['./data-table-display-cell.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTableDisplayCellComponent {
   public readonly ValType = ValType;

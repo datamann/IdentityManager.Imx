@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { PortalAttestationPolicy } from '@imx-modules/imx-api-att';
 
 @Component({
-    selector: 'imx-policy-details',
-    templateUrl: './policy-details.component.html',
-    styleUrls: ['./policy-details.component.scss'],
-    standalone: false
+  selector: 'imx-policy-details',
+  templateUrl: './policy-details.component.html',
+  styleUrls: ['./policy-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyDetailsComponent {
   public uidAttestationPolicy: string;
@@ -48,9 +49,9 @@ export class PolicyDetailsComponent {
     this.status = data.policy.IsProcessing.value
       ? '#LDS#Processing'
       : data.policy.CountCases.value === 0
-      ? '#LDS#Not run yet'
-      : data.policy.CountOpenCases.value === 0
-      ? '#LDS#Completed'
-      : '#LDS#Pending';
+        ? '#LDS#Not run yet'
+        : data.policy.CountOpenCases.value === 0
+          ? '#LDS#Completed'
+          : '#LDS#Pending';
   }
 }

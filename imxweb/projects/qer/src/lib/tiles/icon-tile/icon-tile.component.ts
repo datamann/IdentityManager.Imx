@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Input, ContentChild, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, ContentChild, TemplateRef, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-icon-tile',
-    templateUrl: './icon-tile.component.html',
-    styleUrls: ['./icon-tile.component.scss'],
-    standalone: false
+  selector: 'imx-icon-tile',
+  templateUrl: './icon-tile.component.html',
+  styleUrls: ['./icon-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IconTileComponent {
   @Input() public image: string;

@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -39,11 +39,12 @@ import { PickCategorySelectIdentitiesComponent } from '../pick-category-select-i
 import { PickCategoryService } from '../pick-category.service';
 
 @Component({
-    selector: 'imx-pick-category-create',
-    templateUrl: './pick-category-create.component.html',
-    styleUrls: ['./pick-category-create.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-pick-category-create',
+  templateUrl: './pick-category-create.component.html',
+  styleUrls: ['./pick-category-create.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PickCategoryCreateComponent implements OnInit, OnDestroy {
   public readonly displayNameForm = new UntypedFormGroup({});

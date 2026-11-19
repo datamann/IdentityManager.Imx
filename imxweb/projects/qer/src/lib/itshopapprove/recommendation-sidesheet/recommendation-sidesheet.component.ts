@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { RecommendationData, RecommendationDataItem, RecommendationEnum } from '@imx-modules/imx-api-qer';
 
 @Component({
-    selector: 'imx-recommendation-sidesheet',
-    templateUrl: './recommendation-sidesheet.component.html',
-    styleUrls: ['./recommendation-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-recommendation-sidesheet',
+  templateUrl: './recommendation-sidesheet.component.html',
+  styleUrls: ['./recommendation-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RecommendationSidesheetComponent {
   public isRecApprove: boolean;

@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { IEntityColumn } from '@imx-modules/imx-qbm-dbts';
 import { BaseReadonlyCdr } from '../base-readonly-cdr';
 import { ColumnDependentReference } from '../column-dependent-reference.interface';
 
 @Component({
-    selector: 'imx-property-viewer',
-    templateUrl: './property-viewer.component.html',
-    styleUrls: ['./property-viewer.component.scss'],
-    standalone: false
+  selector: 'imx-property-viewer',
+  templateUrl: './property-viewer.component.html',
+  styleUrls: ['./property-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PropertyViewerComponent implements OnChanges {
   public cdrList: ColumnDependentReference[];

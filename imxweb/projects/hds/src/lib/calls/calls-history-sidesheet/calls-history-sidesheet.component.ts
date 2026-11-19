@@ -23,17 +23,18 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { BaseCdr, ColumnDependentReference } from 'qbm';
 import { PortalCallsHistory } from '@imx-modules/imx-api-hds';
 
 @Component({
-    selector: 'imx-calls-history-sidesheet',
-    templateUrl: './calls-history-sidesheet.component.html',
-    styleUrls: ['./calls-history-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-calls-history-sidesheet',
+  templateUrl: './calls-history-sidesheet.component.html',
+  styleUrls: ['./calls-history-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsHistorySidesheetComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

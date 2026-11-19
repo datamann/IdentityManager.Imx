@@ -24,7 +24,16 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { PortalItshopRequests } from '@imx-modules/imx-api-qer';
@@ -33,9 +42,10 @@ import { ExtDirective } from 'qbm';
 import { RequestDisplayService } from './request-display.service';
 
 @Component({
-    template: `<ng-template imxExtd></ng-template>`,
-    selector: 'imx-request-display',
-    standalone: false
+  template: `<ng-template imxExtd></ng-template>`,
+  selector: 'imx-request-display',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestDisplayComponent implements OnInit, OnChanges {
   @ViewChild(ExtDirective, { static: true }) public readonly directive: ExtDirective;

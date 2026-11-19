@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, effect, ElementRef, SecurityContext, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, SecurityContext, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { QpmIntegrationLinks } from '@imx-modules/imx-api-qer';
@@ -32,9 +32,10 @@ import { ProjectConfigurationService } from '../project-configuration/project-co
 import { QerApiService } from '../qer-api-client.service';
 
 @Component({
-    templateUrl: './qpm-integration.component.html',
-    styleUrls: ['./qpm-integration.component.scss'],
-    standalone: false
+  templateUrl: './qpm-integration.component.html',
+  styleUrls: ['./qpm-integration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class QpmIntegrationComponent {
   private passwordLink = viewChild.required<ElementRef>('passwordLink');

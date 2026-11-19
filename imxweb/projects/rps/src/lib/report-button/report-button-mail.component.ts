@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -36,7 +36,8 @@ import { ParameterSidesheetComponent } from './parameter-sidesheet/parameter-sid
 @Component({
   templateUrl: './report-button-mail.component.html',
   styleUrls: ['./report-button-mail.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReportButtonMailComponent implements OnDestroy {
   public referrer: { uid: string; presetParameters: { [key: string]: string } };
@@ -49,7 +50,7 @@ export class ReportButtonMailComponent implements OnDestroy {
     private readonly sideSheet: EuiSidesheetService,
     private readonly translator: TranslateService,
     private readonly snackbarService: SnackBarService,
-  ) { }
+  ) {}
 
   public ngOnDestroy(): void {
     this.subscription?.unsubscribeEvents;
@@ -74,7 +75,6 @@ export class ReportButtonMailComponent implements OnDestroy {
 
     this.subscription.subscription.ExportFormat.value = 'PDF';
 
-
     if (this.hasParametersToCompleteByUser()) {
       const result = await this.sideSheet
         .open(ParameterSidesheetComponent, {
@@ -91,7 +91,6 @@ export class ReportButtonMailComponent implements OnDestroy {
         return;
       }
     }
-
 
     let errors = false;
     over = this.busy.show();

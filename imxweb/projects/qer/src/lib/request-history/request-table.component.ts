@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -66,6 +66,7 @@ import { RequestHistoryService } from './request-history.service';
   styleUrls: ['./request-table.component.scss'],
   selector: 'imx-request-table',
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class RequestTableComponent implements OnInit, OnDestroy, OnChanges {

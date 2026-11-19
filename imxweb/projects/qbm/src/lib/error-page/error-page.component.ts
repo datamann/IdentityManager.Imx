@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { EuiCoreModule } from '@elemental-ui/core';
@@ -46,6 +46,7 @@ import { ErrorPageService } from './error-page.service';
     }
   `,
   templateUrl: './error-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [EuiCoreModule, MatButtonModule, TranslateModule, RouterModule],
 })
 export class ErrorPageComponent {

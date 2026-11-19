@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { ExtDirective } from './ext.directive';
 import { ExtService } from './ext.service';
 
 @Component({
-    selector: 'imx-ext',
-    template: ` <ng-template imxExtd></ng-template> `,
-    standalone: false
+  selector: 'imx-ext',
+  template: ` <ng-template imxExtd></ng-template> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ExtComponent implements OnInit {
   @ViewChild(ExtDirective, { static: true }) public directive: ExtDirective;

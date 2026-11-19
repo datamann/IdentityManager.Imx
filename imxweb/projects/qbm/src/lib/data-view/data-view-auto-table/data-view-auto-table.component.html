@@ -192,12 +192,12 @@
               [disabled]="!dataSource.isSortable(column.ColumnName || '')"
               class="imx-header-cell"
             >
-              {{ dataSource.GetColumnDisplay(column.ColumnName || '', dataSource?.entitySchema()) }}
+              {{ dataSource.GetColumnDisplay(column.ColumnName || '', $safeNavigationMigration(dataSource?.entitySchema())) }}
             </th>
             <td mat-cell class="imx-header-cell" *matCellDef="let element" role="gridcell">
               <div>{{ getDisplayValue(element, column) }}</div>
               @if (column.ColumnName === DisplayColumns.DISPLAY_PROPERTYNAME && !!dataSource.additionalListColumns()?.length) {
-                <div subtitle>{{ getSubtitleText(element?.GetEntity()) }}</div>
+                <div subtitle>{{ getSubtitleText($safeNavigationMigration(element?.GetEntity())) }}</div>
               }
               <!-- TODO: Currently not needed in any auto tables, but need to think on index vs input for this feature in the future -->
               <!-- <imx-data-view-status *ngIf="column.ColumnName == queueStatusColumnName" [status]="element.itemStatus!.status(element)" /> -->
@@ -215,7 +215,7 @@
               [disabled]="!dataSource.isSortable(column.ColumnName || '')"
               class="imx-header-cell"
             >
-              {{ dataSource.GetColumnDisplay(column.ColumnName || '', dataSource?.entitySchema()) }}
+              {{ dataSource.GetColumnDisplay(column.ColumnName || '', $safeNavigationMigration(dataSource?.entitySchema())) }}
             </th>
             <td mat-cell class="imx-header-cell" *matCellDef="let element" role="gridcell">
               <span>{{ getDisplayValue(element, column) }}</span>
@@ -227,7 +227,7 @@
       <tr
         mat-row
         *matRowDef="let row; columns: namesOfDisplayedColumns()"
-        [ngClass]="dataSource.itemStatus.rowCssClass?.(row)"
+        [ngClass]="$safeNavigationMigration($safeNavigationMigration(dataSource.itemStatus.rowCssClass?.(row)))"
         (click)="dataSource.debouncedHighlightRow(row, $event); $event.stopPropagation()"
         (keydown.enter)="dataSource.debouncedHighlightRow(row, $event); $event.stopPropagation()"
       ></tr>

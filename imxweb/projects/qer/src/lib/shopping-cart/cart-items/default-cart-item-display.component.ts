@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalCartitem } from '@imx-modules/imx-api-qer';
 import { ParameterizedText } from 'qbm';
@@ -33,7 +33,7 @@ import { CartItemLogic } from './cart-item-logic.interface';
 
 /** Default display component for cart items; simply displaying the service item. */
 @Component({
-    template: `<div data-imx-identifier="default-cart-item-display">{{ cartItem.GetEntity().GetDisplay() }}</div>
+  template: `<div data-imx-identifier="default-cart-item-display">{{ cartItem.GetEntity().GetDisplay() }}</div>
     <div subtitle>
       <span>{{ '#LDS#Recipient' | translate }}: </span>
       <span data-imx-identifier="default-cart-item-recipient">{{ cartItem.UID_PersonOrdered?.Column?.GetDisplayValue() }}</span>
@@ -43,8 +43,9 @@ import { CartItemLogic } from './cart-item-logic.interface';
         <imx-parameterized-text [parameterizedText]="parameterizedText"></imx-parameterized-text>
       </div>
     }`,
-    styleUrls: ['./default-cart-item-display.component.scss'],
-    standalone: false
+  styleUrls: ['./default-cart-item-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DefaultCartItemDisplayComponent implements CartItemLogic {
   private _cartItem: PortalCartitem;

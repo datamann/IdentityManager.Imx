@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -34,6 +34,7 @@ import { AuthenticationService, ISessionState, SplashService } from 'qbm';
   selector: 'imx-root',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AppComponent implements OnInit, OnDestroy {

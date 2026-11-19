@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalPersonRolemembershipsNoncompliance } from '@imx-modules/imx-api-cpl';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,9 +42,10 @@ import { IdentityRuleViolationsMitigationControlComponent } from './identity-rul
 import { IdentityRuleViolationService } from './identity-rule-violations.service';
 
 @Component({
-    templateUrl: './identity-rule-violations.component.html',
-    styleUrls: ['./identity-rule-violations.component.scss'],
-    standalone: false
+  templateUrl: './identity-rule-violations.component.html',
+  styleUrls: ['./identity-rule-violations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityRuleViolationsComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

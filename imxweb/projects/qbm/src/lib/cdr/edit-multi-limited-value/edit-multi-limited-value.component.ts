@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormArray, UntypedFormControl } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -47,10 +47,11 @@ interface LimitedForm {
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-multi-limited-value',
-    templateUrl: './edit-multi-limited-value.component.html',
-    styleUrls: ['./edit-multi-limited-value.component.scss'],
-    standalone: false
+  selector: 'imx-edit-multi-limited-value',
+  templateUrl: './edit-multi-limited-value.component.html',
+  styleUrls: ['./edit-multi-limited-value.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditMultiLimitedValueComponent implements CdrEditor, OnDestroy {
   public readonly updateRequested = new Subject<void>();

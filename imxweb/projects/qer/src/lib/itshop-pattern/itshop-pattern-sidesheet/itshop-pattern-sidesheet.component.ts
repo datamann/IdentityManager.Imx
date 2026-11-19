@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
@@ -61,10 +61,11 @@ import { ItshopPatternItemEditComponent } from '../itshop-pattern-item-edit/itsh
 import { ItshopPatternService } from '../itshop-pattern.service';
 
 @Component({
-    selector: 'imx-itshop-pattern-sidesheet',
-    templateUrl: './itshop-pattern-sidesheet.component.html',
-    styleUrls: ['./itshop-pattern-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-itshop-pattern-sidesheet',
+  templateUrl: './itshop-pattern-sidesheet.component.html',
+  styleUrls: ['./itshop-pattern-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ItshopPatternSidesheetComponent implements OnInit, OnDestroy {
   public get formArray(): UntypedFormArray {

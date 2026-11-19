@@ -24,33 +24,33 @@
  *
  */
 
-import { HttpHeaders } from "@angular/common/http";
-import { Component, Inject, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { EuiCoreModule, EuiDownloadOptions, EuiSelectOption } from "@elemental-ui/core";
-import { TranslateModule } from "@ngx-translate/core";
+import { HttpHeaders } from '@angular/common/http';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { EuiCoreModule, EuiDownloadOptions, EuiSelectOption } from '@elemental-ui/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AppConfigService, DataSourceToolbarExportMethod, ElementalUiConfigService, ExportColumnsService, LdsReplaceModule } from 'qbm';
 
 /**
  * Data expected to be injected into this dialog
  */
 export interface ChatbotDialogData {
-  exportMethod: DataSourceToolbarExportMethod,
-  prompt: string,
-  totalCount: number
+  exportMethod: DataSourceToolbarExportMethod;
+  prompt: string;
+  totalCount: number;
 }
 
 @Component({
   standalone: true,
   imports: [EuiCoreModule, LdsReplaceModule, MatButtonModule, MatCardModule, MatDialogModule, TranslateModule],
   template: `
-    <h2 mat-dialog-title>{{'#LDS#Heading Export Query Results' | translate}}</h2>
+    <h2 mat-dialog-title>{{ '#LDS#Heading Export Query Results' | translate }}</h2>
     <mat-dialog-content class="container">
       <span class="format-text">
-        {{'#LDS#Here you can export all {0} results of the following query.' | translate | ldsReplace: data.totalCount}}
+        {{ '#LDS#Here you can export all {0} results of the following query.' | translate | ldsReplace: data.totalCount }}
       </span>
       <mat-card class="query-card">
         <span class="format-text">
@@ -69,18 +69,19 @@ export interface ChatbotDialogData {
         [attr.aria-label]="'#LDS#Export format' | translate"
         [feedbackMessages]="elementalUiConfigService.SelectFeedbackMessages"
         data-imx-identifier="export-type-select"
-        >
+      >
       </eui-select>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button mat-stroked-button (click)="onClose()">{{'#LDS#Cancel' | translate}}</button>
-      <button mat-flat-button color=primary [euiDownload]="downloadOptions" (click)="onClose()" cdkFocusInitial>
+      <button mat-stroked-button (click)="onClose()">{{ '#LDS#Cancel' | translate }}</button>
+      <button mat-flat-button color="primary" [euiDownload]="downloadOptions" (click)="onClose()" cdkFocusInitial>
         <eui-icon size="s" icon="export"></eui-icon>
-        {{'#LDS#Export' | translate}}
+        {{ '#LDS#Export' | translate }}
       </button>
     </mat-dialog-actions>
   `,
-  styleUrl: './export-dialog.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './export-dialog.component.scss',
 })
 export class ChatbotExportDialogComponent implements OnInit {
   downloadOptions: EuiDownloadOptions;
@@ -92,11 +93,11 @@ export class ChatbotExportDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ChatbotDialogData,
     private dialogRef: MatDialogRef<ChatbotExportDialogComponent>,
     public readonly elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // Default to using the first export option which here is CSV
-    this.selectedExport = new FormControl(this.columnExportService.exportOptions[0].value, { nonNullable: true })
+    this.selectedExport = new FormControl(this.columnExportService.exportOptions[0].value, { nonNullable: true });
     this.setDownloadOptions();
   }
 
@@ -117,7 +118,7 @@ export class ChatbotExportDialogComponent implements OnInit {
 
   /**
    * Handles changing the EUI selection and adjusting download headers
-   * @param type 
+   * @param type
    */
   public onChangeType(type: EuiSelectOption) {
     this.downloadOptions = {
@@ -126,7 +127,7 @@ export class ChatbotExportDialogComponent implements OnInit {
       requestOptions: {
         headers: new HttpHeaders({ Accept: type.value }),
         withCredentials: true,
-      }
+      },
     };
   }
 

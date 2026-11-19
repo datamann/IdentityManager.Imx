@@ -8,7 +8,7 @@
         (click)="onCreateNew()"
         class="mat-elevation-z4 imx-icon-button"
         data-imx-identifier="navigation-button-create-app"
-        >
+      >
         <eui-icon icon="add" size="20px"></eui-icon>
       </button>
     }
@@ -17,7 +17,7 @@
     [style.visibility]="dataReady() ? 'visible' : 'hidden'"
     (change)="filterApplicationsWithKpiIssues()"
     [(ngModel)]="filterKpiChecked"
-    >
+  >
     {{ '#LDS#Only show applications with KPI issues' | translate }}
   </mat-checkbox>
   <imx-data-source-toolbar
@@ -31,7 +31,7 @@
     [busyService]="busyService"
     (search)="onSearch($event)"
     [alwaysVisible]="true"
-    >
+  >
   </imx-data-source-toolbar>
 
   <imx-data-tiles
@@ -40,14 +40,14 @@
     [dst]="dst"
     [selectable]="selectable"
     [multiSelect]="false"
-    [image]="entitySchema?.Columns?.['JPegPhoto']"
+    [image]="$safeNavigationMigration(entitySchema?.Columns?.['JPegPhoto'])"
     fallbackIcon="application"
-    [titleObject]="entitySchema?.Columns?.['Ident_AOBApplication']"
-    [subtitleObject]="entitySchema?.Columns?.['Description']"
+    [titleObject]="$safeNavigationMigration(entitySchema?.Columns?.['Ident_AOBApplication'])"
+    [subtitleObject]="$safeNavigationMigration(entitySchema?.Columns?.['Description'])"
     (selectionChanged)="onSelectionChanged($event)"
     [selectedEntity]="selectedEntity"
     (selected)="onTileSelected($event)"
-    >
+  >
   </imx-data-tiles>
 
   <imx-data-source-paginator class="mat-elevation-z2 imx-margin-top-10" [dst]="dst"></imx-data-source-paginator>

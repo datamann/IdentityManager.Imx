@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { CollectionLoadParameters, EntitySchema, Globals, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -41,10 +41,11 @@ import { AboutService } from './About.service';
 const DisplayVersion = '10.1';
 
 @Component({
-    templateUrl: './About.component.html',
-    styleUrls: ['./About.component.scss'],
-    selector: 'imx-about',
-    standalone: false
+  templateUrl: './About.component.html',
+  styleUrls: ['./About.component.scss'],
+  selector: 'imx-about',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AboutComponent implements OnInit {
   @HostBinding('class')

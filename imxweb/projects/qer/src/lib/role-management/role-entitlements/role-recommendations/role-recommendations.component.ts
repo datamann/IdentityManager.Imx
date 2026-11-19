@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { RoleRecommendationItem } from '@imx-modules/imx-api-qer';
 import { EntitySchema, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -35,10 +35,11 @@ import { RoleRecommendationResultItem } from './role-recommendation-result-item'
 import { RoleRecommendationResultBuilder } from './role-recommendation-result-item-builder';
 
 @Component({
-    selector: 'imx-role-recommendations',
-    templateUrl: './role-recommendations.component.html',
-    styleUrls: ['./role-recommendations.component.scss'],
-    standalone: false
+  selector: 'imx-role-recommendations',
+  templateUrl: './role-recommendations.component.html',
+  styleUrls: ['./role-recommendations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleRecommendationsComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

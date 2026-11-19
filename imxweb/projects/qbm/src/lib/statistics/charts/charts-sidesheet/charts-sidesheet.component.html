@@ -65,7 +65,7 @@
 
 @if (canToggle) {
   <div class="under-card">
-    <imx-ext id="statisticButton" [referrer]="data?.chartInfo"></imx-ext>
+    <imx-ext id="statisticButton" [referrer]="$safeNavigationMigration(data?.chartInfo)"></imx-ext>
     @if (data?.isUserAdmin) {
       <div class="toggle-button-wrapper">
         @if (data.isOrg) {
@@ -102,5 +102,3 @@
     }
   </div>
 }
-
-

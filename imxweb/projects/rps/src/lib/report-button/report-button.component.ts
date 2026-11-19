@@ -26,7 +26,7 @@
 
 import { Overlay } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Injector, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Injector, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiDownloadDirective, EuiDownloadOptions, EuiDownloadService, EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -43,7 +43,8 @@ import { ReportButtonParameter } from './report-button-parameter';
   selector: 'imx-report-button',
   templateUrl: './report-button.component.html',
   styleUrls: ['./report-button.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReportButtonComponent implements OnInit, OnDestroy {
   public downloadOptions: EuiDownloadOptions;
@@ -69,7 +70,7 @@ export class ReportButtonComponent implements OnInit, OnDestroy {
     private readonly translator: TranslateService,
     private readonly userModelService: UserModelService,
     private readonly downloadService: EuiDownloadService,
-  ) { }
+  ) {}
 
   public ngOnDestroy(): void {
     this.subscription?.unsubscribeEvents;

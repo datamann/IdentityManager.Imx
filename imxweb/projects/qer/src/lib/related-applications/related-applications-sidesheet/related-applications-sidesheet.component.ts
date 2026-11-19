@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { RelatedApplication } from '@imx-modules/imx-api-qer';
 import { RelatedApplicationsService } from '../related-applications.service';
 
 @Component({
-    selector: 'imx-related-applications-sidesheet',
-    templateUrl: './related-applications-sidesheet.component.html',
-    standalone: false
+  selector: 'imx-related-applications-sidesheet',
+  templateUrl: './related-applications-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RelatedApplicationsSidesheetComponent implements OnInit {
   public applications: RelatedApplication[] = [];

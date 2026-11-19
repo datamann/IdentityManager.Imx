@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { FilterProperty, LogOp, SqlExpression, SqlWizardExpression, isExpressionInvalid } from '@imx-modules/imx-qbm-dbts';
@@ -44,6 +44,7 @@ import { FilterWizardService } from './filter-wizard.service';
   selector: 'imx-filter-wizard',
   templateUrl: './filter-wizard.component.html',
   styleUrls: ['./filter-wizard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class FilterWizardComponent implements OnInit, OnDestroy {

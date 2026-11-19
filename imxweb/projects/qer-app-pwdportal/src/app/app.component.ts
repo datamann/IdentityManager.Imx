@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, OnDestroy, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Event, EventType, NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -50,6 +50,7 @@ import { getBaseHref, HEADLESS_BASEHREF } from './app.module';
   selector: 'imx-root',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AppComponent implements OnInit, OnDestroy {

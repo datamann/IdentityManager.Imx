@@ -32,8 +32,8 @@
           [max]="dateUntil.value"
           [control]="dateFrom"
           [isLoading]="isLoading"
-          [imxIdentifierSuffix]="'-from-' + columnContainer?.name"
-          >
+          [imxIdentifierSuffix]="'-from-' + $safeNavigationMigration(columnContainer?.name)"
+        >
         </imx-date>
         <imx-date
           display="#LDS#Date until"
@@ -41,8 +41,8 @@
           [min]="dateFrom.value"
           [control]="dateUntil"
           [isLoading]="isLoading"
-          [imxIdentifierSuffix]="'-until-' + columnContainer?.name"
-          >
+          [imxIdentifierSuffix]="'-until-' + $safeNavigationMigration(columnContainer?.name)"
+        >
         </imx-date>
       </div>
     }

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PortalAdminPerson, PortalPersonReports, PortalRespTeamResponsibilities } from '@imx-modules/imx-api-qer';
 
@@ -32,6 +32,7 @@ import { PortalAdminPerson, PortalPersonReports, PortalRespTeamResponsibilities 
   selector: 'imx-team-responsibility-assign-dialog',
   templateUrl: './team-responsibility-assign-dialog.component.html',
   styleUrl: './team-responsibility-assign-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TeamResponsibilityAssignDialogComponent {

@@ -24,14 +24,15 @@
  *
  */
 
-import { AfterViewInit, Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy } from '@angular/core';
 import { ICartItemCheck } from '@imx-modules/imx-api-qer';
 import { ShoppingCartValidationDetailService } from '../shopping-cart-validation-detail.service';
 
 @Component({
-    selector: 'imx-detail-viewer',
-    templateUrl: './detail-viewer.component.html',
-    standalone: false
+  selector: 'imx-detail-viewer',
+  templateUrl: './detail-viewer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DetailViewerComponent implements AfterViewInit {
   @Input() public check: ICartItemCheck;

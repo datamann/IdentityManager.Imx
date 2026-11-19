@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { CartItemLogicService } from './cart-item-logic.service';
 import { ExtDirective, ClassloggerService } from 'qbm';
 import { PortalCartitem } from '@imx-modules/imx-api-qer';
 
 @Component({
-    template: `<ng-template imxExtd></ng-template>`,
-    selector: 'imx-cart-item-display',
-    standalone: false
+  template: `<ng-template imxExtd></ng-template>`,
+  selector: 'imx-cart-item-display',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CartItemDisplayComponent implements OnInit {
   @Input() public cartItem: PortalCartitem;

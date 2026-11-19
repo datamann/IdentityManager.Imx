@@ -24,7 +24,7 @@
       #stepper
       [linear]="true"
       (selectionChange)="selectedStepChanged($event)"
-      >
+    >
       @if (withSubordinates) {
         <mat-step data-imx-identifier="imx-delegation-step-0" [stepControl]="senderFormGroup">
           <ng-template matStepLabel>
@@ -43,8 +43,8 @@
               mat-stroked-button
               color="primary"
               matStepperNext
-              [disabled]="senderFormGroup?.invalid"
-              >
+              [disabled]="$safeNavigationMigration(senderFormGroup?.invalid)"
+            >
               {{ '#LDS#Next' | translate }}
             </button>
           </div>
@@ -59,7 +59,7 @@
             data-imx-identifier="imx-delegation-step-1-cdr-recipient"
             [cdr]="cdrPersonRecipient"
             (controlCreated)="addControl(recipientFormGroup, cdrPersonRecipient.column.ColumnName, $event)"
-            >
+          >
           </imx-cdr-editor>
         </div>
         <div class="imx-button-stepper">
@@ -68,18 +68,15 @@
             mat-stroked-button
             color="primary"
             matStepperNext
-            [disabled]="recipientFormGroup?.invalid"
-            >
+            [disabled]="$safeNavigationMigration(recipientFormGroup?.invalid)"
+          >
             {{ '#LDS#Next' | translate }}
           </button>
         </div>
       </mat-step>
 
       @if (canDelegateAll && canDelegateSelected) {
-        <mat-step
-          data-imx-identifier="imx-delegation-step-2"
-          [stepControl]="delegationTypeForm"
-          >
+        <mat-step data-imx-identifier="imx-delegation-step-2" [stepControl]="delegationTypeForm">
           <ng-template matStepLabel>{{ '#LDS#Select the type of delegation' | translate }}</ng-template>
           <div class="imx-delegation-type">
             <mat-radio-group [(ngModel)]="isGlobalDelegation">
@@ -122,7 +119,7 @@
                   <mat-checkbox
                     [(ngModel)]="globalDelegation.UseForShopCompliance"
                     data-imx-identifier="globaldelegation-Useforshopcompliance"
-                    >
+                  >
                     {{ '#LDS#Delegate compliance violation approval decisions' | translate }}
                   </mat-checkbox>
                 </p>
@@ -153,230 +150,219 @@
                           checkboxPosition="before"
                           [value]="roleClass.GetEntity().GetKeys()[0]"
                           [attr.data-imx-identifier]="'multi-select-formcontrol-list' + roleClass.GetEntity().GetKeys[0]"
-                          >
+                        >
                           {{ roleClass.GetEntity().GetDisplay() }}
                           <span class="nr-roles">
                             {{
-                            (roleClass.CountRolesOwned.value > 1 ? '#LDS#Responsible for {0} roles' : '#LDS#Responsible for one role')
-                            | translate
-                            | ldsReplace: roleClass.CountRolesOwned.value
+                              (roleClass.CountRolesOwned.value > 1 ? '#LDS#Responsible for {0} roles' : '#LDS#Responsible for one role')
+                                | translate
+                                | ldsReplace: roleClass.CountRolesOwned.value
                             }}</span
-                            >
+                          >
+                        </mat-list-option>
+                      }
+                    </mat-selection-list>
+                  </p>
+                }
+              }
+            </div>
+          }
+
+          @if (!isGlobalDelegation) {
+            <div class="imx-delegatable-elements">
+              <div class="imx-delegatable-elements">
+                <div class="imx-list-container">
+                  @if (!!delegateableItems?.length || navigationState.search) {
+                    <eui-search
+                      class="imx-multi-select"
+                      data-imx-identifier="delegation-eui-search"
+                      [placeholder]="'#LDS#Search' | translate"
+                      [searchControl]="searchControl"
+                      size="small"
+                    >
+                    </eui-search>
+                  }
+                  @if (isLoading) {
+                    <imx-busy-indicator></imx-busy-indicator>
+                  }
+                  @if (!isLoading) {
+                    @if (!!delegateableItems?.length) {
+                      <mat-selection-list class="imx-list-multi-action" (selectionChange)="updateSelection($event)">
+                        @for (delegateable of delegateableItems; track delegateable) {
+                          <mat-list-option
+                            [checkboxPosition]="'before'"
+                            [value]="delegateable"
+                            [attr.data-imx-identifier]="'imx-delegation-step-2-role' + delegateable.GetEntity().GetKeys().join(',')"
+                          >
+                            <div>
+                              <span>{{ delegateable.TargetObjectKey.Column.GetDisplayValue() }}</span>
+                              @if (delegateable.TargetType.value != 'Person') {
+                                <span> ({{ delegateable.TargetType.Column.GetDisplayValue() }})</span>
+                              }
+                            </div>
+                            <div class="imx-list-option-subtitle">({{ delegateable.Criteria.Column.GetDisplayValue() }})</div>
                           </mat-list-option>
                         }
                       </mat-selection-list>
-                    </p>
-                  }
-                }
-              </div>
-            }
-
-            @if (!isGlobalDelegation) {
-              <div class="imx-delegatable-elements">
-                <div class="imx-delegatable-elements">
-                  <div class="imx-list-container">
-                    @if (!!delegateableItems?.length || navigationState.search) {
-                      <eui-search
-                        class="imx-multi-select"
-                        data-imx-identifier="delegation-eui-search"
-                        [placeholder]="'#LDS#Search' | translate"
-                        [searchControl]="searchControl"
-                        size="small"
+                      <div class="imx-paginator-container">
+                        <mat-paginator
+                          [hidden]="false"
+                          [pageSize]="paginatorConfig.size"
+                          data-imx-identifier="delegation-roles-paginator"
+                          [pageSizeOptions]="paginatorConfig.sizeOptions"
+                          [showFirstLastButtons]="false"
+                          [length]="paginatorConfig.length"
+                          [pageIndex]="paginatorConfig.index"
+                          (page)="onPaginatorStateChanged($event)"
                         >
-                      </eui-search>
-                    }
-                    @if (isLoading) {
-                      <imx-busy-indicator></imx-busy-indicator>
-                    }
-                    @if (!isLoading) {
-                      @if (!!delegateableItems?.length) {
-                        <mat-selection-list class="imx-list-multi-action" (selectionChange)="updateSelection($event)">
-                          @for (delegateable of delegateableItems; track delegateable) {
-                            <mat-list-option
-                              [checkboxPosition]="'before'"
-                              [value]="delegateable"
-                              [attr.data-imx-identifier]="'imx-delegation-step-2-role' + delegateable.GetEntity().GetKeys().join(',')"
-                              >
-                              <div>
-                                <span>{{ delegateable.TargetObjectKey.Column.GetDisplayValue() }}</span>
-                                @if (delegateable.TargetType.value != 'Person') {
-                                  <span>
-                                    ({{ delegateable.TargetType.Column.GetDisplayValue() }})</span
-                                    >
-                                  }
-                                </div>
-                                <div class="imx-list-option-subtitle">({{ delegateable.Criteria.Column.GetDisplayValue() }})</div>
-                              </mat-list-option>
-                            }
-                          </mat-selection-list>
-                          <div class="imx-paginator-container">
-                            <mat-paginator
-                              [hidden]="false"
-                              [pageSize]="paginatorConfig.size"
-                              data-imx-identifier="delegation-roles-paginator"
-                              [pageSizeOptions]="paginatorConfig.sizeOptions"
-                              [showFirstLastButtons]="false"
-                              [length]="paginatorConfig.length"
-                              [pageIndex]="paginatorConfig.index"
-                              (page)="onPaginatorStateChanged($event)"
-                              >
-                            </mat-paginator>
-                          </div>
-                        } @else {
-                          <div class="imx-no-results">
-                            <eui-icon icon="table"></eui-icon>
-                            <p>
-                              {{
-                              (navigationState.search
+                        </mat-paginator>
+                      </div>
+                    } @else {
+                      <div class="imx-no-results">
+                        <eui-icon icon="table"></eui-icon>
+                        <p>
+                          {{
+                            (navigationState.search
                               ? '#LDS#There are no role memberships or responsibilities matching your search.'
                               : '#LDS#There are no role memberships or responsibilities you can delegate.'
-                              ) | translate
-                              }}
-                            </p>
-                          </div>
-                        }
-                      }
-                    </div>
-                  </div>
+                            ) | translate
+                          }}
+                        </p>
+                      </div>
+                    }
+                  }
                 </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="imx-button-stepper">
+          @if (!isGlobalDelegation) {
+            <imx-selected-elements [selectedElements]="selections" class="imx-margin-right-10"></imx-selected-elements>
+          }
+
+          @if (!isGlobalDelegation && !!delegateableItems?.length) {
+            <button mat-stroked-button (click)="onSelectall()" data-imx-identifier="productselection-select-all" [disabled]="isLoading">
+              {{ '#LDS#Select all on page' | translate }}
+            </button>
+          }
+          @if (!isGlobalDelegation && !!delegateableItems?.length) {
+            <button
+              mat-stroked-button
+              (click)="onDeselectAll()"
+              data-imx-identifier="productselection-deselect-all"
+              [disabled]="selections?.length === 0 || isLoading"
+            >
+              {{ '#LDS#Deselect all' | translate }}
+            </button>
+          }
+          <button data-imx-identifier="imx-delegation-step-3-back" mat-stroked-button matStepperPrevious>
+            {{ '#LDS#Back' | translate }}
+          </button>
+          <button
+            data-imx-identifier="imx-delegation-step-3-next"
+            mat-stroked-button
+            color="primary"
+            matStepperNext
+            [disabled]="isGlobalDelegation ? !isValidGlobalDelegation() : !selections || selections?.length === 0"
+          >
+            {{ '#LDS#Next' | translate }}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step
+        data-imx-identifier="imx-delegation-step-4"
+        [editable]="!completed"
+        [completed]="completed"
+        [state]="state"
+        [stepControl]="delegationForm"
+      >
+        <ng-template matStepLabel>{{ '#LDS#Specify additional options' | translate }}</ng-template>
+        @if (!completed) {
+          <form [formGroup]="delegationForm">
+            <div class="imx-additional-informations">
+              @for (cdr of cdrTimeSpan; track cdr) {
+                <imx-cdr-editor
+                  [attr.data-imx-identifier]="'imx-delegation-step-4' + cdr.column.ColumnName"
+                  [cdr]="cdr"
+                  (controlCreated)="addControl(delegationForm, cdr?.column?.ColumnName ?? '', $event)"
+                >
+                </imx-cdr-editor>
+              }
+              @if (delegationForm.errors?.validFromLargerThanUntil) {
+                <mat-error class="imx-small-error">
+                  {{
+                    '#LDS#The specified validity period is invalid. The validity end date is before the validity start date. Please change the validity period.'
+                      | translate
+                  }}
+                </mat-error>
+              }
+              @for (cdr of cdrList; track cdr) {
+                @if (isShowCdr(cdr)) {
+                  <imx-cdr-editor
+                    [attr.data-imx-identifier]="'imx-delegation-step-4' + cdr.column.ColumnName"
+                    [cdr]="cdr"
+                    (controlCreated)="addControl(delegationForm, cdr?.column?.ColumnName ?? '', $event)"
+                  >
+                  </imx-cdr-editor>
+                }
               }
             </div>
             <div class="imx-button-stepper">
-              @if (!isGlobalDelegation) {
-                <imx-selected-elements
-                  [selectedElements]="selections"
-                  class="imx-margin-right-10"
-                ></imx-selected-elements>
-              }
-
-              @if (!isGlobalDelegation && !!delegateableItems?.length) {
-                <button
-                  mat-stroked-button
-                  (click)="onSelectall()"
-                  data-imx-identifier="productselection-select-all"
-                  [disabled]="isLoading"
-                  >
-                  {{ '#LDS#Select all on page' | translate }}
-                </button>
-              }
-              @if (!isGlobalDelegation && !!delegateableItems?.length) {
-                <button
-                  mat-stroked-button
-                  (click)="onDeselectAll()"
-                  data-imx-identifier="productselection-deselect-all"
-                  [disabled]="selections?.length === 0 || isLoading"
-                  >
-                  {{ '#LDS#Deselect all' | translate }}
-                </button>
-              }
-              <button data-imx-identifier="imx-delegation-step-3-back" mat-stroked-button matStepperPrevious>
+              <button data-imx-identifier="imx-delegation-step-4-back" mat-stroked-button matStepperPrevious [disabled]="isSaving">
                 {{ '#LDS#Back' | translate }}
               </button>
               <button
-                data-imx-identifier="imx-delegation-step-3-next"
-                mat-stroked-button
+                data-imx-identifier="imx-delegation-step-4-save"
+                mat-flat-button
                 color="primary"
                 matStepperNext
-                [disabled]="isGlobalDelegation ? !isValidGlobalDelegation() : !selections || selections?.length === 0"
-                >
-                {{ '#LDS#Next' | translate }}
+                (click)="saveDelegation()"
+                [disabled]="delegationForm.invalid || isSaving"
+              >
+                {{ '#LDS#Save' | translate }}
               </button>
+              @if (isSaving) {
+                <mat-spinner diameter="30"></mat-spinner>
+              }
             </div>
-          </mat-step>
-
-          <mat-step
-            data-imx-identifier="imx-delegation-step-4"
-            [editable]="!completed"
-            [completed]="completed"
-            [state]="state"
-            [stepControl]="delegationForm"
-            >
-            <ng-template matStepLabel>{{ '#LDS#Specify additional options' | translate }}</ng-template>
-            @if (!completed) {
-              <form [formGroup]="delegationForm">
-                <div class="imx-additional-informations">
-                  @for (cdr of cdrTimeSpan; track cdr) {
-                    <imx-cdr-editor
-                      [attr.data-imx-identifier]="'imx-delegation-step-4' + cdr.column.ColumnName"
-                      [cdr]="cdr"
-                      (controlCreated)="addControl(delegationForm, cdr?.column?.ColumnName ?? '', $event)"
-                      >
-                    </imx-cdr-editor>
-                  }
-                  @if (delegationForm.errors?.validFromLargerThanUntil) {
-                    <mat-error class="imx-small-error">
-                      {{
-                      '#LDS#The specified validity period is invalid. The validity end date is before the validity start date. Please change the validity period.'
-                      | translate
-                      }}
-                    </mat-error>
-                  }
-                  @for (cdr of cdrList; track cdr) {
-                    @if (isShowCdr(cdr)) {
-                      <imx-cdr-editor
-                        [attr.data-imx-identifier]="'imx-delegation-step-4' + cdr.column.ColumnName"
-                        [cdr]="cdr"
-                        (controlCreated)="addControl(delegationForm, cdr?.column?.ColumnName ?? '', $event)"
-                        >
-                      </imx-cdr-editor>
-                    }
-                  }
-                </div>
-                <div class="imx-button-stepper">
-                  <button data-imx-identifier="imx-delegation-step-4-back" mat-stroked-button matStepperPrevious [disabled]="isSaving">
-                    {{ '#LDS#Back' | translate }}
-                  </button>
-                  <button
-                    data-imx-identifier="imx-delegation-step-4-save"
-                    mat-flat-button
-                    color="primary"
-                    matStepperNext
-                    (click)="saveDelegation()"
-                    [disabled]="delegationForm.invalid || isSaving"
-                    >
-                    {{ '#LDS#Save' | translate }}
-                  </button>
-                  @if (isSaving) {
-                    <mat-spinner diameter="30"></mat-spinner>
-                  }
-                </div>
-              </form>
-            }
-          </mat-step>
-        </mat-stepper>
-
-        @if (completed) {
-          <eui-alert
-            data-imx-identifier="imx-delegation-result-alert"
-            class="imx-delegation-success"
-            type="info"
-            [condensed]="true"
-            [colored]="true"
-            [dismissable]="false"
-            >
-            <div class="imx-alert-flex-column-end">
-              <div class="imx-message imx-message-ok">
-                {{ '#LDS#The delegation has been successfully created. It may take some time for the changes to take effect.' | translate }}
-              </div>
-              <div class="imx-button-stepper">
-                <button
-                  data-imx-identifier="imx-delegation-result-new-delegation"
-                  mat-flat-button
-                  color="primary"
-                  (click)="resetDelegation(); stepper.reset()"
-                  >
-                  {{ '#LDS#Create another delegation' | translate }}
-                </button>
-              </div>
-            </div>
-          </eui-alert>
+          </form>
         }
-      </div>
-    </mat-card>
+      </mat-step>
+    </mat-stepper>
 
-    <div class="imx-button-bar-transparent">
-      <button mat-stroked-button routerLink="/requesthistory" [queryParams]="{ showDelegations: true }">
-        <eui-icon icon="forward" class="imx-margin-right-5"></eui-icon><span translate>#LDS#Show my delegations</span>
-      </button>
-    </div>
+    @if (completed) {
+      <eui-alert
+        data-imx-identifier="imx-delegation-result-alert"
+        class="imx-delegation-success"
+        type="info"
+        [condensed]="true"
+        [colored]="true"
+        [dismissable]="false"
+      >
+        <div class="imx-alert-flex-column-end">
+          <div class="imx-message imx-message-ok">
+            {{ '#LDS#The delegation has been successfully created. It may take some time for the changes to take effect.' | translate }}
+          </div>
+          <div class="imx-button-stepper">
+            <button
+              data-imx-identifier="imx-delegation-result-new-delegation"
+              mat-flat-button
+              color="primary"
+              (click)="resetDelegation(); stepper.reset()"
+            >
+              {{ '#LDS#Create another delegation' | translate }}
+            </button>
+          </div>
+        </div>
+      </eui-alert>
+    }
+  </div>
+</mat-card>
 
+<div class="imx-button-bar-transparent">
+  <button mat-stroked-button routerLink="/requesthistory" [queryParams]="{ showDelegations: true }">
+    <eui-icon icon="forward" class="imx-margin-right-5"></eui-icon><span translate>#LDS#Show my delegations</span>
+  </button>
+</div>

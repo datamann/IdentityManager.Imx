@@ -9,11 +9,10 @@
   <button
     mat-flat-button
     color="primary"
-    (click)="close(fkSelector?.dataSource?.selection?.selected)"
+    (click)="close($safeNavigationMigration(fkSelector?.dataSource?.selection?.selected))"
     [disabled]="(fkSelector?.dataSource?.selection?.selected?.length ?? 0) < 1"
     data-imx-identifier="order-additional-button-apply"
-    >
+  >
     {{ '#LDS#Apply' | translate }}
   </button>
 </div>
-

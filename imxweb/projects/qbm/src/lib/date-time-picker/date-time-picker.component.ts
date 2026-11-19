@@ -25,7 +25,7 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -54,6 +54,7 @@ import { Subscription } from 'rxjs';
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 /**

@@ -25,7 +25,7 @@
  */
 
 import { ComponentType } from '@angular/cdk/portal';
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,10 +45,11 @@ import { RequestsService } from '../requests.service';
 import { CREATE_SHELF_TOKEN } from './request-shelf-token';
 
 @Component({
-    selector: 'imx-request-shelves',
-    templateUrl: './request-shelves.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss'],
-    standalone: false
+  selector: 'imx-request-shelves',
+  templateUrl: './request-shelves.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestShelvesComponent implements OnInit {
   @Input() public requestConfigId: string;

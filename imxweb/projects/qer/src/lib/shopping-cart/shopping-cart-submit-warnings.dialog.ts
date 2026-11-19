@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { ICartItemCheck } from '@imx-modules/imx-api-qer';
@@ -34,6 +34,7 @@ import { getCartItemValidationStatus } from './cart-items/cart-item-validation-s
   selector: 'imx-shopping-cart-submit-result',
   templateUrl: './shopping-cart-submit-warnings.dialog.html',
   styleUrls: ['./shopping-cart-submit-warnings.dialog.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -41,7 +42,7 @@ export class ShoppingCartSubmitWarningsDialog {
   constructor(
     public dialogRef: MatDialogRef<ShoppingCartSubmitWarningsDialog>,
     @Inject(MAT_DIALOG_DATA) public readonly data: any,
-  ) { }
+  ) {}
 
   public getStatus(check: ICartItemCheck): { status: string; icon: string; colorClass?: string } {
     return getCartItemValidationStatus(check);

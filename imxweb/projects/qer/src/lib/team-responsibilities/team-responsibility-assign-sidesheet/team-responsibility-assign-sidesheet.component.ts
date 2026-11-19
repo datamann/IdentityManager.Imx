@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import {
@@ -54,6 +54,7 @@ import { TeamResponsibilityAssignDialogComponent } from '../team-responsibility-
   templateUrl: './team-responsibility-assign-sidesheet.component.html',
   styleUrl: './team-responsibility-assign-sidesheet.component.scss',
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TeamResponsibilityAssignSidesheetComponent implements OnInit {

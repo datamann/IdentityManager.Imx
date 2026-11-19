@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { PortalTargetsystemAaduserDeniedserviceplans } from '@imx-modules/imx-api-aad';
@@ -41,10 +41,11 @@ import { AzureAdService } from '../azure-ad.service';
 import { AadUserCreateDialogComponent } from './aad-user-create-dialog.component';
 
 @Component({
-    selector: 'imx-aad-user-denied-plans',
-    templateUrl: './aad-user-denied-plans.component.html',
-    styleUrls: ['../azure-ad-common.scss'],
-    standalone: false
+  selector: 'imx-aad-user-denied-plans',
+  templateUrl: './aad-user-denied-plans.component.html',
+  styleUrls: ['../azure-ad-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AadUserDeniedPlansComponent implements OnInit {
   @Input() public referrer: { objecttable: string; objectuid: string };

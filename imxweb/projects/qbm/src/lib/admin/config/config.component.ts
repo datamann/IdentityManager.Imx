@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { ConfigSettingType, MethodSetInfo } from '@imx-modules/imx-api-qbm';
 import { TranslateService } from '@ngx-translate/core';
@@ -45,6 +45,7 @@ import { DeleteConfigSidesheetComponent } from './delete-config-sidesheet/delete
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
   selector: 'imx-config',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ConfigComponent implements OnInit, OnDestroy, SideNavigationComponent {

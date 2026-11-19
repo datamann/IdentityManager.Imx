@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PendingItemsType } from '../../user/pending-items-type.interface';
 import { UserModelService } from '../../user/user-model.service';
 import { DashboardService } from '../../wport/start/dashboard.service';
 
 @Component({
-    selector: 'imx-shopping-cart-button',
-    templateUrl: './shopping-cart-button.component.html',
-    styleUrls: ['./shopping-cart-button.component.scss'],
-    standalone: false
+  selector: 'imx-shopping-cart-button',
+  templateUrl: './shopping-cart-button.component.html',
+  styleUrls: ['./shopping-cart-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ShoppingCartButtonComponent implements OnInit {
   public pendingItems: PendingItemsType;

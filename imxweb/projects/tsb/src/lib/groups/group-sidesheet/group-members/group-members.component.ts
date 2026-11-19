@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
@@ -56,7 +56,8 @@ import { NewMembershipService } from './new-membership/new-membership.service';
   templateUrl: './group-members.component.html',
   styleUrls: ['./group-members.component.scss'],
   providers: [DataViewSource],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class GroupMembersComponent implements OnInit {
   @Input() public groupDirectMembershipData: TypedEntityCollectionData<PortalTargetsystemUnsDirectmembers>;

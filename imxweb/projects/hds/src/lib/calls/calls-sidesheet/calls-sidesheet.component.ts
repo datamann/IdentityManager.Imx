@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalCalls } from '@imx-modules/imx-api-hds';
@@ -38,10 +38,11 @@ export interface CallsSidesheetData {
 }
 
 @Component({
-    selector: 'imx-calls-sidesheet',
-    templateUrl: './calls-sidesheet.component.html',
-    styleUrls: ['./calls-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-calls-sidesheet',
+  templateUrl: './calls-sidesheet.component.html',
+  styleUrls: ['./calls-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsSidesheetComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

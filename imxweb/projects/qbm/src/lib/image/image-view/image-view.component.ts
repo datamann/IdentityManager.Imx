@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Base64ImageService } from '../../images/base64-image.service';
 import { ValueWrapper } from '../../value-wrapper/value-wrapper';
 
 @Component({
-    selector: 'imx-image-view',
-    templateUrl: './image-view.component.html',
-    styleUrls: ['./image-view.component.scss'],
-    standalone: false
+  selector: 'imx-image-view',
+  templateUrl: './image-view.component.html',
+  styleUrls: ['./image-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ImageViewComponent {
   @Input() public valueWrapper: ValueWrapper;

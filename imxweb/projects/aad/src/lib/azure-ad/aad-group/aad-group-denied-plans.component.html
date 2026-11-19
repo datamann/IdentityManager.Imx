@@ -21,8 +21,10 @@
       mode="manual"
       data-imx-identifier="aad-group-disabled-plans-tabledata-table"
     >
-      <imx-data-table-column [entityColumn]="entitySchemaAadGroupDeniedPlan?.Columns?.UID_AADDeniedServicePlan"> </imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchemaAadGroupDeniedPlan?.Columns?.XOrigin"> </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaAadGroupDeniedPlan?.Columns?.UID_AADDeniedServicePlan)">
+      </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaAadGroupDeniedPlan?.Columns?.XOrigin)">
+      </imx-data-table-column>
     </imx-data-table>
 
     <imx-data-source-paginator data-imx-identifier="aad-group-disabled-plans-paginator" [dst]="dst"></imx-data-source-paginator>

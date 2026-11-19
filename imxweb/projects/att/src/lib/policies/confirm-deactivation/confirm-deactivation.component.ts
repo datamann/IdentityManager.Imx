@@ -24,12 +24,13 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-confirm-deactivation',
-    templateUrl: './confirm-deactivation.component.html',
-    styleUrls: ['./confirm-deactivation.component.scss'],
-    standalone: false
+  selector: 'imx-confirm-deactivation',
+  templateUrl: './confirm-deactivation.component.html',
+  styleUrls: ['./confirm-deactivation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ConfirmDeactivationComponent {}

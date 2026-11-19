@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -38,6 +38,7 @@ import { BaseCdr, ColumnDependentReference, ConfirmationService } from 'qbm';
   selector: 'imx-application-create',
   templateUrl: './application-create.component.html',
   styleUrls: ['./application-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ApplicationCreateComponent implements OnDestroy {

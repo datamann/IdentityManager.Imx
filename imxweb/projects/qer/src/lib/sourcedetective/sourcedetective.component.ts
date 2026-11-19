@@ -25,7 +25,7 @@
  */
 
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { ITShopConfig, SourceNode } from '@imx-modules/imx-api-qer';
@@ -60,10 +60,11 @@ type SourceNodeEnriched = SourceNode & {
 };
 
 @Component({
-    templateUrl: './sourcedetective.component.html',
-    styleUrls: ['./sourcedetective.component.scss'],
-    selector: 'imx-source-detective',
-    standalone: false
+  templateUrl: './sourcedetective.component.html',
+  styleUrls: ['./sourcedetective.component.scss'],
+  selector: 'imx-source-detective',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SourceDetectiveComponent implements OnInit, OnChanges, OnDestroy {
   public treeControl = new FlatTreeControl<SourceNodeEnriched>(

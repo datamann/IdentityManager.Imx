@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
   FkProviderItem,
@@ -42,10 +42,11 @@ import { SqlNodeView } from './SqlNodeView';
 import { SqlWizardApiService } from './sqlwizard-api.service';
 
 @Component({
-    selector: 'imx-sqlwizard-singlevalue',
-    styleUrls: ['./sqlwizard.scss'],
-    templateUrl: './single-value.component.html',
-    standalone: false
+  selector: 'imx-sqlwizard-singlevalue',
+  styleUrls: ['./sqlwizard.scss'],
+  templateUrl: './single-value.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SingleValueComponent implements OnInit, OnDestroy {
   get value() {

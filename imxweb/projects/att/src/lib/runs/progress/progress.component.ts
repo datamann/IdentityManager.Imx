@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalAttestationRun } from '@imx-modules/imx-api-att';
 import { percentage } from '../helpers';
 
 @Component({
-    selector: 'imx-progress',
-    templateUrl: './progress.component.html',
-    standalone: false
+  selector: 'imx-progress',
+  templateUrl: './progress.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProgressComponent {
   public get progress(): number {

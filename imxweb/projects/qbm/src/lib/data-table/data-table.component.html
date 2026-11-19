@@ -13,7 +13,7 @@
             (click)="onGroupExpanded(grouping)"
             tabindex="0"
             (keydown.enter)="onGroupExpanded(grouping)"
-            >
+          >
             @if (grouping && grouping.Display) {
               <span>{{ grouping?.Display[0].Display || '' }}</span>
             }
@@ -24,17 +24,17 @@
               <eui-icon icon="collapseup"></eui-icon>
             }
             <div
-              [@groupExpand]="groupData[grouping?.Display[0].Display]?.isExpanded ?? false ? 'expanded' : 'collapsed'"
+              [@groupExpand]="(groupData[grouping?.Display[0].Display]?.isExpanded ?? false) ? 'expanded' : 'collapsed'"
               (click)="$event.stopPropagation()"
               [ngClass]="{ 'group-row-expanded': groupData[grouping?.Display[0]?.Display]?.isExpanded ?? false }"
-              >
+            >
               @if (groupData[grouping?.Display[0]?.Display]?.isExpanded) {
                 <imx-data-source-toolbar
                   #nestedDst
-                  [additionalPropertiesForNavigation]="dst.columnOptions?.getPropertiesForNavigation()"
+                  [additionalPropertiesForNavigation]="$safeNavigationMigration(dst.columnOptions?.getPropertiesForNavigation())"
                   [settings]="groupData[grouping?.Display[0]?.Display].settings"
                   [itemStatus]="dst.itemStatus"
-                  (navigationStateChanged)="onNavigationStateChanged(grouping?.Display[0]?.Display, $event)"
+                  (navigationStateChanged)="onNavigationStateChanged($safeNavigationMigration(grouping?.Display[0]?.Display), $event)"
                 ></imx-data-source-toolbar>
                 <imx-data-table
                   [dst]="nestedDst"
@@ -42,7 +42,7 @@
                   [mode]="mode"
                   [nested]="true"
                   [selectable]="selectable"
-                  (selectionChanged)="selectionInGroupChanged($event, grouping?.Display[0]?.Display)"
+                  (selectionChanged)="selectionInGroupChanged($event, $safeNavigationMigration(grouping?.Display[0]?.Display))"
                   [parentManualColumns]="manualColumns"
                   [parentManualGenericColumns]="manualGenericColumns"
                   [parentAdditionals]="dst.additionalColumns"
@@ -51,7 +51,7 @@
                   [noMatchingDataText]="noMatchingDataText"
                   [noMatchingDataIcon]="noMatchingDataIcon"
                   [groupedTableHasFiltersApplied]="dst.filtersCurrentlyApplied"
-                  >
+                >
                 </imx-data-table>
                 @if (showGroupPaginator) {
                   <imx-data-source-paginator [dst]="nestedDst"></imx-data-source-paginator>
@@ -85,7 +85,7 @@
     hidden: isLoading,
   }"
   role="grid"
-  >
+>
   @if (selectable) {
     <ng-container matColumnDef="select">
       @if (showSelectAllOption) {
@@ -97,7 +97,7 @@
               [checked]="numOfSelectedItemsOnPage() > 0 && allSelected()"
               [indeterminate]="numOfSelectedItemsOnPage() > 0 && !allSelected()"
               data-imx-identifier="datatable-checkbox-select-all"
-              >
+            >
             </mat-checkbox>
           }
         </th>
@@ -112,7 +112,7 @@
           (change)="$event.checked ? checked(row) : unChecked(row)"
           [checked]="isChecked(row)"
           [attr.data-imx-identifier]="'datatable-checkbox-select-row' + i"
-          >
+        >
         </mat-checkbox>
       </td>
     </ng-container>
@@ -174,12 +174,14 @@
 @if (dst != null && !dst?.dataSourceHasData && !isGroupingApplied && !isLoading) {
   <div class="imx-no-results">
     <eui-icon
-      [icon]="dst?.searchCurrenltyApplied || dst?.filtersCurrentlyApplied || groupedTableHasFiltersApplied ? noMatchingDataIcon : noDataIcon"
+      [icon]="
+        dst?.searchCurrenltyApplied || dst?.filtersCurrentlyApplied || groupedTableHasFiltersApplied ? noMatchingDataIcon : noDataIcon
+      "
     ></eui-icon>
     <p
-    [translate]="
-      dst?.searchCurrenltyApplied || dst?.filtersCurrentlyApplied || groupedTableHasFiltersApplied ? noMatchingDataText : noDataText
-    "
+      [translate]="
+        dst?.searchCurrenltyApplied || dst?.filtersCurrentlyApplied || groupedTableHasFiltersApplied ? noMatchingDataText : noDataText
+      "
     ></p>
   </div>
 }

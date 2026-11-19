@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { ChartDisplayType, ChartDto } from '@imx-modules/imx-api-qbm';
 import { TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
@@ -39,10 +39,11 @@ import { ChartDataTyped } from '../chart-data-typed';
 import { PointStatTyped } from '../s-chart-tile/point-stat-visual/point-stat-typed';
 
 @Component({
-    selector: 'imx-charts-sidesheet',
-    templateUrl: './charts-sidesheet.component.html',
-    styleUrls: ['./charts-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-charts-sidesheet',
+  templateUrl: './charts-sidesheet.component.html',
+  styleUrls: ['./charts-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ChartsSidesheetComponent implements OnInit, OnDestroy {
   @ViewChild('chartWrapper', { read: ElementRef }) public chartWrapper: ElementRef<HTMLElement>;

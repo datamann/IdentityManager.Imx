@@ -25,7 +25,7 @@
  */
 
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { IEntity } from '@imx-modules/imx-qbm-dbts';
 import { ResourceAccessMembersData } from '../../../../TypedClient';
@@ -38,10 +38,11 @@ interface ExampleFlatNode {
 }
 
 @Component({
-    selector: 'imx-permission-member',
-    templateUrl: './permission-member.component.html',
-    styleUrls: ['./permission-member.component.scss'],
-    standalone: false
+  selector: 'imx-permission-member',
+  templateUrl: './permission-member.component.html',
+  styleUrls: ['./permission-member.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PermissionMemberComponent implements OnChanges {
   /** Methods and functions for the tree*/

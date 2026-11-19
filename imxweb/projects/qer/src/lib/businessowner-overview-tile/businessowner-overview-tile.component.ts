@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the TileComponent instead.
  */
 @Component({
-    templateUrl: './businessowner-overview-tile.component.html',
-    selector: 'imx-businessowner-overview-tile',
-    standalone: false
+  templateUrl: './businessowner-overview-tile.component.html',
+  selector: 'imx-businessowner-overview-tile',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BusinessOwnerOverviewTileComponent {
   /* TODO (TFS 806002)

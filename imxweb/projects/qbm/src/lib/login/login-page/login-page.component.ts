@@ -38,6 +38,7 @@ import {
   viewChild,
   viewChildren,
   WritableSignal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule, UntypedFormControl } from '@angular/forms';
@@ -88,6 +89,7 @@ import { TwoFactorAuthenticationComponent } from '../../two-factor-authenticatio
     TwoFactorAuthenticationComponent,
   ],
   templateUrl: './login-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent implements OnDestroy {
@@ -188,7 +190,6 @@ export class LoginPageComponent implements OnDestroy {
   private themeService = inject(EuiThemeService);
   public elementalUiConfigService = inject(ElementalUiConfigService);
 
-
   constructor() {
     // Initital signals / computed signals
     this.title = this.appConfigService.title();
@@ -214,7 +215,7 @@ export class LoginPageComponent implements OnDestroy {
     effect(() => {
       // filter for any fields that are not in the login data or are empty
       const emptyInputs = this.authPropertyInput()?.filter(
-        (input) => !(input.name in this.loginData) || this.loginData[input.name].length === 0
+        (input) => !(input.name in this.loginData) || this.loginData[input.name].length === 0,
       );
       // Append capcha input if its there
       if (this.captchaComponent()) emptyInputs.push(this.captchaComponent()!.captchaInputField());

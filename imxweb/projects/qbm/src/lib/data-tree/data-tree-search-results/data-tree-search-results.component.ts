@@ -24,7 +24,17 @@
  *
  */
 
-import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatSelectionListChange } from '@angular/material/list';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -34,10 +44,11 @@ import { SettingsService } from '../../settings/settings-service';
 import { TreeDatabase } from '../tree-database';
 
 @Component({
-    selector: 'imx-data-tree-search-results',
-    templateUrl: './data-tree-search-results.component.html',
-    styleUrls: ['./data-tree-search-results.component.scss', '../data-tree-no-results.scss'],
-    standalone: false
+  selector: 'imx-data-tree-search-results',
+  templateUrl: './data-tree-search-results.component.html',
+  styleUrls: ['./data-tree-search-results.component.scss', '../data-tree-no-results.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 
 /** A component, that can display the search result for a{@link DataTreeComponent|data tree} */

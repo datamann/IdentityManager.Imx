@@ -24,8 +24,7 @@
  *
  */
 
-
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -37,10 +36,11 @@ import { PortalSwitcherSidesheetComponent } from '../portal-switcher-sidesheet/p
 import { PortalSwitcherService } from '../portal-switcher.service';
 
 @Component({
-    selector: 'imx-portal-switcher',
-    imports: [MatButtonModule, MatProgressSpinnerModule, MatTooltipModule, EuiCoreModule, TranslateModule],
-    templateUrl: './portal-switcher.component.html',
-    styleUrl: './portal-switcher.component.scss'
+  selector: 'imx-portal-switcher',
+  imports: [MatButtonModule, MatProgressSpinnerModule, MatTooltipModule, EuiCoreModule, TranslateModule],
+  templateUrl: './portal-switcher.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './portal-switcher.component.scss',
 })
 export class PortalSwitcherComponent {
   constructor(

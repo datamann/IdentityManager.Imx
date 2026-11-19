@@ -18,106 +18,108 @@
                 </eui-alert>
               }
               <imx-cdr-editor
-                [cdr]="objectProperties.IsInActive?.cdr"
-                (controlCreated)="addControl($event, policy.policy.IsInActive.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.IsInActive?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.IsInActive.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
 
               <imx-cdr-editor
-                [cdr]="objectProperties.Ident_AttestationPolicy?.cdr"
-                (controlCreated)="addControl($event, policy.policy.Ident_AttestationPolicy.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.Ident_AttestationPolicy?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.Ident_AttestationPolicy.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
 
               <imx-cdr-editor
-                [cdr]="objectProperties.Description?.cdr"
-                (controlCreated)="addControl($event, policy.policy.Description.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.Description?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.Description.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_AttestationObject?.cdr"
-                (controlCreated)="addControl($event, policy.policy.Ident_AttestationPolicy.Column?.ColumnName)"
+                [cdr]="$safeNavigationMigration(objectProperties.UID_AttestationObject?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.Ident_AttestationPolicy.Column?.ColumnName))"
                 (valueChange)="updateMethodAndFilter()"
-                >
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_PWODecisionMethod?.cdr"
-                (controlCreated)="addControl($event, policy.policy.UID_PWODecisionMethod.Column?.ColumnName)"
+                [cdr]="$safeNavigationMigration(objectProperties.UID_PWODecisionMethod?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.UID_PWODecisionMethod.Column?.ColumnName))"
                 (valueChange)="updateAttestation()"
-                >
+              >
               </imx-cdr-editor>
               @if (!!policy.policy?.Attestators?.GetMetadata()?.GetMinLength()) {
                 <imx-cdr-editor
-                  [cdr]="objectProperties.Attestators?.cdr"
-                  (controlCreated)="addControl($event, policy.policy.Attestators.Column?.ColumnName)"
-                  >
+                  [cdr]="$safeNavigationMigration(objectProperties.Attestators?.cdr)"
+                  (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.Attestators.Column?.ColumnName))"
+                >
                 </imx-cdr-editor>
               }
               <imx-cdr-editor
                 (readOnlyChanged)="updateReadOnlySchedule()"
-                [cdr]="objectProperties.UID_DialogSchedule?.cdr"
-                (controlCreated)="addControl($event, policy.policy.UID_DialogSchedule.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.UID_DialogSchedule?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.UID_DialogSchedule.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.SolutionDays?.cdr"
-                (controlCreated)="addControl($event, policy.policy.SolutionDays.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.SolutionDays?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.SolutionDays.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_PersonOwner?.cdr"
-                (controlCreated)="addControl($event, policy.policy.UID_PersonOwner.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.UID_PersonOwner?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.UID_PersonOwner.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
 
               <imx-cdr-editor
-                [cdr]="objectProperties.RiskIndex?.cdr"
-                (controlCreated)="addControl($event, policy.policy.RiskIndex?.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.RiskIndex?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.RiskIndex?.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
 
               @if (policy?.isComplienceFrameworkEnabled) {
                 <imx-cdr-editor
-                  [cdr]="objectProperties.Areas?.cdr"
-                  (controlCreated)="addControl($event, policy.policy.Areas.Column?.ColumnName)"
-                  >
+                  [cdr]="$safeNavigationMigration(objectProperties.Areas?.cdr)"
+                  (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.Areas.Column?.ColumnName))"
+                >
                 </imx-cdr-editor>
               }
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_AttestationPolicyGroup?.cdr"
-                (controlCreated)="addControl($event, policy.policy.UID_AttestationPolicyGroup?.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.UID_AttestationPolicyGroup?.cdr)"
+                (controlCreated)="
+                  addControl($event, $safeNavigationMigration(policy.policy.UID_AttestationPolicyGroup?.Column?.ColumnName))
+                "
+              >
               </imx-cdr-editor>
 
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_QERPickCategory?.cdr"
+                [cdr]="$safeNavigationMigration(objectProperties.UID_QERPickCategory?.cdr)"
                 (controlCreated)="addControl($event, policy.policy.UID_QERPickCategory.Column.ColumnName)"
-                >
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.UID_DialogCulture?.cdr"
-                (controlCreated)="addControl($event, policy.policy.UID_DialogCulture?.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.UID_DialogCulture?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.UID_DialogCulture?.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.IsShowElementsInvolved?.cdr"
-                (controlCreated)="addControl($event, policy.policy.IsShowElementsInvolved?.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.IsShowElementsInvolved?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.IsShowElementsInvolved?.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.IsAutoCloseOldCases?.cdr"
-                (controlCreated)="addControl($event, policy.policy.IsAutoCloseOldCases.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.IsAutoCloseOldCases?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.IsAutoCloseOldCases.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.IsApproveRequiresMfa?.cdr"
-                (controlCreated)="addControl($event, policy.policy.IsApproveRequiresMfa.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.IsApproveRequiresMfa?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.IsApproveRequiresMfa.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
               <imx-cdr-editor
-                [cdr]="objectProperties.LimitOfOldCases?.cdr"
-                (controlCreated)="addControl($event, policy.policy.LimitOfOldCases.Column?.ColumnName)"
-                >
+                [cdr]="$safeNavigationMigration(objectProperties.LimitOfOldCases?.cdr)"
+                (controlCreated)="addControl($event, $safeNavigationMigration(policy.policy.LimitOfOldCases.Column?.ColumnName))"
+              >
               </imx-cdr-editor>
             </mat-card>
             <imx-policy-editor
@@ -140,7 +142,7 @@
             data-imx-identifier="edit-master-data-button-delete"
             [disabled]="!policy.policy?.IsOob?.value || hasAttestations"
             (click)="delete()"
-            >
+          >
             <eui-icon icon="delete"></eui-icon>
             {{ '#LDS#Delete' | translate }}
           </button>
@@ -151,7 +153,7 @@
           [disabled]="!formGroup.dirty || formGroup.invalid || (policy.policy.IsMissingPickCategory.value ?? false)"
           data-imx-identifier="edit-master-data-button-save"
           (click)="submit()"
-          >
+        >
           {{ (policy.isNew ? '#LDS#Create' : '#LDS#Save') | translate }}
         </button>
       </div>

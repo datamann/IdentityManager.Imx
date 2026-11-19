@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { BaseCdr, ColumnDependentReference } from 'qbm';
 import { Subscription } from 'rxjs';
@@ -33,9 +33,10 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    templateUrl: './edit-name.component.html',
-    selector: 'imx-edit-name',
-    standalone: false
+  templateUrl: './edit-name.component.html',
+  selector: 'imx-edit-name',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditNameComponent implements OnChanges, OnDestroy {
   @Input() public filterElementModel: FilterElementModel;

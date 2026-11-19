@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import moment from 'moment-timezone';
 import { Subscription } from 'rxjs';
@@ -44,10 +44,11 @@ import { EntityColumnContainer } from '../entity-column-container';
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-date-range',
-    templateUrl: './date-range.component.html',
-    styleUrls: ['./date-range.component.scss'],
-    standalone: false
+  selector: 'imx-date-range',
+  templateUrl: './date-range.component.html',
+  styleUrls: ['./date-range.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DateRangeComponent implements CdrEditor, OnDestroy {
   /**

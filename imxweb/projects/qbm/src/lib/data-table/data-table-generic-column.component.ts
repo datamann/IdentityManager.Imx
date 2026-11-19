@@ -24,12 +24,12 @@
  *
  */
 
-import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatColumnDef } from '@angular/material/table';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataViewModule instead.
  * Visual representation of a column.
  * In contrast to DataTableColumnComponent, which is data bound to a typed entity, this component can visualize arbitrary data.
@@ -48,9 +48,10 @@ import { MatColumnDef } from '@angular/material/table';
  * <imx-data-source-paginator [dst]="myDst"></imx-data-source-paginator>
  */
 @Component({
-    selector: 'imx-data-table-generic-column',
-    templateUrl: './data-table-generic-column.component.html',
-    standalone: false
+  selector: 'imx-data-table-generic-column',
+  templateUrl: './data-table-generic-column.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTableGenericColumnComponent implements OnInit {
   /**

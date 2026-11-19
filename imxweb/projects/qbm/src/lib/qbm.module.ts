@@ -48,7 +48,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NGXLogger } from 'ngx-logger';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
@@ -127,19 +127,19 @@ export function initApp(registry: CdrRegistryService, logger: NGXLogger): () => 
  * Sets the Material tooltip default timing
  */
 const matTooltipDefaults: MatTooltipDefaultOptions = {
-  showDelay: 500,   // delay in ms before showing
+  showDelay: 500, // delay in ms before showing
   hideDelay: 0,
   // touch devices
   touchLongPressShowDelay: 1000,
-  touchendHideDelay: 1000
+  touchendHideDelay: 1000,
 };
 
 /**
  * Sets the Elemental tooltip default timing
  */
 const euiTooltipDefaults: EuiTooltipConfig = {
-  matTooltipShowDelay: 500
-}
+  matTooltipShowDelay: 500,
+};
 
 @NgModule({
   declarations: [
@@ -241,16 +241,16 @@ const euiTooltipDefaults: EuiTooltipConfig = {
     MessageDialogService,
     ReCaptchaV3Service,
     DisplayColumnsService,
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
     // Override defaults
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
-      useValue: matTooltipDefaults
+      useValue: matTooltipDefaults,
     },
     {
       provide: EUI_TOOLTIP_DEFAULTS,
-      useValue: euiTooltipDefaults
-    }
+      useValue: euiTooltipDefaults,
+    },
   ],
 })
 export class QbmModule {
@@ -258,7 +258,7 @@ export class QbmModule {
     registry: CdrRegistryService,
     logger: ClassloggerService,
     // Do not remove columnService. It does nothing here but handles its own initialization and is used in all portals, like the globalerrorhandler.
-    columnService: DisplayColumnsService
+    columnService: DisplayColumnsService,
   ) {
     logger.info(this, '▶️ QbmModule loaded');
     registry.register(new DefaultCdrEditorProvider());

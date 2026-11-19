@@ -24,8 +24,7 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
-
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { ExtDirective } from '../ext/ext.directive';
@@ -34,9 +33,10 @@ import { ISessionState } from '../session/session-state';
 import { TwoFactorAuthenticationService } from './two-factor-authentication.service';
 
 @Component({
-    selector: 'imx-2fahost',
-    imports: [],
-    template: ` <ng-template imxExtd></ng-template> `
+  selector: 'imx-2fahost',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  template: ` <ng-template imxExtd></ng-template> `,
 })
 export class TwoFactorAuthenticationComponent implements OnInit {
   @ViewChild(ExtDirective, { static: true }) public directive: ExtDirective;

@@ -24,8 +24,7 @@
  *
  */
 
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -37,10 +36,18 @@ import { MatTreeModule } from '@angular/material/tree';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { DisplayColumns, EntitySchema } from '@imx-modules/imx-qbm-dbts';
 import { TranslateModule } from '@ngx-translate/core';
-import { BusyIndicatorModule, BusyService, ClientPropertyForTableColumns, DataViewModule, DataViewSource, HelpContextualModule, LdsReplaceModule, LocalDataViewInitParameters } from 'qbm';
+import {
+  BusyIndicatorModule,
+  BusyService,
+  ClientPropertyForTableColumns,
+  DataViewModule,
+  DataViewSource,
+  HelpContextualModule,
+  LdsReplaceModule,
+  LocalDataViewInitParameters,
+} from 'qbm';
 import { PortalDgeClassificationSummary } from '../TypedClient'; // Adjust import as needed
 import { DugResourceOverviewService } from './dug-resource-overview.service';
-
 
 @Component({
   selector: 'imx-dug-resource-overview',
@@ -61,11 +68,12 @@ import { DugResourceOverviewService } from './dug-resource-overview.service';
     BusyIndicatorModule,
     HelpContextualModule,
     LdsReplaceModule,
-    DataViewModule
+    DataViewModule,
   ],
   providers: [DataViewSource],
   templateUrl: './dug-resource-overview.component.html',
-  styleUrl: './dug-resource-overview.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './dug-resource-overview.component.scss',
 })
 export class DugResourceOverviewComponent implements OnInit {
   public readonly DisplayColumns = DisplayColumns;
@@ -75,7 +83,7 @@ export class DugResourceOverviewComponent implements OnInit {
 
   constructor(
     private readonly dugResourceOverviewService: DugResourceOverviewService,
-    public dataSource: DataViewSource<PortalDgeClassificationSummary>
+    public dataSource: DataViewSource<PortalDgeClassificationSummary>,
   ) {
     this.entitySchema = this.dugResourceOverviewService.DugResourceOverviewSchema;
     this.displayedColumns = [
@@ -84,7 +92,7 @@ export class DugResourceOverviewComponent implements OnInit {
       this.entitySchema.Columns.CountResourcesNotOwned,
       this.entitySchema.Columns.CountResourcesOwned,
       this.entitySchema.Columns.PercentResourcesNotOwned,
-      this.entitySchema.Columns.CountResourceOwners
+      this.entitySchema.Columns.CountResourceOwners,
     ];
   }
 

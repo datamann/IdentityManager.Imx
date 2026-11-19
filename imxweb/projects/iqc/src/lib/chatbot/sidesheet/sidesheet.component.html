@@ -35,7 +35,10 @@
                 </button>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <imx-chatbot-dynamic-table [response]="chatEntry.response" [properties]="chatEntry?.properties"></imx-chatbot-dynamic-table>
+            <imx-chatbot-dynamic-table
+              [response]="chatEntry.response"
+              [properties]="$safeNavigationMigration(chatEntry?.properties)"
+            ></imx-chatbot-dynamic-table>
           </mat-expansion-panel>
         </mat-accordion>
       }
@@ -86,7 +89,7 @@
   <div class="under-form-container">
     <eui-alert type="warning" [condensed]="true">
       <a href="https://www.oneidentity.com/legal/AI.aspx" target="_blank" rel="noopener noreferrer">
-        {{'#LDS#Note that AI-generated content may not be accurate.' | translate}}
+        {{ '#LDS#Note that AI-generated content may not be accurate.' | translate }}
       </a>
     </eui-alert>
     <div class="button-container">
@@ -96,12 +99,7 @@
           {{ '#LDS#Start new chat' | translate }}
         </button>
       }
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="controlPromptInput.invalid"
-        (click)="onSendQuery()"
-      >
+      <button mat-raised-button color="primary" [disabled]="controlPromptInput.invalid" (click)="onSendQuery()">
         <eui-icon icon="run" size="s"></eui-icon>
         {{ '#LDS#Send query' | translate }}
       </button>

@@ -223,7 +223,6 @@
                 mat-icon-button
                 [attr.aria-label]="(isConfigDefault(config) ? '#LDS#Remove as default view' : '#LDS#Set as default view') | translate"
                 matTooltip="{{ (isConfigDefault(config) ? '#LDS#Remove as default view' : '#LDS#Set as default view') | translate }}"
-                
                 matTooltipPosition="before"
                 [ngClass]="{ 'imx-info': isConfigDefault(config) }"
                 (click)="toggleDefaultConfig(config); $event.stopPropagation()"
@@ -232,7 +231,7 @@
                 <eui-icon [icon]="isConfigDefault(config) ? 'star' : 'openstar'"></eui-icon>
               </button>
               <button
-                [disabled]="config?.IsReadOnly"
+                [disabled]="$safeNavigationMigration(config?.IsReadOnly)"
                 mat-icon-button
                 [attr.aria-label]="'#LDS#Edit name of view' | translate"
                 (click)="changeConfigName(config); $event.stopPropagation()"
@@ -241,7 +240,7 @@
                 <eui-icon icon="edit"></eui-icon>
               </button>
               <button
-                [disabled]="config?.IsReadOnly"
+                [disabled]="$safeNavigationMigration(config?.IsReadOnly)"
                 mat-icon-button
                 color="warn"
                 class="saved-config-delete"
@@ -292,7 +291,7 @@
           }
           @for (sf of selectedFilters; track sf) {
             <mat-chip-option
-              (click)="onSelectedFilterRemoved(sf, sf.selectedOption?.Value)"
+              (click)="onSelectedFilterRemoved(sf, $safeNavigationMigration(sf.selectedOption?.Value))"
               [attr.data-imx-identifier]="'dst-mat-chip-selected-filters-chip-' + sf.filter?.Name + '-' + sf.selectedOption?.Value"
             >
               <span class="tag-name">{{ sf.selectedOption?.Display ?? '' }}</span>

@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, ErrorHandler, OnDestroy, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { EuiLoadingService } from '@elemental-ui/core';
@@ -37,9 +37,10 @@ import { TargetSystemService } from '../target-system/target-system.service';
 import { ClaimGroupService } from './claim-group.service';
 
 @Component({
-    styleUrls: ['./claim-group.component.scss'],
-    templateUrl: './claim-group.component.html',
-    standalone: false
+  styleUrls: ['./claim-group.component.scss'],
+  templateUrl: './claim-group.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ClaimGroupComponent implements OnInit, OnDestroy {
   public get ownerDisplay(): string {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { ShapeData, ShapeProperty } from '@imx-modules/imx-api-qbm';
 import { EntityColumnData } from '@imx-modules/imx-qbm-dbts';
@@ -37,6 +37,7 @@ import { ShapeClickArgs } from './hyperview-types';
   selector: 'imx-hyperview-propertyshape',
   templateUrl: './propertyshape.component.html',
   styleUrls: ['./propertyshape.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PropertyShapeComponent {
@@ -45,7 +46,7 @@ export class PropertyShapeComponent {
   @Input() public selected: EventEmitter<ShapeClickArgs> = new EventEmitter();
 
   public GetPropertyDisplayValue(property: EntityColumnData | undefined): string {
-    return property?.DisplayValue != null ? property.DisplayValue : property?.Value ?? '';
+    return property?.DisplayValue != null ? property.DisplayValue : (property?.Value ?? '');
   }
 
   /**

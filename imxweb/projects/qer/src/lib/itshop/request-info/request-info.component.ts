@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { PortalShopServiceitems, PwoData, QerProjectConfig } from '@imx-modules/imx-api-qer';
@@ -42,6 +42,7 @@ import { WorkflowHistoryItemWrapper } from './workflow-history-item-wrapper';
   templateUrl: './request-info.component.html',
   selector: 'imx-requestinfo',
   styleUrls: ['./request-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class RequestInfoComponent implements OnInit, OnDestroy {

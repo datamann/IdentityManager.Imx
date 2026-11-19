@@ -24,7 +24,18 @@
  *
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
@@ -44,9 +55,10 @@ import { DataSourceToolbarComponent } from './data-source-toolbar.component';
  * <imx-data-source-paginator [dst]="myDst"></imx-data-source-paginator>
  */
 @Component({
-    selector: 'imx-data-source-paginator',
-    templateUrl: './data-source-paginator.component.html',
-    standalone: false
+  selector: 'imx-data-source-paginator',
+  templateUrl: './data-source-paginator.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
   /**

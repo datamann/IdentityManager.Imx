@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -35,10 +35,11 @@ import { OwnerControlService } from './owner-control.service';
 import { OwnerCandidateOptions } from './owner.model';
 
 @Component({
-    selector: 'imx-owner-control',
-    templateUrl: './owner-control.component.html',
-    styleUrls: ['./owner-control.component.scss'],
-    standalone: false
+  selector: 'imx-owner-control',
+  templateUrl: './owner-control.component.html',
+  styleUrls: ['./owner-control.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OwnerControlComponent implements OnChanges, OnDestroy {
   @Input() public column: IEntityColumn;

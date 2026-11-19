@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { ProjectConfigurationService } from '../../project-configuration/project-configuration.service';
@@ -32,9 +32,10 @@ import { ProjectConfigurationService } from '../../project-configuration/project
 import { AddressbookDetail } from './addressbook-detail.interface';
 
 @Component({
-    selector: 'imx-addressbook-detail',
-    templateUrl: './addressbook-detail.component.html',
-    standalone: false
+  selector: 'imx-addressbook-detail',
+  templateUrl: './addressbook-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AddressbookDetailComponent implements OnInit {
   constructor(

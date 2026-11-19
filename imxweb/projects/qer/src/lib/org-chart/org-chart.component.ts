@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalPersonOrgdata } from '@imx-modules/imx-api-qer';
 import { QerApiService } from '../qer-api-client.service';
 
 @Component({
-    templateUrl: './org-chart.component.html',
-    selector: 'imx-orgchart',
-    styleUrls: ['./org-chart.component.scss'],
-    standalone: false
+  templateUrl: './org-chart.component.html',
+  selector: 'imx-orgchart',
+  styleUrls: ['./org-chart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OrgChartComponent implements OnInit {
   constructor(

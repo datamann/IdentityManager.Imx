@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
@@ -63,7 +63,8 @@ import { MitigatingControlsComponent } from './mitigating-controls/mitigating-co
   templateUrl: './attestation-case.component.html',
   selector: 'imx-attestation-case',
   styleUrls: ['./attestation-case.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationCaseComponent implements OnDestroy, OnInit {
   public userUid: string;

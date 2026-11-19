@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ComplianceViolation } from '@imx-modules/imx-api-att';
 
 @Component({
-    selector: 'imx-decision-compliance-violation',
-    templateUrl: './decision-compliance-violation.component.html',
-    styleUrls: ['./decision-compliance-violation.component.scss'],
-    standalone: false
+  selector: 'imx-decision-compliance-violation',
+  templateUrl: './decision-compliance-violation.component.html',
+  styleUrls: ['./decision-compliance-violation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DecisionComplianceViolationComponent {
   @Input() public complianceViolations: ComplianceViolation[];

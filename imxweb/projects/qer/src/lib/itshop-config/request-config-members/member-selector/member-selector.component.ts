@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { CollectionLoadParameters, EntityCollectionData, FilterTreeData, TypedEntity } from '@imx-modules/imx-qbm-dbts';
 import { BusyService } from 'qbm';
 
 @Component({
-    templateUrl: './member-selector.component.html',
-    styleUrls: ['./member-selector.component.scss'],
-    standalone: false
+  templateUrl: './member-selector.component.html',
+  styleUrls: ['./member-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MemberSelectorComponent {
   public selectedItems: TypedEntity[] = [];

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -57,10 +57,11 @@ import { PatternItemCandidate } from '../pattern-item-candidate.interface';
  * Component that shows the service catalog with service items, which the user can added to the itshop pattern.
  */
 @Component({
-    selector: 'imx-itshop-pattern-add-products',
-    templateUrl: './itshop-pattern-add-products.component.html',
-    styleUrls: ['./itshop-pattern-add-products.component.scss'],
-    standalone: false
+  selector: 'imx-itshop-pattern-add-products',
+  templateUrl: './itshop-pattern-add-products.component.html',
+  styleUrls: ['./itshop-pattern-add-products.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
   @ViewChild(ServiceitemListComponent) public serviceitemListComponent: ServiceitemListComponent;

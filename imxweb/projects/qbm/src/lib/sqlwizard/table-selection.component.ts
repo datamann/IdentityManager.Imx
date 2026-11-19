@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSelectOption } from '@elemental-ui/core';
 import { ElementalUiConfigService } from '../configuration/elemental-ui-config.service';
 import { SqlNodeView } from './SqlNodeView';
@@ -32,13 +32,14 @@ import { SqlWizardApiService } from './sqlwizard-api.service';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the DataViewComponent instead.
  */
 @Component({
   selector: 'imx-sqlwizard-tableselection',
   templateUrl: './table-selection.component.html',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TableSelectionComponent implements OnInit {
   @Input() public node: SqlNodeView;
@@ -47,8 +48,10 @@ export class TableSelectionComponent implements OnInit {
 
   public tableFilter: string;
 
-  constructor(private readonly sqlApiService: SqlWizardApiService, public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  constructor(
+    private readonly sqlApiService: SqlWizardApiService,
+    public elementalUiConfigService: ElementalUiConfigService,
+  ) {}
 
   public async ngOnInit() {
     // TODO const tables = await this.sqlApiService.getSelectableTables(this.node.Data.);

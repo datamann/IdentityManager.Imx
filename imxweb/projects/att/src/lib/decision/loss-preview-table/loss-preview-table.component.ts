@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EntitlementLossDto } from '@imx-modules/imx-api-att';
 import { AttestationCasesService } from '../attestation-cases.service';
 import { LossPreview } from '../loss-preview.interface';
 
 @Component({
-    selector: 'imx-loss-preview-table',
-    templateUrl: './loss-preview-table.component.html',
-    styleUrls: ['./loss-preview-table.component.scss'],
-    standalone: false
+  selector: 'imx-loss-preview-table',
+  templateUrl: './loss-preview-table.component.html',
+  styleUrls: ['./loss-preview-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LossPreviewTableComponent implements OnInit {
   @Input() public lossPreview: LossPreview;

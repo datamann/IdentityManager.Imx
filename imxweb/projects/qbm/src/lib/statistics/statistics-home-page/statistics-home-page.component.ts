@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { fromEvent, Subscription } from 'rxjs';
@@ -37,6 +37,7 @@ import { GenericStatisticEntity, StatisticsDataService } from './statistics-data
   selector: 'imx-statistics-home-page',
   templateUrl: './statistics-home-page.component.html',
   styleUrls: ['./statistics-home-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class StatisticsHomePageComponent implements OnInit, OnDestroy {

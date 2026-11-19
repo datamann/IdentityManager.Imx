@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalServiceitems } from '@imx-modules/imx-api-qer';
 
 @Component({
-    selector: 'imx-lock-info-alert',
-    templateUrl: './lock-info-alert.component.html',
-    styleUrls: ['./lock-info-alert.component.scss'],
-    standalone: false
+  selector: 'imx-lock-info-alert',
+  templateUrl: './lock-info-alert.component.html',
+  styleUrls: ['./lock-info-alert.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LockInfoAlertComponent implements OnInit {
   @Input() public serviceItem: PortalServiceitems;

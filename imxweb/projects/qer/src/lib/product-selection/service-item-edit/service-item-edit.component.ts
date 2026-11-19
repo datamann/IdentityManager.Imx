@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { BulkItem, BulkItemStatus, ConfirmationService, LdsReplacePipe } from 'qbm';
 
 @Component({
-    selector: 'imx-service-item-edit',
-    templateUrl: './service-item-edit.component.html',
-    styleUrls: ['./service-item-edit.component.scss'],
-    standalone: false
+  selector: 'imx-service-item-edit',
+  templateUrl: './service-item-edit.component.html',
+  styleUrls: ['./service-item-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemEditComponent {
   public infoText =

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -47,11 +47,12 @@ import { PickCategorySidesheetComponent } from './pick-category-sidesheet/pick-c
 import { PickCategoryService } from './pick-category.service';
 
 @Component({
-    selector: 'imx-pick-category',
-    templateUrl: './pick-category.component.html',
-    styleUrls: ['./pick-category.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-pick-category',
+  templateUrl: './pick-category.component.html',
+  styleUrls: ['./pick-category.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PickCategoryComponent implements OnInit {
   public selectedPickCategoryItems: PortalPickcategory[] = [];

@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiDownloadOptions } from '@elemental-ui/core';
 
 import { AadPermissionsService } from '../../admin/aad-permissions.service';
 import { AadExtensionService } from '../aad-extension.service';
 
 @Component({
-    templateUrl: './licence-overview-button.component.html',
-    standalone: false
+  templateUrl: './licence-overview-button.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LicenceOverviewButtonComponent implements OnInit {
   public licenceOverview: EuiDownloadOptions;

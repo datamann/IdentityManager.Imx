@@ -25,7 +25,7 @@
  */
 
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PortalServiceitems, QerProjectConfig } from '@imx-modules/imx-api-qer';
@@ -34,10 +34,11 @@ import { HELP_CONTEXTUAL, LdsReplacePipe, SnackBarService } from 'qbm';
 import { NEW_REQUEST_ROUTE } from '../../constants';
 
 @Component({
-    selector: 'imx-product-details-sidesheet',
-    templateUrl: './product-details-sidesheet.component.html',
-    styleUrls: ['./product-details-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-product-details-sidesheet',
+  templateUrl: './product-details-sidesheet.component.html',
+  styleUrls: ['./product-details-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProductDetailsSidesheetComponent implements OnInit {
   public hasEntitlements: boolean;
@@ -113,7 +114,10 @@ export class ProductDetailsSidesheetComponent implements OnInit {
     this.clipboard.copy(url);
     this.snackbar.open(
       {
-        key: this.ldsReplace.transform(this.translate.instant('#LDS#The following product URL has been successfully copied to your clipboard: {0}'), url),
+        key: this.ldsReplace.transform(
+          this.translate.instant('#LDS#The following product URL has been successfully copied to your clipboard: {0}'),
+          url,
+        ),
       },
       '#LDS#Close',
       { duration: 3000 },

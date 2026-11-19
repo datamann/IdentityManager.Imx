@@ -25,7 +25,7 @@
         [disabled]="!formGroup.dirty || formGroup.invalid"
         data-imx-identifier="resource-sidesheet-save-button"
         (click)="submit()"
-        >
+      >
         {{ '#LDS#Save' | translate }}
       </button>
     </div>
@@ -33,7 +33,10 @@
   <mat-tab label="{{ '#LDS#Heading Hyperview' | translate }}">
     <ng-template matTabContent>
       <div eui-sidesheet-content>
-        <imx-object-hyperview [objectType]="data?.entity?.TypeName" [objectUid]="data?.entity?.GetKeys()?.[0] || ''">
+        <imx-object-hyperview
+          [objectType]="$safeNavigationMigration(data?.entity?.TypeName)"
+          [objectUid]="data?.entity?.GetKeys()?.[0] || ''"
+        >
         </imx-object-hyperview>
       </div>
     </ng-template>

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { ConfirmationService } from '../../../confirmation/confirmation.service';
 import { SnackBarService } from '../../../snackbar/snack-bar.service';
@@ -35,6 +35,7 @@ import { PathData } from '../path-data';
 @Component({
   templateUrl: './delete-config-sidesheet.component.html',
   styleUrls: ['../add-config-sidesheet/add-config-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DeleteConfigSidesheetComponent implements OnInit {

@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormControl } from '@angular/forms';
 import { MatSelectionListChange } from '@angular/material/list';
 import { Subscription } from 'rxjs';
@@ -36,17 +36,18 @@ import { SettingsService } from 'qbm';
 import { ReportSubscriptionService } from '../../report-subscription/report-subscription.service';
 
 @Component({
-    selector: 'imx-report-selector',
-    templateUrl: './report-selector.component.html',
-    styleUrls: ['./report-selector.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ReportSelectorComponent),
-            multi: true,
-        },
-    ],
-    standalone: false
+  selector: 'imx-report-selector',
+  templateUrl: './report-selector.component.html',
+  styleUrls: ['./report-selector.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ReportSelectorComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReportSelectorComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit {
   public candidatesTotalCount: number;

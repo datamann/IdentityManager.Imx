@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, effect, OnDestroy } from '@angular/core';
+import { Component, effect, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 
 import { PortalItshopPeergroupMemberships, PortalShopServiceitems, ServiceItemsExtendedData } from '@imx-modules/imx-api-qer';
@@ -64,6 +64,7 @@ import { PeerGroupDiscardSelectedComponent } from './peer-group-discard-selected
   templateUrl: './new-request-peer-group.component.html',
   styleUrls: ['./new-request-peer-group.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class NewRequestPeerGroupComponent implements OnDestroy {

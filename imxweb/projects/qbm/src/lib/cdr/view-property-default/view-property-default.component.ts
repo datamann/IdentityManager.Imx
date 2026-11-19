@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EditorBase } from '../editor-base';
 
@@ -32,10 +32,11 @@ import { EditorBase } from '../editor-base';
  * @deprecated since v10.0.0
  */
 @Component({
-    selector: 'imx-view-property-default',
-    templateUrl: './view-property-default.component.html',
-    styleUrls: ['./view-property-default.component.scss'],
-    standalone: false
+  selector: 'imx-view-property-default',
+  templateUrl: './view-property-default.component.html',
+  styleUrls: ['./view-property-default.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ViewPropertyDefaultComponent extends EditorBase<string> {
   public readonly control = new UntypedFormControl(undefined);

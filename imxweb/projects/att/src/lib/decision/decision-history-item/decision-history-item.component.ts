@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalAttestationCaseHistory } from '@imx-modules/imx-api-att';
 import { DecisionHistoryService } from 'qer';
 @Component({
-    selector: 'imx-decision-history-item',
-    templateUrl: './decision-history-item.component.html',
-    styleUrls: ['./decision-history-item.component.scss'],
-    standalone: false
+  selector: 'imx-decision-history-item',
+  templateUrl: './decision-history-item.component.html',
+  styleUrls: ['./decision-history-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DecisionHistoryItemComponent {
   @Input() public workflowHistoryEntity: PortalAttestationCaseHistory;

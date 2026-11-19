@@ -133,7 +133,7 @@
       <button
         mat-flat-button
         color="primary"
-        (click)="unsubscribe(mailToBeUnsubscribed?.UidMail)"
+        (click)="unsubscribe($safeNavigationMigration(mailToBeUnsubscribed?.UidMail))"
         [disabled]="!mailToBeUnsubscribed?.IsSubscribed || !mailToBeUnsubscribed?.AllowUnsubscribe"
         data-imx-identifier="edit-profile-button-unsubscribe"
       >

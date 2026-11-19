@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * DataSourceToolbarCustomComponent is part of the {@link DataSourceToolbarComponent}.
@@ -43,10 +43,11 @@ import { Component, Input, TemplateRef } from '@angular/core';
  * </ng-template>
  */
 @Component({
-    selector: 'imx-data-source-toolbar-custom',
-    templateUrl: './data-source-toolbar-custom.component.html',
-    styleUrls: ['./data-source-toolbar-custom.component.scss'],
-    standalone: false
+  selector: 'imx-data-source-toolbar-custom',
+  templateUrl: './data-source-toolbar-custom.component.html',
+  styleUrls: ['./data-source-toolbar-custom.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataSourceToolbarCustomComponent {
   /**

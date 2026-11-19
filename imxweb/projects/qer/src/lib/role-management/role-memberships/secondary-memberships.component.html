@@ -13,7 +13,7 @@
         (search)="onSearch($event)"
         [itemStatus]="selectableStatus"
         [options]="['search', 'filter', 'groupBy']"
-        >
+      >
       </imx-data-source-toolbar>
       <imx-data-table
         #dataTable
@@ -26,11 +26,11 @@
         [showSelectedItemsMenu]="false"
         (selectionChanged)="onSelectionChanged($event)"
         (highlightedEntityChanged)="onHighlightedEntityChanged($event)"
-        >
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.UID_Person"> </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.XDateInserted"> </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.OrderState"> </imx-data-table-column>
-        <imx-data-table-column width="200px" [entityColumn]="entitySchema?.Columns?.XOrigin">
+      >
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.UID_Person)"> </imx-data-table-column>
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.XDateInserted)"> </imx-data-table-column>
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.OrderState)"> </imx-data-table-column>
+        <imx-data-table-column width="200px" [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.XOrigin)">
           <ng-template let-item>
             <div>{{ item.GetEntity().GetColumn('XOrigin').GetDisplayValue() }}</div>
             @if (item.GetEntity().GetColumn('XMarkedForDeletion').GetValue() > 0) {
@@ -43,12 +43,10 @@
             }
           </ng-template>
         </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.ValidUntil">
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.ValidUntil)">
           <ng-template let-item>
             @if (item.GetEntity().GetColumn('ValidUntil').GetValue()) {
-              <eui-badge color="blue" textColor="white">{{
-                getValidUntil(item)
-              }}</eui-badge>
+              <eui-badge color="blue" textColor="white">{{ getValidUntil(item) }}</eui-badge>
             }
           </ng-template>
         </imx-data-table-column>
@@ -65,7 +63,7 @@
         color="warn"
         [disabled]="!canDeleteAllSelected()"
         (click)="onDeleteMemberships()"
-        >
+      >
         <eui-icon icon="delete"></eui-icon>
         {{ '#LDS#Remove' | translate }}
       </button>

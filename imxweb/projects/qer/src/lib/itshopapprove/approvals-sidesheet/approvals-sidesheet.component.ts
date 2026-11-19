@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -36,10 +36,11 @@ import { Approval } from '../approval';
 import { WorkflowActionService } from '../workflow-action/workflow-action.service';
 
 @Component({
-    selector: 'imx-approvals-sidesheet',
-    templateUrl: './approvals-sidesheet.component.html',
-    styleUrls: ['./approvals-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-approvals-sidesheet',
+  templateUrl: './approvals-sidesheet.component.html',
+  styleUrls: ['./approvals-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApprovalsSidesheetComponent implements OnDestroy, OnInit {
   public readonly hasPeerGroupAnalysis: boolean;

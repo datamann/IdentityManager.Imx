@@ -1,8 +1,8 @@
 <mat-tab-group mat-stretch-tabs="false" class="imx-aob">
   <mat-tab [label]="'#LDS#Heading Main Data' | translate" data-imx-identifier="app-details">
     <imx-entitlement-edit
-      [entitlement]="data?.entitlement"
-      [serviceItem]="data?.serviceItem"
+      [entitlement]="$safeNavigationMigration(data?.entitlement)"
+      [serviceItem]="$safeNavigationMigration(data?.serviceItem)"
       (controlCreated)="form.addControl('entitlementedit', $event)"
       (saved)="afterSave($event)"
     >

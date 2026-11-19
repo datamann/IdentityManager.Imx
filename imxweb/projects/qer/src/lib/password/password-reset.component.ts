@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,10 +38,11 @@ import { PasswordItem } from './password-item';
 import { PasswordService } from './password.service';
 
 @Component({
-    selector: 'imx-password-reset',
-    templateUrl: './password-reset.component.html',
-    styleUrls: ['./password-reset.component.scss'],
-    standalone: false
+  selector: 'imx-password-reset',
+  templateUrl: './password-reset.component.html',
+  styleUrls: ['./password-reset.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PasswordResetComponent implements OnInit {
   public myPasswordVisibility: boolean;

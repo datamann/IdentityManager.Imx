@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService } from '@elemental-ui/core';
 
 import { PortalTermsofuse } from '@imx-modules/imx-api-qer';
@@ -32,10 +32,11 @@ import { IReadValue } from '@imx-modules/imx-qbm-dbts';
 import { TermsOfUseService } from '../terms-of-use.service';
 
 @Component({
-    selector: 'imx-terms-of-use-viewer',
-    templateUrl: './terms-of-use-viewer.component.html',
-    styleUrls: ['./terms-of-use-viewer.component.scss'],
-    standalone: false
+  selector: 'imx-terms-of-use-viewer',
+  templateUrl: './terms-of-use-viewer.component.html',
+  styleUrls: ['./terms-of-use-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TermsOfUseViewerComponent implements OnInit {
   public terms: PortalTermsofuse;

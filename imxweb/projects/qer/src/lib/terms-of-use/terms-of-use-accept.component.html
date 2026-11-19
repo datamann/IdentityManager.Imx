@@ -42,8 +42,8 @@
             color="primary"
             matStepperNext
             data-imx-identifier="terms-of-use-accept-button-accept-with-authentication"
-            [disabled]="authenticationFormGroup?.invalid"
-            >
+            [disabled]="$safeNavigationMigration(authenticationFormGroup?.invalid)"
+          >
             {{ '#LDS#Next' | translate }}
           </button>
         </mat-step>
@@ -54,7 +54,7 @@
               [productItems]="productItems"
               [itemsHeading]="ldsItemsHeading"
               [formGroup]="termsOfUseFormGroup"
-              >
+            >
             </imx-terms-of-use-list>
           </form>
         </mat-step>
@@ -70,9 +70,9 @@
     mat-stroked-button
     color="primary"
     data-imx-identifier="terms-of-use-accept-button-accept-without-authentication"
-    [disabled]="termsOfUseFormGroup.controls['acceptTermsOfUseFormCtrl']?.errors?.required"
+    [disabled]="$safeNavigationMigration(termsOfUseFormGroup.controls['acceptTermsOfUseFormCtrl']?.errors?.required)"
     (click)="accept()"
-    >
+  >
     {{ '#LDS#Accept' | translate }}
   </button>
 </div>

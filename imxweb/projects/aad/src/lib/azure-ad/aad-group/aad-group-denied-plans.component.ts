@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalTargetsystemAadgroupDeniedserviceplans } from '@imx-modules/imx-api-aad';
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -39,10 +39,11 @@ import {
 import { AzureAdService } from '../azure-ad.service';
 
 @Component({
-    selector: 'imx-aad-group-denied-plans',
-    templateUrl: './aad-group-denied-plans.component.html',
-    styleUrls: ['../azure-ad-common.scss'],
-    standalone: false
+  selector: 'imx-aad-group-denied-plans',
+  templateUrl: './aad-group-denied-plans.component.html',
+  styleUrls: ['../azure-ad-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AadGroupDeniedPlansComponent implements OnInit {
   @ViewChild('dataTable', { static: false }) public dataTable: DataTableComponent<PortalTargetsystemAadgroupDeniedserviceplans>;

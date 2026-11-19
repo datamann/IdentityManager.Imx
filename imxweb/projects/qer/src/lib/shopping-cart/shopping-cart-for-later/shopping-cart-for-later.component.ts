@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 
@@ -34,9 +34,10 @@ import { CartItemsService } from '../cart-items.service';
 import { ShoppingCart } from '../shopping-cart';
 
 @Component({
-    styleUrls: ['./shopping-cart-for-later.component.scss'],
-    templateUrl: './shopping-cart-for-later.component.html',
-    standalone: false
+  styleUrls: ['./shopping-cart-for-later.component.scss'],
+  templateUrl: './shopping-cart-for-later.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ShoppingCartForLaterComponent implements AfterViewInit {
   public shoppingCart: ShoppingCart;

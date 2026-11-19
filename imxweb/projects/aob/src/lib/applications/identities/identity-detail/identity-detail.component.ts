@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PortalApplicationIdentitiesbyidentity } from '@imx-modules/imx-api-aob';
 import {
@@ -39,11 +39,12 @@ import { IdentityDetailData } from '../identity-detail-data';
 import { IdentityService } from '../identity.service';
 
 @Component({
-    selector: 'imx-identity-detail',
-    templateUrl: './identity-detail.component.html',
-    styleUrls: ['./identity-detail.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-identity-detail',
+  templateUrl: './identity-detail.component.html',
+  styleUrls: ['./identity-detail.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityDetailComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

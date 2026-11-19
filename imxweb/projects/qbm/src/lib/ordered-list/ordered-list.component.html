@@ -7,7 +7,7 @@
           <div class="ordered-list--placeholder" *cdkDragPlaceholder></div>
           <mat-select [disabled]="isReadOnly" (selectionChange)="optionSelected()" [(ngModel)]="data[idx]">
             @for (pr of dataSource; track pr) {
-              <mat-option [value]="pr?.Name">
+              <mat-option [value]="$safeNavigationMigration(pr?.Name)">
                 {{ pr?.Display }}
               </mat-option>
             }
@@ -19,7 +19,7 @@
           [attr.aria-label]="deleteText"
           [attr.data-imx-identifier]="testId + '-delete'"
           (click)="deleteElement(idx)"
-          >
+        >
           <eui-icon icon="delete"></eui-icon>
         </button>
       </div>

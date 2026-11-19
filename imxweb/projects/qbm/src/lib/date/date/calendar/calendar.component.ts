@@ -24,7 +24,17 @@
  *
  */
 
-import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { MatCalendar, MatCalendarUserEvent } from '@angular/material/datepicker';
 import { DbVal } from '@imx-modules/imx-qbm-dbts';
@@ -35,10 +45,11 @@ import { Moment } from 'moment-timezone';
  * Internal wrapper component around material calendar to pick a Moment date value.
  */
 @Component({
-    selector: 'imx-calendar',
-    templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.scss'],
-    standalone: false
+  selector: 'imx-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
   /**
@@ -129,7 +140,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    * Emits close event, when ESC keyboard has been pressed.
    */
   @HostListener('keydown.Esc', ['$event'])
-  private onEscapeKeyPress(event: KeyboardEvent): void {
+  protected onEscapeKeyPress(event: Event): void {
     event.stopPropagation();
     this.close.emit();
   }

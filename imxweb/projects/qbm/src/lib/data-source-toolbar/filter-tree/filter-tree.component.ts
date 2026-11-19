@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EuiLoadingService } from '@elemental-ui/core';
 
@@ -37,10 +37,11 @@ import { FilterTreeEntityWrapperService } from './filter-tree-entity-wrapper.ser
 import { FilterTreeDialogResultArg, FilterTreeSelectionArg } from './filter-tree-selection-arg.interface';
 
 @Component({
-    selector: 'imx-filter-tree',
-    templateUrl: './filter-tree.component.html',
-    styleUrls: ['./filter-tree.component.scss'],
-    standalone: false
+  selector: 'imx-filter-tree',
+  templateUrl: './filter-tree.component.html',
+  styleUrls: ['./filter-tree.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FilterTreeComponent implements OnInit {
   public database: TreeDatabase | undefined;

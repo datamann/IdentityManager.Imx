@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -58,6 +58,7 @@ import { ApprovalHistoryService } from './approval-history.service';
   templateUrl: './approval-history.component.html',
   styleUrls: ['./approval-history.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class ApprovalHistoryComponent implements OnInit {

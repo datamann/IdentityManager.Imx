@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { MatSelectChange } from '@angular/material/select';
@@ -33,10 +33,11 @@ import { FilterChangedArgument } from '../editors/filter-changed-argument.interf
 import { FilterElementModel } from '../editors/filter-element-model';
 
 @Component({
-    selector: 'imx-policy-filter-element',
-    templateUrl: './policy-filter-element.component.html',
-    styleUrls: ['./policy-filter-element.component.scss'],
-    standalone: false
+  selector: 'imx-policy-filter-element',
+  templateUrl: './policy-filter-element.component.html',
+  styleUrls: ['./policy-filter-element.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyFilterElementComponent {
   @Input() public formGroup: FormGroup<{ filterParameter: UntypedFormControl; type: UntypedFormControl }>;

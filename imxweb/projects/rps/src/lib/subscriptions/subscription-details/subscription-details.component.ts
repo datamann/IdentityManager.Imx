@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -33,9 +33,10 @@ import { ColumnDependentReference, ConfirmationService } from 'qbm';
 import { ReportSubscription } from '../report-subscription/report-subscription';
 
 @Component({
-    templateUrl: './subscription-details.component.html',
-    styleUrls: ['./subscription-details.component.scss'],
-    standalone: false
+  templateUrl: './subscription-details.component.html',
+  styleUrls: ['./subscription-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SubscriptionDetailsComponent implements OnDestroy {
   public readonly formGroup = new UntypedFormGroup({});

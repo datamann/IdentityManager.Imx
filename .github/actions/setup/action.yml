@@ -19,10 +19,7 @@ runs:
         # Select node version based on branch
         switch ($branch) {
           "v93"  { $node = "20.x" }
-          "v100" { $node = "22.x" }
-          # Future changes:
-          # "v102" { $node = "24.x" }
-          default { $node = "22.x" }
+          default { $node = (Get-Content -LiteralPath './imxweb/.node-version' -Raw).Trim() }
         }
         
         # Output clear info for logs
@@ -42,4 +39,4 @@ runs:
     - name: Install packages
       shell: bash
       working-directory: ./imxweb
-      run: npm install --skip-dialog
+      run: npm ci --ignore-scripts

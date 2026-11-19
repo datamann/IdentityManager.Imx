@@ -24,7 +24,17 @@
  *
  */
 
-import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { CollectionLoadParameters, EntitySchema, FilterData, IEntity } from '@imx-modules/imx-qbm-dbts';
 import { FilterTreeParameter } from '../data-source-toolbar/data-model/filter-tree-parameter';
@@ -35,10 +45,11 @@ import { TreeDatabase } from '../data-tree/tree-database';
 import { TreeNodeInfo } from '../data-tree/tree-node';
 
 @Component({
-    selector: 'imx-data-tree-wrapper',
-    templateUrl: './data-tree-wrapper.component.html',
-    styleUrls: ['./data-tree-wrapper.component.scss'],
-    standalone: false
+  selector: 'imx-data-tree-wrapper',
+  templateUrl: './data-tree-wrapper.component.html',
+  styleUrls: ['./data-tree-wrapper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTreeWrapperComponent implements OnChanges {
   public dstSettings: DataSourceToolbarSettings;

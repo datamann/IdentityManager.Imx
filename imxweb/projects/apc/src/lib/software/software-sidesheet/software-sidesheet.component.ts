@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormArray } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -49,9 +49,10 @@ interface SoftwareFormGroup {
 }
 
 @Component({
-    templateUrl: './software-sidesheet.component.html',
-    styleUrls: ['./software-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './software-sidesheet.component.html',
+  styleUrls: ['./software-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SoftwareSidesheetComponent implements OnInit, OnDestroy {
   public cdrList: ColumnDependentReference[];

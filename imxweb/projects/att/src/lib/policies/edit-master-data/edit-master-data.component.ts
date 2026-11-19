@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -53,9 +53,10 @@ import { Policy } from '../policy.interface';
 import { PolicyService } from '../policy.service';
 
 @Component({
-    templateUrl: './edit-master-data.component.html',
-    styleUrls: ['./edit-master-data.component.scss'],
-    standalone: false
+  templateUrl: './edit-master-data.component.html',
+  styleUrls: ['./edit-master-data.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditMasterDataComponent implements OnInit, OnDestroy {
   public readonly formGroup: UntypedFormGroup;

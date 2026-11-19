@@ -24,17 +24,28 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  QueryList,
+  SimpleChanges,
+  ViewChildren,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 import { BulkItem } from './bulk-item/bulk-item';
 import { BulkItemComponent } from './bulk-item/bulk-item.component';
 
 @Component({
-    selector: 'imx-bulk-editor',
-    templateUrl: './bulk-property-editor.component.html',
-    styleUrls: ['./bulk-property-editor.component.scss'],
-    standalone: false
+  selector: 'imx-bulk-editor',
+  templateUrl: './bulk-property-editor.component.html',
+  styleUrls: ['./bulk-property-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BulkPropertyEditorComponent implements OnChanges {
   public formGroup = new UntypedFormGroup({});

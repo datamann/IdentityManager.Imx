@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { ParameterizedText } from './parameterized-text.interface';
 import { ParameterizedTextService } from './parameterized-text.service';
 import { TextToken } from './text-token.interface';
 
 @Component({
-    selector: 'imx-parameterized-text',
-    templateUrl: './parameterized-text.component.html',
-    styleUrls: ['./parameterized-text.component.scss'],
-    standalone: false
+  selector: 'imx-parameterized-text',
+  templateUrl: './parameterized-text.component.html',
+  styleUrls: ['./parameterized-text.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ParameterizedTextComponent implements OnInit {
   public textTokens: TextToken[];

@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, ContentChild, ElementRef, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, Input, Output, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    templateUrl: './tile.component.html',
-    selector: 'imx-tile',
-    styleUrls: ['./tile.component.scss'],
-    standalone: false
+  templateUrl: './tile.component.html',
+  selector: 'imx-tile',
+  styleUrls: ['./tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TileComponent {
   @Input() public caption: string;

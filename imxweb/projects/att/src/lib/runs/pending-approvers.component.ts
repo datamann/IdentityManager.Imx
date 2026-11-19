@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../api.service';
 
 import { PortalAttestationRunApprovers } from '@imx-modules/imx-api-att';
@@ -33,11 +33,12 @@ import { EntitySchema, TypedEntityCollectionData } from '@imx-modules/imx-qbm-db
 import { DataViewInitParameters, DataViewSource } from 'qbm';
 
 @Component({
-    selector: 'imx-attestation-run-approvers',
-    templateUrl: './pending-approvers.component.html',
-    styleUrls: ['./pending-approvers.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-attestation-run-approvers',
+  templateUrl: './pending-approvers.component.html',
+  styleUrls: ['./pending-approvers.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PendingApproversComponent implements OnChanges {
   public selected: PortalAttestationRunApprovers[] = [];

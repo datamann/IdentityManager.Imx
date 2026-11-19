@@ -25,7 +25,7 @@
  */
 
 import { Platform } from '@angular/cdk/platform';
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -37,10 +37,11 @@ import { TypedEntitySelectionData } from '../service-items/service-item-select/t
 import { ServiceCategoryChangedType } from './service-category-changed.enum';
 
 @Component({
-    selector: 'imx-service-category',
-    templateUrl: './service-category.component.html',
-    styleUrls: ['./service-category.component.scss'],
-    standalone: false
+  selector: 'imx-service-category',
+  templateUrl: './service-category.component.html',
+  styleUrls: ['./service-category.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceCategoryComponent implements OnDestroy {
   public readonly canDelete: boolean;

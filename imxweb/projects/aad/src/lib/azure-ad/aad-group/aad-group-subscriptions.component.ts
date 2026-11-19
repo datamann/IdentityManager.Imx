@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalTargetsystemAadgroupSubsku } from '@imx-modules/imx-api-aad';
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -39,10 +39,11 @@ import {
 import { AzureAdService } from '../azure-ad.service';
 
 @Component({
-    selector: 'imx-aad-group-subscriptions',
-    templateUrl: './aad-group-subscriptions.component.html',
-    styleUrls: ['../azure-ad-common.scss'],
-    standalone: false
+  selector: 'imx-aad-group-subscriptions',
+  templateUrl: './aad-group-subscriptions.component.html',
+  styleUrls: ['../azure-ad-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AadGroupSubscriptionsComponent implements OnInit {
   @ViewChild('dataTable', { static: false }) public dataTable: DataTableComponent<PortalTargetsystemAadgroupSubsku>;

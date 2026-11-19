@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -32,10 +32,11 @@ import { Subscription } from 'rxjs';
 import { ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-run-extend',
-    templateUrl: './run-extend.component.html',
-    styleUrls: ['./run-extend.component.scss'],
-    standalone: false
+  selector: 'imx-run-extend',
+  templateUrl: './run-extend.component.html',
+  styleUrls: ['./run-extend.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RunExtendComponent implements OnDestroy {
   public showHelper = true;

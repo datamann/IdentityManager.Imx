@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty, TypedEntity, ValType } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -41,9 +41,10 @@ import { SecurityKeysSidesheetComponent } from './security-keys-sidesheet/securi
 import { SecurityKeysService } from './security-keys.service';
 
 @Component({
-    selector: 'imx-security-keys',
-    templateUrl: './security-keys.component.html',
-    standalone: false
+  selector: 'imx-security-keys',
+  templateUrl: './security-keys.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecurityKeysComponent implements OnInit, OnDestroy {
   public readonly DisplayColumns = DisplayColumns;

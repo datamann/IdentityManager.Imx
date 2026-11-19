@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -48,7 +48,8 @@ import { LogDetailsSidesheetComponent } from './log-details-sidesheet.component'
   selector: 'imx-logs',
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LogsComponent implements OnInit, SideNavigationComponent {
   @Input() public isAdmin: boolean;
@@ -89,7 +90,7 @@ export class LogsComponent implements OnInit, SideNavigationComponent {
     private logger: ClassloggerService,
     public elementalUiConfigService: ElementalUiConfigService,
     private translator: TranslateService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.showBusyIndicator();
@@ -301,7 +302,7 @@ export class LogsComponent implements OnInit, SideNavigationComponent {
   private regexTest(keywords: string, message: string) {
     try {
       return new RegExp(keywords, 'gi').test(message);
-    } catch (e) { }
+    } catch (e) {}
   }
 
   public onRegexSessionLogSearch(keywords: string): void {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, contentChild, Input, OnDestroy } from '@angular/core';
+import { Component, contentChild, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ContextualHelpItem } from '@imx-modules/imx-api-qbm';
@@ -73,6 +73,7 @@ export interface ExtendedHelpContextualItem extends ContextualHelpItem {
   selector: 'imx-help-contextual',
   templateUrl: './help-contextual.component.html',
   styleUrls: ['./help-contextual.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HelpContextualComponent implements OnDestroy {

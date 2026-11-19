@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
  */
 @Component({
-    selector: 'imx-icon-stack',
-    templateUrl: './icon-stack.component.html',
-    styleUrls: ['./icon-stack.component.scss'],
-    standalone: false
+  selector: 'imx-icon-stack',
+  templateUrl: './icon-stack.component.html',
+  styleUrls: ['./icon-stack.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IconStackComponent {
   @Input() public icon1: string;

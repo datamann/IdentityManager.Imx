@@ -25,7 +25,7 @@
  */
 
 // eslint-disable-next-line max-classes-per-file
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -59,10 +59,11 @@ function getLocalDataForPage<T>(allData: T[], state: { page: number; pageSize: n
 // TODO: One class per file.
 // eslint-disable-next-line max-classes-per-file
 @Component({
-    selector: 'imx-object-history-gridview',
-    templateUrl: './object-history-gridview.component.html',
-    styleUrls: ['./object-history-gridview.component.scss'],
-    standalone: false
+  selector: 'imx-object-history-gridview',
+  templateUrl: './object-history-gridview.component.html',
+  styleUrls: ['./object-history-gridview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ObjectHistoryGridviewComponent implements OnInit, OnChanges {
   @Input() public historyData: ObjectHistoryEvent[];

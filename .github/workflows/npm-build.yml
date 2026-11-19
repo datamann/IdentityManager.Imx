@@ -3,9 +3,9 @@ description: CI workflow to build, package and test One Identity frontend applic
 
 on:
   push:
-    branches: [ v100 ]
+    branches: [ v100, development ]
   pull_request:
-    branches: [ v100, v93 ]
+    branches: [ v100, v93, development ]
 
 jobs:
   ci:

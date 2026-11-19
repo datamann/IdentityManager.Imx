@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -36,9 +36,10 @@ import { FkSelectorComponent } from './fk-selector.component';
 import { ForeignKeyPickerData } from './foreign-key-picker-data.interface';
 
 @Component({
-    templateUrl: './fk-advanced-picker.component.html',
-    styleUrls: ['./fk-advanced-picker.component.scss'],
-    standalone: false
+  templateUrl: './fk-advanced-picker.component.html',
+  styleUrls: ['./fk-advanced-picker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FkAdvancedPickerComponent implements OnInit, OnDestroy {
   @ViewChild(FkSelectorComponent) public selector: FkSelectorComponent;

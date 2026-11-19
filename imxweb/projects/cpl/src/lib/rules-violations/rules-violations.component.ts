@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -72,6 +72,7 @@ import { RulesViolationsService } from './rules-violations.service';
   templateUrl: './rules-violations.component.html',
   styleUrls: ['./rules-violations.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class RulesViolationsComponent implements OnInit, OnDestroy {

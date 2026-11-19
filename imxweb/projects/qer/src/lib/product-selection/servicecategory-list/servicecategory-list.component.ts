@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PortalShopCategories } from '@imx-modules/imx-api-qer';
@@ -35,10 +35,11 @@ import { ServicecategoryTreeDatabase } from './servicecategory-tree-database';
 
 /** Shows information about the currently selected category. */
 @Component({
-    templateUrl: './servicecategory-list.component.html',
-    styleUrls: ['./servicecategory-list.component.scss'],
-    selector: 'imx-servicecategory-list',
-    standalone: false
+  templateUrl: './servicecategory-list.component.html',
+  styleUrls: ['./servicecategory-list.component.scss'],
+  selector: 'imx-servicecategory-list',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceCategoryListComponent implements OnInit, OnChanges {
   @Input() public selectedServiceCategory: PortalShopCategories;

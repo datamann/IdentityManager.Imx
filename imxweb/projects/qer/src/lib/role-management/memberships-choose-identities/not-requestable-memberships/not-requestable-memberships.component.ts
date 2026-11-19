@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PortalPersonAll } from '@imx-modules/imx-api-qer';
@@ -33,10 +33,11 @@ import { DataSourceToolbarSettings } from 'qbm';
 import { NotRequestableMembershipsEntity } from './not-requestable-memberships-entity';
 
 @Component({
-    selector: 'imx-not-requestable-memberships',
-    templateUrl: './not-requestable-memberships.component.html',
-    styleUrls: ['./not-requestable-memberships.component.scss'],
-    standalone: false
+  selector: 'imx-not-requestable-memberships',
+  templateUrl: './not-requestable-memberships.component.html',
+  styleUrls: ['./not-requestable-memberships.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NotRequestableMembershipsComponent {
   public readonly DisplayColumns = DisplayColumns; // Enables use of this static class in Angular Templates.

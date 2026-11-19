@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalApplication } from '@imx-modules/imx-api-aob';
 import { TranslateService } from '@ngx-translate/core';
@@ -43,9 +43,10 @@ import { EditServiceCategoryInformationComponent } from './edit-service-category
 import { ServiceCategoryTreeDatabase } from './service-category-tree-database';
 
 @Component({
-    selector: 'imx-service-category',
-    templateUrl: './service-category.component.html',
-    standalone: false
+  selector: 'imx-service-category',
+  templateUrl: './service-category.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceCategoryComponent {
   public treeDatabase: ServiceCategoryTreeDatabase;

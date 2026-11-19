@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { ProcessChain } from '@imx-modules/imx-api-qer';
 import { BusyService } from 'qbm';
 import { UserProcessService } from './user-processes.service';
 
 @Component({
-    selector: 'imx-user-process',
-    templateUrl: './user-process.component.html',
-    styleUrls: ['./user-process.component.scss'],
-    standalone: false
+  selector: 'imx-user-process',
+  templateUrl: './user-process.component.html',
+  styleUrls: ['./user-process.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class UserProcessComponent implements OnInit {
   public userProcesses: ProcessChain[] = [];

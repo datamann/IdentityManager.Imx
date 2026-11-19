@@ -11,7 +11,7 @@
         [itemStatus]="itemStatus"
         (search)="onSearch($event)"
         [options]="['filter', 'groupBy']"
-        >
+      >
       </imx-data-source-toolbar>
       <imx-data-table
         #dataTable
@@ -23,14 +23,17 @@
         [selectable]="canEdit"
         [showSelectionInfo]="false"
         (selectionChanged)="onSelectionChanged($event)"
-        >
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]">
+      >
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])">
           <ng-template let-item>
             <div>{{ item.GetEntity().GetDisplay() }}</div>
             <div class="imx-subtext">{{ entitlementTypes.get(item.GetEntity().GetKeys().toString()) }}</div>
           </ng-template>
         </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.XOrigin" [columnLabel]="'#LDS#Origin' | translate">
+        <imx-data-table-column
+          [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.XOrigin)"
+          [columnLabel]="'#LDS#Origin' | translate"
+        >
           <ng-template let-item>
             <div>{{ item.GetEntity().GetColumn('XOrigin').GetDisplayValue() }}</div>
             @if (item.GetEntity().GetColumn('XMarkedForDeletion').GetValue() > 0) {
@@ -43,17 +46,18 @@
             }
           </ng-template>
         </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.XDateInserted" [columnLabel]="'#LDS#Added on' | translate">
+        <imx-data-table-column
+          [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.XDateInserted)"
+          [columnLabel]="'#LDS#Added on' | translate"
+        >
           <ng-template let-item>
             <div>{{ item.GetEntity().GetColumn('XDateInserted').GetValue() | date }}</div>
           </ng-template>
         </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="entitySchema?.Columns?.ValidUntil">
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.ValidUntil)">
           <ng-template let-item>
             @if (item.GetEntity().GetColumn('ValidUntil').GetValue()) {
-              <eui-badge color="blue" textColor="white">{{
-                getValidUntil(item)
-              }}</eui-badge>
+              <eui-badge color="blue" textColor="white">{{ getValidUntil(item) }}</eui-badge>
             }
           </ng-template>
         </imx-data-table-column>
@@ -68,11 +72,7 @@
         <imx-selected-elements class="justify-start" [selectedElements]="selectedEntities"></imx-selected-elements>
       }
       @if (hasRecommendations) {
-        <button
-          data-imx-identifier="roles-entitlements-recommendation-button"
-          mat-stroked-button
-          (click)="onShowRecommendations()"
-          >
+        <button data-imx-identifier="roles-entitlements-recommendation-button" mat-stroked-button (click)="onShowRecommendations()">
           {{ '#LDS#Show recommended entitlements' | translate }}
         </button>
       }
@@ -88,7 +88,7 @@
           color="warn"
           [disabled]="!canDeleteAllSelected()"
           (click)="onDeleteEntitlements()"
-          >
+        >
           <eui-icon icon="delete"></eui-icon>
           {{ '#LDS#Remove' | translate }}
         </button>

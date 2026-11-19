@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { EuiCoreModule } from '@elemental-ui/core';
@@ -33,9 +33,10 @@ import { TilesModule } from 'qer';
 import { AobPermissionsService } from '../../permissions/aob-permissions.service';
 
 @Component({
-    imports: [EuiCoreModule, MatButtonModule, TilesModule, TranslateModule],
-    selector: 'imx-kpi-tile',
-    templateUrl: './kpi-tile.component.html'
+  imports: [EuiCoreModule, MatButtonModule, TilesModule, TranslateModule],
+  selector: 'imx-kpi-tile',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './kpi-tile.component.html',
 })
 export class KpiTileComponent {
   constructor(

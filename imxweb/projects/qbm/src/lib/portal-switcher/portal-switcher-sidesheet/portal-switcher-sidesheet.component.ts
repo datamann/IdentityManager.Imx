@@ -25,7 +25,7 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { EUI_SIDESHEET_DATA, EuiCoreModule, EuiSidesheetRef } from '@elemental-ui/core';
 import { NodeAppInfo } from '@imx-modules/imx-api-qbm';
@@ -34,6 +34,7 @@ import { AppConfigService } from '../../appConfig/appConfig.service';
 @Component({
   imports: [CommonModule, MatCardModule, EuiCoreModule],
   templateUrl: './portal-switcher-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './portal-switcher-sidesheet.component.scss',
 })
 export class PortalSwitcherSidesheetComponent {

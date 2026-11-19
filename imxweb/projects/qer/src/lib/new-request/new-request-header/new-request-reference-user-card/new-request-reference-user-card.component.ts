@@ -24,15 +24,16 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { NewRequestOrchestrationService } from '../../new-request-orchestration.service';
 
 @Component({
-    selector: 'imx-new-request-reference-user-card',
-    templateUrl: './new-request-reference-user-card.component.html',
-    styleUrls: ['./new-request-reference-user-card.component.scss'],
-    standalone: false
+  selector: 'imx-new-request-reference-user-card',
+  templateUrl: './new-request-reference-user-card.component.html',
+  styleUrls: ['./new-request-reference-user-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestReferenceUserCardComponent {
   constructor(public readonly orchestration: NewRequestOrchestrationService) {}

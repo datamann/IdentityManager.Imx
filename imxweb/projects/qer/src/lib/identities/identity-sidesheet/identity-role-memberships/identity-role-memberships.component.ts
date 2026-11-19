@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -46,9 +46,10 @@ import { SourceDetectiveType } from '../../../sourcedetective/sourcedetective-ty
 import { IdentityRoleMembershipsService } from './identity-role-memberships.service';
 
 @Component({
-    templateUrl: './identity-role-memberships.component.html',
-    styleUrls: ['./identity-role-memberships.component.scss'],
-    standalone: false
+  templateUrl: './identity-role-memberships.component.html',
+  styleUrls: ['./identity-role-memberships.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityRoleMembershipsComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

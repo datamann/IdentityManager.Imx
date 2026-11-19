@@ -24,16 +24,16 @@
  *
  */
 
-import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatColumnDef } from '@angular/material/table';
 import { EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { ImxTranslationProviderService } from '../translation/imx-translation-provider.service';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataView instead.
- * 
+ *
  * Visual representation of a typed entity property as a data table column.
  *
  * @example
@@ -59,10 +59,11 @@ import { ImxTranslationProviderService } from '../translation/imx-translation-pr
  *         </imx-data-table-column>
  */
 @Component({
-    selector: 'imx-data-table-column',
-    templateUrl: './data-table-column.component.html',
-    styleUrls: ['./data-table-column.component.scss'],
-    standalone: false
+  selector: 'imx-data-table-column',
+  templateUrl: './data-table-column.component.html',
+  styleUrls: ['./data-table-column.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTableColumnComponent<T> implements OnInit {
   /**

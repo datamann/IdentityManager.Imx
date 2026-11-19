@@ -24,11 +24,18 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BusyService, calculateSidesheetWidth, DataViewInitParameters, DataViewSource } from 'qbm';
 
 import { EuiSidesheetService } from '@elemental-ui/core';
-import { CollectionLoadParameters, DataModel, EntitySchema, IClientProperty, TypedEntityCollectionData, ValType } from '@imx-modules/imx-qbm-dbts';
+import {
+  CollectionLoadParameters,
+  DataModel,
+  EntitySchema,
+  IClientProperty,
+  TypedEntityCollectionData,
+  ValType,
+} from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { DugSidesheetComponent } from '../dug/dug-sidesheet.component';
 import { PortalDgeResources } from '../TypedClient';
@@ -40,6 +47,7 @@ import { DugOwnershipService } from './dug-ownership.service';
   selector: 'imx-dug-ownership',
   templateUrl: './dug-ownership.component.html',
   styleUrls: ['./dug-ownership.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class DugOwnershipComponent implements OnInit {
@@ -54,17 +62,17 @@ export class DugOwnershipComponent implements OnInit {
     private readonly ownershipService: DugOwnershipService,
     private readonly sideSheet: EuiSidesheetService,
     private readonly translate: TranslateService,
-    public dataSource: DataViewSource<PortalDgeResources>
+    public dataSource: DataViewSource<PortalDgeResources>,
   ) {
     this.entitySchema = ownershipService.DugResourceSchema;
     this.displayedColumns = [
       this.entitySchema.Columns.DisplayName,
       {
-        ColumnName: "assignOwner",
-        Type: ValType.String
+        ColumnName: 'assignOwner',
+        Type: ValType.String,
       },
       this.entitySchema.Columns.RiskIndexCalculated,
-      this.entitySchema.Columns.RequiresOwnership
+      this.entitySchema.Columns.RequiresOwnership,
     ];
   }
 
@@ -107,7 +115,7 @@ export class DugOwnershipComponent implements OnInit {
       disableClose: true,
       padding: '0',
       testId: 'assign-dug-owner-sidesheet',
-      data: { uid: uidResources, identifier: 'dug-assign-ownership' }
+      data: { uid: uidResources, identifier: 'dug-assign-ownership' },
     });
     sidesheetRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -125,8 +133,7 @@ export class DugOwnershipComponent implements OnInit {
     const isBusy = this.busyService.beginBusy();
     try {
       const dataViewInitParameters: DataViewInitParameters<PortalDgeResources> = {
-        execute: async (params: CollectionLoadParameters,
-          signal: AbortSignal,): Promise<TypedEntityCollectionData<PortalDgeResources>> => {
+        execute: async (params: CollectionLoadParameters, signal: AbortSignal): Promise<TypedEntityCollectionData<PortalDgeResources>> => {
           params = { ...params, withoutowner: '1' };
           return await this.ownershipService.getData(params, signal);
         },

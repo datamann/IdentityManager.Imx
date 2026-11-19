@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -63,10 +63,11 @@ import { ReasonSidesheetComponent } from './reason-sidesheet/reason-sidesheet.co
 const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShopAccess`;
 
 @Component({
-    selector: 'imx-request-config-members',
-    templateUrl: './request-config-members.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss', './request-config-members.component.scss'],
-    standalone: false
+  selector: 'imx-request-config-members',
+  templateUrl: './request-config-members.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss', './request-config-members.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestConfigMembersComponent implements OnInit {
   @Input() public customerNodeId: string;

@@ -11,10 +11,10 @@
       <mat-card-content>
         <imx-column-info
           [placeholder]="'#LDS#Is being computed' | translate"
-          [property]="application?.UID_AccProductGroup"
+          [property]="$safeNavigationMigration(application?.UID_AccProductGroup)"
           icon="serviceaccount"
         ></imx-column-info>
-        <imx-column-info [property]="application?.UID_AERoleOwner" icon="user"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.UID_AERoleOwner)" icon="user"></imx-column-info>
         <imx-application-property [display]="shopsDisplay" icon="library">
           <div class="imx-application-property-multi">
             @if (!assignedShops.length) {
@@ -29,7 +29,7 @@
                 color="primary"
                 (click)="showMore(assignedShops, shopsDisplay, 'library')"
                 data-imx-identifier="imx-application-details-button-show-more-shops"
-                >
+              >
                 {{ '#LDS#and {0} more...' | translate | ldsReplace: assignedShops.length - 1 }}
               </button>
             }
@@ -76,7 +76,7 @@
             <mat-icon
               class="imx-margin-right-5 imx-icon-size-16 imx-icon-new"
               [ngClass]="application ? 'imx-icon-visible' : 'imx-icon-hidden'"
-              >
+            >
               check_circle
             </mat-icon>
             <span class="cdk-visually-hidden">
@@ -88,7 +88,7 @@
             <mat-icon
               class="imx-margin-right-5 imx-icon-size-16 imx-icon-new"
               [ngClass]="hasOwner ? 'imx-icon-visible' : 'imx-icon-hidden'"
-              >
+            >
               check_circle
             </mat-icon>
             <span class="cdk-visually-hidden">
@@ -100,7 +100,7 @@
             <mat-icon
               class="imx-margin-right-5 imx-icon-size-16 imx-icon-new"
               [ngClass]="!!assignedShops?.length ? 'imx-icon-visible' : 'imx-icon-hidden'"
-              >
+            >
               check_circle
             </mat-icon>
             <span class="cdk-visually-hidden">
@@ -112,7 +112,7 @@
             <mat-icon
               class="imx-margin-right-5 imx-icon-size-16 imx-icon-new"
               [ngClass]="hasAssignedEntitlements ? 'imx-icon-visible' : 'imx-icon-hidden'"
-              >
+            >
               check_circle
             </mat-icon>
             <span class="cdk-visually-hidden">
@@ -124,7 +124,7 @@
             <mat-icon
               class="imx-margin-right-5 imx-icon-size-16 imx-icon-new"
               [ngClass]="hasPublishedEntitlements ? 'imx-icon-visible' : 'imx-icon-hidden'"
-              >
+            >
               check_circle
             </mat-icon>
             <span class="cdk-visually-hidden">
@@ -141,8 +141,8 @@
       </mat-card-title>
       <mat-divider [inset]="true"></mat-divider>
       <mat-card-content>
-        <imx-column-info [property]="application?.UID_PersonHead"></imx-column-info>
-        <imx-column-info [property]="application?.UID_AERoleApprover"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.UID_PersonHead)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.UID_AERoleApprover)"></imx-column-info>
         <imx-application-property [display]="accountsDisplay">
           <div class="imx-application-property-multi">
             @if (accountsInformation.count === 0) {
@@ -157,23 +157,23 @@
                 color="primary"
                 (click)="showMoreAccounts()"
                 data-imx-identifier="imx-application-details-button-load-more-accounts"
-                >
+              >
                 {{ '#LDS#and {0} more...' | translate | ldsReplace: accountsInformation.count - 1 }}
               </button>
             }
           </div>
         </imx-application-property>
-        <imx-column-info [property]="application?.ApplicationEnvironment"></imx-column-info>
-        <imx-column-info [property]="application?.ApplicationWebURL"></imx-column-info>
-        <imx-column-info [property]="application?.AuthenticationRoot"></imx-column-info>
-        <imx-column-info [property]="application?.IsAuthenticationIntegrated"></imx-column-info>
-        <imx-column-info [property]="application?.IsFederationEnabled"></imx-column-info>
-        <imx-column-info [property]="application?.IsMultiFactorEnabled"></imx-column-info>
-        <imx-column-info [property]="application?.IsSSOEnabled"></imx-column-info>
-        <imx-column-info [property]="application?.SSORedirectionUrl"></imx-column-info>
-        <imx-column-info [property]="application?.PurchasedLicenses"></imx-column-info>
-        <imx-column-info [property]="application?.RiskIndex"></imx-column-info>
-        <imx-column-info [property]="application?.UID_FunctionalArea"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.ApplicationEnvironment)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.ApplicationWebURL)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.AuthenticationRoot)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.IsAuthenticationIntegrated)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.IsFederationEnabled)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.IsMultiFactorEnabled)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.IsSSOEnabled)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.SSORedirectionUrl)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.PurchasedLicenses)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.RiskIndex)"></imx-column-info>
+        <imx-column-info [property]="$safeNavigationMigration(application?.UID_FunctionalArea)"></imx-column-info>
       </mat-card-content>
     </mat-card>
   </div>
@@ -190,7 +190,7 @@
         (click)="publishApplication($event)"
         data-imx-identifier="imx-application-details-button-publish-application"
         [disabled]="!isPublishable"
-        >
+      >
         {{ '#LDS#Publish' | translate }}
       </button>
       <button
@@ -198,7 +198,7 @@
         (click)="unpublishApplication($event)"
         data-imx-identifier="imx-application-details-button-unpublish-application"
         [disabled]="!isUnpublishable"
-        >
+      >
         {{ '#LDS#Unpublish' | translate }}
       </button>
       <button data-imx-identifier="imx-application-details-edit-servicecategories" mat-menu-item (click)="editServiceCategories()">
@@ -212,7 +212,7 @@
       [disabled]="!canBeDeleted"
       [attr.aria-label]="'#LDS#Delete application' | translate"
       (click)="deleteApplication()"
-      >
+    >
       <eui-icon icon="delete"></eui-icon>
       {{ '#LDS#Delete' | translate }}
     </button>
@@ -222,7 +222,7 @@
       data-imx-identifier="imx-application-details-button-edit-application"
       [attr.aria-label]="'#LDS#Edit application' | translate"
       (click)="editApplication()"
-      >
+    >
       <eui-icon icon="edit"></eui-icon>
       {{ '#LDS#Edit' | translate }}
     </button>
@@ -234,10 +234,7 @@
   <mat-dialog-content>
     <ul>
       @for (content of data.parts; track content) {
-        <li
-          class="imx-multivalue-item"
-          [attr.data-imx-identifier]="'imx-application-details-' + data.caption + '-' + content"
-          >
+        <li class="imx-multivalue-item" [attr.data-imx-identifier]="'imx-application-details-' + data.caption + '-' + content">
           <mat-card>
             @if (data.icon) {
               <eui-icon mat-card-avatar size="16px" [icon]="data.icon"></eui-icon>

@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { TypedEntity } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-order-for-additional-users',
-    templateUrl: './order-for-additional-users.component.html',
-    styleUrls: ['./order-for-additional-users.component.scss'],
-    standalone: false
+  selector: 'imx-order-for-additional-users',
+  templateUrl: './order-for-additional-users.component.html',
+  styleUrls: ['./order-for-additional-users.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OrderForAdditionalUsersComponent {
   constructor(

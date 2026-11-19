@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CacheData } from '@imx-modules/imx-api-qbm';
 import { AppConfigService } from '../appConfig/appConfig.service';
 import { ConfirmationService } from '../confirmation/confirmation.service';
@@ -34,10 +34,11 @@ import { SideNavigationComponent } from '../side-navigation-view/side-navigation
 type T = CacheData & { key: string };
 
 @Component({
-    templateUrl: './cache.component.html',
-    styleUrls: ['./shared.scss'],
-    selector: 'imx-cache',
-    standalone: false
+  templateUrl: './cache.component.html',
+  styleUrls: ['./shared.scss'],
+  selector: 'imx-cache',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CacheComponent implements OnInit, SideNavigationComponent {
   @Input() public isAdmin: boolean;

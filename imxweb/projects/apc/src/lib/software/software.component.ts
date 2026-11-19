@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -52,10 +52,11 @@ import { SoftwareSidesheetComponent } from './software-sidesheet/software-sidesh
 import { SoftwareService } from './software.service';
 
 @Component({
-    templateUrl: './software.component.html',
-    styleUrls: ['./software.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './software.component.html',
+  styleUrls: ['./software.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SoftwareComponent implements OnInit, SideNavigationComponent {
   @Input() public contextId: HelpContextualValues;

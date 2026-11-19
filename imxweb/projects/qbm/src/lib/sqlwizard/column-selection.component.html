@@ -1,7 +1,12 @@
 @if (dataReady) {
   <eui-form-field class="imx-tree-select" (click)="selectProperty()">
     <eui-icon matPrefix icon="folder-tree"></eui-icon>
-    <input matInput [ngModel]="node.Property?.Display" [readonly]="true" [placeholder]="'#LDS#Select a property' | translate" />
+    <input
+      matInput
+      [ngModel]="$safeNavigationMigration(node.Property?.Display)"
+      [readonly]="true"
+      [placeholder]="'#LDS#Select a property' | translate"
+    />
   </eui-form-field>
 
   @if (!!node.Property) {

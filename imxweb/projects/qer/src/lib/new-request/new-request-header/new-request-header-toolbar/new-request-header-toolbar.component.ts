@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, computed, Signal } from '@angular/core';
+import { Component, computed, Signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { ViewConfigData } from '@imx-modules/imx-api-qer';
 
@@ -35,10 +35,11 @@ import { NewRequestProductComponent } from '../../new-request-product/new-reques
 import { SelectedProductSource } from '../../new-request-selected-products/selected-product-item.interface';
 
 @Component({
-    selector: 'imx-new-request-header-toolbar',
-    templateUrl: './new-request-header-toolbar.component.html',
-    styleUrls: ['./new-request-header-toolbar.component.scss'],
-    standalone: false
+  selector: 'imx-new-request-header-toolbar',
+  templateUrl: './new-request-header-toolbar.component.html',
+  styleUrls: ['./new-request-header-toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestHeaderToolbarComponent {
   public SelectedProductSource = SelectedProductSource;

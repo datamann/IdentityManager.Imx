@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ChartDto } from '@imx-modules/imx-api-qbm';
 import { PointStatTyped } from './point-stat-typed';
 
 @Component({
-    selector: 'imx-point-stat-visual',
-    templateUrl: './point-stat-visual.component.html',
-    styleUrls: ['./point-stat-visual.component.scss'],
-    standalone: false
+  selector: 'imx-point-stat-visual',
+  templateUrl: './point-stat-visual.component.html',
+  styleUrls: ['./point-stat-visual.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PointStatVisualComponent {
   @Input() public summaryStat: ChartDto;

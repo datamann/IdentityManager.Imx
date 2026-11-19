@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -59,11 +59,12 @@ import { ApprovalsService } from '../approvals.service';
 import { WorkflowActionService } from '../workflow-action/workflow-action.service';
 
 @Component({
-    templateUrl: './inquiries.component.html',
-    selector: 'imx-inquiries',
-    styleUrls: ['./inquiries.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './inquiries.component.html',
+  selector: 'imx-inquiries',
+  styleUrls: ['./inquiries.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class InquiriesComponent implements OnInit, OnDestroy {
   public readonly entitySchema: EntitySchema;
@@ -93,7 +94,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
     private confirmation: ConfirmationService,
   ) {
     this.entitySchema = approvalsService.PortalItshopApproveRequestsSchema;
-    (this.displayedColumns = [
+    ((this.displayedColumns = [
       {
         ColumnName: 'query',
         Type: ValType.String,
@@ -126,7 +127,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
           this.dataSource.selection.clear();
           this.dataSource.updateState();
         }),
-      );
+      ));
     this.approvalsService.isChiefApproval = false;
     this.subscriptions.push(authentication.onSessionResponse.subscribe((session: ISessionState) => (this.userUid = session.UserUid || '')));
   }

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
   ConfigInfoData,
   ImxConfig,
@@ -86,6 +86,7 @@ class StatusBuffer {
   host: {
     '[class.loading]': '!dataReady',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class StatusComponent implements OnInit, OnDestroy, SideNavigationComponent {

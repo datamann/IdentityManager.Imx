@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { SqlColumnTypes, ValType as _valType } from '@imx-modules/imx-qbm-dbts';
 import { SqlNodeView } from './SqlNodeView';
 
@@ -32,6 +32,7 @@ import { SqlNodeView } from './SqlNodeView';
   selector: 'imx-sqlwizard-simpleexpression',
   styleUrls: ['./sqlwizard.scss', './simple-expression.component.scss'],
   templateUrl: './simple-expression.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SimpleExpressionComponent {

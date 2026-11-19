@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { EuiLoadingService, EuiSelectOption, EuiSidesheetRef } from '@elemental-ui/core';
 import { ConfirmationService, ElementalUiConfigService, SnackBarService } from 'qbm';
@@ -36,6 +36,7 @@ import { PolicyViolationExtended } from './policy-violation-extended';
   selector: 'imx-mitigating-controls',
   templateUrl: './mitigating-controls.component.html',
   styleUrls: ['./mitigating-controls.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MitigatingControlsComponent implements OnInit {

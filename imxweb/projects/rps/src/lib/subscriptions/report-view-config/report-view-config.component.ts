@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -43,10 +43,11 @@ interface reportForm {
   parameters: FormArray<any>;
 }
 @Component({
-    selector: 'imx-report-view-config',
-    templateUrl: './report-view-config.component.html',
-    styleUrls: ['./report-view-config.component.scss'],
-    standalone: false
+  selector: 'imx-report-view-config',
+  templateUrl: './report-view-config.component.html',
+  styleUrls: ['./report-view-config.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReportViewConfigComponent implements OnDestroy {
   public readonly reportFormGroup = new FormGroup<reportForm>({

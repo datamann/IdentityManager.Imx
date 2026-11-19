@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -41,10 +41,11 @@ import { DataTileMenuItem } from './data-tile-menu-item.interface';
  *
  */
 @Component({
-    selector: 'imx-data-tile',
-    templateUrl: './data-tile.component.html',
-    styleUrls: ['./data-tile.component.scss'],
-    standalone: false
+  selector: 'imx-data-tile',
+  templateUrl: './data-tile.component.html',
+  styleUrls: ['./data-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTileComponent implements OnInit {
   /**

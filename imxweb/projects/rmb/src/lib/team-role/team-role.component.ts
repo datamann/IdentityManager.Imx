@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { PortalAdminRoleOrg, TeamRoleData } from '@imx-modules/imx-api-rmb';
@@ -43,9 +43,10 @@ import {
 import { RmbApiService } from '../rmb-api-client.service';
 
 @Component({
-    selector: 'imx-team-role',
-    templateUrl: './team-role.component.html',
-    standalone: false
+  selector: 'imx-team-role',
+  templateUrl: './team-role.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TeamRoleComponent implements OnInit {
   public teamRole: TeamRoleData;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { DeletedObjectInfo, UiActionData } from '@imx-modules/imx-api-qer';
@@ -38,9 +38,10 @@ interface RoleForm {
 }
 
 @Component({
-    templateUrl: './restore.component.html',
-    styleUrls: ['./restore.component.scss'],
-    standalone: false
+  templateUrl: './restore.component.html',
+  styleUrls: ['./restore.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RestoreComponent implements OnInit {
   public wizardForm = new FormGroup<RoleForm>({
