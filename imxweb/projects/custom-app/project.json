@@ -1,9 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "custom-app",
-  "implicitDependencies": [
-    "qer"
-  ],
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "projects/custom-app/src",
   "prefix": "imx",
@@ -42,7 +39,6 @@
           "@elemental-ui/cadence-icon/codepoints"
         ],
         "index": "projects/custom-app/src/index.html",
-        "browser": "projects/custom-app/src/main.ts",
         "polyfills": [
           "projects/custom-app/src/polyfills.ts"
         ],
@@ -73,13 +69,13 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/assets",
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
-        }
+        },
+        "browser": "projects/custom-app/src/main.ts"
       },
       "configurations": {
         "production": {
@@ -92,7 +88,7 @@
           "optimization": true,
           "outputHashing": "all",
           "sourceMap": false,
-          "namedChunks": true,
+          "namedChunks": false,
           "extractLicenses": true,
           "budgets": [
             {
@@ -141,36 +137,39 @@
         }
       },
       "outputs": [
-        "{options.outputPath}"
+        "{workspaceRoot}/dist/custom-app"
       ]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "custom-app:build"
+        "buildTarget": "custom-app:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "custom-app:build:production"
+          "buildTarget": "custom-app:build:production"
         },
         "development": {
-          "browserTarget": "custom-app:build:development"
+          "buildTarget": "custom-app:build:development"
         },
         "remote-dev": {
-          "browserTarget": "custom-app:build:remote-dev"
+          "buildTarget": "custom-app:build:remote-dev"
         },
         "remote-qs": {
-          "browserTarget": "custom-app:build:remote-qs"
+          "buildTarget": "custom-app:build:remote-qs"
         },
         "es5": {
-          "browserTarget": "custom-app:build:es5"
+          "buildTarget": "custom-app:build:es5"
         }
+      },
+      "readyWhen": {
+        "signal": true
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "custom-app:build"
+        "buildTarget": "custom-app:build"
       }
     },
     "test": {
@@ -189,26 +188,26 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/assets",
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
         }
       }
     },
     "lint": {
-      "executor": "@angular-devkit/build-angular:tslint",
+      "executor": "@angular-eslint/builder:lint",
       "options": {
-        "tsConfig": [
-          "projects/custom-app/tsconfig.app.json",
-          "projects/custom-app/tsconfig.spec.json"
-        ],
-        "exclude": [
-          "**/node_modules/**"
+        "lintFilePatterns": [
+          "projects/custom-app/**/*.ts",
+          "projects/custom-app/**/*.html"
         ]
       }
     }
-  }
+  },
+  "implicitDependencies": [
+    "qbm",
+    "qer"
+  ]
 }

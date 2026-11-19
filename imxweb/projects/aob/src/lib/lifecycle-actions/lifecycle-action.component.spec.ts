@@ -26,7 +26,7 @@
 
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component, Input, Pipe, PipeTransform, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform, ChangeDetectionStrategy, provideZoneChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -190,11 +190,16 @@ describe('LifecycleActionComponent', () => {
       { provide: DataViewSource, useClass: FakeDataViewSource },
       provideHttpClient(withXhr(), withInterceptorsFromDi()),
       provideHttpClientTesting(),
+      provideZoneChangeDetection(),
     ],
   };
 
   beforeEach(waitForAsync(() => {
     mockMatDialogRef.close.calls.reset();
+    moduleDef.providers[1] = {
+      provide: MAT_DIALOG_DATA,
+      useValue: { action: LifecycleAction.Publish, elements: [], shops: [], type: 'AobApplication' },
+    };
   }));
 
   afterAll(() => {

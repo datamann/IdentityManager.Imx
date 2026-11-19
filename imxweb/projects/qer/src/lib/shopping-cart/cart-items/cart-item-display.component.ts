@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { CartItemLogicService } from './cart-item-logic.service';
 import { ExtDirective, ClassloggerService } from 'qbm';
@@ -42,7 +42,6 @@ export class CartItemDisplayComponent implements OnInit {
   @ViewChild(ExtDirective, { static: true }) public directive: ExtDirective;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private logger: ClassloggerService,
     private cartItemLogic: CartItemLogicService,
   ) {}
@@ -53,7 +52,7 @@ export class CartItemDisplayComponent implements OnInit {
     if (selectedProvider) {
       this.directive.viewContainerRef.clear();
       const instance = this.directive.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(selectedProvider),
+        selectedProvider,
       );
       instance.instance.cartItem = this.cartItem;
     }

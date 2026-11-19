@@ -95,7 +95,7 @@
           <mat-selection-list [(ngModel)]="uidActions">
             @for (action of actions; track action) {
               <mat-list-option
-                checkboxPosition="before"
+                togglePosition="before"
                 [value]="action.Id"
                 [disabled]="!action.CanExecute"
                 [attr.data-imx-identifier]="'multi-select-action-' + action.Id"

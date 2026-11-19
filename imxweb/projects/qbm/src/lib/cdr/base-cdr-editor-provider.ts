@@ -24,7 +24,7 @@
  *
  */
 
-import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
+import { ComponentRef, ViewContainerRef } from '@angular/core';
 import { CdrEditorProvider } from './cdr-editor-provider.interface';
 import { CdrEditor } from './cdr-editor.interface';
 import { ColumnDependentReference } from './column-dependent-reference.interface';
@@ -36,7 +36,7 @@ import { ColumnDependentReference } from './column-dependent-reference.interface
  */
 export abstract class BaseCdrEditorProvider<T extends CdrEditor> implements CdrEditorProvider {
   protected abstract tCtor: new (...args: any[]) => T;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor() {}
 
   /**
    * Creates an editor, depending on the given CDR and renders it to the UI
@@ -49,7 +49,7 @@ export abstract class BaseCdrEditorProvider<T extends CdrEditor> implements CdrE
       return null;
     }
 
-    const view = parent.createComponent(this.componentFactoryResolver.resolveComponentFactory(this.tCtor));
+    const view = parent.createComponent(this.tCtor);
     this.configure(view.instance, cdref);
 
     return view;

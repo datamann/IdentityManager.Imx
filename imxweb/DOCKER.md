@@ -1,6 +1,28 @@
 # Webportalen på Dokploy
 
-Oppsettet bygger `qer-app-portal` og tilhørende biblioteker med Node 24.22.3 og npm 12.2.2. Nginx serverer portalen og videresender API-kall til Identity Manager API-serveren.
+Oppsettet bygger `qer-app-portal` og tilhørende biblioteker med Node 26.13.1 LTS, npm 12.2.3, Angular 22.3.0 og Nx 24.0.6. Nginx serverer portalen og videresender API-kall til Identity Manager API-serveren.
+
+## Eksperimentell oppgradering av Node og Angular
+
+Feature-branchen `feat/upgrade-node-angular` er et oppgraderingsforsøk. Produksjonsbruk krever funksjonstest mot OIM, særlig innlogging/utlogging, personoppslag, skjemaer, datoer, navigasjon, rapporter og dynamiske utvidelseskomponenter.
+
+- Angular ble først prøvd med versjon 21.2.26. Portalen og alle 17 avhengige biblioteker bygget før neste steg til Angular 22.3.0, TypeScript 6.0.3 og Nx 24.0.6.
+- De offisielle Angular 22- og Nx-migreringene er kjørt. Eksisterende standardoppførsel for komponentoppdatering er beholdt med `ChangeDetectionStrategy.Eager` og eksplisitt Zone.js-basert oppdatering ved bootstrap. Angulars nye standard for støttede nettlesere brukes i stedet for listen fra Angular 20.
+- Dynamiske komponenter opprettes med komponenttypen direkte, siden `ComponentFactoryResolver` er fjernet. Eksterne utvidelser som bruker den gamle konstruktøren til `BaseCdrEditorProvider`, må tilpasses tilsvarende.
+- Den medfølgende `@elemental-ui/core` 20.0.79 krever Angular 20. Fire eksplisitte npm-overrides tillater kompatibilitetsprøven med nyere Angular. Dette er ikke en erklæring om leverandørstøtte. Erstatt pakken med en Angular 22-kompatibel distribusjon fra One Identity, oppdater eventuelle ikon- og peer-avhengigheter og fjern overridene før kombinasjonen vurderes som støttet. [Elemental-dokumentasjonen](https://elemental.dev.oneidentity.com/) bruker en nyere Angular-kodebase, men pakken distribueres via en autentisert Azure-feed.
+- `scripts/patch-nx-angular.mjs` retter én import i Nx 24.0.6 fra en intern Architect-sti til det offentlige `@angular-devkit/architect/node`-endepunktet. Angular 22.3 eksporterer ikke lenger den interne stien. Patchen er idempotent, versjonslåst og må vurderes på nytt ved neste Nx-oppgradering. Den kjøres av postinstall, Docker og CI.
+
+Installer Node-versjonen i `.node-version` og npm-versjonen i `packageManager`. Kjør fra `imxweb`:
+
+```powershell
+npm ci --ignore-scripts
+node scripts/patch-nx-angular.mjs
+npx --no-install nx build qer-app-portal --configuration=production --parallel=2
+```
+
+Lokal installasjon bruker de medfølgende arkivene i `imx-modules`, som nå også inngår i låsefilen. Vanlig `npm install` beholder låsefilreferansene og kjører patchen automatisk. Med `--ignore-scripts` må patchen kjøres eksplisitt som vist over. Systemets globale Node-installasjon trenger ikke endres for å bygge Docker-imaget.
+
+Verifisert lokalt på Windows med Node 26.13.1 og npm 12.2.3: ren `npm ci --ignore-scripts`, etterfulgt av kompatibilitetspatchen, alle 22 produksjonsbygg uten byggcache og samlet testkjøring med ChromeHeadless. QBM har 253 tester, QER 176 og AOB 29; flere prosjekter har ingen enhetstester. Dette bekrefter ikke funksjonene mot en kjørende OIM-server. Docker-imaget er ikke bygget lokalt.
 
 ## Deploy fra Git
 
@@ -118,6 +140,6 @@ Kontroller deretter følgende via det offentlige HTTPS-domenet.
 
 Helsesjekken tester Nginx. API-tilgjengelighet og innlogging kontrolleres gjennom portalens funksjonstester.
 
-Byggesteget bruker arkivene i `imx-modules` og omskriver pakkereferanser inne i imaget før installasjon. Det bruker eksisterende låsefil som grunnlag og kjører installasjonen med `--ignore-scripts`. Native plattformpakker installeres som valgfrie avhengigheter. Bygget krever tilgang til npm-registeret for offentlige pakker og til containerregisteret for baseimager. Intervallbaserte transitive avhengigheter kan fortsatt bli løst på nytt fordi repositoryets låsefil utelater de lokale pakkene.
+Byggesteget bruker arkivene i `imx-modules` og kjører `npm ci --ignore-scripts` med låsefilen, etterfulgt av den versjonslåste Nx-patchen. Native plattformpakker installeres som valgfrie avhengigheter. Bygget krever tilgang til npm-registeret for offentlige pakker og til containerregisteret for baseimager.
 
 Bygg- og funksjonstestene bør gjennomføres som referanse før oppgradering av Node eller biblioteker.

@@ -19,7 +19,7 @@
           <mat-selection-list class="imx-margin-bottom-20" [(ngModel)]="selectedEntitlements">
             @for (entl of entitlements; track entl) {
               <mat-list-option
-                checkboxPosition="before"
+                togglePosition="before"
                 [value]="entl.ObjectKeyEntitlement"
                 [attr.data-imx-identifier]="'multi-select-entitlement-' + entl.ObjectKeyEntitlement"
                 >
@@ -53,7 +53,7 @@
         <mat-selection-list [(ngModel)]="uidActions">
           @for (action of actions; track action) {
             <mat-list-option
-              checkboxPosition="before"
+              togglePosition="before"
               [value]="action.Id"
               [disabled]="!action.CanExecute"
               [attr.data-imx-identifier]="'multi-select-action-' + action.Id"

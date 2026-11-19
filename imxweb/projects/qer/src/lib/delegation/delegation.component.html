@@ -147,7 +147,7 @@
                     <mat-selection-list [(ngModel)]="globalDelegation.UidOrgRoot">
                       @for (roleClass of roleClasses; track roleClass) {
                         <mat-list-option
-                          checkboxPosition="before"
+                          togglePosition="before"
                           [value]="roleClass.GetEntity().GetKeys()[0]"
                           [attr.data-imx-identifier]="'multi-select-formcontrol-list' + roleClass.GetEntity().GetKeys[0]"
                         >
@@ -190,7 +190,7 @@
                       <mat-selection-list class="imx-list-multi-action" (selectionChange)="updateSelection($event)">
                         @for (delegateable of delegateableItems; track delegateable) {
                           <mat-list-option
-                            [checkboxPosition]="'before'"
+                            [togglePosition]="'before'"
                             [value]="delegateable"
                             [attr.data-imx-identifier]="'imx-delegation-step-2-role' + delegateable.GetEntity().GetKeys().join(',')"
                           >

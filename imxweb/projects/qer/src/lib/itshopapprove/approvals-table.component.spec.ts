@@ -24,13 +24,22 @@
  *
  */
 
+import { signal } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
 import { of, Subject } from 'rxjs';
 
 import { IEntity, IEntityColumn } from '@imx-modules/imx-qbm-dbts';
 
-import { clearStylesFromDOM, DataViewAutoTableComponent, DataViewSource, ExtService, FakeDataViewSource, SqlWizardApiService } from 'qbm';
+import {
+  clearStylesFromDOM,
+  DataViewAutoTableComponent,
+  DataViewSource,
+  ExtService,
+  FakeDataViewSource,
+  ProcessingQueueService,
+  SqlWizardApiService,
+} from 'qbm';
 import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
 import { UserModelService } from '../user/user-model.service';
 import { Approval } from './approval';
@@ -92,6 +101,7 @@ describe('ApprovalsTable', () => {
       .mock(EuiSidesheetService, sideSheetTestHelper.servicestub)
       .mock(UserModelService, { getFeatures: () => Promise.resolve({}) })
       .mock(WorkflowActionService, { applied: new Subject<void>() })
+      .mock(ProcessingQueueService, { _groups: signal([]) })
       .mock(ProjectConfigurationService, projectConfigurationServiceStub)
       .provide({ provide: SqlWizardApiService, useValue: {} })
       .provide({ provide: DataViewSource, useClass: FakeDataViewSource });

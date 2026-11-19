@@ -10,7 +10,7 @@
       >
       @for (result of searchResults; track result; let i = $index) {
         <mat-list-option
-          checkboxPosition="before"
+          togglePosition="before"
           [value]="result"
           [ngClass]="{ 'imx-candidate-option': true, 'imx-selected-candidate': isSelected(result) }"
           [attr.data-imx-identifier]="'data-tree-search-result-list-result-' + result.GetKeys()[0]"

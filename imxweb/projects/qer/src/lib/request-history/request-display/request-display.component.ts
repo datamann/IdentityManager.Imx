@@ -26,7 +26,6 @@
 
 import {
   Component,
-  ComponentFactoryResolver,
   Input,
   OnChanges,
   OnInit,
@@ -56,7 +55,6 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
   private instance: any;
 
   constructor(
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
     private readonly logger: NGXLogger,
     private readonly requestDisplayService: RequestDisplayService,
   ) {}
@@ -69,7 +67,7 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
       if (selectedProvider) {
         this.directive.viewContainerRef.clear();
         this.instance = this.directive.viewContainerRef.createComponent(
-          this.componentFactoryResolver.resolveComponentFactory(selectedProvider),
+          selectedProvider,
         );
         this.instance.instance.isReadOnly = this.isReadOnly;
         this.instance.instance.personWantsOrg = this.personWantsOrg;
@@ -85,7 +83,7 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
     if (selectedProvider) {
       this.directive.viewContainerRef.clear();
       this.instance = this.directive.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(selectedProvider),
+        selectedProvider,
       );
       this.instance.instance.isReadOnly = this.isReadOnly;
       this.instance.instance.personWantsOrg = this.personWantsOrg;

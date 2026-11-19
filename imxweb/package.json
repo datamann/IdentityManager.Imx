@@ -19,7 +19,7 @@
     "build:watch": "ng build --watch --configuration development",
     "nx:build-all": "npx nx run-many -t build",
     "build:production": "npx nx build --configuration production",
-    "postinstall": "node docker/prepare-packages.mjs",
+    "postinstall": "node docker/prepare-packages.mjs && node scripts/patch-nx-angular.mjs",
     "test": "ng test --code-coverage --browsers Chrome",
     "test-ci": "ng test --code-coverage --browsers ChromeHeadless --watch=false",
     "nx:test-ci": "npx nx run-many -t test --code-coverage --browsers ChromeHeadless --watch=false",
@@ -36,7 +36,7 @@
     "nx:test-ci": "Tests all projects in workspace.",
     "build:watch": "Directly uses the angular compiler to build-watch a single project. e.g",
     "build:production": "Use Nx to build a production ready project.",
-    "postinstall": "Resolves bundled OIM packages from local archives without removing them from the lockfile.",
+    "postinstall": "Resolves bundled OIM packages without removing lockfile entries and applies the pinned Nx/Angular Architect compatibility patch.",
     "test": "Tests a single project. e.g. npm run test <project>",
     "doc": "Runs the build-doc.js script against <projects> to apply compodoc to any given project. e.g. npm run doc <project1> <project2>"
   },
@@ -101,6 +101,7 @@
     "copy-and-watch": "0.1.8",
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
+    "istanbul-lib-instrument": "^6.0.3",
     "jasmine": "5.13.0",
     "jasmine-core": "5.13.0",
     "jasmine-spec-reporter": "7.0.0",
@@ -159,5 +160,8 @@
       "@angular/material-moment-adapter": "$@angular/material-moment-adapter"
     }
   },
-  "packageManager": "npm@12.2.3"
+  "packageManager": "npm@12.2.3",
+  "browserslist": [
+    "baseline widely available on 2026-05-07"
+  ]
 }

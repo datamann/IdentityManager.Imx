@@ -12,9 +12,11 @@ RUN npm install --global npm@12.2.3 --ignore-scripts --no-audit --no-fund
 COPY package.json package-lock.json ./
 COPY imx-modules/ ./imx-modules/
 COPY docker/prepare-packages.mjs ./docker/prepare-packages.mjs
+COPY scripts/patch-nx-angular.mjs ./scripts/patch-nx-angular.mjs
 # Resolve the bundled packages from the supplied archives.
 RUN node docker/prepare-packages.mjs \
-    && npm install --ignore-scripts --no-audit --no-fund
+    && npm ci --ignore-scripts --no-audit --no-fund \
+    && node scripts/patch-nx-angular.mjs
 
 COPY angular.json nx.json tsconfig.json ./
 COPY projects/ ./projects/

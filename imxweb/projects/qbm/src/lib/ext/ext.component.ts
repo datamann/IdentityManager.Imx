@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { ExtDirective } from './ext.directive';
 import { ExtService } from './ext.service';
@@ -45,7 +45,6 @@ export class ExtComponent implements OnInit {
   @Input() public properties: { [property: string]: any };
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private extService: ExtService,
   ) {}
 
@@ -66,7 +65,7 @@ export class ExtComponent implements OnInit {
 
     extensions.forEach((element) => {
       if (element.instance) {
-        const c = viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory(element.instance));
+        const c = viewContainerRef.createComponent(element.instance);
         c.instance.referrer = this.referrer;
         c.instance.inputData = element.inputData;
 

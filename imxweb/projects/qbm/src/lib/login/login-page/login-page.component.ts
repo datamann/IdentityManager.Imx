@@ -28,7 +28,6 @@ import { HighContrastModeDetector } from '@angular/cdk/a11y';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   Component,
-  ComponentFactoryResolver,
   computed,
   effect,
   inject,
@@ -180,7 +179,6 @@ export class LoginPageComponent implements OnDestroy {
   private authentication = inject(AuthenticationService);
   private busyService = inject(EuiLoadingService);
   private captchaService = inject(CaptchaService);
-  private componentFactoryResolver = inject(ComponentFactoryResolver);
   private detector = inject(HighContrastModeDetector);
   private logger = inject(ClassloggerService);
   private recaptchaV3Service = inject(ReCaptchaV3Service);
@@ -333,7 +331,7 @@ export class LoginPageComponent implements OnDestroy {
 
     if (configProvider?.customAuthFlow)
       this.directive()!.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(configProvider.customAuthFlow.getEntryComponent()),
+        configProvider.customAuthFlow.getEntryComponent(),
       );
   }
 

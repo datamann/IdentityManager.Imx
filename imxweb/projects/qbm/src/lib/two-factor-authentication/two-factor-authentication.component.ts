@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { ExtDirective } from '../ext/ext.directive';
@@ -42,7 +42,6 @@ export class TwoFactorAuthenticationComponent implements OnInit {
   @ViewChild(ExtDirective, { static: true }) public directive: ExtDirective;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private classlogger: ClassloggerService,
     private twoFactorAuthService: TwoFactorAuthenticationService,
     private sessionService: imx_SessionService,
@@ -54,7 +53,7 @@ export class TwoFactorAuthenticationComponent implements OnInit {
         const selectedProvider = this.twoFactorAuthService.Registry[sessionState.SecondaryAuthName];
         if (selectedProvider) {
           this.directive.viewContainerRef.clear();
-          this.directive.viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory(selectedProvider));
+          this.directive.viewContainerRef.createComponent(selectedProvider);
         } else {
           this.classlogger.warn(this, 'No provider selected');
         }

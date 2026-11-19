@@ -43,7 +43,7 @@
     @for (selectedCandidate of selectedCandidates; track selectedCandidate; let i = $index) {
       <mat-list-item
         role="listitem"
-        checkboxPosition="before"
+        togglePosition="before"
         class="imx-candidate-option"
         [attr.data-imx-identifier]="'multi-select-formcontrol-selector-list' + selectedCandidate?.Keys?.[0]"
       >
