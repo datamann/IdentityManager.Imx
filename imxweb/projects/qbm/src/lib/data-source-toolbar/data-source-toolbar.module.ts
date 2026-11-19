@@ -37,7 +37,7 @@ import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -87,6 +87,6 @@ import { SaveConfigDialogComponent } from './save-config-dialog/save-config-dial
     FormsModule,
     LoggerModule,
   ],
-  providers: [AppConfigService, provideHttpClient(withInterceptorsFromDi())],
+  providers: [AppConfigService, provideHttpClient(withXhr(), withInterceptorsFromDi())],
 })
 export class DataSourceToolbarModule {}

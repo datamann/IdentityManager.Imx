@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -34,9 +34,10 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    templateUrl: './edit-uint.component.html',
-    selector: 'imx-edit-uint',
-    standalone: false
+  templateUrl: './edit-uint.component.html',
+  selector: 'imx-edit-uint',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditUintComponent implements OnInit, OnDestroy {
   public control: UntypedFormControl;

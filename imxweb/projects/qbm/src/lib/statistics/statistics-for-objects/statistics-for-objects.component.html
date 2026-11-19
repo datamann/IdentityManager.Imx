@@ -23,12 +23,12 @@
           @for (chart of charts; track chart) {
             <mat-card
               class="stat-card"
-          [ngClass]="{
-            'stat-card--disabled': !chartHasData(chart),
-          }"
+              [ngClass]="{
+                'stat-card--disabled': !chartHasData(chart),
+              }"
               (click)="openStatistic(chart)"
-              >
-              <span [matTooltip]="chart?.Description?.value" matTooltipPosition="above">
+            >
+              <span [matTooltip]="$safeNavigationMigration(chart?.Description?.value)" matTooltipPosition="above">
                 {{ chart.GetEntity().GetDisplay() }}
               </span>
               @if (!chartIsLoading(chart)) {
@@ -60,9 +60,6 @@
     </mat-card>
   }
 }
-
-
-
 
 <ng-template #loading>
   <div class="center-content">

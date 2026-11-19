@@ -25,7 +25,7 @@
  */
 
 import { Platform } from '@angular/cdk/platform';
-import { Component, effect, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, effect, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -77,11 +77,12 @@ import { EntitlementsService } from './entitlements.service';
  * @see unassign
  */
 @Component({
-    selector: 'imx-entitlements',
-    templateUrl: './entitlements.component.html',
-    styleUrls: ['./entitlements.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-entitlements',
+  templateUrl: './entitlements.component.html',
+  styleUrls: ['./entitlements.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntitlementsComponent implements OnChanges {
   /** The {@link PortalApplication|application} */

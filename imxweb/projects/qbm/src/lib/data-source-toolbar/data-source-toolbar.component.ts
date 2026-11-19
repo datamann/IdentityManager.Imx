@@ -37,6 +37,7 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
@@ -106,6 +107,7 @@ import { SelectionModelWrapper } from './selection-model-wrapper';
   templateUrl: './data-source-toolbar.component.html',
   styleUrls: ['./data-source-toolbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy {
@@ -754,10 +756,10 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     searchColumns: string[];
     keywords: string;
   } = {
-      filterColumns: {},
-      searchColumns: [],
-      keywords: '',
-    };
+    filterColumns: {},
+    searchColumns: [],
+    keywords: '',
+  };
 
   /** Marker that prevents the emitting of a selectionChanged event, when items are preselected */
   private isUpdatingPreselection = false;
@@ -912,7 +914,9 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         }
 
         this.filterType = this.filterTreeItems?.Description ?? '';
-        this.columnForTree = !!this.filterTreeItems?.Elements?.length ? this.filterTreeItems?.Elements?.[0]?.Filter?.ColumnName ?? '' : '';
+        this.columnForTree = !!this.filterTreeItems?.Elements?.length
+          ? (this.filterTreeItems?.Elements?.[0]?.Filter?.ColumnName ?? '')
+          : '';
         this.internalDataSource = new MatTableDataSource<TypedEntity>(this.settings.dataSource?.Data);
         if (this.isDataSourceLocal && (this.searchCurrenltyApplied || this.filtersCurrentlyApplied)) {
           // We need to apply a filter still over the local data since it was skipped earlier. Do so now.

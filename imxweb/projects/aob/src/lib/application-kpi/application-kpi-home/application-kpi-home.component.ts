@@ -25,7 +25,7 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EuiCoreModule, EuiSidesheetService } from '@elemental-ui/core';
@@ -39,7 +39,8 @@ import { ApplicationKpiService } from '../application-kpi.service';
   selector: 'imx-application-kpi-home',
   imports: [CommonModule, EuiCoreModule, MatCardModule, MatTooltipModule, BusyIndicatorModule, TranslateModule],
   templateUrl: './application-kpi-home.component.html',
-  styleUrl: './application-kpi-home.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './application-kpi-home.component.scss',
 })
 export class ApplicationKpiHomeComponent implements OnInit {
   // Injected services
@@ -68,9 +69,7 @@ export class ApplicationKpiHomeComponent implements OnInit {
    */
   private async initializeData() {
     if (!this.isLoading()) this.isLoading.set(true);
-    this.allKpis.set((
-      await this.kpiService.get(this.application().UID_AOBApplication.value)
-    ).filter((kpi) => this.kpiHasData(kpi)));
+    this.allKpis.set((await this.kpiService.get(this.application().UID_AOBApplication.value)).filter((kpi) => this.kpiHasData(kpi)));
     this.isLoading.set(false);
   }
 

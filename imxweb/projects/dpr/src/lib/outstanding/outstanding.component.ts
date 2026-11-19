@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -54,6 +54,7 @@ import { SelectedItemsComponent } from './selected-items/selected-items.componen
 @Component({
   templateUrl: './outstanding.component.html',
   styleUrls: ['./outstanding.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class OutstandingComponent implements OnInit {

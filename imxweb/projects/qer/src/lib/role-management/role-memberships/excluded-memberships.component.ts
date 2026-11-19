@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalRolesExclusions } from '@imx-modules/imx-api-qer';
 import { CollectionLoadParameters, EntitySchema, IClientProperty, TypedEntity, TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
@@ -47,10 +47,11 @@ const LdsMembersByDynamicRole =
   '#LDS#Here you can see the members that are originally assigned by a dynamic role but have been excluded. Additionally, you can add these excluded members back by removing the exclusion.';
 
 @Component({
-    selector: 'imx-excluded-memberships',
-    templateUrl: './excluded-memberships.component.html',
-    styleUrls: ['./excluded-memberships.component.scss', './role-sidesheet-tabs.scss'],
-    standalone: false
+  selector: 'imx-excluded-memberships',
+  templateUrl: './excluded-memberships.component.html',
+  styleUrls: ['./excluded-memberships.component.scss', './role-sidesheet-tabs.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ExcludedMembershipsComponent implements OnInit {
   // Replaces the former input

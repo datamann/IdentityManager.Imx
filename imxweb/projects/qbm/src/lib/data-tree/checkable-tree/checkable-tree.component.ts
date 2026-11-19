@@ -37,6 +37,7 @@ import {
   Output,
   SimpleChanges,
   TemplateRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Subscription } from 'rxjs';
@@ -49,10 +50,11 @@ import { TreeDatasource } from '../tree-datasource';
 import { TreeNode, TreeNodeInfo } from '../tree-node';
 
 @Component({
-    selector: 'imx-checkable-tree',
-    templateUrl: './checkable-tree.component.html',
-    styleUrls: ['./checkable-tree.component.scss'],
-    standalone: false
+  selector: 'imx-checkable-tree',
+  templateUrl: './checkable-tree.component.html',
+  styleUrls: ['./checkable-tree.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 /**
  * A tree component with a {@link FlatTreeControl| FlatTreeControl} of @angular/cdk.
@@ -414,6 +416,6 @@ export class CheckableTreeComponent implements OnChanges, AfterViewInit, OnDestr
   }
 
   private getId(entity: IEntity | undefined): string {
-    return this.database ? this.database.getId(entity) : entity?.GetKeys()[0] ?? '';
+    return this.database ? this.database.getId(entity) : (entity?.GetKeys()[0] ?? '');
   }
 }

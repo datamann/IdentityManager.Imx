@@ -13,7 +13,7 @@
         [selectable]="false"
         data-imx-identifier="not-requestable-memberships-datatable"
       >
-        <imx-data-table-column [entityColumn]="data.entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]">
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(data.entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])">
           <ng-template let-item>
             <div>{{ item.GetEntity().GetDisplay() }}</div>
           </ng-template>

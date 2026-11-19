@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -34,9 +34,10 @@ import { BaseReadonlyCdr, ColumnDependentReference, ElementalUiConfigService } f
 import { PoliciesService } from '../policies.service';
 
 @Component({
-    selector: 'imx-policies-sidesheet',
-    templateUrl: './policies-sidesheet.component.html',
-    standalone: false
+  selector: 'imx-policies-sidesheet',
+  templateUrl: './policies-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PoliciesSidesheetComponent implements OnDestroy {
   public reportDownload: EuiDownloadOptions;

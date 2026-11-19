@@ -25,17 +25,18 @@
  */
 
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Subscription } from 'rxjs';
 import { ConfirmationService } from '../../../confirmation/confirmation.service';
 import { GenericStatisticNode, StatisticsDataService } from '../statistics-data.service';
 
 @Component({
-    selector: 'imx-statistics-tree',
-    templateUrl: './statistics-tree.component.html',
-    styleUrls: ['./statistics-tree.component.scss'],
-    standalone: false
+  selector: 'imx-statistics-tree',
+  templateUrl: './statistics-tree.component.html',
+  styleUrls: ['./statistics-tree.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StatisticsTreeComponent implements OnInit, OnDestroy {
   // Controls sidenav interaction

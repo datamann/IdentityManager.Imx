@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PackageInfo } from '@imx-modules/imx-api-qbm';
 import { AppConfigService } from '../appConfig/appConfig.service';
 import { imx_SessionService } from '../session/imx-session.service';
@@ -33,10 +33,11 @@ import { SideNavigationComponent } from '../side-navigation-view/side-navigation
 type ExtendedPackageInfo = PackageInfo & { App?: string };
 
 @Component({
-    templateUrl: './packages.component.html',
-    selector: 'imx-packages',
-    styleUrls: ['./packages.component.scss'],
-    standalone: false
+  templateUrl: './packages.component.html',
+  selector: 'imx-packages',
+  styleUrls: ['./packages.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PackagesComponent implements OnInit, SideNavigationComponent {
   @Input() public isAdmin: boolean;

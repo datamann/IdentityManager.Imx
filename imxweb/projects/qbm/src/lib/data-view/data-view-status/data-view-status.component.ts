@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { QueuedActionState } from '../../processing-queue/processing-queue.interface';
 
 @Component({
-    selector: 'imx-data-view-status',
-    templateUrl: './data-view-status.component.html',
-    styleUrl: './data-view-status.component.scss',
-    standalone: false
+  selector: 'imx-data-view-status',
+  templateUrl: './data-view-status.component.html',
+  styleUrl: './data-view-status.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewStatusComponent {
   public stateOptions = QueuedActionState;

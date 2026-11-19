@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Approvers } from '../approvers.interface';
 
 @Component({
-    selector: 'imx-approvers',
-    templateUrl: './approvers.component.html',
-    styleUrls: ['./approvers.component.scss'],
-    standalone: false
+  selector: 'imx-approvers',
+  templateUrl: './approvers.component.html',
+  styleUrls: ['./approvers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApproversComponent {
   @Input() public approvers: Approvers;

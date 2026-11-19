@@ -6,10 +6,7 @@
           {{ data.selectedRulesViolation?.State?.GetMetadata()?.GetDisplay() }}
         </div>
         @if (data.selectedRulesViolation?.State?.value) {
-          <eui-badge
-            class="imx-margin-bottom-20"
-            [color]="data.selectedRulesViolation?.stateBadge?.color"
-            >
+          <eui-badge class="imx-margin-bottom-20" [color]="$safeNavigationMigration(data.selectedRulesViolation?.stateBadge?.color)">
             {{ data.selectedRulesViolation?.stateBadge?.caption }}
           </eui-badge>
         }

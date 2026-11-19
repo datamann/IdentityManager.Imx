@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { PortalPersonAll, PortalPickcategoryItems } from '@imx-modules/imx-api-qer';
@@ -44,11 +44,12 @@ import { DataViewInitParameters, DataViewSource, MetadataService } from 'qbm';
 import { IdentitiesService } from 'qer';
 
 @Component({
-    selector: 'imx-pick-category-select-identities',
-    templateUrl: './pick-category-select-identities.component.html',
-    styleUrls: ['./pick-category-select-identities.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-pick-category-select-identities',
+  templateUrl: './pick-category-select-identities.component.html',
+  styleUrls: ['./pick-category-select-identities.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PickCategorySelectIdentitiesComponent implements OnInit {
   public displayColumns: IClientProperty[];

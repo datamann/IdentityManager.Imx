@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
  */
 @Component({
-    templateUrl: './indexbar.component.html',
-    selector: 'imx-indexbar',
-    standalone: false
+  templateUrl: './indexbar.component.html',
+  selector: 'imx-indexbar',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IndexBarComponent {
   // TODO replace VI_Common_Color_Gray, VI_Common_Color_Badge_Important,VI_Common_Color_Badge_Success,VI_Common_Color_Badge_Warning

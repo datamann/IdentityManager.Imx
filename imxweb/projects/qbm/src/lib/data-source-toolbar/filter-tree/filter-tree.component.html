@@ -8,10 +8,10 @@
       [hideSelection]="true"
       (checkedNodesChanged)="onCheckedNodesChanged()"
       [selectedEntities]="currentlySelectedFilterEntities"
-      [withMultiSelect]="data?.filterTreeParameter?.multiSelect"
+      [withMultiSelect]="$safeNavigationMigration(data?.filterTreeParameter?.multiSelect)"
       [database]="database"
       (nodeSelected)="onNodeSelected($event)"
-      >
+    >
     </imx-data-tree>
   }
 </mat-dialog-content>
@@ -31,7 +31,7 @@
         mat-button
         color="primary"
         [matMenuTriggerFor]="selectedElements"
-        >
+      >
         {{ '#LDS#Selected items' | translate }}
         <eui-badge class="imx-badge" color="orange">
           {{ currentlySelectedFilter?.length || 0 }}
@@ -45,7 +45,7 @@
         mat-button
         color="primary"
         (click)="clearValue()"
-        >
+      >
         {{ '#LDS#Clear selection' | translate }}
       </button>
     }
@@ -57,7 +57,7 @@
         mat-flat-button
         color="primary"
         (click)="submitValues()"
-        >
+      >
         {{ '#LDS#Apply' | translate }}
       </button>
     }
@@ -67,10 +67,7 @@
 <mat-menu #selectedElements class="imx-selected-items-menu">
   <mat-list>
     @for (filterElement of currentlySelectedFilter; track filterElement) {
-      <mat-list-item
-        class="imx-list-item"
-        [attr.data-imx-identifier]="'filter-tree-selected-item' + filterElement?.entity?.GetKeys()?.[0]"
-        >
+      <mat-list-item class="imx-list-item" [attr.data-imx-identifier]="'filter-tree-selected-item' + filterElement?.entity?.GetKeys()?.[0]">
         <div class="imx-selected-item-element">
           {{ filterElement?.display }}
         </div>

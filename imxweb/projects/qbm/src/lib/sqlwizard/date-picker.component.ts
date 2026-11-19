@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { DateDiffUnit } from '@imx-modules/imx-qbm-dbts';
 import { SqlNodeView } from './SqlNodeView';
@@ -34,6 +34,7 @@ import { DateDiffOption, SqlWizardService } from './sqlwizard.service';
   templateUrl: './date-picker.component.html',
   styleUrls: ['./sqlwizard.scss', './date-picker.component.scss'],
   selector: 'imx-sqlwizard-datepicker',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DatePickerComponent implements OnInit {

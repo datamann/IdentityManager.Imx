@@ -32,7 +32,7 @@
           class="eui-grid-cell eui-grid-cell--span-4 imx-kpi-card mat-elevation-z6"
           euiClickable
           (click)="showDetails(chart, passBool)"
-          [matTooltip]="chart?.Description"
+          [matTooltip]="$safeNavigationMigration(chart?.Description)"
         >
           @if (passBool) {
             <div class="imx-new">

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, Signal, computed } from '@angular/core';
+import { Component, Input, Signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { DataViewSource } from '../data-view-source';
 
@@ -37,7 +37,8 @@ import { DataViewSource } from '../data-view-source';
   selector: 'imx-data-view-selection',
   templateUrl: './data-view-selection.component.html',
   styleUrls: ['./data-view-selection.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewSelectionComponent {
   /**

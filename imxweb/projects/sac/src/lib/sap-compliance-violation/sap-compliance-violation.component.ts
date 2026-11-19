@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PortalRules, PortalRulesViolations } from '@imx-modules/imx-api-cpl';
 import { ByAbilityResult, ByRoleResult, PortalTargetsystemSapuser } from '@imx-modules/imx-api-sac';
 import { SapComplianceApiService } from '../sac-api-client.service';
 import { SapSelectionOptions, SapSelectionTypeEnum } from './sap-compliance-violation.model';
 
 @Component({
-    templateUrl: './sap-compliance-violation.component.html',
-    styleUrls: ['./sap-compliance-violation.component.scss'],
-    standalone: false
+  templateUrl: './sap-compliance-violation.component.html',
+  styleUrls: ['./sap-compliance-violation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SapComplianceViolationComponent implements OnInit {
   public data: {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { LogOp as _logOp } from '@imx-modules/imx-qbm-dbts';
 import { ConfirmationService } from '../confirmation/confirmation.service';
 import { MessageDialogResult } from '../message-dialog/message-dialog-result.enum';
@@ -35,6 +35,7 @@ import { SqlNodeView, SqlViewSettings } from './SqlNodeView';
   selector: 'imx-sqlwizard-singleexpression',
   styleUrls: ['single-expression.component.scss', './sqlwizard.scss'],
   templateUrl: './single-expression.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SingleExpressionComponent {

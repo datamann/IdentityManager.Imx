@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -37,9 +37,10 @@ export interface AadUserCreateDialogData {
 }
 
 @Component({
-    selector: 'imx-aad-user-create-dialog',
-    templateUrl: './aad-user-create-dialog.component.html',
-    standalone: false
+  selector: 'imx-aad-user-create-dialog',
+  templateUrl: './aad-user-create-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AadUserCreateDialogComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

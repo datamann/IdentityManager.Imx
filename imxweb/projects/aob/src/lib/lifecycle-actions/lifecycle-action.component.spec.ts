@@ -24,9 +24,9 @@
  *
  */
 
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform, ChangeDetectionStrategy, provideZoneChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -51,7 +51,7 @@ import {
   MessageDialogService,
   MetadataService,
   SqlWizardApiService,
-  clearStylesFromDOM
+  clearStylesFromDOM,
 } from 'qbm';
 import { AobApiService } from '../aob-api-client.service';
 import { LifecycleActionComponent } from './lifecycle-action.component';
@@ -63,10 +63,10 @@ const mockMatDialogRef = {
 
 @Pipe({
   name: 'ldsReplace',
-  standalone: false
+  standalone: false,
 })
 class MockLdsReplacePipe implements PipeTransform {
-  transform() { }
+  transform() {}
 }
 
 const mockLdsReplacePipe = {
@@ -76,7 +76,8 @@ const mockLdsReplacePipe = {
 @Component({
   selector: 'imx-data-source-toolbar',
   template: '<p>MockDataSourceToolbarComponent</p>',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class MockDataSourceToolbarComponent {
   @Input() public dst: any;
@@ -87,7 +88,8 @@ class MockDataSourceToolbarComponent {
 @Component({
   selector: 'imx-data-table',
   template: '<p>MockDataTableComponent</p>',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class MockDataTableComponent {
   @Input() public dst: any;
@@ -96,7 +98,8 @@ class MockDataTableComponent {
 @Component({
   selector: 'imx-data-table-column',
   template: '<p>MockDataTableColumnComponent</p>',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class MockDataTableColumnComponent {
   @Input() public entityColumn: any;
@@ -181,17 +184,22 @@ describe('LifecycleActionComponent', () => {
         },
       },
       { provide: MessageDialogService, useValue: {} },
-      { provide: ClassloggerService, useValue: { debug: () => { }, info: () => { } } },
+      { provide: ClassloggerService, useValue: { debug: () => {}, info: () => {} } },
       { provide: SqlWizardApiService, useValue: {} },
       { provide: ConfirmationService, useValue: {} },
       { provide: DataViewSource, useClass: FakeDataViewSource },
-      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClient(withXhr(), withInterceptorsFromDi()),
       provideHttpClientTesting(),
+      provideZoneChangeDetection(),
     ],
   };
 
   beforeEach(waitForAsync(() => {
     mockMatDialogRef.close.calls.reset();
+    moduleDef.providers[1] = {
+      provide: MAT_DIALOG_DATA,
+      useValue: { action: LifecycleAction.Publish, elements: [], shops: [], type: 'AobApplication' },
+    };
   }));
 
   afterAll(() => {

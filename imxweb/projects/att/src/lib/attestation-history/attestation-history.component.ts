@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { ViewConfigData } from '@imx-modules/imx-api-qer';
 import {
@@ -37,7 +37,7 @@ import {
   FilterType,
   TypedEntity,
   TypedEntityCollectionData,
-  ValType
+  ValType,
 } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -67,7 +67,8 @@ import { AttestationHistoryService } from './attestation-history.service';
   templateUrl: './attestation-history.component.html',
   styleUrls: ['./attestation-history.component.scss'],
   providers: [DataViewSource],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationHistoryComponent implements OnInit, OnDestroy {
   @Input() public parameters: AttestationParameters;
@@ -192,7 +193,7 @@ export class AttestationHistoryComponent implements OnInit, OnDestroy {
       exportFunction: this.historyService.exportAttestation({
         objecttable: this.parameters?.objecttable,
         objectuid: this.parameters?.objectuid,
-        filter: this.parameters?.filter
+        filter: this.parameters?.filter,
       }),
     };
     this.dataSource.init(dataViewInitParameters);

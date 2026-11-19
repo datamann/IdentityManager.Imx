@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PortalRespTeamResponsibilities } from '@imx-modules/imx-api-qer';
 
 @Component({
-    selector: 'imx-team-responsibility-dialog',
-    templateUrl: './team-responsibility-dialog.component.html',
-    styleUrl: './team-responsibility-dialog.component.scss',
-    standalone: false
+  selector: 'imx-team-responsibility-dialog',
+  templateUrl: './team-responsibility-dialog.component.html',
+  styleUrl: './team-responsibility-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TeamResponsibilityDialogComponent {
   constructor(

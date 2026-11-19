@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -36,9 +36,10 @@ import { QerApiService } from '../qer-api-client.service';
 
 // ToDo later: Komponente einbinden und anpassen
 @Component({
-    templateUrl: './password-query.component.html',
-    selector: 'imx-password-query',
-    standalone: false
+  templateUrl: './password-query.component.html',
+  selector: 'imx-password-query',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PasswordQueryComponent implements OnInit {
   /** Minimum number of required questions */

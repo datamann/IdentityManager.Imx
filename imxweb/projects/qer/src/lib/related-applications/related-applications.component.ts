@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,9 +32,10 @@ import { calculateSidesheetWidth } from 'qbm';
 import { RelatedApplicationsSidesheetComponent } from './related-applications-sidesheet/related-applications-sidesheet.component';
 
 @Component({
-    selector: 'imx-related-applications',
-    template: '',
-    standalone: false
+  selector: 'imx-related-applications',
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RelatedApplicationsComponent implements OnInit {
   constructor(

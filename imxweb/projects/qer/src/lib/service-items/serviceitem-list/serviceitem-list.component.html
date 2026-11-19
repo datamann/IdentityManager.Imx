@@ -12,11 +12,9 @@
     [initalView]="dataSourceView.selected"
     [itemStatus]="status"
     [alwaysVisible]="!referenceUserUid && !uidPersonPeerGroup"
-    >
+  >
     @if (!referenceUserUid && !uidPersonPeerGroup) {
-      <imx-data-source-toolbar-custom
-        [customContentTemplate]="customToolbarTemplate"
-      ></imx-data-source-toolbar-custom>
+      <imx-data-source-toolbar-custom [customContentTemplate]="customToolbarTemplate"></imx-data-source-toolbar-custom>
     }
   </imx-data-source-toolbar>
   <div class="imx-table-container">
@@ -32,11 +30,11 @@
         fallbackIcon="request"
         [selectable]="true"
         [actions]="itemActions"
-        [titleObject]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
-        [subtitleObject]="entitySchema?.Columns?.['ServiceCategoryFullPath']"
+        [titleObject]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
+        [subtitleObject]="$safeNavigationMigration(entitySchema?.Columns?.['ServiceCategoryFullPath'])"
         (actionSelected)="emitAction($event)"
         [contentTemplate]="peerGroupDisplay"
-        >
+      >
       </imx-data-tiles>
     }
     @if (dataSourceView.selected === 'table') {
@@ -50,12 +48,12 @@
         (selectionChanged)="onSelectionChanged($event)"
         data-imx-identifier="serviceitemlist-datatable"
         [showSelectedItemsMenu]="false"
-        >
+      >
         <imx-data-table-column
-          [entityColumn]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
+          [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
           columnLabel="{{ '#LDS#Product' | translate }}"
           data-imx-identifier="serviceitemlist-datatable-table"
-          >
+        >
           <ng-template let-prod>
             <div data-imx-identifier="serviceitemlist-datatable-display">{{ prod.GetEntity().GetDisplay() }}</div>
             <div subtitle data-imx-identifier="serviceitemlist-datatable-fullpath">
@@ -63,9 +61,7 @@
             </div>
             @if (!patternItemsMode) {
               @if (isValueContains(prod.OrderableStatus.value, ['PERSONHASOBJECT', 'PERSONHASASSIGNMENTORDER', 'ASSIGNED'])) {
-                <p
-                  class="imx-subtext"
-                  >
+                <p class="imx-subtext">
                   <eui-icon icon="info"></eui-icon>
                   {{ '#LDS#This product has already been assigned to {0}.' | translate | ldsReplace: recipients.Column.GetDisplayValue() }}
                 </p>
@@ -100,7 +96,7 @@
                 class="imx-margin-right"
                 (click)="emitAction(action, prod)"
                 [attr.data-imx-identifier]="'serviceitemlist-datatable-row-button-' + action.name"
-                >
+              >
                 {{ action.description ?? '' | translate }}
               </button>
             }
@@ -134,7 +130,7 @@
         color="primary"
         (click)="openCategoryTree.emit()"
         data-imx-identifier="servicecategory-list-button-change-category"
-        >
+      >
         {{ '#LDS#Show products from service category' | translate }}
       </button>
     }

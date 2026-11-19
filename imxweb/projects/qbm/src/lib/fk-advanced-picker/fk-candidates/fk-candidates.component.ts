@@ -25,7 +25,7 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import {
@@ -50,10 +50,11 @@ import { FkCandidateEntityBuilderService } from './fk-candidate-entity-builder.s
 import { FkCandidatesData } from './fk-candidates-data.interface';
 
 @Component({
-    selector: 'imx-fk-candidates',
-    templateUrl: './fk-candidates.component.html',
-    styleUrls: ['./fk-candidates.component.scss'],
-    standalone: false
+  selector: 'imx-fk-candidates',
+  templateUrl: './fk-candidates.component.html',
+  styleUrls: ['./fk-candidates.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FkCandidatesComponent implements OnChanges {
   @Input() public data: FkCandidatesData | TypedEntityFkData;

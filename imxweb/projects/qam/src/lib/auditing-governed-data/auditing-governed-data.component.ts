@@ -24,8 +24,15 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
-import { CollectionLoadParameters, DataModel, EntitySchema, IClientProperty, TypedEntityCollectionData, ValType } from '@imx-modules/imx-qbm-dbts';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  CollectionLoadParameters,
+  DataModel,
+  EntitySchema,
+  IClientProperty,
+  TypedEntityCollectionData,
+  ValType,
+} from '@imx-modules/imx-qbm-dbts';
 import { BusyService, DataViewInitParameters, DataViewSource, HELP_CONTEXTUAL, HelpContextualValues, SideNavigationComponent } from 'qbm';
 import { PortalDgeNodes } from '../TypedClient';
 import { AuditingGovernedDataService } from './auditing-governed-data.service';
@@ -35,20 +42,22 @@ import { AuditingGovernedDataService } from './auditing-governed-data.service';
   selector: 'imx-auditing-governed-data',
   templateUrl: './auditing-governed-data.component.html',
   styleUrl: './auditing-governed-data.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
-export class AuditingGovernedDataComponent implements OnInit{
-  
+export class AuditingGovernedDataComponent implements OnInit {
   public busyService = new BusyService();
-  public entitySchema : EntitySchema;
+  public entitySchema: EntitySchema;
   public uidNode: string = '';
-  public isGovernedDataView:boolean = false;
-  
+  public isGovernedDataView: boolean = false;
 
   private displayedColumns: IClientProperty[] = [];
   private dataModel: DataModel;
 
-  constructor(public readonly aditingDUGService: AuditingGovernedDataService, public dataSource: DataViewSource<PortalDgeNodes>,) {}
+  constructor(
+    public readonly aditingDUGService: AuditingGovernedDataService,
+    public dataSource: DataViewSource<PortalDgeNodes>,
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
@@ -61,19 +70,18 @@ export class AuditingGovernedDataComponent implements OnInit{
         this.entitySchema.Columns.TotalPointsOfInterest,
         {
           ColumnName: 'actions',
-          Type: ValType.String
+          Type: ValType.String,
         },
       ];
       const dataViewInitParameters: DataViewInitParameters<PortalDgeNodes> = {
-            execute: async (params: CollectionLoadParameters,
-              signal: AbortSignal,): Promise<TypedEntityCollectionData<PortalDgeNodes>> => {
-              const data = await this.aditingDUGService.getData(params, signal);
-              return data;
-            },
-            dataModel: this.dataModel,
-            schema: this.entitySchema,
-            columnsToDisplay: this.displayedColumns,
-          };
+        execute: async (params: CollectionLoadParameters, signal: AbortSignal): Promise<TypedEntityCollectionData<PortalDgeNodes>> => {
+          const data = await this.aditingDUGService.getData(params, signal);
+          return data;
+        },
+        dataModel: this.dataModel,
+        schema: this.entitySchema,
+        columnsToDisplay: this.displayedColumns,
+      };
       this.dataSource.init(dataViewInitParameters);
     } finally {
       isBusy.endBusy();
@@ -89,5 +97,4 @@ export class AuditingGovernedDataComponent implements OnInit{
     this.isGovernedDataView = false;
     this.uidNode = '';
   }
-
 }

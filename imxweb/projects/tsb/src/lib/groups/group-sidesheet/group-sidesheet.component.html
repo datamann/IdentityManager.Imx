@@ -29,7 +29,7 @@
           color="primary"
           [euiDownload]="reportDownload"
           data-imx-identifier="group-sidesheet-button-download-report"
-          >
+        >
           <span translate>#LDS#Download report</span>
         </button>
         <imx-ext id="buttonBarExtensionComponent" [referrer]="buttonBarExtensionReferrer"></imx-ext>
@@ -39,7 +39,7 @@
             color="primary"
             data-imx-identifier="group-sidesheet-button-create-service-item"
             (click)="createServiceItem()"
-            >
+          >
             <span translate>#LDS#Create service item</span>
           </button>
         }
@@ -50,7 +50,7 @@
         data-imx-identifier="group-sidesheet-button-save-group"
         (click)="saveGroup()"
         [disabled]="!detailsFormGroup.dirty || detailsFormGroup.invalid"
-        >
+      >
         <span translate>#LDS#Save</span>
       </button>
     </div>
@@ -78,7 +78,7 @@
             #serviceItemsEditForm
             [serviceItem]="groupServiceItem"
             (formControlCreated)="siFormArray.push($event)"
-            >
+          >
           </imx-service-items-edit-form>
         }
       </div>
@@ -89,7 +89,7 @@
           data-imx-identifier="group-sidesheet-button-save-groupserviceitem"
           (click)="saveGroupServiceItem()"
           [disabled]="!serviceItemFormGroup.dirty || serviceItemFormGroup.invalid"
-          >
+        >
           <span translate>#LDS#Save</span>
         </button>
       </div>
@@ -110,7 +110,7 @@
                 color="primary"
                 (click)="requestMembership()"
                 data-imx-identifier="group-sidesheet-button-membership-new"
-                >
+              >
                 <span translate>#LDS#Request memberships</span>
               </button>
             }
@@ -120,7 +120,7 @@
               (click)="onDeleteGroupMembers('delete')"
               [disabled]="groupMembers.selectedItemsCount === 0 || !canDeleteSelected()"
               data-imx-identifier="group-sidesheet-button-delete-groupmembers"
-              >
+            >
               <eui-icon icon="delete"></eui-icon>
               <span translate>#LDS#Remove</span>
             </button>
@@ -130,7 +130,7 @@
               (click)="onDeleteGroupMembers('unsubscribe')"
               [disabled]="groupMembers.selectedItemsCount === 0 || !canUnsubscribeSelected()"
               data-imx-identifier="group-sidesheet-button-delete-groupmembers"
-              >
+            >
               <span translate>#LDS#Unsubscribe</span>
             </button>
           }
@@ -151,9 +151,9 @@
     <ng-template matTabContent>
       <div eui-sidesheet-content>
         <imx-object-hyperview
-          [objectType]="sidesheetData?.group?.GetEntity()?.TypeName"
-          [objectUid]="sidesheetData?.group?.GetEntity()?.GetKeys()?.[0]"
-          >
+          [objectType]="$safeNavigationMigration(sidesheetData?.group?.GetEntity()?.TypeName)"
+          [objectUid]="$safeNavigationMigration(sidesheetData?.group?.GetEntity()?.GetKeys()?.[0])"
+        >
         </imx-object-hyperview>
       </div>
     </ng-template>

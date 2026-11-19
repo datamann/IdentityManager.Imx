@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { CollectionLoadParameters, DisplayColumns, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { DataSourceToolbarFilter, DataSourceToolbarSettings } from 'qbm';
@@ -32,10 +32,11 @@ import { DataManagementService } from '../data-management.service';
 import { RoleService } from '../role.service';
 
 @Component({
-    selector: 'imx-primary-memberships',
-    templateUrl: './primary-memberships.component.html',
-    styleUrls: ['./primary-memberships.component.scss', '../sidesheet.scss', './role-sidesheet-tabs.scss'],
-    standalone: false
+  selector: 'imx-primary-memberships',
+  templateUrl: './primary-memberships.component.html',
+  styleUrls: ['./primary-memberships.component.scss', '../sidesheet.scss', './role-sidesheet-tabs.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PrimaryMembershipsComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings | undefined;

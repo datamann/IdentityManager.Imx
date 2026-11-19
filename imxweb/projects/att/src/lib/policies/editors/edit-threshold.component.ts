@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -33,10 +33,11 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    templateUrl: './edit-threshold.component.html',
-    selector: 'imx-edit-threshold',
-    styleUrls: ['./edit-threshold.component.scss'],
-    standalone: false
+  templateUrl: './edit-threshold.component.html',
+  selector: 'imx-edit-threshold',
+  styleUrls: ['./edit-threshold.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditThresholdComponent implements OnInit, OnDestroy {
   public readonly riskIndexForm: UntypedFormGroup;

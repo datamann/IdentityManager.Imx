@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalDynamicgroup } from '@imx-modules/imx-api-qer';
@@ -38,16 +38,17 @@ import { DynamicRoleSqlWizardService } from '../dynamicrole-sqlwizard.service';
 import { RoleService } from '../role.service';
 
 @Component({
-    templateUrl: './dynamic-role.component.html',
-    styleUrls: ['./role-sidesheet-tabs.scss', './dynamic-role.component.scss'],
-    selector: 'imx-dynamic-group',
-    providers: [
-        {
-            provide: SqlWizardApiService,
-            useClass: DynamicRoleSqlWizardService,
-        },
-    ],
-    standalone: false
+  templateUrl: './dynamic-role.component.html',
+  styleUrls: ['./role-sidesheet-tabs.scss', './dynamic-role.component.scss'],
+  selector: 'imx-dynamic-group',
+  providers: [
+    {
+      provide: SqlWizardApiService,
+      useClass: DynamicRoleSqlWizardService,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DynamicRoleComponent implements OnInit {
   constructor(

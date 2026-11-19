@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ClassloggerService } from 'qbm';
@@ -32,17 +32,18 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    selector: 'imx-filter-editor',
-    templateUrl: './filter-editor.component.html',
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => FilterEditorComponent),
-            multi: true,
-        },
-    ],
-    styleUrls: ['./filter-editor.component.scss'],
-    standalone: false
+  selector: 'imx-filter-editor',
+  templateUrl: './filter-editor.component.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FilterEditorComponent),
+      multi: true,
+    },
+  ],
+  styleUrls: ['./filter-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FilterEditorComponent implements ControlValueAccessor {
   public onChange: (event: FilterElementModel) => void;

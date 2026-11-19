@@ -24,7 +24,17 @@
  *
  */
 
-import { Component, ErrorHandler, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ErrorHandler,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EuiLoadingService } from '@elemental-ui/core';
 
@@ -39,10 +49,11 @@ import { AobPermissionsService } from '../../permissions/aob-permissions.service
  * A component that provides a form for viewing and editing entitlements/roles.
  */
 @Component({
-    selector: 'imx-entitlement-edit',
-    templateUrl: './entitlement-edit.component.html',
-    styleUrls: ['./entitlement-edit.component.scss'],
-    standalone: false
+  selector: 'imx-entitlement-edit',
+  templateUrl: './entitlement-edit.component.html',
+  styleUrls: ['./entitlement-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntitlementEditComponent implements OnChanges, OnInit {
   public readonly form = new UntypedFormGroup({});

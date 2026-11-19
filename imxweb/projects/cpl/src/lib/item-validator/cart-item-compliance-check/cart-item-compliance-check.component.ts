@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,10 +33,11 @@ import { calculateSidesheetWidth } from 'qbm';
 import { ComplianceViolationDetailsComponent } from '../../request/compliance-violation-details/compliance-violation-details.component';
 
 @Component({
-    selector: 'imx-cart-item-compliance-check',
-    templateUrl: './cart-item-compliance-check.component.html',
-    styleUrls: ['./cart-item-compliance-check.component.scss'],
-    standalone: false
+  selector: 'imx-cart-item-compliance-check',
+  templateUrl: './cart-item-compliance-check.component.html',
+  styleUrls: ['./cart-item-compliance-check.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CartItemComplianceCheckComponent {
   public check: ICartItemCheck;

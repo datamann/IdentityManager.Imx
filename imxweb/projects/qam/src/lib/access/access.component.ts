@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { BusyService, DynamicTabDataProviderDirective } from 'qbm';
@@ -33,9 +33,10 @@ import { TrusteeAccessData } from '../TypedClient';
 
 /** Shows access information for an account or a system entitlement. */
 @Component({
-    templateUrl: './access.component.html',
-    styleUrls: ['./access.component.scss'],
-    standalone: false
+  templateUrl: './access.component.html',
+  styleUrls: ['./access.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccessComponent implements OnInit, OnDestroy {
   public data: TrusteeAccessData;

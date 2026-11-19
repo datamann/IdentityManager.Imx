@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EuiSelectOption } from '@elemental-ui/core';
 
@@ -36,7 +36,8 @@ import { ElementalUiConfigService } from '../../configuration/elemental-ui-confi
   selector: 'imx-fk-table-select',
   templateUrl: './fk-table-select.component.html',
   styleUrls: ['./fk-table-select.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FkTableSelectComponent implements OnInit {
   public readonly control = new UntypedFormControl(undefined);
@@ -51,8 +52,8 @@ export class FkTableSelectComponent implements OnInit {
 
   constructor(
     public elementalUiConfigService: ElementalUiConfigService,
-    private readonly metadata: MetadataService
-  ) { }
+    private readonly metadata: MetadataService,
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.loading = true;

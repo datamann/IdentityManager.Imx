@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import moment, { Moment } from 'moment-timezone';
 import { Subject, Subscription } from 'rxjs';
@@ -45,6 +45,7 @@ import { EntityColumnContainer } from '../entity-column-container';
   selector: 'imx-edit-date',
   templateUrl: './edit-date.component.html',
   styleUrls: ['./edit-date.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EditDateComponent implements CdrEditor, OnDestroy, OnInit {

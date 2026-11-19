@@ -1,5 +1,5 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalAttestationCase } from '@imx-modules/imx-api-att';
 import {
@@ -25,6 +25,7 @@ import { AttestationCaseHistoryService } from './attestation-case-history.servic
   templateUrl: './attestation-case-history.component.html',
   styleUrls: ['./attestation-case-history.component.scss', '../../attestation-history/attestation-history.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class AttestationCaseHistoryComponent implements OnInit {
@@ -141,6 +142,5 @@ export class AttestationCaseHistoryComponent implements OnInit {
       },
     };
     await this.dataSource.init(dataViewInitParameters);
-
   }
 }

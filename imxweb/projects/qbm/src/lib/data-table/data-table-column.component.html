@@ -1,4 +1,4 @@
-<ng-container [matColumnDef]="entityColumn?.ColumnName">
+<ng-container [matColumnDef]="$safeNavigationMigration(entityColumn?.ColumnName)">
   <th class="imx-table-column" mat-header-cell *matHeaderCellDef [style.text-align]="align" [style.width]="width">
     @if (columnLabel) {
       {{ columnLabel }}

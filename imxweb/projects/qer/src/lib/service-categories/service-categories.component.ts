@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, OnDestroy } from '@angular/core';
+import { Component, ErrorHandler, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -48,10 +48,11 @@ import { ServiceCategoryTreeDatabase } from './service-category-tree-database';
 import { ServiceCategoryComponent } from './service-category.component';
 
 @Component({
-    selector: 'imx-service-categories',
-    templateUrl: './service-categories.component.html',
-    styleUrls: ['./service-categories.component.scss'],
-    standalone: false
+  selector: 'imx-service-categories',
+  templateUrl: './service-categories.component.html',
+  styleUrls: ['./service-categories.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceCategoriesComponent implements OnDestroy {
   public selectedEntities: IEntity[] = [];

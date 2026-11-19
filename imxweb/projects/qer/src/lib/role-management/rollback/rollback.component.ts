@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { UiActionData } from '@imx-modules/imx-api-qer';
@@ -36,9 +36,10 @@ import { RollbackItemBuilder } from './rollback-item-builder';
 import { RollebackService } from './rollback.service';
 
 @Component({
-    templateUrl: './rollback.component.html',
-    styleUrls: ['./rollback.component.scss'],
-    standalone: false
+  templateUrl: './rollback.component.html',
+  styleUrls: ['./rollback.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RollbackComponent implements OnInit {
   public busy = false;

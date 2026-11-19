@@ -1,13 +1,7 @@
 <div class="imx-tab-content-sidesheet-with-table imx-sidesheet-content__overflow">
   <div eui-sidesheet-content class="imx-card-fill">
     @if (showHelperAlert) {
-      <eui-alert
-        type="info"
-        [condensed]="true"
-        [colored]="true"
-        [dismissable]="true"
-        (dismissed)="onHelperDismissed()"
-        >
+      <eui-alert type="info" [condensed]="true" [colored]="true" [dismissable]="true" (dismissed)="onHelperDismissed()">
         <span>{{ LdsMembersByDynamicRole | translate }}</span>
       </eui-alert>
     }
@@ -35,18 +29,22 @@
           noDataText="#LDS#There are currently no excluded members."
           noDataIcon="usergroup"
           noMatchingDataText="#LDS#There are no excluded members matching your search."
+        >
+          <imx-data-table-column
+            [entityColumn]="$safeNavigationMigration(schema.Columns?.UID_Person)"
+            data-imx-identifier="exclusions-table-column-identity"
           >
-          <imx-data-table-column [entityColumn]="schema.Columns?.UID_Person" data-imx-identifier="exclusions-table-column-identity">
             <ng-template let-item>
               {{ item.UID_Person.Column.GetDisplayValue() }}
               @if (item.IsNotMatched.value) {
-                <eui-badge class="imx-margin-left-15">{{
-                  LdsNotIncludedInDynamicRole | translate
-                }}</eui-badge>
+                <eui-badge class="imx-margin-left-15">{{ LdsNotIncludedInDynamicRole | translate }}</eui-badge>
               }
             </ng-template>
           </imx-data-table-column>
-          <imx-data-table-column [entityColumn]="schema.Columns?.Description" data-imx-identifier="exclusions-table-column-identity">
+          <imx-data-table-column
+            [entityColumn]="$safeNavigationMigration(schema.Columns?.Description)"
+            data-imx-identifier="exclusions-table-column-identity"
+          >
             <ng-template let-item>
               {{ item.Description.Column.GetDisplayValue() }}
             </ng-template>
@@ -64,7 +62,7 @@
       [disabled]="selectedExclusions.length === 0"
       data-imx-identifier="remove-member-exclusion"
       (click)="removeExclusions()"
-      >
+    >
       <eui-icon icon="delete"></eui-icon>
       <span translate>#LDS#Remove exclusion</span>
     </button>

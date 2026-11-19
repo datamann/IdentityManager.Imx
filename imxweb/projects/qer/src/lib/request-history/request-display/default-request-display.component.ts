@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { PortalItshopRequests } from '@imx-modules/imx-api-qer';
 import { ParameterizedText } from 'qbm';
@@ -32,9 +32,10 @@ import { ParameterizedText } from 'qbm';
 import { RequestDisplayInterface } from './request-display.interface';
 
 @Component({
-    templateUrl: './default-request-display.component.html',
-    styleUrls: ['./default-request-display.component.scss'],
-    standalone: false
+  templateUrl: './default-request-display.component.html',
+  styleUrls: ['./default-request-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DefaultRequestDisplayComponent implements RequestDisplayInterface {
   @Input() public readonly isReadOnly: boolean;

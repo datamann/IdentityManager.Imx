@@ -26,7 +26,17 @@
 
 import { ListRange } from '@angular/cdk/collections';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, OnChanges, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormControl } from '@angular/forms';
 import { MatSelectionListChange } from '@angular/material/list';
 import { EuiLoadingService } from '@elemental-ui/core';
@@ -38,17 +48,18 @@ import { MultiValueService } from '../multi-value/multi-value.service';
 import { SettingsService } from '../settings/settings-service';
 
 @Component({
-    selector: 'imx-multi-select-formcontrol',
-    templateUrl: './multi-select-formcontrol.component.html',
-    styleUrls: ['./multi-select-formcontrol.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => MultiSelectFormcontrolComponent),
-            multi: true,
-        },
-    ],
-    standalone: false
+  selector: 'imx-multi-select-formcontrol',
+  templateUrl: './multi-select-formcontrol.component.html',
+  styleUrls: ['./multi-select-formcontrol.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MultiSelectFormcontrolComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MultiSelectFormcontrolComponent implements ControlValueAccessor, OnChanges, OnDestroy, AfterViewInit {
   public candidatesTotalCount: number;

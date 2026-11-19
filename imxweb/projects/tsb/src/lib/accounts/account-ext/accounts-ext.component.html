@@ -6,18 +6,22 @@
     [busyService]="busyService"
     (navigationStateChanged)="onNavigationStateChanged($event)"
     (search)="onSearch($event)"
-    >
+  >
   </imx-data-source-toolbar>
 
   <div class="imx-membership-table">
     <imx-data-table [dst]="dst" [detailViewVisible]="false" data-imx-identifier="identity-memberships-table" mode="manual">
-      <imx-data-table-column width="500px" [entityColumn]="entitySchemaAccount?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]">
+      <imx-data-table-column
+        width="500px"
+        [entityColumn]="$safeNavigationMigration(entitySchemaAccount?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
+      >
         <ng-template let-item>
           <div [style.max-width]="'500px'" class="imx-ellipse-column">{{ item.GetEntity().GetDisplay() }}</div>
         </ng-template>
       </imx-data-table-column>
-      <imx-data-table-column align="center" [entityColumn]="entitySchemaAccount?.Columns?.AccountDisabled"> </imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchemaAccount?.Columns?.UID_UNSRoot">
+      <imx-data-table-column align="center" [entityColumn]="$safeNavigationMigration(entitySchemaAccount?.Columns?.AccountDisabled)">
+      </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaAccount?.Columns?.UID_UNSRoot)">
         <ng-template let-item>
           <div>{{ item.UID_UNSRoot.Column.GetDisplayValue() }}</div>
           <div subtitle>{{ item.UID_DPRNameSpace.Column.GetDisplayValue() }}</div>
@@ -26,8 +30,8 @@
       <imx-data-table-generic-column
         alignHeader="center"
         alignContent="center"
-        [columnName]="entitySchemaAccount?.Columns?.XMarkedForDeletion?.ColumnName"
-        >
+        [columnName]="$safeNavigationMigration(entitySchemaAccount?.Columns?.XMarkedForDeletion?.ColumnName)"
+      >
         <ng-template let-item>
           @if (item.XMarkedForDeletion.value !== 0) {
             <div>

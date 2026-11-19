@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { EntityValue } from '@imx-modules/imx-qbm-dbts';
 import { BaseCdr, ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-entity-property-editor',
-    templateUrl: './entity-property-editor.component.html',
-    styleUrls: ['./entity-property-editor.component.scss'],
-    standalone: false
+  selector: 'imx-entity-property-editor',
+  templateUrl: './entity-property-editor.component.html',
+  styleUrls: ['./entity-property-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntityPropertyEditorComponent implements OnChanges {
   public cdr: ColumnDependentReference | undefined;

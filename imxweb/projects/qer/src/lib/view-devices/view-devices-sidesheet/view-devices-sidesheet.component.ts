@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalDevices } from '@imx-modules/imx-api-qer';
@@ -34,10 +34,11 @@ import { Subscription } from 'rxjs';
 import { ViewDevicesService } from '../view-devices.service';
 
 @Component({
-    selector: 'imx-view-devices-sidesheet',
-    templateUrl: './view-devices-sidesheet.component.html',
-    styleUrls: ['./view-devices-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-view-devices-sidesheet',
+  templateUrl: './view-devices-sidesheet.component.html',
+  styleUrls: ['./view-devices-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ViewDevicesSidesheetComponent implements OnDestroy {
   public readonly formGroup = new UntypedFormGroup({});

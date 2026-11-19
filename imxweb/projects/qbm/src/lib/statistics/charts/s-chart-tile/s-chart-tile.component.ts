@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, afterEveryRender } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, afterEveryRender, ChangeDetectionStrategy } from '@angular/core';
 import { ChartDisplayType, ChartDto } from '@imx-modules/imx-api-qbm';
 import { GaugeType } from '@imx-modules/imx-qbm-dbts';
 import { Chart, ChartOptions, bar, donut, gauge, line } from 'billboard.js';
@@ -37,10 +37,11 @@ import { PointStatTyped } from './point-stat-visual/point-stat-typed';
 import { PointStatVisualService } from './point-stat-visual/point-stat-visual.service';
 
 @Component({
-    selector: 'imx-s-chart-tile',
-    templateUrl: './s-chart-tile.component.html',
-    styleUrls: ['./s-chart-tile.component.scss'],
-    standalone: false
+  selector: 'imx-s-chart-tile',
+  templateUrl: './s-chart-tile.component.html',
+  styleUrls: ['./s-chart-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SChartTileComponent implements OnInit {
   @Input() public chartInfo: ChartInfoTyped;

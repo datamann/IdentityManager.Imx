@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImxTranslationProviderService, imx_SessionService } from 'qbm';
@@ -33,8 +33,9 @@ import { ImxTranslationProviderService, imx_SessionService } from 'qbm';
  * @deprecated since v10.0.0
  */
 @Component({
-    templateUrl: './answer-questions.component.html',
-    standalone: false
+  templateUrl: './answer-questions.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AnswerQuestionsComponent implements OnInit {
   constructor(

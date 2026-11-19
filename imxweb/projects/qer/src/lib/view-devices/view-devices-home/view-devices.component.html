@@ -19,7 +19,7 @@
         </td>
       </ng-container>
     }
-    <ng-container [matColumnDef]="entitySchema?.Columns?.UID_HardwareType?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_HardwareType?.ColumnName)">
       <ng-container>
         <th mat-header-cell *matHeaderCellDef>
           {{ entitySchema?.Columns?.UID_HardwareType?.Display }}
@@ -31,7 +31,7 @@
         </span>
       </td>
     </ng-container>
-    <ng-container [matColumnDef]="entitySchema?.Columns?.UID_PersonOwner?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_PersonOwner?.ColumnName)">
       <ng-container>
         <th mat-header-cell *matHeaderCellDef>
           {{ entitySchema?.Columns?.UID_PersonOwner?.Display }}
@@ -54,16 +54,13 @@
     [matMenuTriggerFor]="menu"
     class="imx-create-device-button"
     data-imx-identifier="button-create-device"
-    >
+  >
     <eui-icon icon="add"></eui-icon>
     {{ '#LDS#Create device' | translate }}
   </button>
   <mat-menu #menu="matMenu">
     @for (hardwareType of deviceModelValueStruct; track hardwareType; let i = $index) {
-      <button
-        mat-menu-item
-        (click)="createNewDevice(hardwareType.DataValue, i)"
-        >
+      <button mat-menu-item (click)="createNewDevice(hardwareType.DataValue, i)">
         {{ hardwareType.DisplayValue }}
       </button>
     }

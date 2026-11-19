@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigService } from './config/config.service';
 
 import { EuiTheme, EuiThemeService } from '@elemental-ui/core';
@@ -43,6 +43,7 @@ import { SwaggerComponent } from './swagger/swagger.component';
 @Component({
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DashboardComponent implements OnInit, OnDestroy {

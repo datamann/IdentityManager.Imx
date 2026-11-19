@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EUI_SIDESHEET_REF, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalShopCategories } from '@imx-modules/imx-api-qer';
 import { EntitySchema, IEntity, IWriteValue, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -33,10 +33,11 @@ import { ProductSelectionService } from '../product-selection.service';
 import { ServicecategoryTreeDatabase } from './servicecategory-tree-database';
 
 @Component({
-    selector: 'imx-category-tree',
-    templateUrl: './category-tree.component.html',
-    styleUrls: ['./category-tree.component.scss'],
-    standalone: false
+  selector: 'imx-category-tree',
+  templateUrl: './category-tree.component.html',
+  styleUrls: ['./category-tree.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CategoryTreeComponent {
   public selectedServiceCategory: TypedEntity;

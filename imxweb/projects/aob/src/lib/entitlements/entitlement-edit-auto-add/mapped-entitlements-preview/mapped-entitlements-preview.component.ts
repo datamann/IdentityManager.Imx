@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { DisplayColumns, EntitySchema, TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
@@ -32,10 +32,11 @@ import { DataViewSource } from 'qbm';
 import { EntitlementToAddTyped } from '../entitlement-to-add-typed';
 
 @Component({
-    templateUrl: './mapped-entitlements-preview.component.html',
-    styleUrls: ['./mapped-entitlements-preview.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './mapped-entitlements-preview.component.html',
+  styleUrls: ['./mapped-entitlements-preview.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MappedEntitlementsPreviewComponent implements OnInit {
   public readonly DisplayColumns = DisplayColumns;

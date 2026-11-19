@@ -8,9 +8,9 @@
   (navigationStateChanged)="getData($event)"
   data-imx-identifier="pattern-item-dst"
   [alwaysVisible]="true"
-  [initalView]="dataSourceView?.selected"
+  [initalView]="$safeNavigationMigration(dataSourceView?.selected)"
   [itemStatus]="status"
-  >
+>
   <imx-data-source-toolbar-custom [customContentTemplate]="customToolbarTemplate"></imx-data-source-toolbar-custom>
 </imx-data-source-toolbar>
 
@@ -26,10 +26,10 @@
         fallbackIcon="request"
         [selectable]="true"
         [actions]="itemActions"
-        [titleObject]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
-        [subtitleObject]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
+        [titleObject]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
+        [subtitleObject]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
         (actionSelected)="emitAction($event)"
-        >
+      >
       </imx-data-tiles>
     }
     @if (dataSourceView?.selected === 'table') {
@@ -42,12 +42,12 @@
         (selectionChanged)="onSelectionChanged($event)"
         data-imx-identifier="pattern-item-list-datatable"
         [showSelectedItemsMenu]="false"
-        >
+      >
         <imx-data-table-column
-          [entityColumn]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]"
+          [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])"
           columnLabel="{{ '#LDS#Product bundle' | translate }}"
           data-imx-identifier="pattern-item-list-datatable-table"
-          >
+        >
           <ng-template let-prod>
             <div data-imx-identifier="pattern-item-list-datatable-display">{{ prod.GetEntity().GetDisplay() }}</div>
           </ng-template>
@@ -74,7 +74,7 @@
                 class="imx-margin-right-10"
                 (click)="emitAction(action, prod)"
                 [attr.data-imx-identifier]="'pattern-item-list-datatable-row-button-' + action.name"
-                >
+              >
                 {{ action.description || '' | translate }}
               </button>
             }
@@ -84,11 +84,11 @@
           <button mat-button color="primary" (click)="addItemToCart.emit(prod)" data-imx-identifier="pattern-item-list-datatable-row-button-add-to-cart">
             {{ '#LDS#Add product bundle products to cart' | translate }}
           </button> -->
-        </ng-template>
-      </imx-data-table-generic-column>
-    </imx-data-table>
-  }
-</div>
+          </ng-template>
+        </imx-data-table-generic-column>
+      </imx-data-table>
+    }
+  </div>
 }
 @if (!isLoading) {
   <imx-data-source-paginator [dst]="dst"></imx-data-source-paginator>

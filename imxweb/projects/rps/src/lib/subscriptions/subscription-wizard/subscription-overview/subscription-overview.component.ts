@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { IEntityColumn } from '@imx-modules/imx-qbm-dbts';
 import { BehaviorSubject } from 'rxjs';
@@ -36,10 +36,11 @@ import { ReportSubscription } from '../../report-subscription/report-subscriptio
 type NameAddress = { name: string; address: string };
 
 @Component({
-    selector: 'imx-subscription-overview',
-    templateUrl: './subscription-overview.component.html',
-    styleUrls: ['./subscription-overview.component.scss'],
-    standalone: false
+  selector: 'imx-subscription-overview',
+  templateUrl: './subscription-overview.component.html',
+  styleUrls: ['./subscription-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SubscriptionOverviewComponent implements OnInit, OnDestroy {
   public userIsMissingEMail = false;

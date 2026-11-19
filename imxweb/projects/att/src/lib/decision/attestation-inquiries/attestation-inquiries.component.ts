@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -61,11 +61,12 @@ import { LossPreview } from '../loss-preview.interface';
 import { AttestationInquiry } from './attestation-inquiry.model';
 
 @Component({
-    templateUrl: './attestation-inquiries.component.html',
-    selector: 'imx-attestation-inquiries',
-    styleUrls: ['./attestation-inquiries.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './attestation-inquiries.component.html',
+  selector: 'imx-attestation-inquiries',
+  styleUrls: ['./attestation-inquiries.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationInquiriesComponent implements OnInit, OnDestroy {
   public readonly entitySchema: EntitySchema;
@@ -96,7 +97,7 @@ export class AttestationInquiriesComponent implements OnInit, OnDestroy {
     public dataSource: DataViewSource<AttestationCase>,
   ) {
     this.entitySchema = attestationCasesService.attestationApproveSchema;
-    (this.displayedColumns = [
+    ((this.displayedColumns = [
       {
         ColumnName: 'query',
         Type: ValType.String,
@@ -123,7 +124,7 @@ export class AttestationInquiriesComponent implements OnInit, OnDestroy {
         this.actionService.applied.subscribe(async () => {
           this.getData();
         }),
-      );
+      ));
     this.attFeatureService.getAttestationConfig().then((config) => {
       this.isUserEscalationApprover = config.IsUserInChiefApprovalTeam;
       this.mitigatingControlsPerViolation = config.MitigatingControlsPerViolation;

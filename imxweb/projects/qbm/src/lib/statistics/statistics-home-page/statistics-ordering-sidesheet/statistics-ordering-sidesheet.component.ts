@@ -25,7 +25,7 @@
  */
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiTheme } from '@elemental-ui/core';
@@ -38,10 +38,11 @@ import { DataSourceToolbarSettings } from '../../../data-source-toolbar/data-sou
 import { GenericStatisticEntity, StatisticsDataService } from '../statistics-data.service';
 
 @Component({
-    selector: 'imx-statistics-ordering-sidesheet',
-    templateUrl: './statistics-ordering-sidesheet.component.html',
-    styleUrls: ['./statistics-ordering-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-statistics-ordering-sidesheet',
+  templateUrl: './statistics-ordering-sidesheet.component.html',
+  styleUrls: ['./statistics-ordering-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StatisticsOrderingSidesheetComponent implements OnInit, OnDestroy {
   public dstSettings: DataSourceToolbarSettings;

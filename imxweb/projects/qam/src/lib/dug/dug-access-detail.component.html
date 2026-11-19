@@ -23,7 +23,7 @@
           {{ chart?.title }}
         </mat-card-title>
         <mat-card-content>
-          <eui-billboard [options]="chart?.data"></eui-billboard>
+          <eui-billboard [options]="$safeNavigationMigration(chart?.data)"></eui-billboard>
         </mat-card-content>
       </mat-card>
     }
@@ -40,7 +40,7 @@
           {{ assignmentMethodChart?.title }}
         </mat-card-title>
         <mat-card-content>
-          <eui-billboard [options]="assignmentMethodChart?.data"></eui-billboard>
+          <eui-billboard [options]="$safeNavigationMigration(assignmentMethodChart?.data)"></eui-billboard>
         </mat-card-content>
       </mat-card>
     }

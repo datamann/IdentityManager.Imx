@@ -24,12 +24,13 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    templateUrl: './chart-tile.component.html',
-    selector: 'imx-chart-tile',
-    standalone: false
+  templateUrl: './chart-tile.component.html',
+  selector: 'imx-chart-tile',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ChartTileComponent {
   @Input() public displayNameDialogDashboardDef: string;

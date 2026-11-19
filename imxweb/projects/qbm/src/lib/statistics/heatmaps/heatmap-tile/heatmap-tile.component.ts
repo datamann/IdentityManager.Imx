@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { HeatmapSummaryDto } from '@imx-modules/imx-api-qbm';
 
 @Component({
-    selector: 'imx-heatmap-tile',
-    templateUrl: './heatmap-tile.component.html',
-    styleUrls: ['./heatmap-tile.component.scss'],
-    standalone: false
+  selector: 'imx-heatmap-tile',
+  templateUrl: './heatmap-tile.component.html',
+  styleUrls: ['./heatmap-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HeatmapTileComponent {
   @Input() public summaryStat: HeatmapSummaryDto;

@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-box-icon',
-    templateUrl: './box-icon.component.html',
-    styleUrls: ['./box-icon.component.scss'],
-    standalone: false
+  selector: 'imx-box-icon',
+  templateUrl: './box-icon.component.html',
+  styleUrls: ['./box-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BoxIconComponent {
   @Input() public isChecked: boolean;

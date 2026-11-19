@@ -20,7 +20,7 @@
       [matSortActive]="dataSource.sortId()"
       [matSortDirection]="dataSource.sortDirection()"
     >
-      <ng-container [matColumnDef]="entitySchema?.Columns?.UID_Person?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_Person?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchema?.Columns?.UID_Person?.Display }}
@@ -30,10 +30,10 @@
           <div>
             {{ item.UID_Person.Column.GetDisplayValue() }}
           </div>
-          <div subtitle>{{ getSubtitleText(item?.GetEntity()) }}</div>
+          <div subtitle>{{ getSubtitleText($safeNavigationMigration(item?.GetEntity())) }}</div>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="entitySchema?.Columns?.UID_NonCompliance?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_NonCompliance?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchema?.Columns?.UID_NonCompliance?.Display }}
@@ -45,7 +45,7 @@
           </span>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="entitySchema?.Columns?.State?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.State?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchema?.Columns?.State?.Display }}
@@ -57,9 +57,9 @@
           </span>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="entitySchema?.Columns?.RiskIndexCalculated?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.RiskIndexCalculated?.ColumnName)">
         <ng-container>
-          @if (dataSource.isSortable(entitySchema?.Columns?.RiskIndexCalculated?.ColumnName)) {
+          @if (dataSource.isSortable($safeNavigationMigration(entitySchema?.Columns?.RiskIndexCalculated?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
               {{ entitySchema?.Columns?.RiskIndexCalculated?.Display }}
             </th>
@@ -75,9 +75,9 @@
           </span>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="entitySchema?.Columns?.RiskIndexReduced?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.RiskIndexReduced?.ColumnName)">
         <ng-container>
-          @if (dataSource.isSortable(entitySchema?.Columns?.RiskIndexReduced?.ColumnName)) {
+          @if (dataSource.isSortable($safeNavigationMigration(entitySchema?.Columns?.RiskIndexReduced?.ColumnName))) {
             <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
               {{ entitySchema?.Columns?.RiskIndexReduced?.Display }}
             </th>

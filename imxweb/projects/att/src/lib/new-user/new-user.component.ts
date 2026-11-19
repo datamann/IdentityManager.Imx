@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -48,16 +48,17 @@ import { ConfirmDialogComponent } from './confirm-dialog.component';
 import { NewUserMetadataService } from './new-user-metadata.service';
 
 @Component({
-    templateUrl: './new-user.component.html',
-    styleUrls: ['./new-user.component.scss'],
-    providers: [
-        {
-            provide: MetadataService,
-            useClass: NewUserMetadataService,
-        },
-        CaptchaService,
-    ],
-    standalone: false
+  templateUrl: './new-user.component.html',
+  styleUrls: ['./new-user.component.scss'],
+  providers: [
+    {
+      provide: MetadataService,
+      useClass: NewUserMetadataService,
+    },
+    CaptchaService,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewUserComponent implements OnInit, OnDestroy {
   public readonly profileForm: UntypedFormGroup;

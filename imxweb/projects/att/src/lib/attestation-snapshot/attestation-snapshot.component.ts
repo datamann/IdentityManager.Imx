@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { AttestationSnapshotData } from '@imx-modules/imx-api-att';
@@ -33,10 +33,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../api.service';
 
 @Component({
-    templateUrl: './attestation-snapshot.component.html',
-    selector: 'imx-attestation-snapshot',
-    styleUrls: ['./attestation-snapshot.component.scss'],
-    standalone: false
+  templateUrl: './attestation-snapshot.component.html',
+  selector: 'imx-attestation-snapshot',
+  styleUrls: ['./attestation-snapshot.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationSnapshotComponent implements OnInit {
   public snapshot: AttestationSnapshotData;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ValType } from '@imx-modules/imx-qbm-dbts';
@@ -32,10 +32,11 @@ import { EntityColumnContainer } from '../entity-column-container';
 import { ImxTranslationProviderService } from '../../translation/imx-translation-provider.service';
 
 @Component({
-    selector: 'imx-view-property',
-    templateUrl: './view-property.component.html',
-    styleUrls: ['./view-property.component.scss'],
-    standalone: false
+  selector: 'imx-view-property',
+  templateUrl: './view-property.component.html',
+  styleUrls: ['./view-property.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ViewPropertyComponent {
   @Input() public columnContainer: EntityColumnContainer;

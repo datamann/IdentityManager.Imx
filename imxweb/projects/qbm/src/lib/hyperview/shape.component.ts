@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { ShapeData } from '@imx-modules/imx-api-qbm';
 import { ModelCssService } from '../model-css/model-css.service';
@@ -38,6 +38,7 @@ import { ShapeClickArgs } from './hyperview-types';
   selector: 'imx-hyperview-shape',
   templateUrl: './shape.component.html',
   styleUrls: ['./shape.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ShapeComponent implements OnInit {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetConfig, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -36,9 +36,10 @@ import { AddressbookService } from '../../../addressbook/addressbook.service';
 import { DuplicateCheckParameter } from '../duplicate-check-parameter.interface';
 
 @Component({
-    templateUrl: './duplicates-sidesheet.component.html',
-    styleUrls: ['./duplicates-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './duplicates-sidesheet.component.html',
+  styleUrls: ['./duplicates-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DuplicatesSidesheetComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

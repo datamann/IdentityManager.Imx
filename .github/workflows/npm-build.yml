@@ -1,11 +1,11 @@
 name: One Identity Frontend CI Build
-description: CI workflow to build, package and test One Identity frontend applications  
+description: CI workflow to build, package and test One Identity frontend applications
 
 on:
   push:
-    branches: [ v100 ]
+    branches: [ v100, development ]
   pull_request:
-    branches: [ v100, v93 ]
+    branches: [ v100, v93, development ]
 
 jobs:
   ci:
@@ -24,17 +24,17 @@ jobs:
       #     key: nx-${{ runner.os }}-${{ hashFiles('imxweb/package-lock.json') }}
       #     restore-keys: |
       #       nx-${{ runner.os }}-
-      
+
       - name: Build All
         working-directory: ./imxweb
         run: npx nx run-many -t build -c production
-        
+
       - name: Test All
         working-directory: ./imxweb
         run: npm run nx:test-ci
         timeout-minutes: 30
-        
-      - name: Zip applications          
+
+      - name: Zip applications
         run: |
           # Dynamically get app names from projects dir
           apps=$(ls -d ./imxweb/projects/*-app* 2>/dev/null | xargs -n1 basename)
@@ -43,11 +43,11 @@ jobs:
               ( cd "./imxweb/dist/$app" && zip -r "../Html_${app}.zip" . )
             fi
           done
-      
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: imxweb-apps
           path: ./imxweb/dist/Html_*.zip
 
-      
+

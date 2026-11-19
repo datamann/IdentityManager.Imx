@@ -24,10 +24,8 @@
  *
  */
 
-
-import { Component, effect, HostListener } from '@angular/core';
+import { Component, effect, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatCommonModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { EuiCoreModule, EuiMaterialModule, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -45,19 +43,11 @@ import {
 import { QueueSidesheetComponent } from '../queue-sidesheet/queue-sidesheet.component';
 
 @Component({
-    selector: 'imx-queue-status',
-    imports: [
-        EuiCoreModule,
-        EuiMaterialModule,
-        MatBadgeModule,
-        MatCommonModule,
-        MatIconModule,
-        LdsReplaceModule,
-        TranslateModule,
-        HelpContextualModule
-    ],
-    templateUrl: './queue-status.component.html',
-    styleUrls: ['./queue-status.component.scss']
+  selector: 'imx-queue-status',
+  imports: [EuiCoreModule, EuiMaterialModule, MatBadgeModule, MatIconModule, LdsReplaceModule, TranslateModule, HelpContextualModule],
+  templateUrl: './queue-status.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./queue-status.component.scss'],
 })
 export class QueueStatusComponent {
   public totalCount: number;
@@ -96,7 +86,7 @@ export class QueueStatusComponent {
   // This may be removed at a later point - we cannot do more than the default behavior due to security concerns
   // The default browser popup will appear if the queue is not finished
   @HostListener('window:beforeunload', ['$event'])
-  private warnOnPageLeave($event: any): void {
+  protected warnOnPageLeave($event: any): void {
     if (!this.isFinished) {
       $event.preventDefault();
     }

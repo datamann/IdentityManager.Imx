@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { ChartInfoTyped } from 'qbm';
 import { ChartDto } from '../TypedClient';
@@ -34,6 +34,7 @@ import { DugDashboardsService } from './dug-dashboards.service';
   selector: 'imx-dug-dashboards',
   templateUrl: './dug-dashboards.component.html',
   styleUrls: ['./dug-dashboards.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DugDashboardsComponent implements OnInit {

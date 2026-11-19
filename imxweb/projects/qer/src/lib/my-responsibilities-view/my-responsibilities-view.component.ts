@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ProjectConfig } from '@imx-modules/imx-api-qbm';
 import { QerProjectConfig } from '@imx-modules/imx-api-qer';
 import { HELP_CONTEXTUAL, SideNavigationExtension, SystemInfoService } from 'qbm';
@@ -33,10 +33,11 @@ import { UserModelService } from '../user/user-model.service';
 import { MyResponsibilitiesRegistryService } from './my-responsibilities-registry.service';
 
 @Component({
-    selector: 'imx-my-responsibilities-view',
-    templateUrl: './my-responsibilities-view.component.html',
-    styleUrls: ['./my-responsibilities-view.component.scss'],
-    standalone: false
+  selector: 'imx-my-responsibilities-view',
+  templateUrl: './my-responsibilities-view.component.html',
+  styleUrls: ['./my-responsibilities-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MyResponsibilitiesViewComponent implements OnInit {
   public isAdmin = false;

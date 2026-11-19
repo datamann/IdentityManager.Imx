@@ -24,15 +24,16 @@
  *
  */
 
-import { AfterViewInit, Component, signal, ViewChild, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, signal, ViewChild, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { PortalAttestationRun } from '@imx-modules/imx-api-att';
 import { DataViewSource } from 'qbm';
 import { RunsGridComponent } from './runs-grid/runs-grid.component';
 
 @Component({
-    templateUrl: './runs.component.html',
-    styleUrls: ['./runs.component.scss'],
-    standalone: false
+  templateUrl: './runs.component.html',
+  styleUrls: ['./runs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RunsComponent implements AfterViewInit {
   public dataSource: WritableSignal<DataViewSource<PortalAttestationRun> | undefined> = signal(undefined);

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EuiCoreModule, EuiSidesheetService } from '@elemental-ui/core';
@@ -36,18 +36,18 @@ import { ChatbotSidesheetComponent } from './sidesheet/sidesheet.component';
   selector: 'imx-chatbot',
   standalone: true,
   imports: [EuiCoreModule, MatButtonModule, MatTooltipModule, HelpContextualModule, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button mat-icon-button (click)="openSidesheet()" [matTooltip]="'#LDS#Query data with chatbot' | translate">
       <eui-icon icon="cloud-assistant"></eui-icon>
     </button>
-  `
+  `,
 })
 export class ChatbotButtonComponent {
   constructor(
     private sidesheetService: EuiSidesheetService,
     private translateService: TranslateService,
-  ) {
-  }
+  ) {}
   public openSidesheet() {
     this.sidesheetService.open(ChatbotSidesheetComponent, {
       title: this.translateService.instant('#LDS#Heading Query Data with Chatbot'),

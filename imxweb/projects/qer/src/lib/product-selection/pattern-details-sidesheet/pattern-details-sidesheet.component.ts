@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PortalShopServiceitems, QerProjectConfig } from '@imx-modules/imx-api-qer';
 import { DisplayColumns, MultiValue } from '@imx-modules/imx-qbm-dbts';
 import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-pattern-details-sidesheet',
-    templateUrl: './pattern-details-sidesheet.component.html',
-    styleUrls: ['./pattern-details-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-pattern-details-sidesheet',
+  templateUrl: './pattern-details-sidesheet.component.html',
+  styleUrls: ['./pattern-details-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PatternDetailsSidesheetComponent implements OnInit {
   public cdrLists: ColumnDependentReference[][] = [];

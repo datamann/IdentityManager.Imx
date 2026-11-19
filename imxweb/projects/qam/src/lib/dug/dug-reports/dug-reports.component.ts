@@ -24,9 +24,8 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 
 import { BusyService, DataSourceToolbarSettings } from 'qbm';
 import { DisplayColumns, EntitySchema, IClientProperty, ValType } from '@imx-modules/imx-qbm-dbts';
@@ -34,10 +33,11 @@ import { DugReportEntity } from './dug-report-entity';
 import { DugReportService } from './dug-reports.service';
 
 @Component({
-    selector: 'imx-dug-reports',
-    templateUrl: './dug-reports.component.html',
-    styleUrls: ['./dug-reports.component.scss'],
-    standalone: false
+  selector: 'imx-dug-reports',
+  templateUrl: './dug-reports.component.html',
+  styleUrls: ['./dug-reports.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DugReportsComponent implements OnInit {
   @Input() public dugUid: string;
@@ -47,9 +47,16 @@ export class DugReportsComponent implements OnInit {
   private displayedColumns: IClientProperty[] = [];
   public readonly DisplayColumns = DisplayColumns;
 
-  constructor(private readonly dugReportService: DugReportService, translateService: TranslateService) {
+  constructor(
+    private readonly dugReportService: DugReportService,
+    translateService: TranslateService,
+  ) {
     this.entitySchema = DugReportEntity.GetEntitySchema(translateService);
-    this.displayedColumns = [this.entitySchema.Columns.ReportDisplayName, this.entitySchema.Columns.Description, {ColumnName: 'action', Type: ValType.String}];
+    this.displayedColumns = [
+      this.entitySchema.Columns.ReportDisplayName,
+      this.entitySchema.Columns.Description,
+      { ColumnName: 'action', Type: ValType.String },
+    ];
   }
 
   public async ngOnInit(): Promise<void> {

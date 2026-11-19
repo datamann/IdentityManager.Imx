@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 import { PortalApplication } from '@imx-modules/imx-api-aob';
 import { BaseCdr } from 'qbm';
 
 @Component({
-    selector: 'imx-authentication-root',
-    templateUrl: './authentication-root.component.html',
-    styleUrls: ['./authentication-root.component.scss'],
-    standalone: false
+  selector: 'imx-authentication-root',
+  templateUrl: './authentication-root.component.html',
+  styleUrls: ['./authentication-root.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AuthenticationRootComponent implements OnInit {
   public readonly form = new UntypedFormGroup({}, (__) => {

@@ -17,7 +17,7 @@
             <div mat-line data-imx-identifier="cart-item-validation-detail-additional">
               <imx-detail-viewer
                 [check]="check"
-                [cartItemDisplay]="data?.cartItemDisplay"
+                [cartItemDisplay]="$safeNavigationMigration(data?.cartItemDisplay)"
                 data-imx-identifier="cart-item-validation-detail-viewer"
               ></imx-detail-viewer>
             </div>

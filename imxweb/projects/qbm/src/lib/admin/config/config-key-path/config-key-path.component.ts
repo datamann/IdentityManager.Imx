@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    templateUrl: './config-key-path.component.html',
-    selector: 'config-key-path',
-    styleUrls: ['./config-key-path.component.scss'],
-    standalone: false
+  templateUrl: './config-key-path.component.html',
+  selector: 'config-key-path',
+  styleUrls: ['./config-key-path.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ConfigKeyPathComponent {
   @Input() public path: (string | undefined)[] = [];

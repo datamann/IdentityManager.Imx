@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DashboardService, PendingItemsType, UserModelService } from 'qer';
 import { AttestationFeatureGuardService } from '../attestation-feature-guard.service';
 
 @Component({
-    templateUrl: './dashboard-plugin.component.html',
-    standalone: false
+  templateUrl: './dashboard-plugin.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DashboardPluginComponent implements OnInit {
   public pendingItems: PendingItemsType;

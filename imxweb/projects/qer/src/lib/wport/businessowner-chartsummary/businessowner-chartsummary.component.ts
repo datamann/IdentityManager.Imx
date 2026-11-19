@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { OwnershipInformation, PortalPersonReports, ProjectConfig, QerProjectConfig } from '@imx-modules/imx-api-qer';
@@ -40,10 +40,11 @@ import { UserModelService } from '../../user/user-model.service';
 import { DashboardService } from '../start/dashboard.service';
 
 @Component({
-    templateUrl: './businessowner-chartsummary.component.html',
-    selector: 'imx-businessowner-chartsummary',
-    styleUrls: ['./businessowner-chartsummary.component.scss'],
-    standalone: false
+  templateUrl: './businessowner-chartsummary.component.html',
+  selector: 'imx-businessowner-chartsummary',
+  styleUrls: ['./businessowner-chartsummary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BusinessOwnerChartSummaryComponent implements OnInit {
   public reports: PortalPersonReports[];

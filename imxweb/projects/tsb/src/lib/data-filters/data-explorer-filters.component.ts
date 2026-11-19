@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSelectComponent, EuiSelectOption } from '@elemental-ui/core';
 import { PortalTargetsystemUnsSystem } from '@imx-modules/imx-api-tsb';
 import { IEntity } from '@imx-modules/imx-qbm-dbts';
@@ -42,14 +42,15 @@ export enum DataExplorerFilterTypes {
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the DataViewFilterComponent instead.
  */
 @Component({
   selector: 'imx-target-system-filter',
   templateUrl: './data-explorer-filters.component.html',
   styleUrls: ['./data-explorer-filters.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataExplorerFiltersComponent implements OnInit {
   public targetSystemOptions: EuiSelectOption[] = [];
@@ -77,8 +78,7 @@ export class DataExplorerFiltersComponent implements OnInit {
   constructor(
     private readonly dataHelper: DeHelperService,
     public elementalUiConfigService: ElementalUiConfigService,
-
-  ) { }
+  ) {}
 
   public get selectedTreeNodeFilterDisplay(): string {
     let display = '';

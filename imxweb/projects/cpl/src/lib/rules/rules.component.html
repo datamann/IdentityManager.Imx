@@ -21,10 +21,10 @@
             <div data-imx-identifier="rules-table-display">{{ item.GetEntity().GetDisplay() }}</div>
             <div subtitle data-imx-identifier="rules-table-description">
               <span>{{ item.Description.Column.GetDisplayValue() }}</span>
-              @if (item.Description.Column.GetDisplayValue() && getSubtitleText(item?.GetEntity())) {
+              @if (item.Description.Column.GetDisplayValue() && getSubtitleText($safeNavigationMigration(item?.GetEntity()))) {
                 <span class="imx-padding-right-4">;</span>
               }
-              <span>{{ getSubtitleText(item?.GetEntity()) }}</span>
+              <span>{{ getSubtitleText($safeNavigationMigration(item?.GetEntity())) }}</span>
             </div>
           </div>
           @if (item.IsInActive.value) {
@@ -45,7 +45,7 @@
         </span>
       </td>
     </ng-container>
-    <ng-container [matColumnDef]="ruleSchema?.Columns?.CountOpen?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(ruleSchema?.Columns?.CountOpen?.ColumnName)">
       <ng-container>
         <th mat-header-cell *matHeaderCellDef>
           {{ ruleSchema?.Columns?.CountOpen?.Display }}

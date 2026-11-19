@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EuiCoreModule, EuiSidesheetService } from '@elemental-ui/core';
@@ -38,6 +38,7 @@ import { GlobalKpiService } from '../global-kpi.service';
   selector: 'imx-global-kpi-home',
   imports: [EuiCoreModule, MatCardModule, MatTooltipModule, HelpContextualModule, TranslateModule, BusyIndicatorModule],
   templateUrl: './global-kpi-home.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './global-kpi-home.component.scss',
 })
 export class GlobalKpiHomeComponent implements OnInit {

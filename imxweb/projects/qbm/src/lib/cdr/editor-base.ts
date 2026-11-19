@@ -23,7 +23,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-import { Component, ErrorHandler, EventEmitter, OnDestroy, signal, WritableSignal } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, OnDestroy, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
@@ -42,6 +42,7 @@ import { EntityColumnContainer } from './entity-column-container';
  */
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {

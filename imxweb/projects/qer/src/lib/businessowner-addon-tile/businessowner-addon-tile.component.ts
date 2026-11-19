@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the TileComponent instead.
  */
 @Component({
-    templateUrl: './businessowner-addon-tile.component.html',
-    selector: 'imx-businessowner-addon-tile',
-    standalone: false
+  templateUrl: './businessowner-addon-tile.component.html',
+  selector: 'imx-businessowner-addon-tile',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BusinessOwnerAddOnTileComponent {
   @Input() public squareText: string;

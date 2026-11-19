@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PortalItshopPeergroupMemberships } from '@imx-modules/imx-api-qer';
@@ -34,10 +34,11 @@ import { ItshopService } from '../../itshop/itshop.service';
 import { RecipientsWrapper } from '../recipients-wrapper';
 
 @Component({
-    selector: 'imx-role-memberships',
-    templateUrl: './role-memberships.component.html',
-    styleUrls: ['./role-memberships.component.scss'],
-    standalone: false
+  selector: 'imx-role-memberships',
+  templateUrl: './role-memberships.component.html',
+  styleUrls: ['./role-memberships.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleMembershipsComponent implements OnChanges {
   @Input() public recipients: RecipientsWrapper;
@@ -55,7 +56,9 @@ export class RoleMembershipsComponent implements OnChanges {
   public readonly dstWrapper: DataSourceWrapper<PortalItshopPeergroupMemberships>;
 
   public get options(): string[] {
-    return this.personPeerGroupUid ?? '' !== '' ? ['search', 'filter', 'settings'] : ['search', 'filter', 'settings', 'selectedViewGroup'];
+    return (this.personPeerGroupUid ?? '' !== '')
+      ? ['search', 'filter', 'settings']
+      : ['search', 'filter', 'settings', 'selectedViewGroup'];
   }
 
   @ViewChild(DataSourceToolbarComponent) private readonly dst: DataSourceToolbarComponent;

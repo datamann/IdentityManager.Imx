@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -59,10 +59,11 @@ import { RoleEntitlementActionService } from './role-entitlement-action.service'
 import { RoleRecommendationResultItem } from './role-recommendations/role-recommendation-result-item';
 import { RoleRecommendationsComponent } from './role-recommendations/role-recommendations.component';
 @Component({
-    selector: 'imx-role-entitlements',
-    templateUrl: './role-entitlements.component.html',
-    styleUrls: ['./role-entitlements.component.scss', '../sidesheet.scss'],
-    standalone: false
+  selector: 'imx-role-entitlements',
+  templateUrl: './role-entitlements.component.html',
+  styleUrls: ['./role-entitlements.component.scss', '../sidesheet.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleEntitlementsComponent implements OnInit, AfterViewInit, OnDestroy {
   public dstSettings: DataSourceToolbarSettings;

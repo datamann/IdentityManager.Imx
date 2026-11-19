@@ -24,12 +24,13 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-busy-indicator',
-    templateUrl: './busy-indicator.component.html',
-    styleUrls: ['./busy-indicator.component.scss'],
-    standalone: false
+  selector: 'imx-busy-indicator',
+  templateUrl: './busy-indicator.component.html',
+  styleUrls: ['./busy-indicator.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BusyIndicatorComponent {}

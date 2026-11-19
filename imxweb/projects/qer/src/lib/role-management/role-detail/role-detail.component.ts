@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { IEntity } from '@imx-modules/imx-qbm-dbts';
@@ -34,10 +34,11 @@ import { DataManagementService } from '../data-management.service';
 import { RoleService } from '../role.service';
 
 @Component({
-    selector: 'imx-role-detail',
-    templateUrl: './role-detail.component.html',
-    styleUrls: ['./role-detail.component.scss'],
-    standalone: false
+  selector: 'imx-role-detail',
+  templateUrl: './role-detail.component.html',
+  styleUrls: ['./role-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleDetailComponent implements OnInit, OnDestroy {
   @ViewChild('tabs') public tabs: MatTabGroup;

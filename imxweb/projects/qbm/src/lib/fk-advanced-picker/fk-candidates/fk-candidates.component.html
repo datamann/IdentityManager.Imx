@@ -3,26 +3,26 @@
   [settings]="settings"
   (navigationStateChanged)="getData($event)"
   (filterTreeSelectionChanged)="filterByTree($event)"
-  [preSelection]="data?.preselectedEntities"
+  [preSelection]="$safeNavigationMigration(data?.preselectedEntities)"
   [alwaysVisible]="showToolbar"
   [busyService]="busyService"
   [options]="['search', 'filter']"
   (search)="search($event)"
   data-imx-identifier="fk-candidates-dst"
-  >
+>
 </imx-data-source-toolbar>
 <div class="imx-table-container">
   <imx-data-table
     [dst]="dst"
     mode="manual"
     [detailViewVisible]="false"
-    [selectable]="data?.isMultiValue"
+    [selectable]="$safeNavigationMigration(data?.isMultiValue)"
     (selectionChanged)="selectionChanged.emit($event)"
     [showSelectedItemsMenu]="showSelectedItemsMenu"
     data-imx-identifier="fk-candidates-datatable"
-    >
+  >
     @if (entitySchema) {
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]">
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME])">
         <ng-template let-item>
           <div>{{ item.GetEntity().GetDisplay() }}</div>
           @if (showLongDisplay) {

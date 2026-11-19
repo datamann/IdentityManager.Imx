@@ -24,7 +24,7 @@
  *
  */
 
-import { ComponentFactoryResolver, ComponentRef, ErrorHandler, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, ErrorHandler, Injectable, ViewContainerRef } from '@angular/core';
 
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { CdrEditorProviderRegistry } from './cdr-editor-provider-registry.interface';
@@ -55,13 +55,11 @@ export class CdrRegistryService implements CdrEditorProviderRegistry {
 
   /**
    * Creates a new registry service for column dependent reference editor providers.
-   * @param componentFactoryResolver The resolver required for resolving the factory capable of creating an editor component.
    * @param errorHandler Required error handler to handle errors.
    * @param logger The logger used for logging messages.
    * @throws {Error} Throws an error if the given error handler is null or undefined.
    */
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private errorHandler: ErrorHandler,
     private logger: ClassloggerService,
   ) {}
@@ -144,7 +142,7 @@ export class CdrRegistryService implements CdrEditorProviderRegistry {
 
     this.logger.debug(this, `None of the providers could create an editor for '${this.className(cdref)}' -> returning default editor.`);
     try {
-      const component = parent.createComponent(this.componentFactoryResolver.resolveComponentFactory(EditDefaultComponent));
+      const component = parent.createComponent(EditDefaultComponent);
       component.instance.bind(cdref);
       return component;
     } catch (e) {

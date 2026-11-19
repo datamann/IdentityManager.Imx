@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { BusyService, DataSourceToolbarSettings, DynamicTabDataProviderDirective, SettingsService } from 'qbm';
 import { AccountsExtService } from './account-ext.service';
 
 @Component({
-    templateUrl: './accounts-ext.component.html',
-    styleUrls: ['../accounts.component.scss', './accounts-ext.component.scss'],
-    standalone: false
+  templateUrl: './accounts-ext.component.html',
+  styleUrls: ['../accounts.component.scss', './accounts-ext.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccountsExtComponent implements OnInit {
   @Input() public referrer: {

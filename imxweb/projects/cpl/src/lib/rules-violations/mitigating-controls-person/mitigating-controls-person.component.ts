@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { EuiLoadingService, EuiSelectOption, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -35,10 +35,11 @@ import { MitigatingControlsPersonService } from './mitigating-controls-person.se
 import { PersonMitigatingControls } from './person-mitigating-controls';
 
 @Component({
-    selector: 'imx-mitigating-controls-person',
-    templateUrl: './mitigating-controls-person.component.html',
-    styleUrls: ['../../mitigating-controls-common.scss'],
-    standalone: false
+  selector: 'imx-mitigating-controls-person',
+  templateUrl: './mitigating-controls-person.component.html',
+  styleUrls: ['../../mitigating-controls-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MitigatingControlsPersonComponent implements OnInit {
   @Input() public uidPerson: string;

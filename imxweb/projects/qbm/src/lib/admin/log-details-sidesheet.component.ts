@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { ApiLogEntry } from '@imx-modules/imx-api-qbm';
 
 @Component({
-    selector: 'imx-log-details-sidesheet',
-    templateUrl: './log-details-sidesheet.component.html',
-    styleUrls: ['./log-details-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-log-details-sidesheet',
+  templateUrl: './log-details-sidesheet.component.html',
+  styleUrls: ['./log-details-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LogDetailsSidesheetComponent implements OnInit {
   constructor(

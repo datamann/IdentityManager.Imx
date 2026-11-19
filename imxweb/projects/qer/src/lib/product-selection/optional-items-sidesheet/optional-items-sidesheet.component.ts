@@ -25,7 +25,7 @@
  */
 
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -41,6 +41,7 @@ import { ServiceItemHierarchyExtended, ServiceItemOrder, ServiceItemTreeWrapper 
   selector: 'imx-optional-items-sidesheet',
   templateUrl: './optional-items-sidesheet.component.html',
   styleUrls: ['./optional-items-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class OptionalItemsSidesheetComponent implements OnInit, OnDestroy {

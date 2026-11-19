@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:24.22.3-bookworm-slim AS build
+FROM node:26.13.1-bookworm-slim AS build
 
 WORKDIR /app
 ENV NX_DAEMON=false \
@@ -7,15 +7,16 @@ ENV NX_DAEMON=false \
     NX_NO_CLOUD=true \
     NG_CLI_ANALYTICS=false
 
-RUN npm install --global npm@12.2.2 --ignore-scripts --no-audit --no-fund
+RUN npm install --global npm@12.2.3 --ignore-scripts --no-audit --no-fund
 
 COPY package.json package-lock.json ./
 COPY imx-modules/ ./imx-modules/
 COPY docker/prepare-packages.mjs ./docker/prepare-packages.mjs
-# The repository deliberately removes bundled packages from its lockfile.
-# Resolve those packages from the supplied archives inside this build stage.
+COPY scripts/patch-nx-angular.mjs ./scripts/patch-nx-angular.mjs
+# Resolve the bundled packages from the supplied archives.
 RUN node docker/prepare-packages.mjs \
-    && npm install --ignore-scripts --no-audit --no-fund
+    && npm ci --ignore-scripts --no-audit --no-fund \
+    && node scripts/patch-nx-angular.mjs
 
 COPY angular.json nx.json tsconfig.json ./
 COPY projects/ ./projects/
@@ -23,7 +24,7 @@ COPY shared/ ./shared/
 COPY custom-theme/ ./custom-theme/
 COPY build/ ./build/
 COPY scripts/ ./scripts/
-RUN node node_modules/nx/bin/nx.js build qer-app-portal --configuration=production --parallel=2
+RUN npx --no-install nx build qer-app-portal --configuration=production --parallel=2
 
 FROM nginx:1.30.6-alpine AS runtime
 

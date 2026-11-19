@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NewRequestOrchestrationService } from './new-request-orchestration.service';
 
 @Component({
-    selector: 'imx-new-request',
-    templateUrl: './new-request.component.html',
-    styleUrls: ['./new-request.component.scss'],
-    standalone: false
+  selector: 'imx-new-request',
+  templateUrl: './new-request.component.html',
+  styleUrls: ['./new-request.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestComponent implements OnDestroy {
   constructor(private readonly orchestration: NewRequestOrchestrationService) {}

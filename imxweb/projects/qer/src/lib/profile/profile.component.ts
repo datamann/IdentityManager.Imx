@@ -24,8 +24,7 @@
  *
  */
 
-
-import { Component, DOCUMENT, ErrorHandler, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, DOCUMENT, ErrorHandler, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { MatTab } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -55,7 +54,8 @@ import { SecurityKeysService } from './security-keys/security-keys.service';
 @Component({
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChild('passwordQuestionTab') public set passwordTab(tab: MatTab) {

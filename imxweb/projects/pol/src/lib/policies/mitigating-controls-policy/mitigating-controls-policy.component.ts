@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { CdrFactoryService, ColumnDependentReference } from 'qbm';
 import { PoliciesService } from '../policies.service';
@@ -33,10 +33,11 @@ import { PoliciesService } from '../policies.service';
  * Used to get and display mitigating controls for each policy
  */
 @Component({
-    selector: 'imx-mitigating-controls-policy',
-    templateUrl: './mitigating-controls-policy.component.html',
-    styleUrls: ['./mitigating-controls-policy.component.scss'],
-    standalone: false
+  selector: 'imx-mitigating-controls-policy',
+  templateUrl: './mitigating-controls-policy.component.html',
+  styleUrls: ['./mitigating-controls-policy.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MitigatingControlsPolicyComponent implements OnInit {
   @Input() public objectUid: string;

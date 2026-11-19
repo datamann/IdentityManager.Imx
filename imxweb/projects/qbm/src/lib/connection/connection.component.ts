@@ -25,7 +25,7 @@
  */
 
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PermissionInfo } from '@imx-modules/imx-api-qbm';
@@ -47,6 +47,7 @@ import { ConnectionSessionInfoData, SystemUsers } from './connection';
 @Component({
   templateUrl: './connection.component.html',
   styleUrls: ['./connection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 

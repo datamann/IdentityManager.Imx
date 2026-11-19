@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { ValType } from '@imx-modules/imx-qbm-dbts';
 import { BaseCdr, BaseReadonlyCdr, BulkItem, BulkItemStatus, BusyService } from 'qbm';
@@ -43,6 +43,7 @@ import { WorkflowActionEdit } from '../workflow-action-edit.interface';
   selector: 'imx-workflow-multi-action',
   templateUrl: './workflow-multi-action.component.html',
   styleUrls: ['./workflow-multi-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class WorkflowMultiActionComponent implements OnInit {
@@ -79,7 +80,7 @@ export class WorkflowMultiActionComponent implements OnInit {
   constructor(
     private readonly stepService: DecisionStepSevice,
     private readonly approvalService: ApprovalsService,
-  ) { }
+  ) {}
 
   /**
    * @ignore since this is only an internal component

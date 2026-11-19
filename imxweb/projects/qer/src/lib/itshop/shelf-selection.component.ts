@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PersonForProduct, ShelfObject, ShelfSelectionObject } from './shelf-selection-sidesheet.model';
 
 @Component({
-    selector: 'imx-shelf-selection',
-    templateUrl: './shelf-selection.component.html',
-    styleUrls: ['./shelf-selection.component.scss'],
-    standalone: false
+  selector: 'imx-shelf-selection',
+  templateUrl: './shelf-selection.component.html',
+  styleUrls: ['./shelf-selection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ShelfSelectionComponent {
   public showHelperAlert = true;

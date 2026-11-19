@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -36,10 +36,11 @@ import { ReportSubscription } from '../report-subscription/report-subscription';
 import { ReportSubscriptionService } from '../report-subscription/report-subscription.service';
 
 @Component({
-    selector: 'imx-subscription-wizard',
-    templateUrl: './subscription-wizard.component.html',
-    styleUrls: ['./subscription-wizard.component.scss'],
-    standalone: false
+  selector: 'imx-subscription-wizard',
+  templateUrl: './subscription-wizard.component.html',
+  styleUrls: ['./subscription-wizard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SubscriptionWizardComponent implements OnDestroy {
   public readonly reportFormGroup = new UntypedFormGroup({

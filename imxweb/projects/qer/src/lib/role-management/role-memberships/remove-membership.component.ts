@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -36,9 +36,10 @@ import { DataManagementService } from '../data-management.service';
 import { RoleService } from '../role.service';
 
 @Component({
-    templateUrl: './remove-membership.component.html',
-    styleUrls: ['./remove-membership.component.scss', '../sidesheet.scss'],
-    standalone: false
+  templateUrl: './remove-membership.component.html',
+  styleUrls: ['./remove-membership.component.scss', '../sidesheet.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RemoveMembershipComponent implements OnInit {
   public get noneSelected(): boolean {

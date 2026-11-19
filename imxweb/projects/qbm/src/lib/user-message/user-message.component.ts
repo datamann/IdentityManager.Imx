@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterContentInit, ChangeDetectorRef, Component, Input, OnDestroy, ViewChild } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Component, Input, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { EuiAlertComponent } from '@elemental-ui/core';
@@ -36,10 +36,11 @@ import { UserMessageService } from './user-message.service';
  * A component that displays a message inside an ElementalUI alert control
  */
 @Component({
-    selector: 'imx-usermessage',
-    templateUrl: './user-message.component.html',
-    styleUrls: ['./user-message.component.scss'],
-    standalone: false
+  selector: 'imx-usermessage',
+  templateUrl: './user-message.component.html',
+  styleUrls: ['./user-message.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class UserMessageComponent implements AfterContentInit, OnDestroy {
   /**

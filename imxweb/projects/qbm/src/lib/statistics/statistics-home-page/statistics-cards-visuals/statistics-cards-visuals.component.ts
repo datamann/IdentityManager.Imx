@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { bar, Chart, ChartOptions, donut, line } from 'billboard.js';
 import { Subscription } from 'rxjs';
@@ -60,6 +60,7 @@ export interface StatisticsSidesheetResponse {
   selector: 'imx-statistics-cards-visuals',
   templateUrl: './statistics-cards-visuals.component.html',
   styleUrls: ['./statistics-cards-visuals.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class StatisticsCardsVisualsComponent implements OnInit, OnDestroy {

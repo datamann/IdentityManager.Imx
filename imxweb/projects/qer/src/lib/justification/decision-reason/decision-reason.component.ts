@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
 import { ValueStruct } from '@imx-modules/imx-qbm-dbts';
@@ -39,6 +39,7 @@ interface ReasonFormGroup {
   selector: 'imx-decision-reason',
   templateUrl: './decision-reason.component.html',
   styleUrls: ['./decision-reason.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DecisionReasonComponent implements OnInit, AfterViewInit {

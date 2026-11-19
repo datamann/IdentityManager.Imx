@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { PolicyFilterData, PortalAttestationPolicygroups } from '@imx-modules/imx-api-att';
 import {
@@ -54,11 +54,12 @@ import { EditPolicyGroupSidesheetComponent } from '../edit-policy-group-sideshee
 import { PolicyGroupService } from '../policy-group.service';
 
 @Component({
-    selector: 'imx-policy-group-list',
-    templateUrl: './policy-group-list.component.html',
-    styleUrls: ['./policy-group-list.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-policy-group-list',
+  templateUrl: './policy-group-list.component.html',
+  styleUrls: ['./policy-group-list.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyGroupListComponent {
   public readonly entitySchemaPolicy: EntitySchema;

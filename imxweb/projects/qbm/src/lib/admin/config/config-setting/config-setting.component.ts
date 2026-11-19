@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigSettingType } from '@imx-modules/imx-api-qbm';
 import { ConfigService } from '../config.service';
 import { NodeSetting } from '../node-setting';
@@ -34,6 +34,7 @@ import { NodeSetting } from '../node-setting';
   selector: 'imx-config-setting',
   templateUrl: './config-setting.component.html',
   styleUrl: './config-setting.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ConfigSettingComponent {

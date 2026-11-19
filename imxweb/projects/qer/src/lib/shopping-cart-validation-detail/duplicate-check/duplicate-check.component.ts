@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BaseViewerComponent } from '../base-viewer/base-viewer.component';
 import { DetailsView } from '../details-view.interface';
 
 @Component({
-    selector: 'imx-duplicate-check',
-    templateUrl: './duplicate-check.component.html',
-    standalone: false
+  selector: 'imx-duplicate-check',
+  templateUrl: './duplicate-check.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DuplicateCheckComponent extends BaseViewerComponent implements DetailsView, OnInit {
-  public declare detail: string[][];
+  declare public detail: string[][];
 
   public ngOnInit(): void {
     super.ngOnInit();

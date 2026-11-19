@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { XOrigin } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    templateUrl: './compare-item.component.html',
-    selector: 'imx-role-compareitem',
-    standalone: false
+  templateUrl: './compare-item.component.html',
+  selector: 'imx-role-compareitem',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CompareItemComponent {
   public origins: number[] = [XOrigin.Direct, XOrigin.Indirect, XOrigin.Dynamic, XOrigin.Ordered];

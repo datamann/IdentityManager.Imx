@@ -24,9 +24,9 @@
  *
  */
 
-import { ComponentFactory } from '@angular/core';
+import { Type } from '@angular/core';
 
 export interface DetailsContainer {
-  factory: ComponentFactory<any>;
+  factory: Type<any>;
   id: string;
 }

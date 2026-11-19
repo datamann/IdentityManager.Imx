@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalPolicies } from '@imx-modules/imx-api-pol';
 import {
@@ -50,11 +50,12 @@ import { PoliciesSidesheetComponent } from './policies-sidesheet/policies-sidesh
 import { PoliciesService } from './policies.service';
 
 @Component({
-    selector: 'imx-policies',
-    templateUrl: './policies.component.html',
-    styleUrls: ['./policies.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-policies',
+  templateUrl: './policies.component.html',
+  styleUrls: ['./policies.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PoliciesComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;

@@ -25,7 +25,7 @@
  */
 
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, effect, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, OnDestroy, OnInit, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PortalServicecategories, PortalShopServiceitems, ServiceItemsExtendedData } from '@imx-modules/imx-api-qer';
 import {
@@ -49,7 +49,7 @@ import {
   DataViewSourceFactoryService,
   DynamicDataApiControls,
   DynamicDataSource,
-  SettingsService
+  SettingsService,
 } from 'qbm';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ViewConfigService } from '../../view-config/view-config.service';
@@ -76,6 +76,7 @@ export interface NewRequestCategoryNode {
   templateUrl: './new-request-product.component.html',
   styleUrls: ['./new-request-product.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class NewRequestProductComponent implements OnInit, OnDestroy {

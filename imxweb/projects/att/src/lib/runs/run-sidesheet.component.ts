@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -44,9 +44,10 @@ import { RunExtendComponent } from './run-extend/run-extend.component';
 import { RunsService } from './runs.service';
 
 @Component({
-    templateUrl: './run-sidesheet.component.html',
-    styleUrls: ['./run-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './run-sidesheet.component.html',
+  styleUrls: ['./run-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RunSidesheetComponent {
   public readonly run: PortalAttestationRun;

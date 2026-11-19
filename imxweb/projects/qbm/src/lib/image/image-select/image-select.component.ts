@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Base64ImageService } from '../../images/base64-image.service';
 import { ValueWrapper } from '../../value-wrapper/value-wrapper';
 
 @Component({
-    selector: 'imx-image-select',
-    templateUrl: './image-select.component.html',
-    styleUrls: ['./image-select.component.scss'],
-    standalone: false
+  selector: 'imx-image-select',
+  templateUrl: './image-select.component.html',
+  styleUrls: ['./image-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ImageSelectComponent {
   // TODO: Check Upgrade

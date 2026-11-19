@@ -26,10 +26,10 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TranslatePipe } from '@ngx-translate/core';
-import { MockPipe, MockProvider } from 'ng-mocks';
+import { TranslateModule } from '@ngx-translate/core';
+import { MockProvider } from 'ng-mocks';
 import { BusyIndicatorModule } from 'qbm';
-import { AobApiService } from '../../aob-api-client.service';
+import { ApplicationKpiService } from '../application-kpi.service';
 import { ApplicationKpiHomeComponent } from './application-kpi-home.component';
 
 describe('ApplicationKpiHomeComponent', () => {
@@ -38,14 +38,15 @@ describe('ApplicationKpiHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApplicationKpiHomeComponent, BusyIndicatorModule],
-      declarations: [MockPipe(TranslatePipe)],
-      providers: [MockProvider(AobApiService)],
+      imports: [ApplicationKpiHomeComponent, BusyIndicatorModule, TranslateModule.forRoot()],
+      providers: [MockProvider(ApplicationKpiService, { get: async () => [] })],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ApplicationKpiHomeComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('application', { UID_AOBApplication: { value: 'test-application' } });
     fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

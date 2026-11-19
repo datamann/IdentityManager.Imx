@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { PortalAttestationRun } from '@imx-modules/imx-api-att';
 import { TranslateService } from '@ngx-translate/core';
 import { bar, Chart, ChartOptions } from 'billboard.js';
@@ -34,6 +34,7 @@ import { fromEvent, Subscription } from 'rxjs';
   selector: 'imx-case-chart',
   templateUrl: './case-chart.component.html',
   styleUrls: ['./case-chart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class CaseChartComponent implements OnInit, OnDestroy {

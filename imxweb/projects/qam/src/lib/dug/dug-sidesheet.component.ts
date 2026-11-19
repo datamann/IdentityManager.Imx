@@ -24,11 +24,19 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatTab, MatTabChangeEvent } from '@angular/material/tabs';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
-import { DbObjectKey, DisplayColumns, EntitySchema, ExtendedTypedEntityCollection, IClientProperty, IReadValue, ValType } from '@imx-modules/imx-qbm-dbts';
+import {
+  DbObjectKey,
+  DisplayColumns,
+  EntitySchema,
+  ExtendedTypedEntityCollection,
+  IClientProperty,
+  IReadValue,
+  ValType,
+} from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import {
   BaseCdr,
@@ -48,17 +56,24 @@ import { RiskAnalysisSidesheetComponent, WorkflowActionComponent } from 'qer';
 import { Subscription } from 'rxjs';
 import { DugOverviewService } from '../dug-overview/dug-overview.service';
 import { DugOwnershipService } from '../dug-ownership/dug-ownership.service';
-import { ChangeRequestType, DgeConfigData, PortalDgeResourcesActivity, PortalDgeResourcesbyid, PortalDgeResourcesPerceivedowners } from '../TypedClient';
+import {
+  ChangeRequestType,
+  DgeConfigData,
+  PortalDgeResourcesActivity,
+  PortalDgeResourcesbyid,
+  PortalDgeResourcesPerceivedowners,
+} from '../TypedClient';
 
 interface DugResourceFormGroup {
   array: UntypedFormArray;
 }
 
 @Component({
-    selector: 'imx-dug-sidesheet',
-    styleUrls: ['./dug-sidesheet.component.scss'],
-    templateUrl: './dug-sidesheet.component.html',
-    standalone: false
+  selector: 'imx-dug-sidesheet',
+  styleUrls: ['./dug-sidesheet.component.scss'],
+  templateUrl: './dug-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DugSidesheetComponent implements OnInit, OnDestroy {
   public dug: PortalDgeResourcesbyid;
@@ -108,7 +123,7 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
   @ViewChild('accessTab') private accessTab: MatTab;
 
   constructor(
-    @Inject(EUI_SIDESHEET_DATA) public readonly data: { uid: string, identifier: string, sidesheetRef?: EuiSidesheetRef},
+    @Inject(EUI_SIDESHEET_DATA) public readonly data: { uid: string; identifier: string; sidesheetRef?: EuiSidesheetRef },
     private readonly dugOverviewProvider: DugOverviewService,
     private readonly ownershipService: DugOwnershipService,
     private readonly sideSheet: EuiSidesheetService,
@@ -133,9 +148,9 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
       this.entitySchema.Columns.UID_PersonPerceivedOwner,
       this.entitySchema.Columns.PerceptionScore,
       {
-        ColumnName: "assignOwner",
-        Type: ValType.String
-      }
+        ColumnName: 'assignOwner',
+        Type: ValType.String,
+      },
     ];
 
     this.subscriptions.push(
@@ -170,7 +185,7 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
       if (this.isPerceivedOwner()) {
         // Get perceived owners only if the user is not the owner
         this.perceivedOwners = await this.ownershipService.getPerceivedowners(this.data.uid);
-        this.onAssignSelectionChange(this.perceivedOwners?.Data?.[0]?.UID_PersonPerceivedOwner)
+        this.onAssignSelectionChange(this.perceivedOwners?.Data?.[0]?.UID_PersonPerceivedOwner);
         this.dstSettings = {
           displayedColumns: this.displayedColumns,
           dataSource: this.perceivedOwners,
@@ -178,20 +193,11 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
           navigationState: {},
         };
 
-        this.cdrOwnerShip = this.cdrFactory
-          .buildCdrFromColumnList(this.dug.GetEntity(), [
-            'UID_PersonResponsible',
-          ])
-          .filter((elem) => elem);
+        this.cdrOwnerShip = this.cdrFactory.buildCdrFromColumnList(this.dug.GetEntity(), ['UID_PersonResponsible']).filter((elem) => elem);
       }
 
       if (this.isAssignOwnership()) {
-
-        this.cdrOwnerShip = this.cdrFactory
-          .buildCdrFromColumnList(this.dug.GetEntity(), [
-            'UID_PersonResponsible',
-          ])
-          .filter((elem) => elem);
+        this.cdrOwnerShip = this.cdrFactory.buildCdrFromColumnList(this.dug.GetEntity(), ['UID_PersonResponsible']).filter((elem) => elem);
       }
 
       this.cdrList = this.cdrFactory
@@ -263,7 +269,7 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
       formArray.at(existingIndex).patchValue({
         Name: 'UID_PersonResponsible',
         OldValue: '',
-        Value: uidPersonResponsible
+        Value: uidPersonResponsible,
       });
     } else {
       // Add a new entry
@@ -272,7 +278,7 @@ export class DugSidesheetComponent implements OnInit, OnDestroy {
           Name: new UntypedFormControl('UID_PersonResponsible'),
           OldValue: new UntypedFormControl(''),
           Value: new UntypedFormControl(uidPersonResponsible),
-        })
+        }),
       );
     }
 

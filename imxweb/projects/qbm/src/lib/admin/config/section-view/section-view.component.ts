@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigView } from '../config-view';
 import { ConfigService } from '../config.service';
 
@@ -32,6 +32,7 @@ import { ConfigService } from '../config.service';
   selector: 'imx-section-view',
   templateUrl: './section-view.component.html',
   styleUrl: './section-view.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SectionViewComponent {

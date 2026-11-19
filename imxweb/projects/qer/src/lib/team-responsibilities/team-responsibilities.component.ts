@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { PortalRespTeamResponsibilities, ResponsibilitiesExtendedData, ResponsibilityData } from '@imx-modules/imx-api-qer';
@@ -41,6 +41,7 @@ import { TeamResponsibilitySidesheetComponent } from './team-responsibility-side
   templateUrl: './team-responsibilities.component.html',
   styleUrls: ['./team-responsibilities.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TeamResponsibilitiesComponent implements OnInit {

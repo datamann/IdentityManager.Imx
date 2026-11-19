@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, effect, OnDestroy, OnInit } from '@angular/core';
+import { Component, effect, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { CartPatternItemDataRead, PortalItshopPatternItem, PortalItshopPatternRequestable } from '@imx-modules/imx-api-qer';
@@ -50,6 +50,7 @@ import { NewRequestSelectionService } from '../../new-request-selection.service'
   templateUrl: './product-bundle-items.component.html',
   styleUrls: ['./product-bundle-items.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ProductBundleItemsComponent implements OnInit, OnDestroy {

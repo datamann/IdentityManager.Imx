@@ -24,13 +24,14 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-confirm-cart-submit',
-    templateUrl: './confirm-cart-submit.dialog.html',
-    styleUrls: ['./confirm-cart-submit.dialog.scss'],
-    standalone: false
+  selector: 'imx-confirm-cart-submit',
+  templateUrl: './confirm-cart-submit.dialog.html',
+  styleUrls: ['./confirm-cart-submit.dialog.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ConfirmCartSubmitDialog {}

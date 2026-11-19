@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
@@ -40,9 +40,9 @@ export interface GroupPaginatorInformation {
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataView instead.
- * 
+ *
  * Paginator for navigating groups of a type {@link DataSourceToolbarComponent| datasource toolbar component}.
  *
  * @example
@@ -54,9 +54,10 @@ export interface GroupPaginatorInformation {
  * <imx-group-paginator [groupPaginatorInformation]="informationForGroupSettings"></imx-group-paginator>
  */
 @Component({
-    selector: 'imx-group-paginator',
-    templateUrl: './group-paginator.component.html',
-    standalone: false
+  selector: 'imx-group-paginator',
+  templateUrl: './group-paginator.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class GroupPaginatorComponent implements OnChanges, OnDestroy {
   @Input() public groupPaginatorInformation: GroupPaginatorInformation;

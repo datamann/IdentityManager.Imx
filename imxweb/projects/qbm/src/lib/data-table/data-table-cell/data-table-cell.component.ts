@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { IClientProperty, IEntityColumn, TypedEntity, ValType } from '@imx-modules/imx-qbm-dbts';
 
@@ -33,10 +33,11 @@ import { IClientProperty, IEntityColumn, TypedEntity, ValType } from '@imx-modul
  * Use DataView instead.
  */
 @Component({
-    selector: 'imx-data-table-cell',
-    templateUrl: './data-table-cell.component.html',
-    styleUrls: ['./data-table-cell.component.scss'],
-    standalone: false
+  selector: 'imx-data-table-cell',
+  templateUrl: './data-table-cell.component.html',
+  styleUrls: ['./data-table-cell.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTableCellComponent {
   public readonly ValType = ValType;

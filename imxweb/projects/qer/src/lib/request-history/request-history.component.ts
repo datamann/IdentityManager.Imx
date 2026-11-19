@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, OnInit, signal, ViewChild, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PwoExtendedData } from '@imx-modules/imx-api-qer';
 import { DataViewSource, HELP_CONTEXTUAL, HelpContextualValues } from 'qbm';
@@ -33,9 +33,10 @@ import { ItshopRequest } from './itshop-request';
 import { RequestTableComponent } from './request-table.component';
 
 @Component({
-    templateUrl: './request-history.component.html',
-    styleUrls: ['./request-history.component.scss'],
-    standalone: false
+  templateUrl: './request-history.component.html',
+  styleUrls: ['./request-history.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestHistoryComponent implements OnInit, AfterViewInit {
   public auditMode = false;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { DSTViewConfig } from '../../data-source-toolbar/data-source-toolbar-view-config.interface';
 import { DataViewSource } from '../data-view-source';
 
@@ -38,10 +38,11 @@ import { DataViewSource } from '../data-view-source';
  * ></imx-data-view-toolbar>
  */
 @Component({
-    selector: 'imx-data-view-toolbar',
-    templateUrl: './data-view-toolbar.component.html',
-    styleUrls: ['./data-view-toolbar.component.scss'],
-    standalone: false
+  selector: 'imx-data-view-toolbar',
+  templateUrl: './data-view-toolbar.component.html',
+  styleUrls: ['./data-view-toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewToolbarComponent {
   /**

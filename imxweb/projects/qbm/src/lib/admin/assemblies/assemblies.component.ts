@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AssemblyInfoData } from '@imx-modules/imx-api-qbm';
 import { EntityData, EntitySchema, IClientProperty, TypedEntityBuilder, ValType } from '@imx-modules/imx-qbm-dbts';
 import { GenericTypedEntity } from '../../api-client/dynamic-method';
@@ -38,6 +38,7 @@ import { SideNavigationComponent } from '../../side-navigation-view/side-navigat
   templateUrl: './assemblies.component.html',
   styleUrl: './assemblies.component.scss',
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class AssembliesComponent implements OnInit, SideNavigationComponent {

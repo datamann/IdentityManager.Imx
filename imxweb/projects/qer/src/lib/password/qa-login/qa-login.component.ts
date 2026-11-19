@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PasswordResetAuthModel } from '@imx-modules/imx-api-qer';
@@ -37,9 +37,10 @@ import { QerApiService } from '../../qer-api-client.service';
  * Handles question based authentication In Password Reset Portal
  */
 @Component({
-    templateUrl: './qa-login.component.html',
-    styleUrls: ['./qa-login.component.scss'],
-    standalone: false
+  templateUrl: './qa-login.component.html',
+  styleUrls: ['./qa-login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class QaLoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];

@@ -107,9 +107,9 @@ For more information about each project, see the `readme.md` files in each proje
 
 ## Dependencies
 
-Identity Manager 10.0 is based on Angular 20.
+The upstream Identity Manager 10.0 distribution is based on Angular 20. This feature branch experiments with Angular 22.3.0, Node.js 26.13.1 LTS and Nx 24.0.6. It retains the supplied Elemental UI 20 package with explicit compatibility overrides and a version-locked Nx adapter patch; it is not a vendor-supported upgrade. See [upgrade notes and validation requirements](imxweb/DOCKER.md#eksperimentell-oppgradering-av-node-og-angular).
 
-Verify that you have installed a compatible `node.js` version. The version used by the CI build is defined in the [`.github/workflows/npm-build.yml`](.github/workflows/npm-build.yml) file in the `node-version` property. Other versions of `node.js`, including newer versions, are not guaranteed to be compatible with other Angular versions. Please see the [version compatibility table](https://v20.angular.dev/reference/versions) on the official Angular site.
+Use the Node.js version pinned in [`imxweb/.node-version`](imxweb/.node-version) and npm 12.2.3. CI and Docker use the same versions. See Angular's [version compatibility table](https://angular.dev/reference/versions) for the supported Node.js and TypeScript ranges.
 
 ## Debugging
 

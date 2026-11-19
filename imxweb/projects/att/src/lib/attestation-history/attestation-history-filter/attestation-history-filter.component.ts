@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -48,10 +48,11 @@ import { PersonService } from 'qer';
  * Shows a dropdown with identities to filter the attestation history by an attestator.
  */
 @Component({
-    selector: 'imx-attestation-history-filter',
-    templateUrl: './attestation-history-filter.component.html',
-    styleUrls: ['./attestation-history-filter.component.scss'],
-    standalone: false
+  selector: 'imx-attestation-history-filter',
+  templateUrl: './attestation-history-filter.component.html',
+  styleUrls: ['./attestation-history-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationHistoryFilterComponent implements OnInit, OnDestroy {
   public identityCdr: ColumnDependentReference;

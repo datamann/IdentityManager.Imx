@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, effect, ElementRef, Inject, SecurityContext, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, Inject, SecurityContext, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'imx-application-dialog',
-    templateUrl: './application-dialog.component.html',
-    standalone: false
+  selector: 'imx-application-dialog',
+  templateUrl: './application-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationDialogComponent {
   private iFrame = viewChild.required<ElementRef>('iFrame');

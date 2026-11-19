@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -60,9 +60,10 @@ interface FolderFormGroup {
  * The user can select the resources from a tree or can enter them manually.
  */
 @Component({
-    templateUrl: './access-request-sidesheet.component.html',
-    styleUrls: ['./access-request-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './access-request-sidesheet.component.html',
+  styleUrls: ['./access-request-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccessRequestSidesheetComponent implements OnInit {
   @ViewChild('dataTreeWrapper', { static: true }) dataTreeWrapper: DataTreeWrapperComponent;
@@ -109,7 +110,7 @@ export class AccessRequestSidesheetComponent implements OnInit {
         }
       }),
     );
-    
+
     this.isSharePointAccess = this.data.uidAccProduct === 'QAM-1E9EB40D495D4C26B30CC1605EDB8F54';
     this.initializeTree();
   }
@@ -167,7 +168,9 @@ export class AccessRequestSidesheetComponent implements OnInit {
       const regex = /^(\\\\[^\\\/:*?"<>|]+\\[^\\\/:*?"<>|]+(\\[^\\\/:*?"<>|]+)*)$/;
       if (!regex.test(element)) {
         this.validationMessage = this.ldsReplace.transform(
-          this.translate.instant('#LDS#The entered path of Folder #{0} is not valid. Please use the format \\\\server\\path and ensure that path does not contain any of the following characters: \ / : * ? " < > |'),
+          this.translate.instant(
+            '#LDS#The entered path of Folder #{0} is not valid. Please use the format \\\\server\\path and ensure that path does not contain any of the following characters: \ / : * ? " < > |',
+          ),
           index + 1,
         );
         isValid = false;

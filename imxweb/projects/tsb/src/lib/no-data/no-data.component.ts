@@ -24,18 +24,19 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the DataViewComponent instead.
  */
 @Component({
-    selector: 'imx-data-explorer-no-data',
-    templateUrl: './no-data.component.html',
-    styleUrls: ['./no-data.component.scss'],
-    standalone: false
+  selector: 'imx-data-explorer-no-data',
+  templateUrl: './no-data.component.html',
+  styleUrls: ['./no-data.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataExplorerNoDataComponent {
   @Input() public mode: string;

@@ -8,10 +8,11 @@
     "sourceMap": true,
     "inlineSources": true,
     "types": [],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "rootDir": "."
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"],
   "angularCompilerOptions": {
-    "strictTemplates": true,
+    "strictTemplates": true
   }
 }

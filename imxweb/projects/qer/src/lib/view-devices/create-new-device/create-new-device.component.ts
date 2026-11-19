@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalDevices } from '@imx-modules/imx-api-qer';
@@ -33,10 +33,11 @@ import { BaseCdr, ColumnDependentReference, SnackBarService } from 'qbm';
 import { ViewDevicesService } from '../view-devices.service';
 
 @Component({
-    selector: 'imx-create-new-device',
-    templateUrl: './create-new-device.component.html',
-    styleUrls: ['./create-new-device.component.scss'],
-    standalone: false
+  selector: 'imx-create-new-device',
+  templateUrl: './create-new-device.component.html',
+  styleUrls: ['./create-new-device.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CreateNewDeviceComponent {
   public readonly formGroup = new UntypedFormGroup({});

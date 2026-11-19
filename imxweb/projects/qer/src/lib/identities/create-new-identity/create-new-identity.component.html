@@ -13,7 +13,7 @@
               <imx-cdr-editor
                 (readOnlyChanged)="update(cdr, cdrListIdentifier)"
                 [cdr]="cdr"
-                (valueChange)="checkValues(cdr?.column?.ColumnName)"
+                (valueChange)="checkValues($safeNavigationMigration(cdr?.column?.ColumnName))"
                 (controlCreated)="identityForm.addControl(cdr?.column?.ColumnName ?? '', $event)"
               >
               </imx-cdr-editor>

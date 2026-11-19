@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { DataModelFilterOption, DbObjectKey, DisplayColumns, EntitySchema, IClientProperty, TypedEntity } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -40,9 +40,10 @@ import { TypedEntityTableFilter } from './typed-entity-table-filter.interface';
  * @deprecated since v10.0.0
  */
 @Component({
-    templateUrl: './typed-entity-candidate-sidesheet.component.html',
-    styleUrls: ['./typed-entity-candidate-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './typed-entity-candidate-sidesheet.component.html',
+  styleUrls: ['./typed-entity-candidate-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TypedEntityCandidateSidesheetComponent implements OnInit {
   public readonly DisplayColumns = DisplayColumns; // Enables use of this static class in Angular Templates.

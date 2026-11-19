@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 @Component({
-    templateUrl: './riskanalysis-sidesheet.component.html',
-    styleUrls: ['./riskanalysis-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './riskanalysis-sidesheet.component.html',
+  styleUrls: ['./riskanalysis-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RiskAnalysisSidesheetComponent {
   constructor(@Inject(EUI_SIDESHEET_DATA) public data: { objectKey: string }) {}

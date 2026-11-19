@@ -56,6 +56,7 @@ describe('FileSelectorService', () => {
         length: files.length,
         item: (index) => files[index],
         0: files[0],
+        [Symbol.iterator]: () => files[Symbol.iterator](),
       },
       'some other file type',
     );

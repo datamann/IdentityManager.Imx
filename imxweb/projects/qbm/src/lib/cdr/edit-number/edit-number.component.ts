@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, ValidatorFn } from '@angular/forms';
 
 import { ValType } from '@imx-modules/imx-qbm-dbts';
@@ -35,15 +35,16 @@ import { NumberValidatorService } from './number-validator.service';
 
 /**
  * Provides a {@link CdrEditor | CDR editor} for editing / viewing number value columns.
- * 
+ *
  * To change the value, it uses an input field, that is typed as 'number'.
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-number',
-    templateUrl: './edit-number.component.html',
-    styleUrls: ['./edit-number.component.scss'],
-    standalone: false
+  selector: 'imx-edit-number',
+  templateUrl: './edit-number.component.html',
+  styleUrls: ['./edit-number.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditNumberComponent extends EditorBase<number> implements AfterViewInit {
   /**
@@ -51,7 +52,10 @@ export class EditNumberComponent extends EditorBase<number> implements AfterView
    */
   public readonly control = new UntypedFormControl(undefined, { updateOn: 'blur' });
 
-  constructor(logger: ClassloggerService, private readonly numberValidator: NumberValidatorService) {
+  constructor(
+    logger: ClassloggerService,
+    private readonly numberValidator: NumberValidatorService,
+  ) {
     super(logger);
   }
 

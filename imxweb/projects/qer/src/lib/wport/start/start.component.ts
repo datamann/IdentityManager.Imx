@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SystemInfo } from '@imx-modules/imx-api-qbm';
@@ -39,7 +39,8 @@ import { DashboardService } from './dashboard.service';
   templateUrl: './start.component.html',
   selector: 'imx-start',
   styleUrls: ['./start.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StartComponent implements OnInit {
   public userConfig: UserConfig;
@@ -58,7 +59,7 @@ export class StartComponent implements OnInit {
     private readonly detectRef: ChangeDetectorRef,
     private readonly projectConfigurationService: ProjectConfigurationService,
     private readonly splash: SplashService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.dashboardService.busyStateChanged.subscribe((busy) => {
@@ -94,7 +95,7 @@ export class StartComponent implements OnInit {
   }
 
   public GoToPasswordMgmtWeb(): void {
-    let passwordMgmtUrl = this.projectConfig.PasswordConfig?.PasswordMgmtUrl
+    let passwordMgmtUrl = this.projectConfig.PasswordConfig?.PasswordMgmtUrl;
     if (passwordMgmtUrl) {
       passwordMgmtUrl = passwordMgmtUrl.match(/^https?:/) ? passwordMgmtUrl : '//' + passwordMgmtUrl;
       window.open(passwordMgmtUrl, '_self');

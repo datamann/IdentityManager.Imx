@@ -16,12 +16,9 @@
         (selectionChange)="optionSelected($event.value)"
         [(value)]="selectedNamespace"
         data-imx-identifier="outstanding-namespace-select"
-        >
+      >
         @for (pr of namespaces; track pr) {
-          <mat-option
-            [value]="pr"
-            [attr.data-imx-identifier]="'outstanding-namespace-option-' + pr.GetEntity().GetDisplay()"
-            >
+          <mat-option [value]="pr" [attr.data-imx-identifier]="'outstanding-namespace-option-' + pr.GetEntity().GetDisplay()">
             {{ pr.GetEntity().GetDisplay() }}
           </mat-option>
         }
@@ -37,12 +34,9 @@
         (selectionChange)="tableSelected($event.value)"
         [(value)]="selectedTable"
         data-imx-identifier="outstanding-table-select"
-        >
+      >
         @for (pr of tabledata; track pr) {
-          <mat-option
-            [value]="pr"
-            [attr.data-imx-identifier]="'outstanding-table-option-' + pr.GetEntity().GetDisplay()"
-            >
+          <mat-option [value]="pr" [attr.data-imx-identifier]="'outstanding-table-option-' + pr.GetEntity().GetDisplay()">
             {{ pr.GetEntity().GetDisplay() }} ({{ pr.CountOutstanding.value }})
           </mat-option>
         }
@@ -50,9 +44,9 @@
     </mat-form-field>
     <mat-checkbox (change)="onShowAllData()" [(ngModel)]="showAllData" [disabled]="!selectedNamespace || loadingTableData">
       {{
-      !!selectedNamespaceTitle && !loadingTableData
-      ? ('#LDS#Show all outstanding objects of {0} ({1})' | translate | ldsReplace: selectedNamespaceTitle : tableDataCount)
-      : ('#LDS#Show all outstanding objects of the target system type' | translate)
+        !!selectedNamespaceTitle && !loadingTableData
+          ? ('#LDS#Show all outstanding objects of {0} ({1})' | translate | ldsReplace: selectedNamespaceTitle : tableDataCount)
+          : ('#LDS#Show all outstanding objects of the target system type' | translate)
       }}
     </mat-checkbox>
   </div>
@@ -62,7 +56,7 @@
     (navigationStateChanged)="getData($event)"
     [options]="['filter']"
     [busyService]="busyService"
-    >
+  >
   </imx-data-source-toolbar>
   <mat-card class="scroll-container imx-table-container">
     @if (!busy) {
@@ -76,7 +70,7 @@
         mode="manual"
         [noDataText]="getNoDataText()"
         data-imx-identifier="outstanding-objects-table"
-        >
+      >
         <imx-data-table-generic-column columnName="Display" columnLabel="{{ '#LDS#Display name' | translate }}">
           <ng-template let-data>
             <div class="first-cell">
@@ -97,8 +91,8 @@
             </div>
           </ng-template>
         </imx-data-table-generic-column>
-        <imx-data-table-column [entityColumn]="schema?.Columns?.LastLogEntry"> </imx-data-table-column>
-        <imx-data-table-column [entityColumn]="schema?.Columns?.LastMethodRun"> </imx-data-table-column>
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(schema?.Columns?.LastLogEntry)"> </imx-data-table-column>
+        <imx-data-table-column [entityColumn]="$safeNavigationMigration(schema?.Columns?.LastMethodRun)"> </imx-data-table-column>
       </imx-data-table>
     }
   </mat-card>
@@ -110,37 +104,37 @@
           | translate
       }}"
       [(ngModel)]="bulk"
-      >
+    >
       {{ '#LDS#Bulk processing' | translate }}</mat-checkbox
-      >
-      <button
-        mat-flat-button
-        color="warn"
-        [disabled]="selected.length === 0 || !canDeleteAllSelected()"
-        data-imx-identifier="outstanding-delete-button"
-        matTooltip="{{ '#LDS#Deletes the selected objects in the database' | translate }}"
-        (click)="deleteObjects()"
-        >
-        {{ '#LDS#Delete' | translate }}
-      </button>
-      <button
-        mat-stroked-button
-        [disabled]="selected.length === 0"
-        data-imx-identifier="outstanding-reset-button"
-        matTooltip="{{ '#LDS#Removes the Outstanding label for the selected objects' | translate }}"
-        (click)="resetObjects()"
-        >
-        {{ '#LDS#Reset' | translate }}
-      </button>
-      <button
-        mat-flat-button
-        [disabled]="selected.length === 0 || !canPublishAllSelected()"
-        color="primary"
-        data-imx-identifier="outstanding-publish-button"
-        matTooltip="{{ '#LDS#Adds the selected objects to the target system' | translate }}"
-        (click)="publishObjects()"
-        >
-        {{ '#LDS#Add to target system' | translate }}
-      </button>
-    </div>
-  }
+    >
+    <button
+      mat-flat-button
+      color="warn"
+      [disabled]="selected.length === 0 || !canDeleteAllSelected()"
+      data-imx-identifier="outstanding-delete-button"
+      matTooltip="{{ '#LDS#Deletes the selected objects in the database' | translate }}"
+      (click)="deleteObjects()"
+    >
+      {{ '#LDS#Delete' | translate }}
+    </button>
+    <button
+      mat-stroked-button
+      [disabled]="selected.length === 0"
+      data-imx-identifier="outstanding-reset-button"
+      matTooltip="{{ '#LDS#Removes the Outstanding label for the selected objects' | translate }}"
+      (click)="resetObjects()"
+    >
+      {{ '#LDS#Reset' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="selected.length === 0 || !canPublishAllSelected()"
+      color="primary"
+      data-imx-identifier="outstanding-publish-button"
+      matTooltip="{{ '#LDS#Adds the selected objects to the target system' | translate }}"
+      (click)="publishObjects()"
+    >
+      {{ '#LDS#Add to target system' | translate }}
+    </button>
+  </div>
+}

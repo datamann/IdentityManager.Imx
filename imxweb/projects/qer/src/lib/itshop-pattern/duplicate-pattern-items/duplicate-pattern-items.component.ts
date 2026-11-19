@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { DuplicatePatternItem } from './duplicate-pattern-item';
@@ -33,10 +33,11 @@ import { DuplicatePatternItem } from './duplicate-pattern-item';
  * This component shows a list of all serviceitems that could not be added to the itshop pattern.
  */
 @Component({
-    selector: 'imx-duplicate-pattern-items',
-    templateUrl: './duplicate-pattern-items.component.html',
-    styleUrls: ['./duplicate-pattern-items.component.scss'],
-    standalone: false
+  selector: 'imx-duplicate-pattern-items',
+  templateUrl: './duplicate-pattern-items.component.html',
+  styleUrls: ['./duplicate-pattern-items.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DuplicatePatternItemsComponent {
   public get columnNames(): string[] {

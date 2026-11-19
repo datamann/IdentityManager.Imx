@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { BaseCdr } from 'qbm';
 
 @Component({
-    selector: 'imx-reason-sidesheet',
-    templateUrl: './reason-sidesheet.component.html',
-    styleUrls: ['./reason-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-reason-sidesheet',
+  templateUrl: './reason-sidesheet.component.html',
+  styleUrls: ['./reason-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReasonSidesheetComponent {
   public readonly formGroup = new UntypedFormGroup({});

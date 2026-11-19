@@ -25,14 +25,15 @@
  */
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
-    selector: 'imx-service-item-tags',
-    templateUrl: './service-item-tags.component.html',
-    standalone: false
+  selector: 'imx-service-item-tags',
+  templateUrl: './service-item-tags.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemTagsComponent implements OnInit {
   public readonly separatorKeysCodes: number[] = [ENTER, COMMA];

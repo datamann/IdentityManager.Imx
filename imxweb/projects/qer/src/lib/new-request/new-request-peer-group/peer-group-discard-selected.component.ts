@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -37,9 +37,10 @@ import { NewRequestSelectionService } from '../new-request-selection.service';
  * been selected, asking the user how to handle this situation.
  */
 @Component({
-    selector: 'imx-peer-group-discard-selected',
-    templateUrl: './peer-group-discard-selected.component.html',
-    standalone: false
+  selector: 'imx-peer-group-discard-selected',
+  templateUrl: './peer-group-discard-selected.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PeerGroupDiscardSelectedComponent implements OnInit, OnDestroy {
   public readonly dialogMessage =

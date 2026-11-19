@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ICartItemCheck } from '@imx-modules/imx-api-qer';
 import { DetailsView } from '../details-view.interface';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BaseViewerComponent implements DetailsView, OnInit {
   public check: ICartItemCheck;

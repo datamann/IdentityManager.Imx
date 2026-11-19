@@ -14,7 +14,13 @@
         </form>
         @if (dateCdr) {
           <div class="imx-button-stepper">
-            <button mat-stroked-button color="primary" data-imx-identifier="compare-step-1-next" matStepperNext [disabled]="dateForm.invalid">
+            <button
+              mat-stroked-button
+              color="primary"
+              data-imx-identifier="compare-step-1-next"
+              matStepperNext
+              [disabled]="dateForm.invalid"
+            >
               {{ '#LDS#Next' | translate }}
             </button>
           </div>
@@ -40,12 +46,12 @@
               [selectable]="true"
               (selectionChanged)="selectionChanged($event)"
               [noDataText]="ldsNoChanges"
-              >
+            >
               @if (entitySchema) {
                 <imx-data-table-column
                   [columnLabel]="'#LDS#Affected object' | translate"
-                  [entityColumn]="entitySchema.Columns?.Property"
-                  >
+                  [entityColumn]="$safeNavigationMigration(entitySchema.Columns?.Property)"
+                >
                   <ng-template let-entl>
                     <div>{{ entl.Property.value }}</div>
                     <div class="subtext">{{ entl.TypeDisplay.value }}</div>
@@ -55,13 +61,13 @@
               @if (entitySchema) {
                 <imx-data-table-column
                   [columnLabel]="'#LDS#Previous state' | translate"
-                  [entityColumn]="entitySchema.Columns?.HistoryValueDisplay"
+                  [entityColumn]="$safeNavigationMigration(entitySchema.Columns?.HistoryValueDisplay)"
                 ></imx-data-table-column>
               }
               @if (entitySchema) {
                 <imx-data-table-column
                   [columnLabel]="'#LDS#Current state' | translate"
-                  [entityColumn]="entitySchema.Columns?.CurrentValueDisplay"
+                  [entityColumn]="$safeNavigationMigration(entitySchema.Columns?.CurrentValueDisplay)"
                 ></imx-data-table-column>
               }
             </imx-data-table>
@@ -76,7 +82,7 @@
             color="primary"
             matStepperNext
             [disabled]="comparisonForm.invalid"
-            >
+          >
             {{ '#LDS#Next' | translate }}
           </button>
         </div>
@@ -89,11 +95,11 @@
           <mat-selection-list [(ngModel)]="uidActions">
             @for (action of actions; track action) {
               <mat-list-option
-                checkboxPosition="before"
+                togglePosition="before"
                 [value]="action.Id"
                 [disabled]="!action.CanExecute"
                 [attr.data-imx-identifier]="'multi-select-action-' + action.Id"
-                >
+              >
                 <div>{{ action.ObjectDisplay }}</div>
                 <div class="subtext">{{ action.Display }}</div>
               </mat-list-option>

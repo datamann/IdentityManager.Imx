@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { BehaviorSubject } from 'rxjs';
@@ -37,9 +37,10 @@ import { ClaimDeviceComponent } from './claim-device.component';
 import { ClaimDeviceService } from './claim-device.service';
 
 @Component({
-    selector: 'imx-cdr-editor',
-    template: '<p>MockCdrEditor</p>',
-    standalone: false
+  selector: 'imx-cdr-editor',
+  template: '<p>MockCdrEditor</p>',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class MockCdrEditor {
   @Input() public cdr: any;

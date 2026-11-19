@@ -24,17 +24,11 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormArray } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { ValueStruct } from '@imx-modules/imx-qbm-dbts';
-import {
-  BusyService,
-  CdrFactoryService,
-  ColumnDependentReference,
-  ConfirmationService,
-  SnackBarService
-} from 'qbm';
+import { BusyService, CdrFactoryService, ColumnDependentReference, ConfirmationService, SnackBarService } from 'qbm';
 import { Subscription } from 'rxjs';
 import { DugOverviewService } from '../../dug-overview/dug-overview.service';
 import { PortalDgeResourcesbyid } from '../../TypedClient';
@@ -43,12 +37,12 @@ interface DugResourceFormGroup {
   array: UntypedFormArray;
 }
 
-
 @Component({
   standalone: false,
   selector: 'imx-dug-assign-ownership-sidesheet',
   templateUrl: './dug-assign-ownership-sidesheet.component.html',
-  styleUrl: './dug-assign-ownership-sidesheet.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './dug-assign-ownership-sidesheet.component.scss',
 })
 export class DugAssignOwnershipSidesheetComponent {
   public dug: PortalDgeResourcesbyid[] = [];
@@ -60,14 +54,11 @@ export class DugAssignOwnershipSidesheetComponent {
   public isLoading = true;
 
   public get saveDisabled(): boolean {
-    return (
-      !this.dugResourceFormGroup.dirty ||
-      this.dugResourceFormGroup.invalid 
-    );
+    return !this.dugResourceFormGroup.dirty || this.dugResourceFormGroup.invalid;
   }
 
   constructor(
-    @Inject(EUI_SIDESHEET_DATA) public readonly data: { uid: string[], identifier: string },
+    @Inject(EUI_SIDESHEET_DATA) public readonly data: { uid: string[]; identifier: string },
     private readonly dugOverviewProvider: DugOverviewService,
     private readonly loadingService: EuiLoadingService,
     private readonly cdrFactory: CdrFactoryService,
@@ -95,14 +86,9 @@ export class DugAssignOwnershipSidesheetComponent {
 
   public async ngOnInit(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
-    try { 
-      this.dug = await Promise.all(this.data.uid.map(uid => this.dugOverviewProvider.getDugResourceById(uid)));
-      this.cdrOwnerShip = this.cdrFactory
-          .buildCdrFromColumnList(this.dug[0].GetEntity(), [
-            'UID_PersonResponsible',
-          ])
-          .filter((elem) => elem);
-        
+    try {
+      this.dug = await Promise.all(this.data.uid.map((uid) => this.dugOverviewProvider.getDugResourceById(uid)));
+      this.cdrOwnerShip = this.cdrFactory.buildCdrFromColumnList(this.dug[0].GetEntity(), ['UID_PersonResponsible']).filter((elem) => elem);
     } finally {
       isBusy.endBusy();
     }
@@ -118,7 +104,7 @@ export class DugAssignOwnershipSidesheetComponent {
       for (const dugItem of this.dug) {
         await dugItem.GetEntity().Commit();
       }
-      this.sidesheetRef.close(true)
+      this.sidesheetRef.close(true);
       this.snackbar.open({ key: '#LDS#The resource has been saved' });
     } finally {
       this.loadingService.hide(overlay);
@@ -127,9 +113,9 @@ export class DugAssignOwnershipSidesheetComponent {
 
   public async savePersonResponsible(value: ValueStruct<string>): Promise<void> {
     await Promise.all(
-      this.dug.slice(1).map(dug =>{
+      this.dug.slice(1).map((dug) => {
         dug.GetEntity().GetColumn('UID_PersonResponsible').PutValue(value?.DataValue);
-      })
+      }),
     );
   }
 }

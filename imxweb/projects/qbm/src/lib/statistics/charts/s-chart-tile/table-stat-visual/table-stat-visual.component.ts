@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ChartDto } from '@imx-modules/imx-api-qbm';
 
 @Component({
-    selector: 'imx-table-stat-visual',
-    templateUrl: './table-stat-visual.component.html',
-    styleUrls: ['./table-stat-visual.component.scss'],
-    standalone: false
+  selector: 'imx-table-stat-visual',
+  templateUrl: './table-stat-visual.component.html',
+  styleUrls: ['./table-stat-visual.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TableStatVisualComponent implements OnInit {
   @Input() public summaryStat: ChartDto;

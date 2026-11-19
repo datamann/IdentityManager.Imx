@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PortalShopServiceitems, QerProjectConfig } from '@imx-modules/imx-api-qer';
 import { DisplayColumns } from '@imx-modules/imx-qbm-dbts';
 import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-service-item-detail',
-    templateUrl: './service-item-detail.component.html',
-    standalone: false
+  selector: 'imx-service-item-detail',
+  templateUrl: './service-item-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemDetailComponent implements OnInit {
   @Input() public serviceItem: PortalShopServiceitems;

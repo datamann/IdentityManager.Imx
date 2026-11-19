@@ -17,10 +17,10 @@
           @if (isComplienceFrameworkEnabled && item.Areas.value !== '') {
             <span>{{ item.Areas.Column.GetDisplayValue() }}</span>
           }
-          @if (isComplienceFrameworkEnabled && item.Areas.value !== '' && getSubtitleText(item?.GetEntity())) {
+          @if (isComplienceFrameworkEnabled && item.Areas.value !== '' && getSubtitleText($safeNavigationMigration(item?.GetEntity()))) {
             <span class="imx-padding-right-4">;</span>
           }
-          <span>{{ getSubtitleText(item?.GetEntity()) }}</span>
+          <span>{{ getSubtitleText($safeNavigationMigration(item?.GetEntity())) }}</span>
         </div>
       </td>
     </ng-container>

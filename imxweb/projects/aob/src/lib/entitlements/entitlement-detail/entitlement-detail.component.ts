@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -37,6 +37,7 @@ import { EntitlementWrapper } from '../entitlement-wrapper.interface';
   selector: 'imx-entitlement-detail',
   templateUrl: './entitlement-detail.component.html',
   styleUrls: ['./entitlement-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EntitlementDetailComponent implements OnDestroy {

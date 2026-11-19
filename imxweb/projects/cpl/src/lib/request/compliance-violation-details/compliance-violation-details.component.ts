@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -39,10 +39,11 @@ import { ComplianceViolationService } from './compliance-violation.service';
 import { EditMitigatingControlsComponent } from './edit-mitigating-controls/edit-mitigating-controls.component';
 
 @Component({
-    selector: 'imx-compliance-violation-details',
-    templateUrl: './compliance-violation-details.component.html',
-    styleUrls: ['./compliance-violation-details.component.scss'],
-    standalone: false
+  selector: 'imx-compliance-violation-details',
+  templateUrl: './compliance-violation-details.component.html',
+  styleUrls: ['./compliance-violation-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ComplianceViolationDetailsComponent implements OnInit {
   @Input() public pwoId: string;

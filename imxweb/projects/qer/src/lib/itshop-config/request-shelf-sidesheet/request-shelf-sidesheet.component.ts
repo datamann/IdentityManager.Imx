@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -44,10 +44,11 @@ import { ACTION_DISMISS, RequestsService } from '../requests.service';
 const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShopShelfDetails`;
 
 @Component({
-    selector: 'imx-request-shelf-sidesheet',
-    templateUrl: './request-shelf-sidesheet.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss'],
-    standalone: false
+  selector: 'imx-request-shelf-sidesheet',
+  templateUrl: './request-shelf-sidesheet.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestShelfSidesheetComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

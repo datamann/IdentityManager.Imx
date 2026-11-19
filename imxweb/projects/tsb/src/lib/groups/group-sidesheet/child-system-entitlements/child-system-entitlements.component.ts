@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalTargetsystemUnsGroupmembers } from '@imx-modules/imx-api-tsb';
 import {
@@ -38,10 +38,11 @@ import { DataSourceToolbarSettings, SettingsService } from 'qbm';
 import { GroupsService } from '../../groups.service';
 
 @Component({
-    selector: 'imx-child-system-entitlements',
-    templateUrl: './child-system-entitlements.component.html',
-    styleUrls: ['./child-system-entitlements.component.scss'],
-    standalone: false
+  selector: 'imx-child-system-entitlements',
+  templateUrl: './child-system-entitlements.component.html',
+  styleUrls: ['./child-system-entitlements.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ChildSystemEntitlementsComponent implements OnInit {
   @Input() public groupId: string;

@@ -27,7 +27,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -49,7 +49,7 @@ interface ChatEntry {
   chatId: string | undefined;
   prompt: string;
   sqlQuery: string | undefined;
-  properties?: IClientProperty[],
+  properties?: IClientProperty[];
   response: ExtendedEntityCollectionData<ChatApiExtendedData>;
 }
 
@@ -74,6 +74,7 @@ interface ChatEntry {
   providers: [ChatbotService, DataViewSource],
   templateUrl: './sidesheet.component.html',
   styleUrl: './sidesheet.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('fadeInOut', [
       state('visible', style({ opacity: 1 })),
@@ -211,7 +212,7 @@ export class ChatbotSidesheetComponent implements OnInit, OnDestroy {
 
   /**
    * Opens a simple dialog for allowing for downloading a chatEntry's data
-   * @param chatEntry 
+   * @param chatEntry
    */
   public onExportData(chatEntry: ChatEntry) {
     const exportMethod = this.chatbotService.getExportMethod(chatEntry.chatId, chatEntry.prompt);
@@ -219,9 +220,9 @@ export class ChatbotSidesheetComponent implements OnInit, OnDestroy {
       data: {
         exportMethod,
         prompt: chatEntry.prompt,
-        totalCount: chatEntry.response.TotalCount
-      } as ChatbotDialogData
-    })
+        totalCount: chatEntry.response.TotalCount,
+      } as ChatbotDialogData,
+    });
   }
 
   /**

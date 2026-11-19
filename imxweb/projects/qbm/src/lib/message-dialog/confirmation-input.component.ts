@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { LdsReplacePipe } from '../lds-replace/lds-replace.pipe';
@@ -35,21 +35,22 @@ import { LdsReplacePipe } from '../lds-replace/lds-replace.pipe';
     <div class="confirmation-input-container imx-margin-top-32">
       <eui-form-field>
         <eui-label>{{ promptMessage | translate | ldsReplace: expectedValue }}</eui-label>
-        <input 
-          matInput           
+        <input
+          matInput
           autocomplete="off"
           (input)="onInputChange()"
           [placeholder]="placeholder"
-          [formControl]="requiredCtrl" 
+          [formControl]="requiredCtrl"
           [required]="true"
-        >
+        />
         <mat-error>
           {{ '#LDS#To confirm, enter "{0}".' | translate | ldsReplace: expectedValue }}
         </mat-error>
       </eui-form-field>
     </div>
   `,
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ConfirmationInputComponent {
   @Input() expectedValue: string = '';
@@ -60,7 +61,10 @@ export class ConfirmationInputComponent {
 
   protected requiredCtrl = new FormControl('', [Validators.required]);
 
-  constructor(protected readonly translate: TranslateService, protected ldsReplace: LdsReplacePipe) { }
+  constructor(
+    protected readonly translate: TranslateService,
+    protected ldsReplace: LdsReplacePipe,
+  ) {}
 
   onInputChange(): void {
     const isValid = this.requiredCtrl.value?.trim() === this.expectedValue.trim();

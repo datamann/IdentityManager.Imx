@@ -24,15 +24,16 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DataManagementService } from '../data-management.service';
 import { RoleService } from '../role.service';
 
 @Component({
-    selector: 'imx-role-memberships',
-    templateUrl: './role-memberships.component.html',
-    styleUrls: ['./role-memberships.component.scss', '../sidesheet.scss'],
-    standalone: false
+  selector: 'imx-role-memberships',
+  templateUrl: './role-memberships.component.html',
+  styleUrls: ['./role-memberships.component.scss', '../sidesheet.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleMembershipsComponent {
   public autoMembershipsValid = true;

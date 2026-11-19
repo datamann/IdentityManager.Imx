@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-    templateUrl: './send-reminder-mail.component.html',
-    styleUrls: ['./send-reminder-mail.component.scss'],
-    standalone: false
+  templateUrl: './send-reminder-mail.component.html',
+  styleUrls: ['./send-reminder-mail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SendReminderMailComponent implements OnDestroy {
   public showHelper = true;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   CollectionLoadParameters,
@@ -54,6 +54,7 @@ import { ForeignKeyPickerData } from './foreign-key-picker-data.interface';
   templateUrl: './fk-selector.component.html',
   styleUrls: ['./fk-selector.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class FkSelectorComponent implements OnInit {
@@ -121,7 +122,7 @@ export class FkSelectorComponent implements OnInit {
       filterTree: {
         multiSelect: true,
         filterMethode: async (parentKey) => this.selectedTable.GetFilterTree(parentKey),
-      }
+      },
     };
     await this.getPreselectedEntities();
     await this.dataSource.init(dataViewInitParameters);

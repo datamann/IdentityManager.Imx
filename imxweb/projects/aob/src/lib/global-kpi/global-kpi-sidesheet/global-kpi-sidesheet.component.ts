@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { EUI_SIDESHEET_DATA, EuiCoreModule } from '@elemental-ui/core';
 import { ChartDto } from '@imx-modules/imx-api-aob';
@@ -34,9 +34,10 @@ import { unzip } from 'lodash';
 import { isAllIntegers, ShortDatePipe } from 'qbm';
 
 @Component({
-    imports: [EuiCoreModule, MatCardModule, TranslateModule],
-    templateUrl: './global-kpi-sidesheet.component.html',
-    styleUrl: './global-kpi-sidesheet.component.scss'
+  imports: [EuiCoreModule, MatCardModule, TranslateModule],
+  templateUrl: './global-kpi-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './global-kpi-sidesheet.component.scss',
 })
 export class GlobalKpiSidesheetComponent implements OnInit {
   // Injected services
@@ -185,7 +186,7 @@ export class GlobalKpiSidesheetComponent implements OnInit {
       width: this.lineChartContent().nativeElement.offsetWidth,
     };
     if (isPieChart) {
-      (size.height = this.pieChartContent().nativeElement.offsetHeight), (size.width = this.pieChartContent().nativeElement.offsetWidth);
+      ((size.height = this.pieChartContent().nativeElement.offsetHeight), (size.width = this.pieChartContent().nativeElement.offsetWidth));
     }
     chart.resize(size);
   }

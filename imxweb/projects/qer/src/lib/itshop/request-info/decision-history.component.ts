@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { EntityData } from '@imx-modules/imx-qbm-dbts';
 import { DecisionHistoryService } from '../decision-history.service';
 
@@ -35,6 +35,7 @@ import { WorkflowHistoryItemWrapper } from './workflow-history-item-wrapper';
   selector: 'imx-decision-history',
   templateUrl: './decision-history.component.html',
   styleUrls: ['./decision-history.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DecisionHistoryComponent implements OnChanges {
@@ -48,7 +49,7 @@ export class DecisionHistoryComponent implements OnChanges {
   constructor(
     public readonly decisionHistory: DecisionHistoryService,
     public translate: TranslateService,
-  ) { }
+  ) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.approverContainer) {

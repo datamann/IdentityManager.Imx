@@ -36,6 +36,7 @@ import {
   Signal,
   ViewChild,
   WritableSignal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatColumnDef, MatTable } from '@angular/material/table';
 import { CollectionLoadParameters, DataModel, EntitySchema, FilterData, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -48,6 +49,7 @@ import { ExecuteFunction, HightlightEntityFunction } from '../data-view.interfac
   selector: 'imx-data-view-nested-table',
   templateUrl: './data-view-nested-table.component.html',
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataViewNestedTableComponent implements OnInit {

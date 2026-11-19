@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { SourceDetectiveType } from './sourcedetective-type.enum';
 
@@ -36,9 +36,10 @@ export interface SourceDetectiveSidesheetData {
 }
 
 @Component({
-    styleUrls: ['./sourcedetective-sidesheet.component.scss'],
-    templateUrl: './sourcedetective-sidesheet.component.html',
-    standalone: false
+  styleUrls: ['./sourcedetective-sidesheet.component.scss'],
+  templateUrl: './sourcedetective-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SourceDetectiveSidesheetComponent {
   constructor(@Inject(EUI_SIDESHEET_DATA) public data: SourceDetectiveSidesheetData) {}

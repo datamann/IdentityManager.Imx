@@ -35,6 +35,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -68,10 +69,11 @@ import { ServiceItemInfoComponent } from '../service-item-info/service-item-info
 import { ServiceItemsService } from '../service-items.service';
 
 @Component({
-    selector: 'imx-serviceitem-list',
-    templateUrl: './serviceitem-list.component.html',
-    styleUrls: ['./serviceitem-list.component.scss'],
-    standalone: false
+  selector: 'imx-serviceitem-list',
+  templateUrl: './serviceitem-list.component.html',
+  styleUrls: ['./serviceitem-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceitemListComponent implements AfterViewInit, OnChanges, OnDestroy, OnInit {
   @ViewChild('dst') public dstComponent: DataSourceToolbarComponent;
@@ -109,7 +111,9 @@ export class ServiceitemListComponent implements AfterViewInit, OnChanges, OnDes
   public busyService = new BusyService();
 
   public get options(): string[] {
-    return this.uidPersonPeerGroup ?? '' !== '' ? ['search', 'filter', 'settings'] : ['search', 'filter', 'settings', 'selectedViewGroup'];
+    return (this.uidPersonPeerGroup ?? '' !== '')
+      ? ['search', 'filter', 'settings']
+      : ['search', 'filter', 'settings', 'selectedViewGroup'];
   }
 
   @ViewChild(DataSourceToolbarComponent) private readonly dst: DataSourceToolbarComponent;

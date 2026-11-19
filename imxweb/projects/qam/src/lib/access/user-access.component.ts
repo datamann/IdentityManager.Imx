@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { imx_SessionService } from 'qbm';
 
 /** Shows access information for the authenticated user's identity. */
 @Component({
-    templateUrl: './user-access.component.html',
-    standalone: false
+  templateUrl: './user-access.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class UserAccessComponent implements OnInit {
   constructor(private readonly session: imx_SessionService) {}

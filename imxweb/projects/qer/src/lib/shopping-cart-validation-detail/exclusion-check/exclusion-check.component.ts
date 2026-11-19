@@ -24,18 +24,19 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BaseViewerComponent } from '../base-viewer/base-viewer.component';
 import { DetailsView } from '../details-view.interface';
 import { ExclusionResult } from './exclusion-result.interface';
 
 @Component({
-    selector: 'imx-exclusion-check',
-    templateUrl: './exclusion-check.component.html',
-    standalone: false
+  selector: 'imx-exclusion-check',
+  templateUrl: './exclusion-check.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ExclusionCheckComponent extends BaseViewerComponent implements DetailsView, OnInit {
-  public declare detail: ExclusionResult[];
+  declare public detail: ExclusionResult[];
 
   public ngOnInit(): void {
     super.ngOnInit();

@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "qer-app-pwdportal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "projects/qer-app-pwdportal/src",
   "prefix": "imx",
@@ -39,7 +39,6 @@
           "browser": ""
         },
         "index": "projects/qer-app-pwdportal/src/index.html",
-        "browser": "projects/qer-app-pwdportal/src/main.ts",
         "polyfills": [
           "projects/qer-app-pwdportal/src/polyfills.ts"
         ],
@@ -48,6 +47,11 @@
         "assets": [
           "projects/qer-app-pwdportal/src/appconfig.json",
           "projects/qer-app-pwdportal/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./html",
+            "output": "./html"
+          },
           {
             "glob": "**/*",
             "input": "./shared/assets/",
@@ -66,12 +70,13 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
-        }
+        },
+        "browser": "projects/qer-app-pwdportal/src/main.ts"
       },
       "configurations": {
         "production": {
@@ -84,7 +89,7 @@
           "optimization": true,
           "outputHashing": "all",
           "sourceMap": false,
-          "namedChunks": false,
+          "namedChunks": true,
           "extractLicenses": true,
           "budgets": [
             {
@@ -133,45 +138,39 @@
         }
       },
       "outputs": [
-        "{options.outputPath}"
-      ],
-      "dependsOn": [
-        "^build",
-        {
-          "projects": [
-            "att"
-          ],
-          "target": "build"
-        }
+        "{workspaceRoot}/dist/qer-app-pwdportal"
       ]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "qer-app-pwdportal:build"
+        "buildTarget": "qer-app-pwdportal:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "qer-app-pwdportal:build:production"
+          "buildTarget": "qer-app-pwdportal:build:production"
         },
         "development": {
-          "browserTarget": "qer-app-pwdportal:build:development"
+          "buildTarget": "qer-app-pwdportal:build:development"
         },
         "remote-dev": {
-          "browserTarget": "qer-app-pwdportal:build:remote-dev"
+          "buildTarget": "qer-app-pwdportal:build:remote-dev"
         },
         "remote-qs": {
-          "browserTarget": "qer-app-pwdportal:build:remote-qs"
+          "buildTarget": "qer-app-pwdportal:build:remote-qs"
         },
         "es5": {
-          "browserTarget": "qer-app-pwdportal:build:es5"
+          "buildTarget": "qer-app-pwdportal:build:es5"
         }
+      },
+      "readyWhen": {
+        "signal": true
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "qer-app-pwdportal:build"
+        "buildTarget": "qer-app-pwdportal:build"
       }
     },
     "test": {
@@ -190,26 +189,27 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/assets",
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
         }
       }
     },
     "lint": {
-      "executor": "@angular-devkit/build-angular:tslint",
+      "executor": "@angular-eslint/builder:lint",
       "options": {
-        "tsConfig": [
-          "projects/qer-app-pwdportal/tsconfig.app.json",
-          "projects/qer-app-pwdportal/tsconfig.spec.json"
-        ],
-        "exclude": [
-          "**/node_modules/**"
+        "lintFilePatterns": [
+          "projects/qer-app-pwdportal/**/*.ts",
+          "projects/qer-app-pwdportal/**/*.html"
         ]
       }
     }
-  }
+  },
+  "implicitDependencies": [
+    "att",
+    "qbm",
+    "qer"
+  ]
 }

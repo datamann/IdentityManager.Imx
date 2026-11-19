@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSelectOption, EuiSidesheetRef } from '@elemental-ui/core';
 import { HeatmapData, HeatmapDto } from '@imx-modules/imx-api-qbm';
@@ -51,7 +51,8 @@ import { HeatmapSidesheetService } from './heatmap-sidesheet.service';
   selector: 'imx-heatmap-sidesheet',
   templateUrl: './heatmap-sidesheet.component.html',
   styleUrls: ['./heatmap-sidesheet.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HeatmapSidesheetComponent implements OnInit, OnDestroy {
   // DST variables
@@ -109,7 +110,7 @@ export class HeatmapSidesheetComponent implements OnInit, OnDestroy {
     private replacePipe: LdsReplacePipe,
     private shortDate: ShortDatePipe,
     private cdrService: CdrFactoryService,
-  ) { }
+  ) {}
 
   public get hasData(): boolean {
     return this.savedData[this.chosenDateIndex] && this.savedData[this.chosenDateIndex].data.totalCount > 0;

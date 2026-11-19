@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -34,17 +34,18 @@ import { EntityColumnContainer } from '../entity-column-container';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Provides a {@link CdrEditor | CDR editor} for editing / viewing binary value columns.
- * 
+ *
  * It renders an input field for adding data.
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-binary',
-    templateUrl: './edit-binary.component.html',
-    styleUrls: ['./edit-binary.component.scss'],
-    standalone: false
+  selector: 'imx-edit-binary',
+  templateUrl: './edit-binary.component.html',
+  styleUrls: ['./edit-binary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditBinaryComponent implements CdrEditor {
   /**

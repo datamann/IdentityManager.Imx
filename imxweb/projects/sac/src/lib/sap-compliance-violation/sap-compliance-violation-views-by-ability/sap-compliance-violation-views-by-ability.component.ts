@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ByAbilityResult, SAPUserFunctionSrcFLD } from '@imx-modules/imx-api-sac';
 import {
   CollectionLoadParameters,
@@ -40,10 +40,11 @@ import { DataSourceToolBarGroup, DataSourceToolbarGroupData, DataSourceToolbarSe
 import { SapComplianceByAbilityBuilder } from './sap-compliance-violation-views-by-ability-builder';
 import { SapComplianceByAbilityEntity } from './sap-compliance-violation-views-by-ability-entity';
 @Component({
-    selector: 'imx-sap-compliance-violation-views-by-ability',
-    templateUrl: './sap-compliance-violation-views-by-ability.component.html',
-    styleUrls: ['./sap-compliance-violation-views-by-ability.component.scss'],
-    standalone: false
+  selector: 'imx-sap-compliance-violation-views-by-ability',
+  templateUrl: './sap-compliance-violation-views-by-ability.component.html',
+  styleUrls: ['./sap-compliance-violation-views-by-ability.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SapComplianceViolationViewsByAbilityComponent {
   @Input() set resultByAbility(value: ByAbilityResult) {

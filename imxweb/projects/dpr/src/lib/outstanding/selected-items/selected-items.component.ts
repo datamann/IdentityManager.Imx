@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { CollectionLoadParameters, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -32,10 +32,11 @@ import { DataSourceToolbarSettings } from 'qbm';
 import { OutstandingObjectEntity } from '../outstanding-object-entity';
 
 @Component({
-    selector: 'imx-selected-items',
-    templateUrl: './selected-items.component.html',
-    styleUrls: ['./selected-items.component.scss'],
-    standalone: false
+  selector: 'imx-selected-items',
+  templateUrl: './selected-items.component.html',
+  styleUrls: ['./selected-items.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectedItemsComponent implements OnInit {
   public sortedEntities: OutstandingObjectEntity[];

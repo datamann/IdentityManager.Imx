@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -32,10 +32,11 @@ import { IEntityColumn } from '@imx-modules/imx-qbm-dbts';
 import { BaseCdr, ColumnDependentReference } from 'qbm';
 
 @Component({
-    selector: 'imx-mitigating-controls',
-    templateUrl: './mitigating-controls.component.html',
-    styleUrls: ['./mitigating-controls.component.scss'],
-    standalone: false
+  selector: 'imx-mitigating-controls',
+  templateUrl: './mitigating-controls.component.html',
+  styleUrls: ['./mitigating-controls.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MitigatingControlsComponent {
   public mitigatingControlCdr: ColumnDependentReference;

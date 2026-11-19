@@ -27,7 +27,17 @@
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
@@ -75,8 +85,9 @@ import { DynamicDataSource } from './sidenav-tree-dynamic-extension';
     TranslateModule,
     DataSourceToolbarModule,
     CustomTreeControlComponent,
-    ClassloggerModule
+    ClassloggerModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('expandDiv', [
       state(

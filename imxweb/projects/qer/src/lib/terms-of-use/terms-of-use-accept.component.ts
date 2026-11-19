@@ -24,7 +24,16 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -55,9 +64,10 @@ interface TosForm {
  * Depending on the server configuration, the user may have to authenticate himself with OneLogin.
  */
 @Component({
-    templateUrl: './terms-of-use-accept.component.html',
-    styleUrls: ['./terms-of-use-accept.component.scss'],
-    standalone: false
+  templateUrl: './terms-of-use-accept.component.html',
+  styleUrls: ['./terms-of-use-accept.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
   @ViewChild('authFormControls', { static: true, read: ViewContainerRef }) private authFormControls: ViewContainerRef;

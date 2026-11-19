@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { first } from 'rxjs/operators';
 
@@ -39,6 +39,7 @@ import { ApprovalsTableComponent } from './approvals-table.component';
   templateUrl: './approvals.component.html',
   selector: 'imx-itshop-approvals',
   styleUrls: ['./approvals.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ApprovalsComponent implements OnInit {

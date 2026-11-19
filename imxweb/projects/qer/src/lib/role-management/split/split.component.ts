@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { IRoleSplitItem, RoleExtendedDataWrite, UiActionData } from '@imx-modules/imx-api-qer';
@@ -38,9 +38,10 @@ import { RoleService } from '../role.service';
 import { SplitService } from './split.service';
 
 @Component({
-    templateUrl: './split.component.html',
-    styleUrls: ['./split.component.scss'],
-    standalone: false
+  templateUrl: './split.component.html',
+  styleUrls: ['./split.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SplitComponent implements OnInit {
   // Takes place of the previous injected data

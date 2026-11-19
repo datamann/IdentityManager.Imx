@@ -25,7 +25,7 @@
  */
 
 import { Platform } from '@angular/cdk/platform';
-import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
@@ -48,10 +48,11 @@ import { ServiceCategoryComponent } from '../edit-application/service-category/s
 import { AccountDetails } from './account-details.interface';
 
 @Component({
-    selector: 'imx-application-details',
-    templateUrl: './application-details.component.html',
-    styleUrls: ['./application-details.component.scss'],
-    standalone: false
+  selector: 'imx-application-details',
+  templateUrl: './application-details.component.html',
+  styleUrls: ['./application-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationDetailsComponent implements OnChanges, OnInit {
   /**

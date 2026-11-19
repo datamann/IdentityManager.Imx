@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { PolicyViolation, ViolationState } from '@imx-modules/imx-api-att';
 
 @Component({
-    selector: 'imx-decision-policy-violation',
-    templateUrl: './decision-policy-violation.component.html',
-    styleUrls: ['./decision-policy-violation.component.scss'],
-    standalone: false
+  selector: 'imx-decision-policy-violation',
+  templateUrl: './decision-policy-violation.component.html',
+  styleUrls: ['./decision-policy-violation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DecisionPolicyViolationComponent {
   @Input() public policyViolations: PolicyViolation[];
@@ -40,9 +41,11 @@ export class DecisionPolicyViolationComponent {
   constructor() {}
 
   public stateDisplay(violation: PolicyViolation) {
-    switch (violation.State){
-      case ViolationState.ExceptionApproved: return '#LDS#Exception granted';
-      case ViolationState.ExceptionDenied: return '#LDS#Exception denied';
+    switch (violation.State) {
+      case ViolationState.ExceptionApproved:
+        return '#LDS#Exception granted';
+      case ViolationState.ExceptionDenied:
+        return '#LDS#Exception denied';
     }
 
     return '#LDS#Approval decision pending';

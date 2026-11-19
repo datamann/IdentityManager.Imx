@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
@@ -38,6 +38,7 @@ import { QerApiService } from '../../qer-api-client.service';
 @Component({
   templateUrl: './passcode-login.component.html',
   styleUrls: ['./passcode-login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PasscodeLoginComponent implements OnInit, OnDestroy {

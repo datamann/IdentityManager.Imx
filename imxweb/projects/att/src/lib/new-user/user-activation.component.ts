@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PersonActivationDto } from '@imx-modules/imx-api-att';
@@ -34,9 +34,10 @@ import { Subscription } from 'rxjs';
 import { ApiService } from '../api.service';
 
 @Component({
-    templateUrl: './user-activation.component.html',
-    styleUrls: ['./user-activation.component.scss'],
-    standalone: false
+  templateUrl: './user-activation.component.html',
+  styleUrls: ['./user-activation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class UserActivationComponent implements OnDestroy {
   public busy = true;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalServiceitems } from '@imx-modules/imx-api-qer';
@@ -44,11 +44,12 @@ import { ServiceItemsEditSidesheetComponent } from './service-items-edit-sideshe
 import { ServiceItemsEditService } from './service-items-edit.service';
 
 @Component({
-    selector: 'imx-service-items-edit',
-    templateUrl: './service-items-edit.component.html',
-    styleUrls: ['./service-items-edit.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-service-items-edit',
+  templateUrl: './service-items-edit.component.html',
+  styleUrls: ['./service-items-edit.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemsEditComponent implements OnInit {
   public entitySchema: EntitySchema;

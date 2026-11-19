@@ -25,7 +25,7 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -37,9 +37,10 @@ import { PasswordHelper } from './password-helper';
 import { PasswordService } from './password.service';
 
 @Component({
-    templateUrl: './check-passwords.component.html',
-    styleUrls: ['./check-passwords.component.scss'],
-    standalone: false
+  templateUrl: './check-passwords.component.html',
+  styleUrls: ['./check-passwords.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CheckPasswordsComponent implements OnDestroy {
   public get passwordRepeatControl(): AbstractControl | null {

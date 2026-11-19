@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ConfigSettingValidValue } from '@imx-modules/imx-api-qbm';
 import { imx_SessionService } from '../../../session/imx-session.service';
 import { ConfigService } from '../config.service';
@@ -34,6 +34,7 @@ import { NodeSetting } from '../node-setting';
   templateUrl: './select-value.component.html',
   styles: ['.wide-field {min-width:450px;}'],
   selector: 'imx-config-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SelectValueComponent implements OnInit {

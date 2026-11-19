@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -39,10 +39,11 @@ export interface RequestConfigSidesheetData {
 }
 
 @Component({
-    selector: 'imx-request-config-sidesheet',
-    templateUrl: './request-config-sidesheet.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss'],
-    standalone: false
+  selector: 'imx-request-config-sidesheet',
+  templateUrl: './request-config-sidesheet.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestConfigSidesheetComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

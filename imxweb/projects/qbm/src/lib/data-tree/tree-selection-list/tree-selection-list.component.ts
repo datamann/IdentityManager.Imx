@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { DbObjectKey, IEntity } from '@imx-modules/imx-qbm-dbts';
@@ -32,9 +32,10 @@ import { MetadataService } from '../../base/metadata.service';
 import { CdrFactoryService } from '../../cdr/cdr-factory.service';
 
 @Component({
-    templateUrl: './tree-selection-list.component.html',
-    styleUrls: ['./tree-selection-list.component.scss'],
-    standalone: false
+  templateUrl: './tree-selection-list.component.html',
+  styleUrls: ['./tree-selection-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TreeSelectionListComponent implements OnInit {
   public items: { entities: IEntity[]; tableName: string }[];

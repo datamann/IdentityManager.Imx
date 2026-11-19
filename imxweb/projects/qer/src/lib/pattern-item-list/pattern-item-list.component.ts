@@ -24,7 +24,18 @@
  *
  */
 
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalItshopPatternRequestable, PortalShopServiceitems } from '@imx-modules/imx-api-qer';
 import {
@@ -49,9 +60,10 @@ import { PatternItemListFilterType } from './pattern-item-list-filter-type.enum'
 import { PatternItemService } from './pattern-item.service';
 
 @Component({
-    selector: 'imx-pattern-item-list',
-    templateUrl: './pattern-item-list.component.html',
-    standalone: false
+  selector: 'imx-pattern-item-list',
+  templateUrl: './pattern-item-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PatternItemListComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('dst') public dstComponent: DataSourceToolbarComponent;

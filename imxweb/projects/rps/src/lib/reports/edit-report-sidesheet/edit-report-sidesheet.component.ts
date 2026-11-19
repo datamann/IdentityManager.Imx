@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import _ from 'lodash';
@@ -55,9 +55,10 @@ import { RpsApiService } from '../../rps-api-client.service';
 import { EditReportSqlWizardService } from '../editreport-sqlwizard.service';
 
 @Component({
-    templateUrl: './edit-report-sidesheet.component.html',
-    styleUrls: ['./edit-report-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './edit-report-sidesheet.component.html',
+  styleUrls: ['./edit-report-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditReportSidesheetComponent implements OnInit, OnDestroy {
   public get formArray(): UntypedFormArray {

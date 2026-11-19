@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, computed, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, computed, OnDestroy, OnInit, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -67,6 +67,7 @@ import { TargetSystemReportComponent } from './target-system-report/target-syste
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataExplorerAccountsComponent implements OnInit, OnDestroy, SideNavigationComponent {

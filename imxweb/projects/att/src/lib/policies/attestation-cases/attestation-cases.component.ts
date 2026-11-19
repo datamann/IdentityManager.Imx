@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -43,10 +43,11 @@ import { PolicyService } from '../policy.service';
 import { AttestationCasesComponentParameter } from './attestation-cases-component-parameter.interface';
 
 @Component({
-    templateUrl: './attestation-cases.component.html',
-    styleUrls: ['./attestation-cases.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './attestation-cases.component.html',
+  styleUrls: ['./attestation-cases.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationCasesComponent implements OnInit {
   public readonly entitySchemaPolicy: EntitySchema;

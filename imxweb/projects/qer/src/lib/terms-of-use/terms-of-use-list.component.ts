@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 
 import { PortalTermsofuse } from '@imx-modules/imx-api-qer';
@@ -37,10 +37,11 @@ import { TermsOfUseService } from './terms-of-use.service';
  * to a given list of {@link PortalTermsofuse} items.
  */
 @Component({
-    selector: 'imx-terms-of-use-list',
-    templateUrl: './terms-of-use-list.component.html',
-    styleUrls: ['./terms-of-use-list.component.scss'],
-    standalone: false
+  selector: 'imx-terms-of-use-list',
+  templateUrl: './terms-of-use-list.component.html',
+  styleUrls: ['./terms-of-use-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TermsOfUseListComponent {
   /** The list of terms of use {@link items|PortalTermsofuse} to show. */

@@ -62,7 +62,7 @@
       [caption]="'#LDS#Heading Products Expiring Soon' | translate"
       [tooltip]="'#LDS#Shows products assigned to you that are about to expire.' | translate"
       *ngIf="userConfig?.IsITShopEnabled && (userConfig?.CountRequestsEndingSoon || 0) > 0"
-      [value]="userConfig?.CountRequestsEndingSoon?.toString()"
+      [value]="$safeNavigationMigration($safeNavigationMigration(userConfig?.CountRequestsEndingSoon?.toString()))"
       [identifier]="'requests ending soon'"
       (actionClick)="GoToRequestsEndingSoon()"
     ></imx-badge-tile>

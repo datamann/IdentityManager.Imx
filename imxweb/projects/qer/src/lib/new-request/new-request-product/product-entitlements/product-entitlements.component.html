@@ -18,13 +18,13 @@
 >
   <imx-data-table-generic-column
     columnName="entitlementDisplay"
-    [columnLabel]="entitySchema.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]?.Display"
+    [columnLabel]="$safeNavigationMigration(entitySchema.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]?.Display)"
   >
     <ng-template let-item>
       {{ item.TargetEntitlement.Column.GetDisplayValue() }}
     </ng-template>
   </imx-data-table-generic-column>
-  <imx-data-table-column [entityColumn]="entitySchema?.Columns?.TargetEntitlement">
+  <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.TargetEntitlement)">
     <ng-template let-item>
       <div>{{ entitlementTypes.get(item.GetEntity().GetKeys().toString()) }}</div>
     </ng-template>

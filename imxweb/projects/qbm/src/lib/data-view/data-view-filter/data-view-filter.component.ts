@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, Signal, computed } from '@angular/core';
+import { Component, Input, Signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { FilterType, SqlWizardExpression } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -40,6 +40,7 @@ import { ExpressionFilter, SelectedFilter, SelectedFilterType } from '../data-vi
   selector: 'imx-data-view-filter',
   templateUrl: './data-view-filter.component.html',
   styleUrls: ['./data-view-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataViewFilterComponent {

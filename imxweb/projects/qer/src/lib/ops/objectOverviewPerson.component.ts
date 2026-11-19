@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { OpsupportDbObjectService } from 'qbm';
 
@@ -33,9 +33,10 @@ import { PasscodeService } from './passcode.service';
 import { OpsPermissionsService } from './permissions/ops-permissions.service';
 
 @Component({
-    templateUrl: './objectOverviewPerson.component.html',
-    styleUrls: ['./objectOverviewPerson.component.scss'],
-    standalone: false
+  templateUrl: './objectOverviewPerson.component.html',
+  styleUrls: ['./objectOverviewPerson.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ObjectOverviewPersonComponent implements OnInit {
   [x: string]: any;

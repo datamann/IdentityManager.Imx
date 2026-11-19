@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,10 +38,11 @@ import { DuplicateCheckParameter } from './duplicate-check-parameter.interface';
 import { DuplicatesSidesheetComponent } from './duplicates-sidesheet/duplicates-sidesheet.component';
 
 @Component({
-    selector: 'imx-create-new-identity',
-    templateUrl: './create-new-identity.component.html',
-    styleUrls: ['./create-new-identity.component.scss'],
-    standalone: false
+  selector: 'imx-create-new-identity',
+  templateUrl: './create-new-identity.component.html',
+  styleUrls: ['./create-new-identity.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CreateNewIdentityComponent implements OnDestroy {
   public identityForm = new UntypedFormGroup({});

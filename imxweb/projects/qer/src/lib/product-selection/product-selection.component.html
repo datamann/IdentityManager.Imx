@@ -13,7 +13,7 @@
       mat-button
       class="imx-actions-button"
       data-imx-identifier="productselection-button-actions"
-      >
+    >
       <eui-icon icon="ellipsisvertical"></eui-icon>
     </button>
     <mat-menu #ToolbarButton1="matMenu">
@@ -43,11 +43,7 @@
         </button>
       }
       @if (canSelectByRefUser && isSinglePersonRequest()) {
-        <button
-          mat-menu-item
-          (click)="setPeerGroupPerson(recipients.value)"
-          [disabled]="uidPersonPeerGroup"
-          >
+        <button mat-menu-item (click)="setPeerGroupPerson(recipients.value)" [disabled]="uidPersonPeerGroup">
           {{ '#LDS#Show products other identities requested' | translate }}
         </button>
       }
@@ -84,47 +80,47 @@
     </div>
   </div>
 </eui-alert> -->
-<div data-imx-identifier="recipient-and-actions" class="imx-recipients">
-  @if (canRequestForSomebodyElse && !uidPersonPeerGroup) {
-    <mat-radio-group [(ngModel)]="recipientType" data-imx-identifier="recipient-type" (change)="selectedRecipientTypeChanged($event)">
-      <mat-radio-button [value]="'self'" data-imx-identifier="recipient-type-self">
-        {{ '#LDS#For me' | translate }}
-      </mat-radio-button>
-      <mat-radio-button [value]="'others'" data-imx-identifier="recipient-type-others">
-        {{ '#LDS#For others' | translate }}
-      </mat-radio-button>
-    </mat-radio-group>
-  } @else {
-    <imx-cdr-editor class="imx-recipients-readonly-cdr" [cdr]="cartItemRecipientsReadonly"></imx-cdr-editor>
-  }
-</div>
+  <div data-imx-identifier="recipient-and-actions" class="imx-recipients">
+    @if (canRequestForSomebodyElse && !uidPersonPeerGroup) {
+      <mat-radio-group [(ngModel)]="recipientType" data-imx-identifier="recipient-type" (change)="selectedRecipientTypeChanged($event)">
+        <mat-radio-button [value]="'self'" data-imx-identifier="recipient-type-self">
+          {{ '#LDS#For me' | translate }}
+        </mat-radio-button>
+        <mat-radio-button [value]="'others'" data-imx-identifier="recipient-type-others">
+          {{ '#LDS#For others' | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+    } @else {
+      <imx-cdr-editor class="imx-recipients-readonly-cdr" [cdr]="cartItemRecipientsReadonly"></imx-cdr-editor>
+    }
+  </div>
 
-<imx-cdr-editor
-  class="imx-recipients-cdr"
-  [style.visibility]="recipientType === 'others' && canRequestForSomebodyElse && !uidPersonPeerGroup ? 'visible' : 'hidden'"
-  [cdr]="cartItemRecipients"
-  (valueChange)="onRecipientsChanged()"
-></imx-cdr-editor>
+  <imx-cdr-editor
+    class="imx-recipients-cdr"
+    [style.visibility]="recipientType === 'others' && canRequestForSomebodyElse && !uidPersonPeerGroup ? 'visible' : 'hidden'"
+    [cdr]="cartItemRecipients"
+    (valueChange)="onRecipientsChanged()"
+  ></imx-cdr-editor>
 
-<eui-icon
-  #infoIcon
-  [style.visibility]="referenceUser || uidPersonPeerGroup ? 'visible' : 'hidden'"
-  icon="info"
-  class="imx-icon-info"
-  [matTooltip]="infoboxTooltip"
-></eui-icon>
+  <eui-icon
+    #infoIcon
+    [style.visibility]="referenceUser || uidPersonPeerGroup ? 'visible' : 'hidden'"
+    icon="info"
+    class="imx-icon-info"
+    [matTooltip]="infoboxTooltip"
+  ></eui-icon>
 
-@if (!referenceUser && !uidPersonPeerGroup) {
-  <imx-servicecategory-list
-    class="imx-categories"
-    [recipients]="recipients"
-    (includeChildCategories)="onIncludeChildCategories($event)"
-    data-imx-identifier="productselection-servicecategory-list"
-    [selectedServiceCategory]="selectedCategory"
-    (serviceCategorySelected)="onServiceCategorySelected($event)"
+  @if (!referenceUser && !uidPersonPeerGroup) {
+    <imx-servicecategory-list
+      class="imx-categories"
+      [recipients]="recipients"
+      (includeChildCategories)="onIncludeChildCategories($event)"
+      data-imx-identifier="productselection-servicecategory-list"
+      [selectedServiceCategory]="selectedCategory"
+      (serviceCategorySelected)="onServiceCategorySelected($event)"
     >
-  </imx-servicecategory-list>
-}
+    </imx-servicecategory-list>
+  }
 </div>
 
 <!-- TODO later: a service category can be bookmarked / marked as a favorite.
@@ -164,13 +160,13 @@ to do this, the UID of the selected category may be encoded in the URL -->
       [itemActions]="serviceItemActions"
       (selectionChanged)="onSelectionChanged($event)"
       (categoryRemoved)="onServiceCategorySelected($event)"
-      [referenceUserUid]="referenceUser?.DataValue"
+      [referenceUserUid]="$safeNavigationMigration(referenceUser?.DataValue)"
       [uidPersonPeerGroup]="uidPersonPeerGroup"
       [selectedServiceCategory]="selectedCategory"
       (handleAction)="handleServiceItemAction($event)"
       [dataSourceView]="getDataSourceView()"
       (openCategoryTree)="openCategoryTree()"
-      >
+    >
     </imx-serviceitem-list>
   }
 </ng-template>
@@ -191,7 +187,7 @@ to do this, the UID of the selected category may be encoded in the URL -->
           (selectionChanged)="onRoleSelectionChanged($event)"
           (addItemToCart)="addRoleToCart($event)"
           [dataSourceView]="getDataSourceView()"
-          >
+        >
         </imx-role-memberships>
       </div>
     </mat-tab>
@@ -206,13 +202,13 @@ to do this, the UID of the selected category may be encoded in the URL -->
     [itemActions]="serviceItemActions"
     (selectionChanged)="onSelectionChanged($event)"
     (categoryRemoved)="onServiceCategorySelected($event)"
-    [referenceUserUid]="referenceUser?.DataValue"
+    [referenceUserUid]="$safeNavigationMigration(referenceUser?.DataValue)"
     [uidPersonPeerGroup]="uidPersonPeerGroup"
     [selectedServiceCategory]="selectedCategory"
     (handleAction)="handleServiceItemAction($event)"
     [dataSourceView]="getDataSourceView()"
     (openCategoryTree)="openCategoryTree()"
-    >
+  >
   </imx-serviceitem-list>
 </ng-template>
 
@@ -227,7 +223,7 @@ to do this, the UID of the selected category may be encoded in the URL -->
         (click)="onDeselectAll()"
         data-imx-identifier="productselection-deselect-all"
         [disabled]="selectedItems?.length === 0 && selectedTemplates?.length === 0"
-        >
+      >
         {{ '#LDS#Deselect all' | translate }}
       </button>
     } @else {
@@ -239,7 +235,7 @@ to do this, the UID of the selected category may be encoded in the URL -->
         (click)="deselectAllRoles()"
         data-imx-identifier="productselection-roles-deselect-all"
         [disabled]="!selectedRoles?.length"
-        >
+      >
         {{ '#LDS#Deselect all' | translate }}
       </button>
     }
@@ -254,7 +250,7 @@ to do this, the UID of the selected category may be encoded in the URL -->
       color="primary"
       (click)="onAddItemsToCart()"
       data-imx-identifier="productselection-button-add-to-cart"
-      >
+    >
       {{ '#LDS#Add to cart' | translate }}
     </button>
   </div>
@@ -266,18 +262,21 @@ to do this, the UID of the selected category may be encoded in the URL -->
     <!-- <h1 mat-dialog-title>{{accProductSelected.GetEntity().GetDisplay()}}</h1> -->
 
     <h2>
-      {{ '#LDS#This product has already been assigned to {0}.' | translate | ldsReplace: recipients?.Column?.GetDisplayValue() }}
+      {{
+        '#LDS#This product has already been assigned to {0}.'
+          | translate
+          | ldsReplace: $safeNavigationMigration(recipients?.Column?.GetDisplayValue())
+      }}
       {{ '#LDS#You can still submit a request for the product. Please see the details about the assignmeht below.' | translate }}
     </h2>
     <!-- TODO later
     <VI_Roles_EntitlementDetective [UID_Person]="recipients.value"
     [ObjectKeyEntitlement]="from accproductstatusforperson select top 1 objectkeyentitlement where uid_accproduct = (from accproductcandidate select current uid_accproduct) and uid_person = recipients.value and status in ('PERSONHASOBJECT','PERSONHASASSIGNMENTORDER')">
   </VI_Roles_EntitlementDetective>
-  -->
-</div>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>{{ '#LDS#Close' | translate }}</button>
-</mat-dialog-actions>
+  --></div>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ '#LDS#Close' | translate }}</button>
+  </mat-dialog-actions>
 </ng-template>
 
 <ng-template #CallAction12>

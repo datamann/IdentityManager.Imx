@@ -81,7 +81,11 @@
       <td mat-cell *matCellDef="let item" role="gridcell">
         <div class="imx-request-col">
           @if (
-            productDetailsService.valueContains(item.OrderableStatus?.value, ['PERSONHASOBJECT', 'PERSONHASASSIGNMENTORDER', 'ASSIGNED'])
+            productDetailsService.valueContains($safeNavigationMigration(item.OrderableStatus?.value), [
+              'PERSONHASOBJECT',
+              'PERSONHASASSIGNMENTORDER',
+              'ASSIGNED',
+            ])
           ) {
             <div class="imx-request-col-status">
               <eui-icon
@@ -89,22 +93,22 @@
                 [matTooltip]="
                   '#LDS#This product has already been assigned to {0}.'
                     | translate
-                    | ldsReplace: orchestration.recipients()?.Column?.GetDisplayValue()
+                    | ldsReplace: $safeNavigationMigration(orchestration.recipients()?.Column?.GetDisplayValue())
                 "
               ></eui-icon>
             </div>
           }
-          @if (productDetailsService.valueContains(item.OrderableStatus?.value, 'ORDER')) {
+          @if (productDetailsService.valueContains($safeNavigationMigration(item.OrderableStatus?.value), 'ORDER')) {
             <div class="imx-request-col-status">
               <eui-icon icon="request" [matTooltip]="'#LDS#This product has already been requested.' | translate"></eui-icon>
             </div>
           }
-          @if (productDetailsService.valueContains(item.OrderableStatus?.value, 'NOTORDERABLE')) {
+          @if (productDetailsService.valueContains($safeNavigationMigration(item.OrderableStatus?.value), 'NOTORDERABLE')) {
             <div class="imx-request-col-status">
               <eui-icon icon="error" [matTooltip]="'#LDS#This product cannot currently be requested.' | translate"></eui-icon>
             </div>
           }
-          @if (productDetailsService.valueContains(item.OrderableStatus?.value, 'CART')) {
+          @if (productDetailsService.valueContains($safeNavigationMigration(item.OrderableStatus?.value), 'CART')) {
             <div class="imx-request-col-status">
               <eui-icon icon="cart" [matTooltip]="'#LDS#This product is already in your shopping cart.' | translate"></eui-icon>
             </div>

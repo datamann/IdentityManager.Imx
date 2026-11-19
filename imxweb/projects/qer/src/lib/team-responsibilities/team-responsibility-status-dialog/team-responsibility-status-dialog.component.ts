@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-    selector: 'imx-team-responsibility-status-dialog',
-    templateUrl: './team-responsibility-status-dialog.component.html',
-    styleUrl: './team-responsibility-status-dialog.component.scss',
-    standalone: false
+  selector: 'imx-team-responsibility-status-dialog',
+  templateUrl: './team-responsibility-status-dialog.component.html',
+  styleUrl: './team-responsibility-status-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TeamResponsibilityStatusDialogComponent {
   public reassignInfoSingular = '#LDS#One responsibility has been successfully reassigned.';

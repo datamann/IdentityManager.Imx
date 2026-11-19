@@ -24,19 +24,20 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use EUI components instead.
  */
 @Component({
-    selector: 'imx-auto-complete',
-    templateUrl: './auto-complete.component.html',
-    styleUrls: ['./auto-complete.component.scss'],
-    standalone: false
+  selector: 'imx-auto-complete',
+  templateUrl: './auto-complete.component.html',
+  styleUrls: ['./auto-complete.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AutoCompleteComponent {
   public filterText = '';

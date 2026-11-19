@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -55,10 +55,11 @@ function getLocalDataForPage<T>(allData: T[], state: { page: number; pageSize: n
 }
 
 @Component({
-    selector: 'imx-object-history-state-comparison',
-    templateUrl: './object-history-state-comparison.component.html',
-    styleUrls: ['./object-history-state-comparison.component.scss'],
-    standalone: false
+  selector: 'imx-object-history-state-comparison',
+  templateUrl: './object-history-state-comparison.component.html',
+  styleUrls: ['./object-history-state-comparison.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ObjectHistoryStateComparisonComponent implements OnInit, OnChanges {
   public get columns(): string[] {

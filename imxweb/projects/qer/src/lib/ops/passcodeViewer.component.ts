@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface PasscodeParameter {
@@ -36,10 +36,11 @@ export interface PasscodeParameter {
 }
 
 @Component({
-    templateUrl: './passcodeViewer.component.html',
-    selector: 'imx-passcode-viewer',
-    styleUrls: ['./passcodeViewer.component.scss'],
-    standalone: false
+  templateUrl: './passcodeViewer.component.html',
+  selector: 'imx-passcode-viewer',
+  styleUrls: ['./passcodeViewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PasscodeViewerComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public passcodeParameter: PasscodeParameter) {}
