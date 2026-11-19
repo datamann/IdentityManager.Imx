@@ -78,6 +78,24 @@ Bruk Dokploys filmonteringer for sertifikatfilen, slik at den er tilgjengelig ve
 
 Kontroller deploykommandoen i Dokploy-loggen dersom Dokploy legger til `--project-directory` ved bruk av monteringer. Når denne peker til repositoryets rot, sett `PORTAL_BUILD_CONTEXT=./imxweb`. Når den peker til `imxweb`, bruk `PORTAL_BUILD_CONTEXT=.`. Standardverdien `.` bruker Compose-filens mappe når prosjektmappen følger vanlig Compose-oppførsel.
 
+## Endre API-serverens AppServer-tilkobling
+
+Kopier `scripts/Set-OimAppServerConnection.ps1` til IIS-serveren og kjør det i Windows PowerShell 5.1 som administrator:
+
+```powershell
+.\Set-OimAppServerConnection.ps1
+```
+
+Skriptet spør etter nytt AppServer-navn, IIS-nettsted (standard `Default Web Site`) og API-applikasjon (standard `/ApiServer`). Et vertsnavn blir til `https://<vertsnavn>/AppServer/`. Oppgi en full HTTPS-URL hvis AppServer bruker en annen sti eller port.
+
+Forhåndsvis endringen uten å lagre:
+
+```powershell
+.\Set-OimAppServerConnection.ps1 -ServerName api.lab.example.no -SiteName 'Default Web Site' -ApplicationPath /ApiServer -WhatIf
+```
+
+Skriptet endrer URL-feltet i `AppServerConnection`, beholder øvrige tilkoblingsverdier og eksisterende kryptering, og sikkerhetskopierer `web.config` til `%ProgramData%\OIMConfigBackups`. Det endrer ikke `BaseURL`, sesjonstokensertifikat, DNS eller IIS-bindinger. Lagring av `web.config` kan starte API-serveren på nytt og avbryte aktive forespørsler. Test søk i portalen etterpå. Ved behov kan sikkerhetskopien kopieres tilbake til den opprinnelige `web.config` på samme server.
+
 ## Bygg og kontroll
 
 Kjør følgende fra `imxweb` i et miljø med Docker. Sett `API_SERVER_URL` i miljøet eller i en lokal `.env`-fil først.
