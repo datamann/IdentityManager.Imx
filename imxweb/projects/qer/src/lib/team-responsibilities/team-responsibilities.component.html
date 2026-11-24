@@ -20,12 +20,12 @@
     [selectable]="true"
   >
     <ng-container [matColumnDef]="entitySchema.Columns.DisplayName.ColumnName">
-      @if (dataSource.isSortable(entitySchema?.Columns?.DisplayName?.ColumnName)) {
+      @if (dataSource.isSortable($safeNavigationMigration(entitySchema?.Columns?.DisplayName?.ColumnName))) {
         <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
           {{ entitySchema?.Columns?.DisplayName?.Display }}
         </th>
       }
-      @if (!dataSource.isSortable(entitySchema?.Columns?.DisplayName?.ColumnName)) {
+      @if (!dataSource.isSortable($safeNavigationMigration(entitySchema?.Columns?.DisplayName?.ColumnName))) {
         <th mat-header-cell *matHeaderCellDef>
           {{ entitySchema?.Columns?.DisplayName?.Display }}
         </th>

@@ -36,6 +36,7 @@ import {
   effect,
   signal,
   viewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatColumnDef, MatTable } from '@angular/material/table';
 import { DisplayColumns, GroupInfoType, IClientProperty, IEntity, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -96,6 +97,7 @@ import { GroupInfoRow } from '../data-view.interface';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataViewAutoTableComponent implements AfterContentInit {
@@ -232,7 +234,7 @@ export class DataViewAutoTableComponent implements AfterContentInit {
   }
 
   /**
-   * gets the display value of the column in the table cell. 
+   * gets the display value of the column in the table cell.
    * If the column is not existing or the display value is null, it returns an empty string.
    * //TODO Later: This is just a fix to prevent exceptions. A better solution should be implemented, to update the column definitions, when the data model is changing and to remove this function from the template.
    * @param element the TypedEntity object

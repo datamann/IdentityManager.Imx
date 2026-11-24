@@ -25,7 +25,7 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { OwnershipInformation, ViewConfigData } from '@imx-modules/imx-api-qer';
@@ -59,10 +59,11 @@ import { ResourceSidesheetComponent } from './resource-sidesheet/resource-sidesh
 import { ResourcesService } from './resources.service';
 
 @Component({
-    templateUrl: './resources.component.html',
-    styleUrls: ['./resources.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './resources.component.html',
+  styleUrls: ['./resources.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ResourcesComponent implements OnInit, SideNavigationComponent {
   @Input() public data: OwnershipInformation;

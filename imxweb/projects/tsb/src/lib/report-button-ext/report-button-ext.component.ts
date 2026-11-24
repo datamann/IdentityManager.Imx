@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Injector, OnInit } from '@angular/core';
+import { Component, ElementRef, Injector, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiDownloadDirective, EuiDownloadOptions, EuiDownloadService } from '@elemental-ui/core';
 
 import { Overlay } from '@angular/cdk/overlay';
@@ -36,7 +36,8 @@ import { AccountsReportsService } from '../accounts/accounts-reports.service';
   selector: 'imx-report-button-ext',
   templateUrl: './report-button-ext.component.html',
   styleUrls: ['./report-button-ext.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ReportButtonExtComponent implements OnInit {
   public downloadOptions: EuiDownloadOptions;
@@ -51,7 +52,7 @@ export class ReportButtonExtComponent implements OnInit {
     private readonly injector: Injector,
     private readonly overlay: Overlay,
     private readonly downloadService: EuiDownloadService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     const url = this.service.accountsOwnedByManagedReport(30, this.referrer);

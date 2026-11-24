@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TeamResponsibilitiesService } from '../team-responsibilities.service';
 import { Router } from '@angular/router';
 import { QerPermissionsService } from '../../admin/qer-permissions.service';
 import { DashboardService } from '../../wport/start/dashboard.service';
 
 @Component({
-    selector: 'imx-team-responsibility-tile',
-    templateUrl: './team-responsibility-tile.component.html',
-    standalone: false
+  selector: 'imx-team-responsibility-tile',
+  templateUrl: './team-responsibility-tile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TeamResponsibilityTileComponent implements OnInit {
   public inactiveResponsibilitiesCount: number;

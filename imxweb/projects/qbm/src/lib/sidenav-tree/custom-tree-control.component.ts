@@ -26,7 +26,17 @@
 
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
@@ -62,7 +72,8 @@ import { DynamicDataSource } from './sidenav-tree-dynamic-extension';
   selector: 'imx-custom-tree-control',
   templateUrl: './custom-tree-control.component.html',
   styleUrls: ['./custom-tree-control.component.scss'],
-  imports: [CommonModule, MatTreeModule, EuiCoreModule, EuiMaterialModule, TranslateModule, ClassloggerModule]
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CommonModule, MatTreeModule, EuiCoreModule, EuiMaterialModule, TranslateModule, ClassloggerModule],
 })
 export class CustomTreeControlComponent implements OnChanges {
   private logger = inject(ClassloggerService);

@@ -1,10 +1,12 @@
 <div>
   {{
     property?.Type === ValType.Date
-      ? (entity
-          ?.GetEntity()
-          ?.GetColumn(property.ColumnName ?? '')
-          ?.GetValue() | shortDate)
+      ? ($safeNavigationMigration(
+          entity
+            ?.GetEntity()
+            ?.GetColumn(property.ColumnName ?? '')
+            ?.GetValue()
+        ) | shortDate)
       : entity
           ?.GetEntity()
           ?.GetColumn(property.ColumnName ?? '')

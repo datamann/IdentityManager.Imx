@@ -18,9 +18,9 @@
       </ng-template>
       <imx-mitigating-controls
         #mitig
-        [isMControlPerViolation]="data?.isMControlPerViolation"
+        [isMControlPerViolation]="$safeNavigationMigration(data?.isMControlPerViolation)"
         [sidesheetRef]="sideSheetRef"
-        [uidViolation]="data?.policyViolation?.GetEntity()?.GetKeys()?.[0]"
+        [uidViolation]="$safeNavigationMigration(data?.policyViolation?.GetEntity()?.GetKeys()?.[0])"
       ></imx-mitigating-controls>
     </mat-tab>
     @if (hyperviewOptions.length > 0) {
@@ -28,17 +28,16 @@
         <ng-template matTabContent>
           <div eui-sidesheet-content class="imx-policy-violations-hyperview">
             <eui-select
-            [hideClearButton]="true"
-            [label]="'#LDS#Related objects' | translate"
-            [inputControl]="selectedHyperviewOption"
-            [options]="hyperviewOptions"
-            [feedbackMessages]="elementalUiConfigService.SelectFeedbackMessages"
-            (selectionChange)="onHyperviewOptionSelected($event.length ? $event[0] : $event)"
+              [hideClearButton]="true"
+              [label]="'#LDS#Related objects' | translate"
+              [inputControl]="selectedHyperviewOption"
+              [options]="hyperviewOptions"
+              [feedbackMessages]="elementalUiConfigService.SelectFeedbackMessages"
+              (selectionChange)="onHyperviewOptionSelected($event.length ? $event[0] : $event)"
             >
             </eui-select>
             @if (selectedHyperviewType) {
-              <imx-object-hyperview [objectType]="selectedHyperviewType" [objectUid]="selectedHyperviewUID">
-              </imx-object-hyperview>
+              <imx-object-hyperview [objectType]="selectedHyperviewType" [objectUid]="selectedHyperviewUID"> </imx-object-hyperview>
             }
           </div>
         </ng-template>
@@ -57,10 +56,7 @@
         {{ data?.policyViolation?.State?.GetMetadata()?.GetDisplay() }}
       </div>
       @if (data?.policyViolation?.State?.value) {
-        <eui-badge
-          class="imx-margin-bottom-20"
-          [color]="data?.policyViolation?.stateBadge?.color"
-          >
+        <eui-badge class="imx-margin-bottom-20" [color]="$safeNavigationMigration(data?.policyViolation?.stateBadge?.color)">
           {{ data.policyViolation.stateBadge.caption | translate }}
         </eui-badge>
       }

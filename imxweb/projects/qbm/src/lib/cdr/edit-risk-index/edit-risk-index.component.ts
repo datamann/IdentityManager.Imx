@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatSliderDragEvent } from '@angular/material/slider';
 import { ClassloggerService } from '../../classlogger/classlogger.service';
@@ -41,6 +41,7 @@ import { EditorBase } from '../editor-base';
   selector: 'imx-edit-risk-index',
   templateUrl: './edit-risk-index.component.html',
   styleUrls: ['./edit-risk-index.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EditRiskIndexComponent extends EditorBase<number> implements OnInit {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -63,11 +63,12 @@ import { ItshopPatternService } from './itshop-pattern.service';
  * or all itshop pattern of all other users, if the user is a shop admin.
  */
 @Component({
-    selector: 'imx-itshop-pattern',
-    templateUrl: './itshop-pattern.component.html',
-    styleUrls: ['./itshop-pattern.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-itshop-pattern',
+  templateUrl: './itshop-pattern.component.html',
+  styleUrls: ['./itshop-pattern.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ItshopPatternComponent implements OnInit, OnDestroy {
   /**

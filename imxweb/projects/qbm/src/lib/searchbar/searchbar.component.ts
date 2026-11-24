@@ -24,7 +24,18 @@
  *
  */
 
-import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatSelect } from '@angular/material/select';
@@ -36,14 +47,15 @@ import { imx_ISearchService } from './iSearchService';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataViewComponent instead.
  */
 @Component({
-    selector: 'imx-searchbar',
-    templateUrl: './searchbar.component.html',
-    styleUrls: ['./searchbar.component.scss'],
-    standalone: false
+  selector: 'imx-searchbar',
+  templateUrl: './searchbar.component.html',
+  styleUrls: ['./searchbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
   public get autoCompleteIsFocused(): boolean {

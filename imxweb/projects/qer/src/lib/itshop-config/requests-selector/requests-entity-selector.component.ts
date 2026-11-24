@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { EntityCollectionData, FilterTreeData, FkProviderItem, IEntity, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -34,10 +34,11 @@ import { RequestableEntitlementTypeService } from '../requestable-entitlement-ty
 import { RequestsService } from '../requests.service';
 
 @Component({
-    selector: 'imx-requests-selector',
-    templateUrl: './requests-entity-selector.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss'],
-    standalone: false
+  selector: 'imx-requests-selector',
+  templateUrl: './requests-entity-selector.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestsEntitySelectorComponent implements OnInit {
   public selectedItems: TypedEntity[] = [];

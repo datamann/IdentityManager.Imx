@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { EntitySchema, IClientProperty, IEntity } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { AssignedResourceAccessData, ResourceAccessMembersData, ResourceAccessTrusteeData } from '../../../TypedClient';
@@ -34,10 +34,11 @@ import { EffectivePermissionTreeDatabase } from './effective-permission-tree-dat
 import { TrusteeEntityHierarchy } from './trustee-entity-hierarchy';
 
 @Component({
-    selector: 'imx-effective-permission',
-    templateUrl: './effective-permission.component.html',
-    styleUrls: ['./effective-permission.component.scss', '../../../qam.scss'],
-    standalone: false
+  selector: 'imx-effective-permission',
+  templateUrl: './effective-permission.component.html',
+  styleUrls: ['./effective-permission.component.scss', '../../../qam.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EffectivePermissionComponent implements OnChanges {
   @Input() trustees: AssignedResourceAccessData;

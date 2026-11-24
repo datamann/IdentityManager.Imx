@@ -24,11 +24,28 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BusyService, calculateSidesheetWidth, DataViewInitParameters, DataViewSource, HELP_CONTEXTUAL, HelpContextualValues, SideNavigationComponent } from 'qbm';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import {
+  BusyService,
+  calculateSidesheetWidth,
+  DataViewInitParameters,
+  DataViewSource,
+  HELP_CONTEXTUAL,
+  HelpContextualValues,
+  SideNavigationComponent,
+} from 'qbm';
 
 import { EuiSidesheetService } from '@elemental-ui/core';
-import { CollectionLoadParameters, DataModel, DisplayColumns, EntitySchema, IClientProperty, TypedEntity, TypedEntityCollectionData, ValType } from '@imx-modules/imx-qbm-dbts';
+import {
+  CollectionLoadParameters,
+  DataModel,
+  DisplayColumns,
+  EntitySchema,
+  IClientProperty,
+  TypedEntity,
+  TypedEntityCollectionData,
+  ValType,
+} from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { QerPermissionsService } from 'qer';
 import { PermissionsService } from '../admin/permissions.service';
@@ -47,12 +64,51 @@ export interface TabConfig {
 }
 
 export const ALL_TABS = [
-  { id: 'GovernedData', label: '#LDS#My Resources', adminLabel: '#LDS#All Resources', heading: '#LDS#Heading Governed Data', contextId: HELP_CONTEXTUAL.GovernedData, adminContextId: HELP_CONTEXTUAL.GovernedDataOverview, roles: ['QAMAdmin', 'BusinessOwner'] },
-  { id: 'Dashboards', label: '#LDS#Dashboards', heading: '#LDS#Heading Dashboards', contextId: HELP_CONTEXTUAL.GovernedDataOwnerDashboards, adminContextId: HELP_CONTEXTUAL.GovernedDataAdminDashboards, roles: ['QAMAdmin', 'BusinessOwner'] },
-  { id: 'Activities', label: '#LDS#Activities', heading: '#LDS#Heading Activities', contextId: HELP_CONTEXTUAL.GovernedDataActivities, roles: ['BusinessOwner'] },
-  { id: 'ResourceOverview', label: '#LDS#Resource Overview', heading: '#LDS#Heading Resource Overview', contextId: HELP_CONTEXTUAL.GovernedDataResourceOverview, roles: ['QAMAdmin'] },
-  { id: 'Ownership', label: '#LDS#Ownership', heading: '#LDS#Heading Ownership', contextId: HELP_CONTEXTUAL.GovernedDataOwnership, roles: ['QAMAdmin'] },
-  { id: 'ManagedHosts', label: '#LDS#Managed Hosts', heading: '#LDS#Heading Managed Hosts', contextId: HELP_CONTEXTUAL.GovernedDataManagedHosts, roles: ['Auditor'] }
+  {
+    id: 'GovernedData',
+    label: '#LDS#My Resources',
+    adminLabel: '#LDS#All Resources',
+    heading: '#LDS#Heading Governed Data',
+    contextId: HELP_CONTEXTUAL.GovernedData,
+    adminContextId: HELP_CONTEXTUAL.GovernedDataOverview,
+    roles: ['QAMAdmin', 'BusinessOwner'],
+  },
+  {
+    id: 'Dashboards',
+    label: '#LDS#Dashboards',
+    heading: '#LDS#Heading Dashboards',
+    contextId: HELP_CONTEXTUAL.GovernedDataOwnerDashboards,
+    adminContextId: HELP_CONTEXTUAL.GovernedDataAdminDashboards,
+    roles: ['QAMAdmin', 'BusinessOwner'],
+  },
+  {
+    id: 'Activities',
+    label: '#LDS#Activities',
+    heading: '#LDS#Heading Activities',
+    contextId: HELP_CONTEXTUAL.GovernedDataActivities,
+    roles: ['BusinessOwner'],
+  },
+  {
+    id: 'ResourceOverview',
+    label: '#LDS#Resource Overview',
+    heading: '#LDS#Heading Resource Overview',
+    contextId: HELP_CONTEXTUAL.GovernedDataResourceOverview,
+    roles: ['QAMAdmin'],
+  },
+  {
+    id: 'Ownership',
+    label: '#LDS#Ownership',
+    heading: '#LDS#Heading Ownership',
+    contextId: HELP_CONTEXTUAL.GovernedDataOwnership,
+    roles: ['QAMAdmin'],
+  },
+  {
+    id: 'ManagedHosts',
+    label: '#LDS#Managed Hosts',
+    heading: '#LDS#Heading Managed Hosts',
+    contextId: HELP_CONTEXTUAL.GovernedDataManagedHosts,
+    roles: ['Auditor'],
+  },
 ];
 
 @Component({
@@ -60,10 +116,10 @@ export const ALL_TABS = [
   templateUrl: './dug-overview.component.html',
   styleUrls: ['./dug-overview.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class DugOverviewComponent implements OnInit, SideNavigationComponent {
-
   @Input() public isAdmin = false;
   @Input() public uiddugnode: string = '';
   @Input() public isAuditView: boolean = false;
@@ -100,37 +156,30 @@ export class DugOverviewComponent implements OnInit, SideNavigationComponent {
   public async ngOnInit(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
     try {
-
       this.isAuditor = await this.qerPermissionService.isAuditor();
       this.isQAMAdmin = await this.qamPermissionsService.isQAMAdmin();
 
       if (!this.isAdmin) {
-        this.visibleTabs = ALL_TABS.filter(tab => tab.roles.includes('BusinessOwner'));
+        this.visibleTabs = ALL_TABS.filter((tab) => tab.roles.includes('BusinessOwner'));
       } else {
         const rolesToShow: string[] = [];
         if (this.isQAMAdmin) rolesToShow.push('QAMAdmin');
         if (this.isAuditor) rolesToShow.push('Auditor');
 
-        this.visibleTabs = ALL_TABS.filter(tab =>
-          tab.roles.some(role => rolesToShow.includes(role))
-        );
-        this.visibleTabs.sort((a, b) => a.id === 'Dashboards' ? -1 : b.id === 'Dashboards' ? 1 : 0);
+        this.visibleTabs = ALL_TABS.filter((tab) => tab.roles.some((role) => rolesToShow.includes(role)));
+        this.visibleTabs.sort((a, b) => (a.id === 'Dashboards' ? -1 : b.id === 'Dashboards' ? 1 : 0));
       }
 
       this.dataModel = await this.overviewService.getDataModel();
       if (this.isAuditView) {
-        this.displayedColumns.push(
-          {
-            ColumnName: 'actions',
-            Type: ValType.String
-          }
-        );
+        this.displayedColumns.push({
+          ColumnName: 'actions',
+          Type: ValType.String,
+        });
         await this.getData({ uiddugnode: this.uiddugnode });
-      }
-      else {
+      } else {
         await this.getData();
       }
-
     } finally {
       isBusy.endBusy();
     }

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -37,7 +37,8 @@ import { AttestationCaseAction } from './attestation-case-action.interface';
   selector: 'imx-attestation-action',
   templateUrl: './attestation-action.component.html',
   styleUrls: ['./attestation-action.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationActionComponent {
   public readonly formGroup = new UntypedFormGroup({});
@@ -71,7 +72,6 @@ export class AttestationActionComponent {
     public readonly sideSheetRef: EuiSidesheetRef,
     stepService: DecisionStepSevice,
   ) {
-
     stepService.isEscalationApprover = data.isEscalation;
     Object.keys(this.data.actionParameters).forEach((name) => this.actionParameters.push(this.data.actionParameters[name]));
 

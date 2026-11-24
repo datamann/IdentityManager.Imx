@@ -40,6 +40,7 @@ import {
   QueryList,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatColumnDef, MatTable, MatTableDataSource } from '@angular/material/table';
@@ -60,7 +61,7 @@ import { GroupPaginatorInformation } from './group-paginator/group-paginator.com
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use DataView components instead.
  * A data table component with a detail view specialized on typed entities.
  * Collaborates with a DST (datasource toolbar).
@@ -80,17 +81,18 @@ import { GroupPaginatorInformation } from './group-paginator/group-paginator.com
  * <imx-data-source-paginator [dst]="myDst"></imx-data-source-paginator>
  */
 @Component({
-    selector: 'imx-data-table',
-    templateUrl: './data-table.component.html',
-    styleUrls: ['./data-table.component.scss'],
-    animations: [
-        trigger('groupExpand', [
-            state('collapsed', style({ height: '0px', minHeight: '0' })),
-            state('expanded', style({ height: '*' })),
-            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-        ]),
-    ],
-    standalone: false
+  selector: 'imx-data-table',
+  templateUrl: './data-table.component.html',
+  styleUrls: ['./data-table.component.scss'],
+  animations: [
+    trigger('groupExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   public get numOfSelectedItems(): number {

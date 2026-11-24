@@ -24,16 +24,17 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HELP_CONTEXTUAL } from 'qbm';
 import { NewRequestOrchestrationService } from '../new-request-orchestration.service';
 import { SelectedProductSource } from '../new-request-selected-products/selected-product-item.interface';
 
 @Component({
-    selector: 'imx-new-request-product-bundle',
-    templateUrl: './new-request-product-bundle.component.html',
-    styleUrls: ['./new-request-product-bundle.component.scss'],
-    standalone: false
+  selector: 'imx-new-request-product-bundle',
+  templateUrl: './new-request-product-bundle.component.html',
+  styleUrls: ['./new-request-product-bundle.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestProductBundleComponent {
   public contextId = HELP_CONTEXTUAL.NewRequestProductBundle;

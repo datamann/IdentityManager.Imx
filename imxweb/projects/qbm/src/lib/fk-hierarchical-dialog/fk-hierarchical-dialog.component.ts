@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -48,10 +48,11 @@ import { HierarchicalCandidate } from './hierarchical-candidate';
 import { HierarchicalFkDatabase } from './hierarchical-fk-database';
 
 @Component({
-    selector: 'imx-fk-hierarchical-dialog',
-    templateUrl: './fk-hierarchical-dialog.component.html',
-    styleUrls: ['./fk-hierarchical-dialog.component.scss'],
-    standalone: false
+  selector: 'imx-fk-hierarchical-dialog',
+  templateUrl: './fk-hierarchical-dialog.component.html',
+  styleUrls: ['./fk-hierarchical-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FkHierarchicalDialogComponent implements OnInit, OnDestroy {
   public readonly hierarchyService: HierarchicalFkDatabase;

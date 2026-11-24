@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-application-property',
-    templateUrl: './application-property.component.html',
-    styleUrls: ['./application-property.component.scss'],
-    standalone: false
+  selector: 'imx-application-property',
+  templateUrl: './application-property.component.html',
+  styleUrls: ['./application-property.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationPropertyComponent {
   @Input() public display: string;

@@ -5,8 +5,8 @@
         [tableName]="'UNSGroup'"
         (change)="checkChanges()"
         [apiService]="svc"
-        [expression]="sqlExpression?.Expression"
-        >
+        [expression]="$safeNavigationMigration(sqlExpression?.Expression)"
+      >
       </imx-sqlwizard>
     }
   </mat-card>
@@ -18,7 +18,7 @@
     mat-stroked-button
     data-imx-identifier="entitlement-edit-auto-add-button-test-condition"
     (click)="showResults(false)"
-    >
+  >
     {{ '#LDS#Test automatic assignment' | translate }}
   </button>
   <button
@@ -27,7 +27,7 @@
     color="primary"
     (click)="showResults(true)"
     data-imx-identifier="entitlement-edit-auto-add-button-save-condition"
-    >
+  >
     {{ '#LDS#Save automatic assignment' | translate }}
   </button>
 </div>

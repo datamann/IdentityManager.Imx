@@ -53,7 +53,7 @@ import { SubscriptionsService } from './subscriptions.service';
 import { SubscriptionWizardComponent } from './subscription-wizard/subscription-wizard.component';
 import { ReportViewConfigComponent } from './report-view-config/report-view-config.component';
 import { ListReportViewerModule } from '../list-report-viewer/list-report-viewer.module';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ListReportViewerSidesheetComponent } from './list-report-viewer-sidesheet/list-report-viewer-sidesheet.component';
 
@@ -66,31 +66,37 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({ declarations: [
-        ReportSelectorComponent,
-        ReportViewConfigComponent,
-        SubscriptionDetailsComponent,
-        SubscriptionPropertiesComponent,
-        SubscriptionOverviewComponent,
-        SubscriptionWizardComponent,
-        SubscriptionsComponent,
-        ListReportViewerSidesheetComponent,
-    ], imports: [CdrModule,
-        CommonModule,
-        ConfirmationModule,
-        DataSourceToolbarModule,
-        DataTableModule,
-        EuiCoreModule,
-        EuiMaterialModule,
-        FormsModule,
-        LdsReplaceModule,
-        MultiSelectFormcontrolModule,
-        OverlayModule,
-        ReactiveFormsModule,
-        RouterModule.forChild(routes),
-        ScrollingModule,
-        TranslateModule,
-        UserMessageModule,
-        BusyIndicatorModule,
-        ListReportViewerModule], providers: [ReportSubscriptionService, SubscriptionsService, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [
+    ReportSelectorComponent,
+    ReportViewConfigComponent,
+    SubscriptionDetailsComponent,
+    SubscriptionPropertiesComponent,
+    SubscriptionOverviewComponent,
+    SubscriptionWizardComponent,
+    SubscriptionsComponent,
+    ListReportViewerSidesheetComponent,
+  ],
+  imports: [
+    CdrModule,
+    CommonModule,
+    ConfirmationModule,
+    DataSourceToolbarModule,
+    DataTableModule,
+    EuiCoreModule,
+    EuiMaterialModule,
+    FormsModule,
+    LdsReplaceModule,
+    MultiSelectFormcontrolModule,
+    OverlayModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    ScrollingModule,
+    TranslateModule,
+    UserMessageModule,
+    BusyIndicatorModule,
+    ListReportViewerModule,
+  ],
+  providers: [ReportSubscriptionService, SubscriptionsService, provideHttpClient(withXhr(), withInterceptorsFromDi())],
+})
 export class SubscriptionsModule {}

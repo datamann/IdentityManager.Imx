@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { ICartItemCheck } from '@imx-modules/imx-api-qer';
@@ -32,10 +32,11 @@ import { CartItemValidationStatus, getCartItemValidationStatus } from '../cart-i
 import { CartItemValidationResult } from './cart-item-validation-result.interface';
 
 @Component({
-    selector: 'imx-cart-item-validation-overview',
-    templateUrl: './cart-item-validation-overview.component.html',
-    styleUrls: ['./cart-item-validation-overview.component.scss'],
-    standalone: false
+  selector: 'imx-cart-item-validation-overview',
+  templateUrl: './cart-item-validation-overview.component.html',
+  styleUrls: ['./cart-item-validation-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CartItemValidationOverviewComponent {
   public checks: ICartItemCheck[][] = [];

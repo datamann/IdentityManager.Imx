@@ -24,12 +24,24 @@
  *
  */
 
-import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Optional, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatSortHeader } from '@angular/material/sort';
 import { MatColumnDef, MatTable } from '@angular/material/table';
 import { ImxExpandableItem } from './imx-data-source';
 
-/** 
+/**
  * @deprecated sinve v10.0.0 --
  * Use native implementations instead.
  */
@@ -37,6 +49,7 @@ import { ImxExpandableItem } from './imx-data-source';
   selector: 'imx-column',
   templateUrl: './MatColumn.html',
   styleUrls: ['./MatColumn.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ImxMatColumnComponent<T> implements OnDestroy, OnInit {

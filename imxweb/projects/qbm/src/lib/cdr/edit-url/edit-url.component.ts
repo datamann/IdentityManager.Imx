@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -35,15 +35,16 @@ import { EntityColumnContainer } from '../entity-column-container';
 
 /**
  * Provides a {@link CdrEditor | CDR editor} for editing / viewing url columns.
- * 
+ *
  * To change its value, it uses the input type 'url'.
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-url',
-    templateUrl: './edit-url.component.html',
-    styleUrls: ['./edit-url.component.scss'],
-    standalone: false
+  selector: 'imx-edit-url',
+  templateUrl: './edit-url.component.html',
+  styleUrls: ['./edit-url.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditUrlComponent implements CdrEditor, OnDestroy {
   /**

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, effect, Input, OnInit } from '@angular/core';
+import { Component, effect, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FilterType } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,6 +35,7 @@ import { SelectedFilterType } from '../data-view.interface';
 @Component({
   selector: 'imx-data-view-group',
   templateUrl: './data-view-group.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataViewGroupComponent implements OnInit {

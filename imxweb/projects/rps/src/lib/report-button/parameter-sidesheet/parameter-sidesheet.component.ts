@@ -24,16 +24,17 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { ClassloggerService, ColumnDependentReference } from 'qbm';
 import { ReportSubscription } from '../../subscriptions/report-subscription/report-subscription';
 
 @Component({
-    selector: 'imx-parameter-sidesheet',
-    templateUrl: './parameter-sidesheet.component.html',
-    standalone: false
+  selector: 'imx-parameter-sidesheet',
+  templateUrl: './parameter-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ParameterSidesheetComponent implements OnInit {
   public readonly reportFormGroup = new UntypedFormGroup({});

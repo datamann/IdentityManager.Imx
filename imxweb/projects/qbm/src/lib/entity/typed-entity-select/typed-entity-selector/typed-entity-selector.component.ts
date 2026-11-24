@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,10 +32,11 @@ import { IForeignKeyInfo, TypedEntity } from '@imx-modules/imx-qbm-dbts';
 import { TypedEntityFkData } from '../typed-entity-fk-data.interface';
 
 @Component({
-    selector: 'imx-typed-entity-selector',
-    templateUrl: './typed-entity-selector.component.html',
-    styleUrls: ['./typed-entity-selector.component.scss'],
-    standalone: false
+  selector: 'imx-typed-entity-selector',
+  templateUrl: './typed-entity-selector.component.html',
+  styleUrls: ['./typed-entity-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TypedEntitySelectorComponent {
   public selectedItems: TypedEntity[];

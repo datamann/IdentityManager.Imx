@@ -7,7 +7,11 @@
       <mat-tab [label]="'#LDS#Memberships' | translate">
         <div eui-sidesheet-content class="imx-sidesheet-content-flex-container">
           <div class="imx-margin-bottom-20">
-            {{ "#LDS#'{0}' has access to the following governed data resources." | translate | ldsReplace: referrer?.display }}
+            {{
+              "#LDS#'{0}' has access to the following governed data resources."
+                | translate
+                | ldsReplace: $safeNavigationMigration(referrer?.display)
+            }}
           </div>
 
           <imx-trustee-view [data]="data" [busyService]="busyService"></imx-trustee-view>
@@ -27,7 +31,7 @@
                   (click)="accordion?.closeAll()"
                   [matTooltip]="'#LDS#Collapse all' | translate"
                   [attr.aria-label]="'#LDS#Collapse all' | translate"
-                  >
+                >
                   <eui-icon icon="compress"></eui-icon>
                 </button>
                 <button
@@ -37,7 +41,7 @@
                   (click)="accordion?.openAll()"
                   [matTooltip]="'#LDS#Expand all' | translate"
                   [attr.aria-label]="'#LDS#Expand all' | translate"
-                  >
+                >
                   <eui-icon icon="expand"></eui-icon>
                 </button>
               </div>
@@ -50,31 +54,30 @@
                           <mat-panel-title>
                             <span bold> {{ '#LDS#Path' | translate }}: </span>
                             <span class="imx-margin-left-5">{{ path.DisplayPath }}</span></mat-panel-title
-                            >
-                          </mat-expansion-panel-header>
-                          @for (trustee of path.Accesses; track trustee) {
-                            <div class="imx-resource-line">
-                              {{ trustee?.Display }}
-                              <button class="imx-margin-left-auto" mat-stroked-button (click)="openSourceDetective(trustee.UidQamTrustee)">
-                                {{ '#LDS#View assignment analysis' | translate }}
-                              </button>
-                            </div>
-                          }
-                        </mat-expansion-panel>
-                      }
-                    </mat-accordion>
-                  </eui-scroll>
-                </div>
+                          >
+                        </mat-expansion-panel-header>
+                        @for (trustee of path.Accesses; track trustee) {
+                          <div class="imx-resource-line">
+                            {{ trustee?.Display }}
+                            <button class="imx-margin-left-auto" mat-stroked-button (click)="openSourceDetective(trustee.UidQamTrustee)">
+                              {{ '#LDS#View assignment analysis' | translate }}
+                            </button>
+                          </div>
+                        }
+                      </mat-expansion-panel>
+                    }
+                  </mat-accordion>
+                </eui-scroll>
               </div>
-            } @else {
-              <div class="imx-no-results">
-                <eui-icon icon="content-alert"></eui-icon>
-                <p translate>#LDS#There are no resources assigned to the identity.</p>
-              </div>
-            }
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
-  </div>
-
+            </div>
+          } @else {
+            <div class="imx-no-results">
+              <eui-icon icon="content-alert"></eui-icon>
+              <p translate>#LDS#There are no resources assigned to the identity.</p>
+            </div>
+          }
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

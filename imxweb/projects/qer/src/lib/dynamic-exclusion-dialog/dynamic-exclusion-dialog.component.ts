@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-    selector: 'imx-dynamic-exclusion-dialog',
-    templateUrl: './dynamic-exclusion-dialog.component.html',
-    standalone: false
+  selector: 'imx-dynamic-exclusion-dialog',
+  templateUrl: './dynamic-exclusion-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DynamicExclusionDialogComponent implements OnInit {
   public dynamicExclusionForm: UntypedFormGroup;

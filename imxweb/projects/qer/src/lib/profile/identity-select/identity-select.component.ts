@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 
 import { EuiSelectOption } from '@elemental-ui/core';
@@ -35,7 +35,8 @@ import { ElementalUiConfigService } from 'qbm';
   selector: 'imx-identity-select',
   templateUrl: './identity-select.component.html',
   styleUrls: ['./identity-select.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentitySelectComponent implements OnChanges {
   public readonly control = new UntypedFormControl(undefined);
@@ -50,9 +51,7 @@ export class IdentitySelectComponent implements OnChanges {
 
   private selectedId: string;
 
-  constructor(
-    public elementalUiConfigService: ElementalUiConfigService,
-  ) {
+  constructor(public elementalUiConfigService: ElementalUiConfigService) {
     this.filter = this.filter.bind(this);
   }
 

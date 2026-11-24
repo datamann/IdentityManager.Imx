@@ -26,7 +26,7 @@
 
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
@@ -39,10 +39,11 @@ export interface SelectedSidesheetData {
 }
 
 @Component({
-    selector: 'imx-new-request-selected-products',
-    templateUrl: './new-request-selected-products.component.html',
-    styleUrls: ['./new-request-selected-products.component.scss'],
-    standalone: false
+  selector: 'imx-new-request-selected-products',
+  templateUrl: './new-request-selected-products.component.html',
+  styleUrls: ['./new-request-selected-products.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestSelectedProductsComponent implements OnInit {
   public columnsToDisplay: string[] = ['select', 'product', 'productSource', 'description'];

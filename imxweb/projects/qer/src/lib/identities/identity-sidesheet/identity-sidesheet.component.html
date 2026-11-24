@@ -11,7 +11,7 @@
               <ng-template matTabContent>
                 <div eui-sidesheet-content class="imx-padding-0 imx-padding-top-20">
                   <imx-object-hyperview
-                    [objectType]="data?.selectedIdentity?.GetEntity()?.TypeName"
+                    [objectType]="$safeNavigationMigration(data?.selectedIdentity?.GetEntity()?.TypeName)"
                     [objectUid]="data?.selectedIdentity?.GetEntity()?.GetKeys()?.[0] ?? ''"
                   >
                   </imx-object-hyperview>

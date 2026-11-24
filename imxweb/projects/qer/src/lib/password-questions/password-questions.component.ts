@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, Input, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalPasswordquestions } from '@imx-modules/imx-api-qer';
 import {
@@ -53,6 +53,7 @@ import { PasswordQuestionsSidesheetComponent } from './password-questions-sidesh
   templateUrl: './password-questions.component.html',
   styleUrls: ['./password-questions.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PasswordQuestionsComponent implements OnInit {

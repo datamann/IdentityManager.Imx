@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RequestableProductForPerson } from '@imx-modules/imx-api-qer';
 
 @Component({
-    selector: 'imx-non-requestable-items',
-    templateUrl: './non-requestable-items.component.html',
-    styleUrls: ['./non-requestable-items.component.scss'],
-    standalone: false
+  selector: 'imx-non-requestable-items',
+  templateUrl: './non-requestable-items.component.html',
+  styleUrls: ['./non-requestable-items.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NonRequestableItemsComponent {
   public get columnNames(): string[] {

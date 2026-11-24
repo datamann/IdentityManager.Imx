@@ -24,7 +24,7 @@
  *
  */
 
-import { ComponentFactoryResolver, Injectable, Type } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { DetailsContainer } from './details-container.interface';
 
 @Injectable({
@@ -37,12 +37,12 @@ export class ShoppingCartValidationDetailService {
     return this.viewerList;
   }
 
-  constructor(private readonly componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor() {}
 
   public register(viewer: Type<any>, id: string): void {
     const detail: DetailsContainer = {
       id,
-      factory: this.componentFactoryResolver.resolveComponentFactory(viewer),
+      factory: viewer,
     };
     this.viewerList.push(detail);
   }

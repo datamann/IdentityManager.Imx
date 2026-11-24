@@ -24,7 +24,7 @@
  *
  */
 
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ErrorHandler, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
@@ -107,7 +107,7 @@ import { AppService } from './app.service';
       provide: AboutService,
       useClass: AdminAboutService,
     },
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
   ],
 })
 export class AppModule {}

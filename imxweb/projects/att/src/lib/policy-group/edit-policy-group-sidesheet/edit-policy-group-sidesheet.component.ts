@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { EntitySchema } from '@imx-modules/imx-qbm-dbts';
@@ -33,9 +33,10 @@ import { Subscription } from 'rxjs';
 import { PolicyGroup } from '../policy-group.interface';
 import { PolicyGroupService } from '../policy-group.service';
 @Component({
-    templateUrl: './edit-policy-group-sidesheet.component.html',
-    styleUrls: ['./edit-policy-group-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './edit-policy-group-sidesheet.component.html',
+  styleUrls: ['./edit-policy-group-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditPolicyGroupSidesheetComponent implements OnInit {
   public readonly formGroup = new UntypedFormGroup({});

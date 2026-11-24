@@ -5,11 +5,16 @@
   data-imx-identifier="bulk-item-panel"
   [expanded]="expanded"
   (closed)="closed()"
-  >
+>
   <mat-expansion-panel-header>
     <mat-panel-title data-imx-identifier="bulk-item-title" [ngClass]="{ 'imx-madatory-item': bulkItem?.mandatory && !bulkItem?.readonly }">
       @if (!hideButtons) {
-        <eui-icon class="imx-icon-new" [icon]="icon?.name" [style.color]="icon?.color" [ngStyle]="iconStyle"></eui-icon>
+        <eui-icon
+          class="imx-icon-new"
+          [icon]="$safeNavigationMigration(icon?.name)"
+          [style.color]="icon?.color"
+          [ngStyle]="iconStyle"
+        ></eui-icon>
       }
       {{ bulkItem?.customTitle || bulkItem?.entity?.GetEntity()?.GetDisplay() }}
     </mat-panel-title>
@@ -27,7 +32,7 @@
         (pendingChanged)="onPendingChanged($event)"
         (controlCreated)="addControl(cdr.column.ColumnName + '_' + i, $event)"
         [attr.data-imx-identifier]="'bulk-item' + cdr.column.ColumnName + '_' + i"
-        >
+      >
       </imx-cdr-editor>
     }
     @for (option of bulkItem?.customSelectProperties; track option; let i = $index) {
@@ -39,7 +44,7 @@
         (selectionChange)="option.selectionChange($event); onValueChanged()"
         [placeholder]="option.placeholder"
         [attr.data-imx-identifier]="'bulk-item-custom-select-option-' + i"
-        >
+      >
       </imx-entity-select>
     }
   </form>
@@ -52,7 +57,7 @@
         [disabled]="!formGroup.valid || formGroupIsPending"
         (click)="save()"
         data-imx-identifier="bulk-item-button-save"
-        >
+      >
         {{ '#LDS#Apply' | translate }}
       </button>
     </div>

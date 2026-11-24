@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalRiskFunctions, RiskIndexExtendedData, RiskIndexSourceTable } from '@imx-modules/imx-api-qer';
@@ -34,10 +34,11 @@ import { Subscription } from 'rxjs';
 import { RiskConfigService } from '../risk-config.service';
 
 @Component({
-    selector: 'imx-risk-config-sidesheet',
-    templateUrl: './risk-config-sidesheet.component.html',
-    styleUrls: ['./risk-config-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-risk-config-sidesheet',
+  templateUrl: './risk-config-sidesheet.component.html',
+  styleUrls: ['./risk-config-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RiskConfigSidesheetComponent implements OnDestroy {
   public readonly formGroup = new UntypedFormGroup({});

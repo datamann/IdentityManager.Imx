@@ -1,0 +1,17 @@
+services:
+  portal:
+    build:
+      context: ${PORTAL_BUILD_CONTEXT:-.}
+      dockerfile: Dockerfile
+    environment:
+      API_SERVER_URL: ${API_SERVER_URL:?Set API_SERVER_URL to the reachable Identity Manager API server URL}
+      API_SERVER_CA_BUNDLE: ${API_SERVER_CA_BUNDLE:-/etc/ssl/certs/ca-certificates.crt}
+    expose:
+      - '80'
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1/healthz']
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

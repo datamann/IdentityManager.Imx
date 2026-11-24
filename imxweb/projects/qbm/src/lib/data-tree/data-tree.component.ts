@@ -36,6 +36,7 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -51,10 +52,11 @@ import { TreeNodeInfo } from './tree-node';
 import { TreeSelectionListComponent } from './tree-selection-list/tree-selection-list.component';
 
 @Component({
-    selector: 'imx-data-tree',
-    templateUrl: './data-tree.component.html',
-    styleUrls: ['./data-tree.component.scss', './data-tree-no-results.scss'],
-    standalone: false
+  selector: 'imx-data-tree',
+  templateUrl: './data-tree.component.html',
+  styleUrls: ['./data-tree.component.scss', './data-tree-no-results.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 /**
  * A tree component consinsting of a {@link CheckableTreeComponent|checkable tree component}, an

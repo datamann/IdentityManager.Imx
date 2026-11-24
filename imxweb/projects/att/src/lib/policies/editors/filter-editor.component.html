@@ -1,9 +1,9 @@
 @if (filterElementModel?.hasFk()) {
   <imx-edit-generic
-    [identifier]="filterElementModel?.attestationSubType"
+    [identifier]="$safeNavigationMigration(filterElementModel?.attestationSubType)"
     [filterElementModel]="filterElementModel"
     (valueChanged)="invokeFilterChangedElement($event)"
-    >
+  >
   </imx-edit-generic>
 }
 
@@ -11,9 +11,9 @@
   <imx-edit-origin
     [filterElementModel]="filterElementModel"
     [testId]="testId"
-    [identifier]="filterElementModel?.attestationSubType"
+    [identifier]="$safeNavigationMigration(filterElementModel?.attestationSubType)"
     (valueChanged)="invokeFilterChangedElement($event)"
-    >
+  >
   </imx-edit-origin>
 }
 
@@ -21,9 +21,9 @@
   <imx-edit-threshold
     [filterElementModel]="filterElementModel"
     [testId]="testId"
-    [identifier]="filterElementModel?.attestationSubType"
+    [identifier]="$safeNavigationMigration(filterElementModel?.attestationSubType)"
     (valueChanged)="invokeFilterChangedElement($event)"
-    >
+  >
   </imx-edit-threshold>
 }
 
@@ -31,9 +31,9 @@
   <imx-edit-name
     [filterElementModel]="filterElementModel"
     [testId]="testId"
-    [identifier]="filterElementModel?.attestationSubType"
+    [identifier]="$safeNavigationMigration(filterElementModel?.attestationSubType)"
     (valueChanged)="invokeFilterChangedElement($event)"
-    >
+  >
   </imx-edit-name>
 }
 
@@ -41,8 +41,8 @@
   <imx-edit-uint
     [filterElementModel]="filterElementModel"
     [testId]="testId"
-    [identifier]="filterElementModel?.attestationSubType"
+    [identifier]="$safeNavigationMigration(filterElementModel?.attestationSubType)"
     (valueChanged)="invokeFilterChangedElement($event)"
-    >
+  >
   </imx-edit-uint>
 }

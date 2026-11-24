@@ -3,7 +3,8 @@
   "compilerOptions": {
     "strictNullChecks": false,
     "outDir": "../../out-tsc/spec",
-    "types": ["jasmine", "node"]
+    "types": ["jasmine", "node"],
+    "rootDir": ".."
   },
   "files": ["src/test.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]

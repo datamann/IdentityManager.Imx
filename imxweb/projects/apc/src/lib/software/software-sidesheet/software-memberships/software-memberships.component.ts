@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,11 +45,12 @@ import { SourceDetectiveSidesheetComponent, SourceDetectiveSidesheetData, Source
 import { SoftwareService } from '../../software.service';
 
 @Component({
-    selector: 'imx-software-memberships',
-    templateUrl: './software-memberships.component.html',
-    styleUrls: ['./software-memberships.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-software-memberships',
+  templateUrl: './software-memberships.component.html',
+  styleUrls: ['./software-memberships.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SoftwareMembershipsComponent implements OnChanges {
   public DisplayColumns = DisplayColumns;

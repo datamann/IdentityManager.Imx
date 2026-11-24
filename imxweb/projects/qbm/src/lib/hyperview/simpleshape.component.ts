@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { ShapeData } from '@imx-modules/imx-api-qbm';
 
@@ -32,9 +32,10 @@ import { ShapeData } from '@imx-modules/imx-api-qbm';
  * A shape component that only display the description of an  {@link ShapeData|shape}.
  */
 @Component({
-    selector: 'imx-hyperview-simpleshape',
-    templateUrl: './simpleshape.component.html',
-    standalone: false
+  selector: 'imx-hyperview-simpleshape',
+  templateUrl: './simpleshape.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SimpleShapeComponent {
   @Input() public shape: ShapeData;

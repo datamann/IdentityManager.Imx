@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PortalShopServiceitemsEntitlements } from '@imx-modules/imx-api-qer';
 import { CollectionLoadParameters, DbObjectKey, DisplayColumns, EntitySchema, ValType } from '@imx-modules/imx-qbm-dbts';
 import { ClientPropertyForTableColumns, DataSourceToolbarSettings, MetadataService } from 'qbm';
 import { ProductEntitlementApiService } from './product-entitlement-api.service';
 
 @Component({
-    selector: 'imx-new-request-product-entitlements',
-    templateUrl: './product-entitlements.component.html',
-    styleUrls: ['./product-entitlements.component.scss'],
-    standalone: false
+  selector: 'imx-new-request-product-entitlements',
+  templateUrl: './product-entitlements.component.html',
+  styleUrls: ['./product-entitlements.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRequestProductEntitlementsComponent implements OnInit {
   @Input() public uidAccProduct: string;

@@ -15,7 +15,7 @@
           [euiDownload]="reportDownload"
           class="justify-start"
           data-imx-identifier="policies-sidesheet-button-download-report"
-          >
+        >
           {{ '#LDS#Download report' | translate }}
         </button>
       </div>
@@ -57,9 +57,9 @@
     <ng-template matTabContent>
       <div eui-sidesheet-content>
         <imx-object-hyperview
-          [objectType]="data?.selectedPolicy?.GetEntity()?.TypeName"
-          [objectUid]="data?.selectedPolicy?.GetEntity()?.GetKeys()?.[0]"
-          >
+          [objectType]="$safeNavigationMigration(data?.selectedPolicy?.GetEntity()?.TypeName)"
+          [objectUid]="$safeNavigationMigration(data?.selectedPolicy?.GetEntity()?.GetKeys()?.[0])"
+        >
         </imx-object-hyperview>
       </div>
     </ng-template>

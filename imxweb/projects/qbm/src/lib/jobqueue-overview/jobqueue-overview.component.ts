@@ -24,7 +24,18 @@
  *
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Chart, ChartOptions, XTickConfiguration } from 'billboard.js';
@@ -39,6 +50,7 @@ import { JobQueueOverviewService } from './jobqueue-overview.service';
   selector: 'imx-jobqueue-overview',
   templateUrl: './jobqueue-overview.component.html',
   styleUrls: ['./jobqueue-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class JobQueueOverviewComponent implements OnInit, OnDestroy, OnChanges {

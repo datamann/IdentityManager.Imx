@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { TileComponent } from 'qbm';
 
 @Component({
-    selector: 'imx-badge-tile',
-    templateUrl: './badge-tile.component.html',
-    styleUrls: ['./badge-tile.component.scss'],
-    standalone: false
+  selector: 'imx-badge-tile',
+  templateUrl: './badge-tile.component.html',
+  styleUrls: ['./badge-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BadgeTileComponent extends TileComponent {
   @Input() public tooltip: string;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import _ from 'lodash';
@@ -38,8 +38,9 @@ import { EntitlementToAddDataWrapperService } from './entitlement-to-add-data-wr
 import { MappedEntitlementsPreviewComponent } from './mapped-entitlements-preview/mapped-entitlements-preview.component';
 
 @Component({
-    templateUrl: './entitlement-edit-auto-add.component.html',
-    standalone: false
+  templateUrl: './entitlement-edit-auto-add.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntitlementEditAutoAddComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];

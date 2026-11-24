@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetConfig, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,8 +32,9 @@ import { calculateSidesheetWidth } from 'qbm';
 import { NewUserComponent } from './new-user.component';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OpenSidesheetComponent implements OnInit {
   constructor(

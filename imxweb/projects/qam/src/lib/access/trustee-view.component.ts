@@ -25,7 +25,7 @@
  */
 
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { BusyService } from 'qbm';
 import { TrusteeAccessData, TrusteeData } from '../TypedClient';
@@ -45,7 +45,8 @@ interface TrusteePermissionData {
   templateUrl: './trustee-view.component.html',
   styleUrls: ['../qam.scss', './trustee-view.component.scss'],
   selector: 'imx-trustee-view',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TrusteeViewComponent implements OnInit, OnChanges {
   public currentSelectedTrustee: TrusteeData | undefined;
@@ -57,7 +58,7 @@ export class TrusteeViewComponent implements OnInit, OnChanges {
 
   public trusteeTypes: { [id: number]: string };
 
-  constructor(private readonly api: QamApiService) { }
+  constructor(private readonly api: QamApiService) {}
 
   public async ngOnInit(): Promise<void> {
     const isBusy = this.busyService?.beginBusy();

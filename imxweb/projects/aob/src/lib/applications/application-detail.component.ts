@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -38,9 +38,10 @@ import { ApplicationContent } from './application-content.interface';
 import { ApplicationsService } from './applications.service';
 
 @Component({
-    templateUrl: './application-detail.component.html',
-    styleUrls: ['./application-detail.component.scss'],
-    standalone: false
+  templateUrl: './application-detail.component.html',
+  styleUrls: ['./application-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationDetailComponent implements ApplicationContent, OnInit, OnDestroy {
   @Input() public application: PortalApplication | undefined;
@@ -56,7 +57,7 @@ export class ApplicationDetailComponent implements ApplicationContent, OnInit, O
   public hyperviewTableName = 'AOBApplication';
   public ldsIdentitiesWithAccessInfoText =
     '#LDS#Here you can get an overview of identities that have access to at least one application entitlement of this application. Additionally, you can view which application entitlements the respective identities have access to.';
-  
+
   private subscription: Subscription;
 
   constructor(

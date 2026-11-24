@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 
 import { PolicyViolationsAction } from '../policy-violations-action.interface';
@@ -37,10 +37,11 @@ import { PolicyViolationsAction } from '../policy-violations-action.interface';
  * {@link  PolicyViolationsActionSingleActionComponent}
  */
 @Component({
-    selector: 'imx-policy-violations-action-multi-action',
-    templateUrl: './policy-violations-action-multi-action.component.html',
-    styleUrls: ['./policy-violations-action-multi-action.component.scss'],
-    standalone: false
+  selector: 'imx-policy-violations-action-multi-action',
+  templateUrl: './policy-violations-action-multi-action.component.html',
+  styleUrls: ['./policy-violations-action-multi-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyViolationsActionMultiActionComponent {
   /**

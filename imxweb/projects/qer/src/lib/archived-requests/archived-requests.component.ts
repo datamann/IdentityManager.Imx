@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { AuthenticationService, ColumnDependentReference, ISessionState } from 'qbm';
 import { Subscription } from 'rxjs';
 import { ArchivedRequestsService } from './archived-requests.service';
 
 @Component({
-    templateUrl: './archived-requests.component.html',
-    styleUrls: ['./archived-requests.component.scss'],
-    standalone: false
+  templateUrl: './archived-requests.component.html',
+  styleUrls: ['./archived-requests.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ArchivedRequestsComponent implements OnDestroy {
   public cdrPersonRecipient: ColumnDependentReference;

@@ -9,7 +9,7 @@
       type="number"
       [formControl]="valueFrom"
       [attr.data-imx-identifier]="'cdr-edit-number-range-from-input-' + columnContainer?.name"
-      [required]="this.columnContainer?.isValueRequired"
+      [required]="$safeNavigationMigration(this.columnContainer?.isValueRequired)"
     />
     <div matSuffix>
       <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
@@ -18,10 +18,10 @@
       {{ '#LDS#The value you entered is invalid. Enter an integer number.' | translate }}
     </mat-error>
     <mat-error *ngIf="valueFrom.errors?.['rangeMin']">
-      {{ '#LDS#Value must be >= {0}' | translate | ldsReplace: columnContainer.valueConstraint?.MinValue }}
+      {{ '#LDS#Value must be >= {0}' | translate | ldsReplace: $safeNavigationMigration(columnContainer.valueConstraint?.MinValue) }}
     </mat-error>
     <mat-error *ngIf="valueFrom.errors?.['rangeMax']">
-      {{ '#LDS#Value must be <= {0}' | translate | ldsReplace: columnContainer.valueConstraint?.MaxValue }}
+      {{ '#LDS#Value must be <= {0}' | translate | ldsReplace: $safeNavigationMigration(columnContainer.valueConstraint?.MaxValue) }}
     </mat-error>
   </mat-form-field>
 
@@ -32,7 +32,7 @@
       type="number"
       [formControl]="valueTo"
       [attr.data-imx-identifier]="'cdr-edit-number-range-to-input-' + columnContainer?.name"
-      [required]="this.columnContainer?.isValueRequired"
+      [required]="$safeNavigationMigration(this.columnContainer?.isValueRequired)"
     />
     <div matSuffix>
       <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
@@ -41,10 +41,10 @@
       {{ '#LDS#The value you entered is invalid. Enter an integer number.' | translate }}
     </mat-error>
     <mat-error *ngIf="valueTo.errors?.['rangeMin']">
-      {{ '#LDS#Value must be >= {0}' | translate | ldsReplace: columnContainer.valueConstraint?.MinValue }}
+      {{ '#LDS#Value must be >= {0}' | translate | ldsReplace: $safeNavigationMigration(columnContainer.valueConstraint?.MinValue) }}
     </mat-error>
     <mat-error *ngIf="valueTo.errors?.['rangeMax']">
-      {{ '#LDS#Value must be <= {0}' | translate | ldsReplace: columnContainer.valueConstraint?.MaxValue }}
+      {{ '#LDS#Value must be <= {0}' | translate | ldsReplace: $safeNavigationMigration(columnContainer.valueConstraint?.MaxValue) }}
     </mat-error>
   </mat-form-field>
   <mat-error *ngIf="control.errors?.['rangeOrder']">

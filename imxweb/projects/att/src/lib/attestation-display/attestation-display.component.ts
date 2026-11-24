@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { IClientProperty, IEntity, IReadValue } from '@imx-modules/imx-qbm-dbts';
 import { buildAdditionalElementsString, ParameterizedText } from 'qbm';
@@ -33,6 +33,7 @@ import { buildAdditionalElementsString, ParameterizedText } from 'qbm';
   selector: 'imx-attestation-display',
   templateUrl: './attestation-display.component.html',
   styleUrl: './attestation-display.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AttestationDisplayComponent implements OnInit, OnChanges {

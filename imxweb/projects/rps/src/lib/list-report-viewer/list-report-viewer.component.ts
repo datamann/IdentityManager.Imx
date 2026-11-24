@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ListReportContentData, PortalReportData } from '@imx-modules/imx-api-rps';
 import {
@@ -60,6 +60,7 @@ import { ListReportDataProvider } from './list-report-data-provider.interface';
   templateUrl: './list-report-viewer.component.html',
   styleUrls: ['./list-report-viewer.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ListReportViewerComponent implements OnInit {

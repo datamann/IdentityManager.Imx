@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -61,6 +61,7 @@ import { PolicyViolationsService } from './policy-violations.service';
   templateUrl: './policy-violations.component.html',
   styleUrls: ['./policy-violations.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PolicyViolationsComponent implements OnInit {
@@ -229,7 +230,7 @@ export class PolicyViolationsComponent implements OnInit {
       const filter = filterOptions[index];
       if (filter) {
         filter.InitialValue = value;
-        filter.CurrentValue = value;        
+        filter.CurrentValue = value;
         this.uniqueTableConfig = true;
         this.dataSource.state.update((state) => ({ ...state, [name.toLowerCase()]: value }));
       }

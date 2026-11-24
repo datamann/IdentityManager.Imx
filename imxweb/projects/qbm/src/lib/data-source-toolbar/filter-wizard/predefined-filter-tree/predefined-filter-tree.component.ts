@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { FilterWizardSidesheetData } from '../filter-wizard.interfaces';
 
@@ -32,10 +32,11 @@ import { FilterWizardSidesheetData } from '../filter-wizard.interfaces';
  * @deprecated since v10.0.0
  */
 @Component({
-    selector: 'imx-predefined-filter-tree',
-    templateUrl: './predefined-filter-tree.component.html',
-    styleUrls: ['./predefined-filter-tree.component.scss'],
-    standalone: false
+  selector: 'imx-predefined-filter-tree',
+  templateUrl: './predefined-filter-tree.component.html',
+  styleUrls: ['./predefined-filter-tree.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PredefinedFilterTreeComponent implements OnInit {
   constructor(@Inject(EUI_SIDESHEET_DATA) public data?: FilterWizardSidesheetData) {}

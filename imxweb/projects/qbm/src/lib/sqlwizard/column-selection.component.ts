@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EuiSelectOption, EuiSidesheetService } from '@elemental-ui/core';
 import { FilterProperty, LogOp, SqlColumnTypes, SqlExpression } from '@imx-modules/imx-qbm-dbts';
@@ -38,6 +38,7 @@ import { TreeSelectionSidesheetComponent } from './tree-selection-sidesheet.comp
   templateUrl: './column-selection.component.html',
   selector: 'imx-sqlwizard-columnselection',
   styleUrls: ['./column-selection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ColumnSelectionComponent implements OnInit, OnChanges {

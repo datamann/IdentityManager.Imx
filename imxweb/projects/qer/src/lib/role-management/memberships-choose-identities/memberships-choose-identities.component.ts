@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { ViewConfigData } from '@imx-modules/imx-api-qer';
@@ -46,10 +46,11 @@ import { IdentitiesService } from './identities.service';
 import { NotRequestableMembershipsComponent } from './not-requestable-memberships/not-requestable-memberships.component';
 
 @Component({
-    selector: 'imx-memberships-choose-identities',
-    templateUrl: './memberships-choose-identities.component.html',
-    styleUrls: ['./memberships-choose-identities.component.scss', '../sidesheet.scss'],
-    standalone: false
+  selector: 'imx-memberships-choose-identities',
+  templateUrl: './memberships-choose-identities.component.html',
+  styleUrls: ['./memberships-choose-identities.component.scss', '../sidesheet.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MembershipsChooseIdentitiesComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings | undefined;

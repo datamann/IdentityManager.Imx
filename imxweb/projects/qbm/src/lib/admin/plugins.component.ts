@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { LoadedPlugin } from '@imx-modules/imx-api-qbm';
 import { AppConfigService } from '../appConfig/appConfig.service';
 import { SideNavigationComponent } from '../side-navigation-view/side-navigation-view-interfaces';
 
 @Component({
-    templateUrl: './plugins.component.html',
-    styleUrls: ['./shared.scss'],
-    selector: 'imx-plugins',
-    standalone: false
+  templateUrl: './plugins.component.html',
+  styleUrls: ['./shared.scss'],
+  selector: 'imx-plugins',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PluginsComponent implements OnInit, SideNavigationComponent {
   @Input() public isAdmin: boolean;

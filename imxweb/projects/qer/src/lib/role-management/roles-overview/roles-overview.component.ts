@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { OwnershipInformation, RoleExtendedDataWrite, ViewConfigData } from '@imx-modules/imx-api-qer';
@@ -72,11 +72,12 @@ import { RoleService } from '../role.service';
 import { TreeDatabaseAdaptorService } from './tree-database-adaptor.service';
 
 @Component({
-    selector: 'imx-roles-overview',
-    templateUrl: './roles-overview.component.html',
-    styleUrls: ['./roles-overview.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-roles-overview',
+  templateUrl: './roles-overview.component.html',
+  styleUrls: ['./roles-overview.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigationComponent {
   @Input() public data: OwnershipInformation;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,10 +36,11 @@ import { TypedEntitySelectionData } from './typed-entity-selection-data.interfac
 import { TypedEntitySelectorComponent } from './typed-entity-selector/typed-entity-selector.component';
 
 @Component({
-    selector: 'imx-typed-entity-select',
-    templateUrl: './typed-entity-select.component.html',
-    styleUrls: ['./typed-entity-select.component.scss'],
-    standalone: false
+  selector: 'imx-typed-entity-select',
+  templateUrl: './typed-entity-select.component.html',
+  styleUrls: ['./typed-entity-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TypedEntitySelectComponent implements OnInit {
   @Input() public data: TypedEntitySelectionData;

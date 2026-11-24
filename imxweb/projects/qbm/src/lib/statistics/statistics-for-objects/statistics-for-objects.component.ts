@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { ChartDto } from '@imx-modules/imx-api-qbm';
 import { TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
@@ -39,10 +39,11 @@ import { StatisticsChartHandlerService } from '../charts/statistics-chart-handle
 import { ChartInfoTyped } from '../statistics-home-page/chart-info-typed';
 import { StatisticsForObjectsService } from './statistics-for-objects.service';
 @Component({
-    selector: 'imx-statistics-for-objects',
-    templateUrl: './statistics-for-objects.component.html',
-    styleUrls: ['./statistics-for-objects.component.scss'],
-    standalone: false
+  selector: 'imx-statistics-for-objects',
+  templateUrl: './statistics-for-objects.component.html',
+  styleUrls: ['./statistics-for-objects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StatisticsForObjectsComponent implements OnInit, OnDestroy {
   @Input() objectType: string;

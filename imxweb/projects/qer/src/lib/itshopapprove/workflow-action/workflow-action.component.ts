@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -50,10 +50,11 @@ import { WorkflowActionEdit } from './workflow-action-edit.interface';
  * An implementation of such a service is {@link WorkflowActionService}.
  */
 @Component({
-    selector: 'imx-workflow-action',
-    templateUrl: './workflow-action.component.html',
-    styleUrls: ['./workflow-action.component.scss'],
-    standalone: false
+  selector: 'imx-workflow-action',
+  templateUrl: './workflow-action.component.html',
+  styleUrls: ['./workflow-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class WorkflowActionComponent {
   /**

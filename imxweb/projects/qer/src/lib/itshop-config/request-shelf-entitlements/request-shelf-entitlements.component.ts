@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -59,10 +59,11 @@ export interface EntitlementCountUpdateData {
 }
 
 @Component({
-    selector: 'imx-request-shelf-entitlements',
-    templateUrl: './request-shelf-entitlements.component.html',
-    styleUrls: ['../request-config-sidesheet-common.scss'],
-    standalone: false
+  selector: 'imx-request-shelf-entitlements',
+  templateUrl: './request-shelf-entitlements.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestShelfEntitlementsComponent implements OnInit {
   @Input() public shelfId: string;

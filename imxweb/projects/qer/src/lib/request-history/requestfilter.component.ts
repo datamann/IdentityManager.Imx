@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,14 +33,15 @@ import { RequestHistoryLoadParameters } from './request-history-load-parameters.
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the DataViewFilterComponent instead.
  */
 @Component({
-    templateUrl: './requestfilter.component.html',
-    selector: 'imx-request-filter',
-    styleUrls: ['./requestfilter.component.scss'],
-    standalone: false
+  templateUrl: './requestfilter.component.html',
+  selector: 'imx-request-filter',
+  styleUrls: ['./requestfilter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestFilterComponent implements OnInit {
   @ViewChild('Call1') public tplCall1: TemplateRef<any>;

@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the MatProgressBar instead.
  */
 @Component({
-    selector: 'imx-progressbar',
-    templateUrl: './progressbar.component.html',
-    standalone: false
+  selector: 'imx-progressbar',
+  templateUrl: './progressbar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ImxProgressbarComponent implements OnInit {
   @Input() public caption: string;

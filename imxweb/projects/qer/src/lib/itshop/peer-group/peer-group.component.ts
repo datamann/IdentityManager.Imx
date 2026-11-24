@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { IReadValue } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-peer-group',
-    templateUrl: './peer-group.component.html',
-    styleUrls: ['./peer-group.component.scss'],
-    standalone: false
+  selector: 'imx-peer-group',
+  templateUrl: './peer-group.component.html',
+  styleUrls: ['./peer-group.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PeerGroupComponent {
   @Input() public item: { CountInPeerGroup: IReadValue<number> };

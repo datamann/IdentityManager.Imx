@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
@@ -76,6 +76,7 @@ import { ProductOwnerSidesheetComponent } from './product-owner-sidesheet/produc
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataExplorerGroupsComponent implements OnInit, OnDestroy, SideNavigationComponent {

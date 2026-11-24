@@ -24,17 +24,18 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { QamApiService } from '../../qam-api-client.service';
 import { AssignedResourceAccessData, PortalDgeResources, ResourceAccessData } from '../../TypedClient';
 import { BusyService } from 'qbm';
 import { Subscription } from 'rxjs';
 
 @Component({
-    templateUrl: './dug-access.component.html',
-    styleUrls: ['./dug-access.component.scss'],
-    selector: 'imx-dge-access',
-    standalone: false
+  templateUrl: './dug-access.component.html',
+  styleUrls: ['./dug-access.component.scss'],
+  selector: 'imx-dge-access',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DugAccessComponent implements OnInit, OnDestroy {
   @Input() public dug: PortalDgeResources;
@@ -80,7 +81,6 @@ export class DugAccessComponent implements OnInit, OnDestroy {
       isBusy.endBusy();
     }
   }
-
 
   public ldsAssignedAccess =
     '#LDS#Access permissions are assigned to the following accounts and groups. If the access permissions are not correct, you can request a modification.';

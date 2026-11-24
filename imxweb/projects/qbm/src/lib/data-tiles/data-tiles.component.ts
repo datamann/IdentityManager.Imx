@@ -25,7 +25,18 @@
  */
 
 import { SelectionChange } from '@angular/cdk/collections';
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { IClientProperty, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -38,10 +49,11 @@ import { DataTileMenuItem } from './data-tile-menu-item.interface';
  * Collaborates with a DST (datasource toolbar).
  */
 @Component({
-    selector: 'imx-data-tiles',
-    templateUrl: './data-tiles.component.html',
-    styleUrls: ['./data-tiles.component.scss'],
-    standalone: false
+  selector: 'imx-data-tiles',
+  templateUrl: './data-tiles.component.html',
+  styleUrls: ['./data-tiles.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataTilesComponent implements OnChanges, OnDestroy {
   /**

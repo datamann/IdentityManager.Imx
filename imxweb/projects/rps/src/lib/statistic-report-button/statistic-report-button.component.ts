@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,10 +33,11 @@ import { ListReportViewerSidesheetComponent } from '../subscriptions/list-report
 import { StatisticReportButtonService } from './statistic-report-button.service';
 
 @Component({
-    selector: 'imx-statistic-report-button',
-    templateUrl: './statistic-report-button.component.html',
-    styleUrls: ['./statistic-report-button.component.scss'],
-    standalone: false
+  selector: 'imx-statistic-report-button',
+  templateUrl: './statistic-report-button.component.html',
+  styleUrls: ['./statistic-report-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StatisticReportButtonComponent {
   public referrer: ChartInfoTyped;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -36,10 +36,11 @@ import { PolicyService } from '../policy.service';
 import { SelectecObjectsInfo } from './selected-objects-info.interface';
 
 @Component({
-    templateUrl: './selected-objects.component.html',
-    selector: 'imx-selected-objects',
-    styleUrls: ['./selected-objects.component.scss'],
-    standalone: false
+  templateUrl: './selected-objects.component.html',
+  selector: 'imx-selected-objects',
+  styleUrls: ['./selected-objects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectedObjectsComponent implements OnInit, OnDestroy {
   public filter: PolicyFilter;

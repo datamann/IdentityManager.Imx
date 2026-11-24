@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { EUI_SIDESHEET_REF, EuiCoreModule } from '@elemental-ui/core';
 import { CollectionLoadParameters } from '@imx-modules/imx-qbm-dbts';
@@ -37,6 +37,7 @@ import { GlobalSearchService } from '../global-search.service';
   imports: [DataViewModule, EuiCoreModule, MatCardModule],
   templateUrl: './sidesheet.component.html',
   styleUrl: './sidesheet.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class GlobalSearchSidesheetComponent implements OnInit {
@@ -64,7 +65,7 @@ export class GlobalSearchSidesheetComponent implements OnInit {
     });
     // Disable the queue service integration, we can be dealing with client-typed entities and mis-configured keys
     this.dataSource.itemStatus = {
-      enabled: () => false
-    }
+      enabled: () => false,
+    };
   }
 }

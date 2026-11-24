@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { ContributingEntitlement, UiActionData } from '@imx-modules/imx-api-cpl';
 import { DbObjectKey, ValType } from '@imx-modules/imx-qbm-dbts';
@@ -35,9 +35,10 @@ import { ApiService } from '../../api.service';
 type ExtendedEntitlement = ContributingEntitlement & { Key?: DbObjectKey; TypeDisplay?: string };
 
 @Component({
-    templateUrl: './resolve.component.html',
-    styleUrls: ['./resolve.component.scss'],
-    standalone: false
+  templateUrl: './resolve.component.html',
+  styleUrls: ['./resolve.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ResolveComponent implements OnInit {
   constructor(

@@ -1,4 +1,4 @@
-import { Component, ErrorHandler, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, ValidatorFn, Validators } from '@angular/forms';
 import { ValType, ValueRange } from '@imx-modules/imx-qbm-dbts';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -12,7 +12,8 @@ import { NumberRangeValidatorService } from './number-range-validator.service';
   selector: 'imx-edit-number-range',
   templateUrl: './edit-number-range.component.html',
   styleUrl: './edit-number-range.component.scss',
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditNumberRangeComponent implements CdrEditor, OnDestroy {
   /**
@@ -53,7 +54,7 @@ export class EditNumberRangeComponent implements CdrEditor, OnDestroy {
   public constructor(
     private readonly errorHandler: ErrorHandler,
     private readonly rangeValidator: NumberRangeValidatorService,
-  ) { }
+  ) {}
 
   /**
    * Unsubscribes all events, after the 'OnDestroy' hook is triggered.

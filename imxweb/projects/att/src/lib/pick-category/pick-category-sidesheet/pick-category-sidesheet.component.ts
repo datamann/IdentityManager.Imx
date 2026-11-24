@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,11 +45,12 @@ import { PickCategorySelectIdentitiesComponent } from '../pick-category-select-i
 import { PickCategoryService } from '../pick-category.service';
 
 @Component({
-    selector: 'imx-pick-category-sidesheet',
-    templateUrl: './pick-category-sidesheet.component.html',
-    styleUrls: ['./pick-category-sidesheet.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-pick-category-sidesheet',
+  templateUrl: './pick-category-sidesheet.component.html',
+  styleUrls: ['./pick-category-sidesheet.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PickCategorySidesheetComponent implements OnInit {
   public readonly form = new UntypedFormGroup({});

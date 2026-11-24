@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterContentInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, Validators } from '@angular/forms';
 import { EuiSelectOption } from '@elemental-ui/core';
 import { ElementalUiConfigService } from '../../configuration/elemental-ui-config.service';
@@ -35,7 +35,8 @@ import { IClientProperty, IEntity } from '@imx-modules/imx-qbm-dbts';
   selector: 'imx-entity-select',
   templateUrl: './entity-select.component.html',
   styleUrls: ['./entity-select.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntitySelectComponent implements OnChanges, AfterContentInit {
   public readonly control = new UntypedFormControl(undefined, Validators.required);
@@ -51,9 +52,7 @@ export class EntitySelectComponent implements OnChanges, AfterContentInit {
 
   @Output() public selectionChange = new EventEmitter<IEntity>();
 
-  constructor(
-    public elementalUiConfigService: ElementalUiConfigService,
-  ) {
+  constructor(public elementalUiConfigService: ElementalUiConfigService) {
     this.filter = this.filter.bind(this);
   }
 

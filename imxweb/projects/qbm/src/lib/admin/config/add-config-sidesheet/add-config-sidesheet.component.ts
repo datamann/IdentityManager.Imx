@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSelectOption, EuiSidesheetRef } from '@elemental-ui/core';
 import { ElementalUiConfigService } from '../../../configuration/elemental-ui-config.service';
 import { imx_SessionService } from '../../../session/imx-session.service';
@@ -35,6 +35,7 @@ import { ConfigService } from '../config.service';
 @Component({
   templateUrl: './add-config-sidesheet.component.html',
   styleUrls: ['./add-config-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AddConfigSidesheetComponent implements OnInit {
@@ -45,7 +46,7 @@ export class AddConfigSidesheetComponent implements OnInit {
     private readonly snackbar: SnackBarService,
     private readonly session: imx_SessionService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   keyData: ConfigTreeNode[];
   selectedKey: ConfigTreeNode;

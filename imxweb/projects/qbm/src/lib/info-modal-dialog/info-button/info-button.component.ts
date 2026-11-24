@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 
 @Component({
-    selector: 'imx-info-button',
-    templateUrl: './info-button.component.html',
-    styleUrls: ['./info-button.component.scss'],
-    standalone: false
+  selector: 'imx-info-button',
+  templateUrl: './info-button.component.html',
+  styleUrls: ['./info-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class InfoButtonComponent {
   // width string = '400px'. Sets the width of the appearing dialog.

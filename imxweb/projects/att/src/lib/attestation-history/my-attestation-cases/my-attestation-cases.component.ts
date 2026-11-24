@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthenticationService } from 'qbm';
 
 @Component({
-    templateUrl: './my-attestation-cases.component.html',
-    styleUrls: ['./my-attestation-cases.component.scss'],
-    standalone: false
+  templateUrl: './my-attestation-cases.component.html',
+  styleUrls: ['./my-attestation-cases.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MyAttestationCasesComponent implements OnDestroy {
   public attestationParameters: { objecttable: string; objectuid: string } | undefined;

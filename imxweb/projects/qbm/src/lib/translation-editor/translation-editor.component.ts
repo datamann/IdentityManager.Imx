@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EuiLoadingService } from '@elemental-ui/core';
 
@@ -32,10 +32,11 @@ import { ReadWriteExtTypedEntity, TranslationDataRead, TranslationDataWrite, Tra
 import { SnackBarService } from '../snackbar/snack-bar.service';
 
 @Component({
-    selector: 'imx-translation-editor',
-    templateUrl: './translation-editor.component.html',
-    styleUrls: ['./translation-editor.component.scss'],
-    standalone: false
+  selector: 'imx-translation-editor',
+  templateUrl: './translation-editor.component.html',
+  styleUrls: ['./translation-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TranslationEditorComponent implements OnInit {
   public translationData: TranslationDataRead | undefined;

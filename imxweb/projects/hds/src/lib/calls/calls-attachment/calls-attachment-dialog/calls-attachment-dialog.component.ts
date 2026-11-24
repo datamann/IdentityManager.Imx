@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CallsAttachmentActionType, CallsAttachmentDialogData } from './../calls-attachment.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'imx-calls-attachment-dialog',
-    templateUrl: './calls-attachment-dialog.component.html',
-    styleUrls: ['./calls-attachment-dialog.component.scss'],
-    standalone: false
+  selector: 'imx-calls-attachment-dialog',
+  templateUrl: './calls-attachment-dialog.component.html',
+  styleUrls: ['./calls-attachment-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsAttachmentDialogComponent implements OnInit {
   form = new FormGroup({

@@ -25,7 +25,7 @@
  */
 
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { RiskObject } from '@imx-modules/imx-api-qer';
@@ -45,7 +45,8 @@ type RiskObjectEnriched = RiskObject & {
   templateUrl: './riskanalysis.component.html',
   styleUrls: ['./riskanalysis.component.scss'],
   selector: 'imx-riskindex-analysis',
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RiskAnalysisComponent implements OnInit {
   public busy = true;

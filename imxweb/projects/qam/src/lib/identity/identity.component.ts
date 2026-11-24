@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, Optional, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -47,10 +47,11 @@ interface AccessData {
 
 /** Shows access information for an identity. */
 @Component({
-    templateUrl: './identity.component.html',
-    styleUrls: ['./identity.component.scss', '../qam.scss'],
-    selector: 'imx-dge-identity',
-    standalone: false
+  templateUrl: './identity.component.html',
+  styleUrls: ['./identity.component.scss', '../qam.scss'],
+  selector: 'imx-dge-identity',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityComponent implements OnInit, OnDestroy {
   public data: TrusteeAccessData;

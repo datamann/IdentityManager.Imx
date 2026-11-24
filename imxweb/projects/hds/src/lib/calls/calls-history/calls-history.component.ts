@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { PortalCalls, PortalCallsHistory } from '@imx-modules/imx-api-hds';
 import { CollectionLoadParameters, EntitySchema, IClientProperty, TypedEntityCollectionData } from '@imx-modules/imx-qbm-dbts';
@@ -34,11 +34,12 @@ import { HdsApiService } from '../../hds-api-client.service';
 import { CallsHistorySidesheetComponent } from '../calls-history-sidesheet/calls-history-sidesheet.component';
 
 @Component({
-    selector: 'imx-calls-history',
-    templateUrl: './calls-history.component.html',
-    styleUrls: ['./calls-history.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-calls-history',
+  templateUrl: './calls-history.component.html',
+  styleUrls: ['./calls-history.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsHistoryComponent implements OnInit {
   @Input() public ticket: PortalCalls;

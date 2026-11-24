@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { PortalRespTeamResponsibilities, ResponsibilityData } from '@imx-modules/imx-api-qer';
@@ -58,6 +58,7 @@ class OtherIdentitiesTypedEntity extends TypedEntity {
   templateUrl: './team-responsibility-sidesheet.component.html',
   styleUrl: './team-responsibility-sidesheet.component.scss',
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TeamResponsibilitySidesheetComponent implements OnInit {

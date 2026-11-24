@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -52,7 +52,8 @@ import { GroupMembersComponent } from './group-members/group-members.component';
   selector: 'imx-group-sidesheet',
   templateUrl: './group-sidesheet.component.html',
   styleUrls: ['./group-sidesheet.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class GroupSidesheetComponent implements OnInit {
   public get groupId(): string {

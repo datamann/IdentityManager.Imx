@@ -24,12 +24,13 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-shopping-cart-empty',
-    templateUrl: './shopping-cart-empty.component.html',
-    styleUrls: ['./shopping-cart-empty.component.scss'],
-    standalone: false
+  selector: 'imx-shopping-cart-empty',
+  templateUrl: './shopping-cart-empty.component.html',
+  styleUrls: ['./shopping-cart-empty.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ShoppingCartEmptyComponent {}

@@ -36,6 +36,7 @@ import {
   QueryList,
   SimpleChanges,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SqlExpression, LogOp as _logOp } from '@imx-modules/imx-qbm-dbts';
 import { SqlViewSettings } from './SqlNodeView';
@@ -45,6 +46,7 @@ import { SqlWizardApiService } from './sqlwizard-api.service';
   templateUrl: './sqlwizard.component.html',
   styleUrls: ['./sqlwizard.scss'],
   selector: 'imx-sqlwizard',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SqlWizardComponent implements OnInit, OnChanges, AfterViewInit {

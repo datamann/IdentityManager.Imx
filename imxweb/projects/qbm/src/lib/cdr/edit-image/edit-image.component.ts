@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, EventEmitter, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
@@ -46,6 +46,7 @@ import { EntityColumnContainer } from '../entity-column-container';
   templateUrl: './edit-image.component.html',
   styleUrls: ['./edit-image.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [FileSelectorService],
 })
 export class EditImageComponent implements CdrEditor, OnDestroy {

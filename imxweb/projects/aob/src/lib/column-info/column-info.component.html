@@ -1,4 +1,4 @@
-<imx-application-property [display]="property?.Column?.GetMetadata()?.GetDisplay()" [icon]="icon">
+<imx-application-property [display]="$safeNavigationMigration(property?.Column?.GetMetadata()?.GetDisplay())" [icon]="icon">
   <div class="imx-user-properties">
     <span>{{ property?.Column?.GetDisplayValue() || '-' + (placeholder || ('#LDS#Not set' | translate)) + '-' }}</span>
   </div>

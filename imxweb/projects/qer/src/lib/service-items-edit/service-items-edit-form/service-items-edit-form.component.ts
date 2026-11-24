@@ -24,7 +24,17 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, UntypedFormArray } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { IEntity, IEntityColumn, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -51,10 +61,11 @@ interface ServiceItemsFormGroup {
 export const additionalColumnsForServiceItemsKey = 'additionalCdrColumns';
 
 @Component({
-    selector: 'imx-service-items-edit-form',
-    templateUrl: './service-items-edit-form.component.html',
-    styleUrls: ['./service-items-edit-form.component.scss'],
-    standalone: false
+  selector: 'imx-service-items-edit-form',
+  templateUrl: './service-items-edit-form.component.html',
+  styleUrls: ['./service-items-edit-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemsEditFormComponent implements OnInit, OnChanges {
   @ViewChild('ownerControl') public ownercontrol: OwnerControlComponent;
@@ -87,7 +98,7 @@ export class ServiceItemsEditFormComponent implements OnInit, OnChanges {
     private readonly permission: QerPermissionsService,
     private readonly projectConfig: ProjectConfigurationService,
     private readonly cdrFactoryService: CdrFactoryService,
-  ) { }
+  ) {}
 
   get getSelectedUidPerson(): string | undefined {
     return this.ownercontrol?.uidPersonSelected;

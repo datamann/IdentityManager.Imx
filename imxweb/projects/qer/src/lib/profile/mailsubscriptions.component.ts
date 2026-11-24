@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, ErrorHandler, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ErrorHandler, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { FormControl } from '@angular/forms';
@@ -35,6 +35,7 @@ import { MailInfoType, MailSubscriptionService } from './mailsubscription.servic
   selector: 'imx-mail-subscriptions',
   templateUrl: './mailsubscriptions.component.html',
   styleUrls: ['./mailsubscriptions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MailSubscriptionsComponent implements OnInit {

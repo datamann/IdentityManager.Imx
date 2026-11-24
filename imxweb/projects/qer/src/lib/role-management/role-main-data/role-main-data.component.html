@@ -2,7 +2,11 @@
   <mat-card class="imx-card-fill">
     <form class="imx-cdr-group" [formGroup]="formGroup">
       @for (cdr of properties; track cdr) {
-        <imx-cdr-editor [cdr]="cdr" (valueChange)="onValueChanged()" (controlCreated)="addControl(cdr?.column?.ColumnName, $event)">
+        <imx-cdr-editor
+          [cdr]="cdr"
+          (valueChange)="onValueChanged()"
+          (controlCreated)="addControl($safeNavigationMigration(cdr?.column?.ColumnName), $event)"
+        >
         </imx-cdr-editor>
       }
     </form>
@@ -34,7 +38,7 @@
       color="primary"
       [disabled]="!formGroup.dirty || formGroup.invalid"
       (click)="onSave()"
-      >
+    >
       {{ '#LDS#Save' | translate }}
     </button>
   </div>

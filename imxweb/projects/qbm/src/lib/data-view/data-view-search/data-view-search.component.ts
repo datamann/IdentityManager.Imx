@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, computed, effect, EventEmitter, Input, Output, Signal } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, EventEmitter, Input, Output, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FilterType } from '@imx-modules/imx-qbm-dbts';
 import { debounceTime } from 'rxjs/operators';
@@ -34,6 +34,7 @@ import { KeywordFilter, SelectedFilterType } from '../data-view.interface';
 @Component({
   selector: 'imx-data-view-search',
   templateUrl: './data-view-search.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataViewSearchComponent implements AfterViewInit {

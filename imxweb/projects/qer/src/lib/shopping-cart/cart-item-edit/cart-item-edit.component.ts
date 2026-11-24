@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, QueryList, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -39,7 +39,8 @@ import { CartItemEditParameter } from './cart-item-edit-parameter.interface';
   templateUrl: './cart-item-edit.component.html',
   selector: 'imx-cart-item-edit',
   styleUrls: ['./cart-item-edit.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CartItemEditComponent implements OnInit, OnDestroy {
   public readonly shoppingCartItem: PortalCartitem;

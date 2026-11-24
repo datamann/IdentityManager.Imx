@@ -3,10 +3,10 @@
     @if (request != null) {
       <eui-alert type="info" [condensed]="true" [colored]="true" [dismissable]="false">
         {{
-        (rules.length > 1
-        ? '#LDS#Here you can get an overview of the rule violations this request may cause.'
-        : '#LDS#Here you can see the rule violation this request may cause.'
-        ) | translate
+          (rules.length > 1
+            ? '#LDS#Here you can get an overview of the rule violations this request may cause.'
+            : '#LDS#Here you can see the rule violation this request may cause.'
+          ) | translate
         }}
       </eui-alert>
     }
@@ -26,15 +26,14 @@
               <ng-container *ngTemplateOutlet="ruleViolationTemplate; context: { $implicit: item }"></ng-container>
               @if (
                 item.violationDetail?.IsExceptionApprover && isApproval && mitigatingControlsPerViolation && canEditMitigationControls(item)
-                ) {
-                <mat-action-row
-                  >
+              ) {
+                <mat-action-row>
                   <button
                     mat-button
                     color="primary"
                     (click)="addMitigationControls(item)"
                     data-imx-identifier="compliance-violation-datails-edit-mitigating-controls"
-                    >
+                  >
                     {{ '#LDS#Assign mitigating controls' | translate }}
                   </button>
                 </mat-action-row>
@@ -46,7 +45,7 @@
                     color="primary"
                     (click)="addMitigationControls(item)"
                     data-imx-identifier="compliance-violation-datails-view-mitigating-controls"
-                    >
+                  >
                     {{ '#LDS#View mitigating controls' | translate }}
                   </button>
                 </mat-action-row>
@@ -66,20 +65,13 @@
   }
 
   @if (request != null && request?.UiOrderState?.value != 'OrderProduct' && !request?.complianceRuleViolation) {
-    <eui-alert
-      type="info"
-      [condensed]="true"
-      [colored]="true"
-      [dismissable]="false"
-      >
+    <eui-alert type="info" [condensed]="true" [colored]="true" [dismissable]="false">
       {{ '#LDS#The ad hoc compliance check cannot be run for this request.' | translate }}
     </eui-alert>
   }
 
   @if (request != null && request?.UiOrderState?.value != 'OrderProduct' && request?.complianceRuleViolation) {
-    <imx-workflow-violation-details
-      [pwoData]="request?.pwoData"
-    ></imx-workflow-violation-details>
+    <imx-workflow-violation-details [pwoData]="$safeNavigationMigration(request?.pwoData)"></imx-workflow-violation-details>
   }
 </div>
 

@@ -8,10 +8,7 @@
               <mat-label><span translate>#LDS#Type of the new object</span></mat-label>
               <mat-select [(value)]="newRoleType" data-imx-identifier="reports-select-options" (selectionChange)="roleTypeChanged()">
                 @for (type of candidateTables; track type) {
-                  <mat-option
-                    [value]="type.tableName"
-                    [attr.data-imx-identifier]="'split-options-' + type.tableName"
-                    >
+                  <mat-option [value]="type.tableName" [attr.data-imx-identifier]="'split-options-' + type.tableName">
                     <span [translate]="type.display"></span>
                   </mat-option>
                 }
@@ -23,7 +20,7 @@
             @for (cdr of cdrList; track cdr) {
               <imx-cdr-editor
                 [cdr]="cdr"
-                (controlCreated)="addControl(newRoleFormGroup, cdr?.column?.ColumnName, $event)"
+                (controlCreated)="addControl(newRoleFormGroup, $safeNavigationMigration(cdr?.column?.ColumnName), $event)"
               ></imx-cdr-editor>
             }
           }
@@ -34,7 +31,7 @@
               data-imx-identifier="split-step-1-next"
               matStepperNext
               [disabled]="newRoleFormGroup.invalid"
-              >
+            >
               {{ '#LDS#Next' | translate }}
             </button>
           </div>
@@ -84,11 +81,11 @@
           <mat-selection-list [(ngModel)]="uidActions">
             @for (action of actions; track action) {
               <mat-list-option
-                checkboxPosition="before"
+                togglePosition="before"
                 [value]="action.Id"
                 [disabled]="!action.CanExecute"
                 [attr.data-imx-identifier]="'multi-select-action-' + action.Id"
-                >
+              >
                 <div>{{ action.Display }}</div>
                 <div class="subtext">{{ action.ObjectDisplay }}</div>
               </mat-list-option>

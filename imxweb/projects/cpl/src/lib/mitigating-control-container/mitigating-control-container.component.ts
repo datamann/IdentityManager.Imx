@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { EuiSelectOption } from '@elemental-ui/core';
 import { ConfirmationService, ElementalUiConfigService } from 'qbm';
@@ -36,7 +36,8 @@ import { PersonMitigatingControls } from '../rules-violations/mitigating-control
   selector: 'imx-mitigating-control-container',
   templateUrl: './mitigating-control-container.component.html',
   styleUrls: ['../mitigating-controls-common.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MitigatingControlContainerComponent {
   @Input() public mControls: Array<RequestMitigatingControls | ExtendedDeferredOperationsData | PersonMitigatingControls> = [];
@@ -51,7 +52,7 @@ export class MitigatingControlContainerComponent {
     private readonly cd: ChangeDetectorRef,
     private readonly confirmationService: ConfirmationService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   public filter = (option: EuiSelectOption, searchInputValue: string): boolean =>
     option.value.toString().toUpperCase() === searchInputValue.toUpperCase();

@@ -7,8 +7,10 @@
           [isTotal]="false"
           [testId]="'objects-for-filter-' + idForTest"
           [popupTitle]="'#LDS#Heading Objects Matching the Condition' | translate"
-          [filterSubject]="filterElementModel?.selectedObjectsSubject"
-          [popupSubtitle]="filterElementModel?.getParameterData(filterElementModel?.attestationSubType || '')?.Display"
+          [filterSubject]="$safeNavigationMigration(filterElementModel?.selectedObjectsSubject)"
+          [popupSubtitle]="
+            $safeNavigationMigration(filterElementModel?.getParameterData(filterElementModel?.attestationSubType || '')?.Display)
+          "
         >
         </imx-selected-objects>
       </mat-panel-title>

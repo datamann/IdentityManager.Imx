@@ -25,7 +25,7 @@
  */
 
 import { STEPPER_GLOBAL_OPTIONS, StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { PageEvent } from '@angular/material/paginator';
@@ -63,15 +63,16 @@ import { QerPermissionsService } from '../admin/qer-permissions.service';
  * The user can delegate items for themself or one subordinate
  */
 @Component({
-    templateUrl: './delegation.component.html',
-    styleUrls: ['./delegation.component.scss'],
-    providers: [
-        {
-            provide: STEPPER_GLOBAL_OPTIONS,
-            useValue: { displayDefaultIndicatorType: false },
-        },
-    ],
-    standalone: false
+  templateUrl: './delegation.component.html',
+  styleUrls: ['./delegation.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DelegationComponent implements OnInit, OnDestroy {
   public delegateableItems: PortalDelegable[];

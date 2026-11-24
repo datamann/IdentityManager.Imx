@@ -30,13 +30,13 @@
               euiClickable
               [euiClickableDisabled]="!isCalculated(kpi)"
               (click)="showDetails(kpi)"
-              [matTooltip]="kpi?.Description"
+              [matTooltip]="$safeNavigationMigration(kpi?.Description)"
             >
               <div class="kpi-number">
                 {{ !isCalculated(kpi) ? '-' : hasCurrentValue(kpi) ? formatCurrentValue(kpi) : '' }}
               </div>
               <mat-card-content class="imx-kpi-content">
-                <div >{{ kpi?.Display }}</div>
+                <div>{{ kpi?.Display }}</div>
               </mat-card-content>
             </mat-card>
           }

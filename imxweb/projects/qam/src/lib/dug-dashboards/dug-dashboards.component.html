@@ -1,14 +1,14 @@
 <div class="chart-container">
   @for (stat of stats; track stat; let index = $index) {
     <mat-card class="stat-card">
-      <mat-card-header [matTooltip]="stat?.Description" matTooltipPosition="above">
+      <mat-card-header [matTooltip]="$safeNavigationMigration(stat?.Description)" matTooltipPosition="above">
         {{ stat?.Display }}
       </mat-card-header>
       <mat-card-content class="card-content center-content">
-        @if(info[index] && showChart[index]){
+        @if (info[index] && showChart[index]) {
           <imx-s-chart-tile [summaryStat]="stat" [chartInfo]="info[index]" [summaryStat]="stat"></imx-s-chart-tile>
-        }      
-        @if(info[index] && !showChart[index]){
+        }
+        @if (info[index] && !showChart[index]) {
           <div class="center-content">
             <mat-spinner [diameter]="40"></mat-spinner>
           </div>

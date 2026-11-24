@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ActivateFactorData, AuthFactor, VerifyPollingResult } from '@imx-modules/imx-api-olg';
@@ -50,17 +50,18 @@ interface AuthFactorInfo {
  * The initial value of the FormControl is false, and changes to true, if one log in method was sucessful
  */
 @Component({
-    selector: 'imx-mfa-form-control',
-    templateUrl: './mfa-form-control.component.html',
-    styleUrls: ['./mfa-form-control.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => MfaFormControlComponent),
-            multi: true,
-        },
-    ],
-    standalone: false
+  selector: 'imx-mfa-form-control',
+  templateUrl: './mfa-form-control.component.html',
+  styleUrls: ['./mfa-form-control.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MfaFormControlComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MfaFormControlComponent implements OnInit, ControlValueAccessor, AuthenticationFactors {
   /** Array, that stores auth factor information */

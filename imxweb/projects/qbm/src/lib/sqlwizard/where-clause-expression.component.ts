@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { SqlColumnTypes, ValType } from '@imx-modules/imx-qbm-dbts';
 import { SqlNodeView } from './SqlNodeView';
 
 @Component({
-    selector: 'imx-sqlwizard-whereclauseexpression',
-    styleUrls: ['./sqlwizard.scss'],
-    templateUrl: './where-clause-expression.component.html',
-    standalone: false
+  selector: 'imx-sqlwizard-whereclauseexpression',
+  styleUrls: ['./sqlwizard.scss'],
+  templateUrl: './where-clause-expression.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class WhereClauseExpressionComponent {
   public ColumnType = SqlColumnTypes;

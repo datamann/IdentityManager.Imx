@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -43,10 +43,11 @@ import {
 import { RoleService } from '../role.service';
 
 @Component({
-    selector: 'imx-new-role',
-    templateUrl: './new-role.component.html',
-    styleUrls: ['./new-role.component.scss'],
-    standalone: false
+  selector: 'imx-new-role',
+  templateUrl: './new-role.component.html',
+  styleUrls: ['./new-role.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NewRoleComponent implements OnInit, OnDestroy {
   public readonly formGroup = new FormGroup({});

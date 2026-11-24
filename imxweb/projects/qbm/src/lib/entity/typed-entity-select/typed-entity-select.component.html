@@ -6,8 +6,8 @@
     [formControl]="control"
     [readonly]="true"
     [attr.data-imx-identifier]="'imx-typed-entity-select-' + data?.valueWrapper?.name"
-    [required]="data?.valueWrapper?.isValueRequired"
-    />
+    [required]="$safeNavigationMigration(data?.valueWrapper?.isValueRequired)"
+  />
   <div matSuffix class="imx-suffix-container">
     @if (loading) {
       <mat-spinner diameter="30"></mat-spinner>
@@ -20,7 +20,7 @@
         type="button"
         (click)="editAssignment()"
         [attr.data-imx-identifier]="'imx-typed-entity-select-button-' + data?.valueWrapper?.name"
-        >
+      >
         {{ control?.value?.length ? ('#LDS#Change' | translate) : ('#LDS#Select' | translate) }}
       </button>
     }

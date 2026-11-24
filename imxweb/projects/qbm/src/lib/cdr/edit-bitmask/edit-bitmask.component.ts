@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { EuiSelectOption } from '@elemental-ui/core';
 import { Subject, Subscription } from 'rxjs';
@@ -38,6 +38,7 @@ import { EntityColumnContainer } from '../entity-column-container';
   selector: 'imx-edit-bitmask',
   templateUrl: './edit-bitmask.component.html',
   styleUrls: ['./edit-bitmask.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EditBitmaskComponent implements CdrEditor {
@@ -72,7 +73,7 @@ export class EditBitmaskComponent implements CdrEditor {
   constructor(
     private readonly logger: ClassloggerService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   /**
    * Binds a column dependent reference to the component.

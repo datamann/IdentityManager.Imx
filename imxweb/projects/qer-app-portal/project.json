@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "qer-app-portal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "projects/qer-app-portal/src",
   "projectType": "application",
   "prefix": "imx",
@@ -14,10 +14,6 @@
       "executor": "@angular-devkit/build-angular:application",
       "options": {
         "aot": true,
-        "outputPath": {
-          "base": "dist/qer-app-portal",
-          "browser": ""
-        },
         "allowedCommonJsDependencies": [
           "lodash",
           "highlight.js",
@@ -39,8 +35,11 @@
           "moment",
           "@elemental-ui/cadence-icon/codepoints"
         ],
+        "outputPath": {
+          "base": "dist/qer-app-portal",
+          "browser": ""
+        },
         "index": "projects/qer-app-portal/src/index.html",
-        "browser": "projects/qer-app-portal/src/main.ts",
         "polyfills": [
           "projects/qer-app-portal/src/polyfills.ts"
         ],
@@ -48,6 +47,11 @@
         "assets": [
           "projects/qer-app-portal/src/assets",
           "projects/qer-app-portal/src/appconfig.json",
+          {
+            "glob": "**/*",
+            "input": "./html",
+            "output": "./html"
+          },
           {
             "glob": "**/*",
             "input": "./shared/assets/",
@@ -68,10 +72,10 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
         }
       },
@@ -86,7 +90,7 @@
           "optimization": true,
           "outputHashing": "all",
           "sourceMap": false,
-          "namedChunks": false,
+          "namedChunks": true,
           "aot": true,
           "extractLicenses": true,
           "budgets": [
@@ -136,60 +140,39 @@
         }
       },
       "outputs": [
-        "{options.outputPath}"
-      ],
-      "dependsOn": [
-        "^build",
-        {
-          "projects": [
-            "qer",
-            "aad",
-            "aob",
-            "apc",
-            "att",
-            "cpl",
-            "hds",
-            "iqc",
-            "olg",
-            "pol",
-            "qam",
-            "rmb",
-            "rms",
-            "rps",
-            "sac",
-            "tsb"
-          ],
-          "target": "build"
-        }
+        "{workspaceRoot}/dist/qer-app-portal"
       ]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "qer-app-portal:build"
+        "buildTarget": "qer-app-portal:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "qer-app-portal:build:production"
+          "buildTarget": "qer-app-portal:build:production"
         },
         "development": {
-          "browserTarget": "qer-app-portal:build:development"
+          "buildTarget": "qer-app-portal:build:development"
         },
         "remote-dev": {
-          "browserTarget": "qer-app-portal:build:remote-dev"
+          "buildTarget": "qer-app-portal:build:remote-dev"
         },
         "remote-qs": {
-          "browserTarget": "qer-app-portal:build:remote-qs"
+          "buildTarget": "qer-app-portal:build:remote-qs"
         },
         "es5": {
-          "browserTarget": "qer-app-portal:build:es5"
+          "buildTarget": "qer-app-portal:build:es5"
         }
+      },
+      "readyWhen": {
+        "signal": true
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "qer-app-portal:build"
+        "buildTarget": "qer-app-portal:build"
       }
     },
     "test": {
@@ -204,11 +187,10 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "./shared/assets",
-            "./shared/scss",
             "./node_modules",
             "./node_modules/@elemental-ui/cadence-icon",
-            "./node_modules/@elemental-ui/core"
+            "./node_modules/@elemental-ui/core",
+            "./shared/scss"
           ]
         },
         "assets": [
@@ -218,18 +200,32 @@
       }
     },
     "lint": {
-      "executor": "@angular-devkit/build-angular:tslint",
+      "executor": "@angular-eslint/builder:lint",
       "options": {
-        "tsConfig": [
-          "projects/qer-app-portal/tsconfig.app.json",
-          "projects/qer-app-portal/tsconfig.spec.json"
-        ],
-        "exclude": [
-          "**/node_modules/**",
-          "**/*.spec.ts",
-          "**/*.json"
+        "lintFilePatterns": [
+          "projects/qer-app-portal//**/*.ts",
+          "projects/qer-app-portal//**/*.html"
         ]
       }
     }
-  }
+  },
+  "implicitDependencies": [
+    "aad",
+    "aob",
+    "apc",
+    "att",
+    "cpl",
+    "hds",
+    "iqc",
+    "olg",
+    "pol",
+    "qam",
+    "qbm",
+    "qer",
+    "rmb",
+    "rms",
+    "rps",
+    "sac",
+    "tsb"
+  ]
 }

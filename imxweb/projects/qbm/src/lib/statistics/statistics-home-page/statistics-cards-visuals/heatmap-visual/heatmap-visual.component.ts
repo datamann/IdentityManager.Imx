@@ -24,14 +24,15 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { HeatmapSummaryDto } from '@imx-modules/imx-api-qbm';
 
 @Component({
-    selector: 'imx-heatmap-visual',
-    templateUrl: './heatmap-visual.component.html',
-    styleUrls: ['./heatmap-visual.component.scss'],
-    standalone: false
+  selector: 'imx-heatmap-visual',
+  templateUrl: './heatmap-visual.component.html',
+  styleUrls: ['./heatmap-visual.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HeatmapVisualComponent {
   @Input() public summaryStat: HeatmapSummaryDto;

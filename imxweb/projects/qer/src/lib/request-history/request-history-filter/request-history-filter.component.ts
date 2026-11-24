@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSelectComponent, EuiSelectOption } from '@elemental-ui/core';
 
 import { PortalPersonReports } from '@imx-modules/imx-api-qer';
@@ -35,14 +35,15 @@ import { QerApiService } from '../../qer-api-client.service';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Use the DataViewFilterComponent instead.
  */
 @Component({
   selector: 'imx-request-history-filter',
   templateUrl: './request-history-filter.component.html',
   styleUrls: ['./request-history-filter.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestHistoryFilterComponent implements OnInit {
   @Input() public dst: DataSourceToolbarComponent;
@@ -65,7 +66,7 @@ export class RequestHistoryFilterComponent implements OnInit {
   constructor(
     private readonly qerClient: QerApiService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     if (!this.hideFilter) {

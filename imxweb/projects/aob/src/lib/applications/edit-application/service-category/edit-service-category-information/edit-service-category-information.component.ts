@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { IEntity } from '@imx-modules/imx-qbm-dbts';
@@ -35,10 +35,11 @@ interface ServiceItemForm {
   cdrArray: FormArray;
 }
 @Component({
-    selector: 'imx-edit-service-category-information',
-    templateUrl: './edit-service-category-information.component.html',
-    styleUrls: ['./edit-service-category-information.component.scss'],
-    standalone: false
+  selector: 'imx-edit-service-category-information',
+  templateUrl: './edit-service-category-information.component.html',
+  styleUrls: ['./edit-service-category-information.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditServiceCategoryInformationComponent implements OnInit {
   public cdrList: (ColumnDependentReference | undefined)[];

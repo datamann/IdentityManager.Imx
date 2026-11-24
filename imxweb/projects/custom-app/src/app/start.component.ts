@@ -24,13 +24,14 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PortalPersonAll } from '@imx-modules/imx-api-qer';
 import { QerApiService } from 'qer';
 
 @Component({
-    templateUrl: './start.component.html',
-    standalone: false
+  templateUrl: './start.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StartComponent {
   constructor(private qerApi: QerApiService) {}

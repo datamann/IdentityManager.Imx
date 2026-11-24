@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, Inject, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -37,10 +37,11 @@ import { PasswordQuestionService } from '../password-question.service';
 import { checkMatchValidator } from '../password-questions-validator';
 
 @Component({
-    selector: 'imx-password-questions-sidesheet',
-    templateUrl: './password-questions-sidesheet.component.html',
-    styleUrls: ['./password-questions-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-password-questions-sidesheet',
+  templateUrl: './password-questions-sidesheet.component.html',
+  styleUrls: ['./password-questions-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PasswordQuestionsSidesheetComponent implements AfterViewInit, OnDestroy {
   /**

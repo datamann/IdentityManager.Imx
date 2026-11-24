@@ -3,9 +3,15 @@
     class="imx-form-field-width-full"
     appearance="outline"
     [class]="control.errors?.['required'] ? 'mat-form-field-invalid' : ''"
-    >
+  >
     <mat-label>{{ columnContainer.display | translate }}</mat-label>
-    <input matInput value="_hidden" [hidden]="true" [required]="columnContainer?.isValueRequired" class="input-hidden" />
+    <input
+      matInput
+      value="_hidden"
+      [hidden]="true"
+      [required]="$safeNavigationMigration(columnContainer?.isValueRequired)"
+      class="input-hidden"
+    />
     <div [ngClass]="control.errors?.['required'] ? 'mat-error' : ''" [formGroup]="control" class="imx-multi-value-container">
       <ng-container formArrayName="array">
         @for (item of columnContainer?.limitedValuesContainer?.values; track item; let i = $index) {
@@ -14,7 +20,7 @@
             [formControlName]="i"
             [imxDisableControl]="!columnContainer?.canEdit"
             [attr.data-imx-identifier]="'cdr-edit-multi-limited-value-checkbox-' + columnContainer?.name"
-            >
+          >
             {{ item.Description }}
           </mat-checkbox>
         }
@@ -34,4 +40,3 @@
     {{ '#LDS#This field is mandatory.' | translate }}
   </mat-error>
 }
-

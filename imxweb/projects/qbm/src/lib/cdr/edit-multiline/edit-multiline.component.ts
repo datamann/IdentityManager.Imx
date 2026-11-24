@@ -24,22 +24,23 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 
 import { EditorBase } from '../editor-base';
 
 /**
  * Provides a {@link CdrEditor | CDR editor} for editing / viewing multiline string columns
- * 
+ *
  * To change the value, it uses a text area.
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-multiline',
-    templateUrl: './edit-multiline.component.html',
-    styleUrls: ['./edit-multiline.component.scss'],
-    standalone: false
+  selector: 'imx-edit-multiline',
+  templateUrl: './edit-multiline.component.html',
+  styleUrls: ['./edit-multiline.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditMultilineComponent extends EditorBase<string> {
   /**

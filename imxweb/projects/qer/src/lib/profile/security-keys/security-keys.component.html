@@ -9,11 +9,11 @@
       data-imx-identifier="security-keys-tabledata-table"
       [dst]="dst"
       (highlightedEntityChanged)="onSelectedKey($event)"
-      >
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.DisplayName"></imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.SignatureCount"></imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.DateLastUsed"></imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.DateRegistered"></imx-data-table-column>
+    >
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.DisplayName)"></imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.SignatureCount)"></imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.DateLastUsed)"></imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.DateRegistered)"></imx-data-table-column>
       <imx-data-table-generic-column columnName="buttons" data-imx-identifier="security-keys-table-column-buttons">
         <ng-template let-key>
           <div class="imx-button-column">
@@ -22,7 +22,7 @@
               color="warn"
               (click)="deleteSecurityKey($event, key.EntityKeysData.Keys[0])"
               data-imx-identifier="attestations-table-deny-button"
-              >
+            >
               <eui-icon class="imx-margin-right-8" size="s" icon="delete"></eui-icon>
               <span>{{ '#LDS#Delete' | translate }}</span>
             </button>
@@ -46,7 +46,7 @@
     "
     [disabled]="!newKeyUrl"
     (click)="createSecurityKey()"
-    >
+  >
     @if (!newKeyUrl) {
       <eui-icon size="s" icon="help"></eui-icon>
     }

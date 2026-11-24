@@ -5,10 +5,7 @@
     </ng-template>
     <div eui-sidesheet-content [ngClass]="!data.isNew ? 'eui-sidesheet-content--no-padding-top' : ''">
       @if (!data.isNew) {
-        <imx-help-contextual
-          [contextId]="detailsContextIds"
-          [title]="'#LDS#Information about this tab:'"
-        ></imx-help-contextual>
+        <imx-help-contextual [contextId]="detailsContextIds" [title]="'#LDS#Information about this tab:'"></imx-help-contextual>
       }
       <mat-card>
         <form [formGroup]="detailsFormGroup">
@@ -21,20 +18,11 @@
     <div eui-sidesheet-actions>
       <span class="justify-start" [matTooltip]="deleteHelperTooltip | translate">
         @if (!data.isNew) {
-          <button
-            [disabled]="requestConfigContainsShelves || requestConfigHasMembers"
-            mat-flat-button
-            color="warn"
-            (click)="delete()"
-            >
+          <button [disabled]="requestConfigContainsShelves || requestConfigHasMembers" mat-flat-button color="warn" (click)="delete()">
             <eui-icon icon="delete"></eui-icon>
             <span>{{ requestsService.LdsDeleteShop | translate }}</span>
             @if (requestConfigContainsShelves || requestConfigHasMembers) {
-              <eui-icon
-                class="imx-icon-info"
-                icon="help"
-                size="16px"
-              ></eui-icon>
+              <eui-icon class="imx-icon-info" icon="help" size="16px"></eui-icon>
             }
           </button>
         }
@@ -45,7 +33,7 @@
         color="primary"
         (click)="saveRequestConfig()"
         [disabled]="detailsFormGroup.pristine || detailsFormGroup.invalid"
-        >
+      >
         @if (!data?.isNew) {
           <span translate>#LDS#Save</span>
         }
@@ -75,8 +63,8 @@
       </ng-template>
       <imx-request-config-members
         [shopDisplay]="data?.requestConfig?.GetEntity()?.GetDisplay() ?? ''"
-        [customerNodeId]="data?.requestConfig?.UID_CustomerNode?.value"
-        [requestDynamicGroup]="data?.requestConfig?.UID_DynamicGroup?.value"
+        [customerNodeId]="$safeNavigationMigration(data?.requestConfig?.UID_CustomerNode?.value)"
+        [requestDynamicGroup]="$safeNavigationMigration(data?.requestConfig?.UID_DynamicGroup?.value)"
         (memberCountUpdated)="onMemberCountUpdated($event)"
       ></imx-request-config-members>
     </mat-tab>
@@ -86,9 +74,9 @@
       <ng-template matTabContent>
         <div eui-sidesheet-content>
           <imx-object-hyperview
-            [objectType]="data?.requestConfig?.GetEntity()?.TypeName"
-            [objectUid]="data?.requestConfig?.GetEntity()?.GetKeys()?.[0]"
-            >
+            [objectType]="$safeNavigationMigration(data?.requestConfig?.GetEntity()?.TypeName)"
+            [objectUid]="$safeNavigationMigration(data?.requestConfig?.GetEntity()?.GetKeys()?.[0])"
+          >
           </imx-object-hyperview>
         </div>
       </ng-template>

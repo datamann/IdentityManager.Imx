@@ -1,15 +1,15 @@
 @if (columnContainer?.canEdit) {
   <imx-date
     [control]="control"
-    [display]="columnContainer?.display"
+    [display]="$safeNavigationMigration(columnContainer?.display)"
     [isReadonly]="!columnContainer?.canEdit"
-    [min]="columnContainer?.valueConstraint?.MinValue"
-    [max]="columnContainer?.valueConstraint?.MaxValue"
-    [isValueRequired]="columnContainer?.isValueRequired"
+    [min]="$safeNavigationMigration(columnContainer?.valueConstraint?.MinValue)"
+    [max]="$safeNavigationMigration(columnContainer?.valueConstraint?.MaxValue)"
+    [isValueRequired]="$safeNavigationMigration(columnContainer?.isValueRequired)"
     [withTime]="withTime"
     [validateOnlyOnChange]="validateOnlyOnChange"
     [isLoading]="isBusy"
-    [imxIdentifierSuffix]="'-cdr-' + columnContainer?.name"
+    [imxIdentifierSuffix]="'-cdr-' + $safeNavigationMigration(columnContainer?.name)"
     [dateFormat]="dateFormat"
   >
   </imx-date>

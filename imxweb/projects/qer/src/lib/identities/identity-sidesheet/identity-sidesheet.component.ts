@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTabGroup } from '@angular/material/tabs';
@@ -60,7 +60,8 @@ import { IdentitiesService } from '../identities.service';
   selector: 'imx-identity-sidesheet',
   templateUrl: './identity-sidesheet.component.html',
   styleUrls: ['./identity-sidesheet.component.scss'],
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentitySidesheetComponent implements OnInit, OnDestroy {
   @ViewChild('tabs') public tabs: MatTabGroup;

@@ -25,7 +25,7 @@
  */
 
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { AfterViewInit, Component, Inject, OnInit, viewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { EUI_SIDESHEET_DATA, EuiSearchComponent, EuiSidesheetRef } from '@elemental-ui/core';
@@ -48,6 +48,7 @@ export interface TreeSelectionModel {
   selector: 'imx-sqlwizard-tree-selection-sidesheet',
   standalone: false,
   templateUrl: './tree-selection-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tree-selection-sidesheet.component.scss',
 })
 export class TreeSelectionSidesheetComponent implements OnInit, AfterViewInit {

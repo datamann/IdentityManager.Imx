@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { DataSourceToolbarSettings, DynamicTabDataProviderDirective, MetadataService } from 'qbm';
@@ -32,9 +32,10 @@ import { RoleComplianceViolationsWrapperService } from './role-compliance-violat
 import { RoleComplianceViolationsService } from './role-compliance-violations.service';
 
 @Component({
-    templateUrl: './role-compliance-violations.component.html',
-    styleUrls: ['./role-compliance-violations.component.scss'],
-    standalone: false
+  templateUrl: './role-compliance-violations.component.html',
+  styleUrls: ['./role-compliance-violations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleComplianceViolationsComponent implements OnInit {
   public tablename: string;

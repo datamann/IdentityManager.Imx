@@ -30,7 +30,7 @@
             </div>
           </ng-template>
           <imx-filter-tree-sidesheet
-            [data]="data?.filterTreeParameter"
+            [data]="$safeNavigationMigration(data?.filterTreeParameter)"
             (filterTreeSelectionChanged)="onFilterTreeSelectionChanged($event)"
           ></imx-filter-tree-sidesheet>
         </mat-tab>
@@ -71,7 +71,7 @@
       }
       @if (hasTreeFilter) {
         <imx-filter-tree-sidesheet
-          [data]="data?.filterTreeParameter"
+          [data]="$safeNavigationMigration(data?.filterTreeParameter)"
           (filterTreeSelectionChanged)="onFilterTreeSelectionChanged($event)"
         ></imx-filter-tree-sidesheet>
       }
@@ -115,8 +115,8 @@
 
 <ng-template #customContent>
   <imx-sqlwizard
-    [tableName]="data?.settings?.entitySchema?.TypeName"
-    [expression]="sqlExpression?.Expression"
+    [tableName]="$safeNavigationMigration(data?.settings?.entitySchema?.TypeName)"
+    [expression]="$safeNavigationMigration(sqlExpression?.Expression)"
     (change)="checkChanges()"
     data-imx-identifier="sqlwizard"
     #sqlWizard
@@ -133,9 +133,7 @@
     class="imx-error"
     data-imx-identifier="clear-filter-button"
   >
-    <div class="imx-button-clear-filters">
-      <eui-icon icon="delete" size="s"></eui-icon>{{ '#LDS#Reset custom filter' | translate }}
-    </div>
+    <div class="imx-button-clear-filters"><eui-icon icon="delete" size="s"></eui-icon>{{ '#LDS#Reset custom filter' | translate }}</div>
   </button>
   <button
     mat-menu-item

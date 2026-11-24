@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 
 import { IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -32,10 +32,11 @@ import { ColumnDependentReference } from 'qbm';
 import { ReportSubscription } from '../report-subscription/report-subscription';
 
 @Component({
-    selector: 'imx-subscription-properties',
-    templateUrl: './subscription-properties.component.html',
-    styleUrls: ['./subscription-properties.component.scss'],
-    standalone: false
+  selector: 'imx-subscription-properties',
+  templateUrl: './subscription-properties.component.html',
+  styleUrls: ['./subscription-properties.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SubscriptionPropertiesComponent implements OnInit, OnChanges {
   public cdrList: ColumnDependentReference[] = [];

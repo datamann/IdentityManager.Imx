@@ -24,7 +24,18 @@
  *
  */
 
-import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ViewContainerRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { ClassloggerService } from '../../classlogger/classlogger.service';
@@ -55,10 +66,11 @@ import { ColumnDependentReference } from '../column-dependent-reference.interfac
  * </form
  */
 @Component({
-    selector: 'imx-cdr-editor',
-    templateUrl: './cdr-editor.component.html',
-    styleUrls: ['./cdr-editor.component.scss'],
-    standalone: false
+  selector: 'imx-cdr-editor',
+  templateUrl: './cdr-editor.component.html',
+  styleUrls: ['./cdr-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CdrEditorComponent implements OnChanges {
   public editor: CdrEditor | undefined;

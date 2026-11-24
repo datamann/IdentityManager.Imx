@@ -25,7 +25,7 @@
  */
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { ConfigSettingType, ConfigSettingValidValue } from '@imx-modules/imx-api-qbm';
 import { imx_SessionService } from '../../../session/imx-session.service';
@@ -36,6 +36,7 @@ import { NodeSetting } from '../node-setting';
   selector: 'imx-list-setting',
   templateUrl: './list-setting.component.html',
   styleUrls: ['./list-setting.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ListSettingComponent implements OnInit, OnChanges {

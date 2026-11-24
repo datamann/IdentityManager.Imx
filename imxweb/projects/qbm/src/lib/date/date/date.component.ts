@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 import { DateFormat } from '@imx-modules/imx-qbm-dbts';
@@ -45,6 +45,7 @@ import { DateParser } from './date-parser';
   selector: 'imx-date',
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DateComponent implements OnInit, OnDestroy {

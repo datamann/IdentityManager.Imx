@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 
 @Component({
-    selector: 'imx-filter-tile',
-    templateUrl: './filter-tile.component.html',
-    styleUrls: ['./filter-tile.component.scss'],
-    providers: [{ provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }],
-    standalone: false
+  selector: 'imx-filter-tile',
+  templateUrl: './filter-tile.component.html',
+  styleUrls: ['./filter-tile.component.scss'],
+  providers: [{ provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FilterTileComponent {
   @Input() public caption: string;

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { PortalApplication, PortalApplicationIdentities } from '@imx-modules/imx-api-aob';
 import {
@@ -42,10 +42,11 @@ import { IdentityDetailComponent } from './identity-detail/identity-detail.compo
 import { IdentityService } from './identity.service';
 
 @Component({
-    selector: 'imx-aob-identities',
-    templateUrl: './identities.component.html',
-    styleUrls: ['./identities.component.scss'],
-    standalone: false
+  selector: 'imx-aob-identities',
+  templateUrl: './identities.component.html',
+  styleUrls: ['./identities.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentitiesComponent implements OnChanges {
   /**

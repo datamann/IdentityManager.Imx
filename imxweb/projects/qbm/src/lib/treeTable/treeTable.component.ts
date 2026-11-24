@@ -25,18 +25,19 @@
  */
 
 import {
-    AfterContentInit,
-    Component,
-    ContentChild,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    Output,
-    QueryList,
-    TemplateRef,
-    ViewChild,
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  TemplateRef,
+  ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MatColumnDef, MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -44,11 +45,11 @@ import { Subscription } from 'rxjs';
 import { ImxDataSource, ImxExpandableItem } from './imx-data-source';
 import { ImxMatColumnComponent } from './MatColumn';
 
-/** 
-  * @deprecated  since v10.0.0
-  * 
-  * Use native implementations instead.
-  */
+/**
+ * @deprecated  since v10.0.0
+ *
+ * Use native implementations instead.
+ */
 @Component({
   selector: 'imx-tree-table',
   templateUrl: './treeTable.component.html',
@@ -59,6 +60,7 @@ import { ImxMatColumnComponent } from './MatColumn';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 

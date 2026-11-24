@@ -10,7 +10,7 @@
     [busyService]="busyService"
     [settings]="dstSettings"
     [options]=""
-    >
+  >
   </imx-data-source-toolbar>
   <div class="imx-data-table-container">
     <imx-data-table
@@ -23,17 +23,20 @@
       [detailViewVisible]="false"
       [noDataText]="data.noDataText || '#LDS#No data'"
       mode="manual"
+    >
+      <imx-data-table-column
+        [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.Display)"
+        [columnLabel]="'#LDS#Entitlement' | translate"
       >
-      <imx-data-table-column [entityColumn]="entitySchema?.Columns?.Display" [columnLabel]="'#LDS#Entitlement' | translate">
         <ng-template let-item>
           <div>{{ item.Display.value }}</div>
           <div class="subtext">{{ item.ObjectTypeDisplay.value }}</div>
         </ng-template>
       </imx-data-table-column>
       <imx-data-table-column
-        [entityColumn]="entitySchema?.Columns?.Reason"
+        [entityColumn]="$safeNavigationMigration(entitySchema?.Columns?.Reason)"
         [columnLabel]="data?.actionColumnTitle || '#LDS#Recommended action' | translate"
-        >
+      >
       </imx-data-table-column>
     </imx-data-table>
   </div>
@@ -51,7 +54,7 @@
       data-imx-identifier="roles-recommendations-apply-button"
       mat-stroked-button
       (click)="applyActions()"
-      >
+    >
       {{ data?.submitButtonTitle || '#LDS#Perform recommended actions' | translate }}
     </button>
   </div>

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Moment } from 'moment-timezone';
 
@@ -32,10 +32,11 @@ import { Moment } from 'moment-timezone';
  * Internal wrapper component around elemental time picker to pick a Moment time value.
  */
 @Component({
-    selector: 'imx-time-picker',
-    templateUrl: './time-picker.component.html',
-    styleUrls: ['./time-picker.component.scss'],
-    standalone: false
+  selector: 'imx-time-picker',
+  templateUrl: './time-picker.component.html',
+  styleUrls: ['./time-picker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TimePickerComponent {
   /**
@@ -67,7 +68,7 @@ export class TimePickerComponent {
    * Emits close event, when ESC keyboard has been pressed.
    */
   @HostListener('keydown.Esc', ['$event'])
-  private onEscapeKeyPress(event: KeyboardEvent): void {
+  protected onEscapeKeyPress(event: Event): void {
     event.stopPropagation();
     this.close.emit();
   }

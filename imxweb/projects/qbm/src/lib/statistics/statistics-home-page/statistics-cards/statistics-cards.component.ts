@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -35,10 +35,11 @@ import { GenericStatisticEntity, GenericStatisticNode, StatisticsDataService } f
 import { StatisticsOrderingSidesheetComponent } from '../statistics-ordering-sidesheet/statistics-ordering-sidesheet.component';
 
 @Component({
-    selector: 'imx-statistics-cards',
-    templateUrl: './statistics-cards.component.html',
-    styleUrls: ['./statistics-cards.component.scss'],
-    standalone: false
+  selector: 'imx-statistics-cards',
+  templateUrl: './statistics-cards.component.html',
+  styleUrls: ['./statistics-cards.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StatisticsCardsComponent implements OnInit, OnDestroy {
   @ViewChild('cardsWrapper', { read: ElementRef }) public cardsWrapper: ElementRef<HTMLElement>;

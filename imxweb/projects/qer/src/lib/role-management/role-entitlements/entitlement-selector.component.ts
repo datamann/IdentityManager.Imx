@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { RoleAssignmentData } from '@imx-modules/imx-api-qer';
 import { ApiRequestOptions, EntityCollectionData, FkProviderItem, IEntity, IForeignKeyInfo, TypedEntity } from '@imx-modules/imx-qbm-dbts';
@@ -41,6 +41,7 @@ export interface SelectedEntitlement {
   selector: 'imx-entitlement-selector',
   templateUrl: './entitlement-selector.component.html',
   styleUrls: ['./entitlement-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EntitlementSelectorComponent {

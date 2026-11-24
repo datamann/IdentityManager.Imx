@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, Signal, computed } from '@angular/core';
+import { Component, Input, Signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { DataViewSource } from '../data-view-source';
 
 @Component({
-    selector: 'imx-data-view-paginator',
-    templateUrl: './data-view-paginator.component.html',
-    styleUrls: ['./data-view-paginator.component.scss'],
-    standalone: false
+  selector: 'imx-data-view-paginator',
+  templateUrl: './data-view-paginator.component.html',
+  styleUrls: ['./data-view-paginator.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewPaginatorComponent {
   /**

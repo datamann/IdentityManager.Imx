@@ -26,7 +26,7 @@
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpHeaders } from '@angular/common/http';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiSelectOption, EuiTheme } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -39,7 +39,8 @@ import { DSTExportState, ExportColumnsService, FilteredColumnOption } from './ex
   selector: 'imx-data-export',
   templateUrl: './data-export.component.html',
   styleUrls: ['./data-export.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataExportComponent implements OnInit, OnDestroy {
   public state: DSTExportState;
@@ -52,7 +53,7 @@ export class DataExportComponent implements OnInit, OnDestroy {
     private readonly config: AppConfigService,
     public readonly elementalUiConfigService: ElementalUiConfigService,
     private readonly translateService: TranslateService,
-  ) { }
+  ) {}
 
   public get controlsCount(): number {
     return this.state?.columns?.length ?? 0;

@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PwoData } from '@imx-modules/imx-api-qer';
 import { EntityData } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-workflow-violation-details',
-    templateUrl: './workflow-violation-details.component.html',
-    styleUrls: ['./workflow-violation-details.component.scss'],
-    standalone: false
+  selector: 'imx-workflow-violation-details',
+  templateUrl: './workflow-violation-details.component.html',
+  styleUrls: ['./workflow-violation-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class WorkflowViolationDetailsComponent implements OnInit {
   public violations: EntityData[] = [];

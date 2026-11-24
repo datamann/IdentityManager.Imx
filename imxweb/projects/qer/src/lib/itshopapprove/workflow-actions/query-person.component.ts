@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { PortalItshopApproveRequests } from '@imx-modules/imx-api-qer';
@@ -38,9 +38,10 @@ import { QerApiService } from '../../qer-api-client.service';
  * @deprecated since v10.0.0
  */
 @Component({
-    templateUrl: './query-person.component.html',
-    selector: 'imx-itshop-queryperson',
-    standalone: false
+  templateUrl: './query-person.component.html',
+  selector: 'imx-itshop-queryperson',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class QueryPersonComponent {
   public Notice: IWriteValue<string>;

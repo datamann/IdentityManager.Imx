@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { AppConfigService } from '../appConfig/appConfig.service';
 import { CaptchaService } from './captcha.service';
 
 @Component({
-    selector: 'imx-captcha',
-    templateUrl: './captcha.component.html',
-    styleUrls: ['./captcha.component.scss'],
-    standalone: false
+  selector: 'imx-captcha',
+  templateUrl: './captcha.component.html',
+  styleUrls: ['./captcha.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CaptchaComponent {
   /**

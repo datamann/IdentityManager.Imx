@@ -49,7 +49,7 @@
       }
       @if (showLoginButton()) {
         @for (authProp of selectedConfigProvider()?.authProps; track authProp.name) {
-          <div [hidden]="selectedConfigProvider()?.isOAuth2">
+          <div [hidden]="$safeNavigationMigration(selectedConfigProvider()?.isOAuth2)">
             <eui-form-field>
               <eui-label>{{ authProp.display }}</eui-label>
               <input

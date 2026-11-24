@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -48,7 +48,8 @@ import { AccountsService } from '../accounts.service';
   selector: 'imx-account-sidesheet',
   templateUrl: './account-sidesheet.component.html',
   styleUrls: ['./account-sidesheet.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccountSidesheetComponent implements OnInit {
   public readonly detailsFormGroup: UntypedFormGroup;

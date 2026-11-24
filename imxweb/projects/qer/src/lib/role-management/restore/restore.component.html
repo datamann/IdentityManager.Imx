@@ -14,7 +14,7 @@
             }
             <mat-selection-list [multiple]="false" formControlName="role">
               @for (r of roles; track r) {
-                <mat-list-option checkboxPosition="before" [value]="r">
+                <mat-list-option togglePosition="before" [value]="r">
                   <div>{{ r.Display }}</div>
                   <div class="subtext">{{ '#LDS#Deleted on' | translate }}: {{ r.DeletionDate | localizedDate }}</div>
                 </mat-list-option>
@@ -44,7 +44,7 @@
             <mat-selection-list formControlName="uidActions">
               @for (action of actions; track action) {
                 <mat-list-option
-                  checkboxPosition="before"
+                  togglePosition="before"
                   [value]="action.Id"
                   [disabled]="!action.CanExecute"
                   [attr.data-imx-identifier]="'multi-select-action-' + action.Id"

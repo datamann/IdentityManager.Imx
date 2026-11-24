@@ -38,14 +38,15 @@ import { CompareService } from './compare.service';
 import { CompareItem } from './compare-item';
 import { CompareItemBuilder } from './compare-item-builder';
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataManagementService } from '../data-management.service';
 
 /** Compares two roles, with the option of merging the two roles into one. */
 @Component({
-    templateUrl: './compare.component.html',
-    styleUrls: ['./compare.component.scss'],
-    standalone: false
+  templateUrl: './compare.component.html',
+  styleUrls: ['./compare.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CompareComponent implements OnInit {
   // Takes place of the previous injected data

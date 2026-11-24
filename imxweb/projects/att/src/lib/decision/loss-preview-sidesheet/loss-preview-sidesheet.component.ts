@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { LossPreview } from '../loss-preview.interface';
 
@@ -32,6 +32,7 @@ import { LossPreview } from '../loss-preview.interface';
   selector: 'imx-loss-preview-sidesheet',
   standalone: false,
   templateUrl: './loss-preview-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './loss-preview-sidesheet.component.scss',
 })
 export class LossPreviewSidesheetComponent {

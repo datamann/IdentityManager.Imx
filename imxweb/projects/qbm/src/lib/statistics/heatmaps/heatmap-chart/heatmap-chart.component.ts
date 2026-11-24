@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Block } from '../block-properties.interface';
 import { HeatmapSidesheetService } from '../heatmap-sidesheet/heatmap-sidesheet.service';
 
 @Component({
-    selector: 'imx-heatmap-chart',
-    templateUrl: './heatmap-chart.component.html',
-    styleUrls: ['./heatmap-chart.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'imx-heatmap-chart',
+  templateUrl: './heatmap-chart.component.html',
+  styleUrls: ['./heatmap-chart.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HeatmapChartComponent {
   @Input() public blocks: Block[];

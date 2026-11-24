@@ -27,7 +27,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, ErrorHandler, Injector, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, ErrorHandler, Injector, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiDownloadDirective, EuiDownloadService } from '@elemental-ui/core';
 import { HelpdeskConfig, V2ApiClientMethodFactory } from '@imx-modules/imx-api-hds';
@@ -49,7 +49,8 @@ import { CallsAttachmentActionType, CallsAttachmentNode, CallsAttachmentType } f
   selector: 'imx-calls-attachment',
   templateUrl: './calls-attachment.component.html',
   styleUrls: ['./calls-attachment.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CallsAttachmentComponent implements OnInit {
   @Input() public callId: string = '';
@@ -86,7 +87,7 @@ export class CallsAttachmentComponent implements OnInit {
     private readonly errorHandler: ErrorHandler,
     private readonly ldsReplace: LdsReplacePipe,
     private readonly downloadService: EuiDownloadService,
-  ) { }
+  ) {}
 
   // Setup apiControls and dynamicDataSource and get initial attachment tree data
   async ngOnInit(): Promise<void> {

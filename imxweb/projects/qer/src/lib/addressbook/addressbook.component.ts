@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetConfig, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -56,11 +56,12 @@ import { AddressbookService } from './addressbook.service';
  * White pages view. Contains a person details view.
  */
 @Component({
-    selector: 'imx-addressbook',
-    templateUrl: './addressbook.component.html',
-    styleUrls: ['./addressbook.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  selector: 'imx-addressbook',
+  templateUrl: './addressbook.component.html',
+  styleUrls: ['./addressbook.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AddressbookComponent implements OnInit {
   public displayedColumns: IClientProperty[];
@@ -109,7 +110,7 @@ export class AddressbookComponent implements OnInit {
         },
         groupExecute: (columnName: string, parameters: CollectionLoadParameters, signal: AbortSignal) =>
           this.personService.getGroupInfo({ ...parameters, by: columnName }),
-        viewConfig: this.viewConfig,        
+        viewConfig: this.viewConfig,
         exportFunction: this.addressbookService.exportPerson(),
       };
       this.dataSource.init(dataViewInitParameters);

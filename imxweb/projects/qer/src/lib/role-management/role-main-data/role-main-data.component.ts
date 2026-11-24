@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -39,10 +39,11 @@ import { RollbackComponent } from '../rollback/rollback.component';
 import { SplitComponent } from '../split/split.component';
 
 @Component({
-    selector: 'imx-role-main-data',
-    templateUrl: './role-main-data.component.html',
-    styleUrls: ['./role-main-data.component.scss'],
-    standalone: false
+  selector: 'imx-role-main-data',
+  templateUrl: './role-main-data.component.html',
+  styleUrls: ['./role-main-data.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RoleMainDataComponent implements OnInit {
   public editableFields: string[];

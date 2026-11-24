@@ -37,7 +37,7 @@
               <imx-entity-column-editor [column]="run.DueDate.Column"></imx-entity-column-editor>
               <div class="imx-property-display">
                 <span>{{ '#LDS#Progress' | translate }}</span>
-                <imx-progress [attestationRun]="run" [limit]="attestationRunConfig?.LimitGood"></imx-progress>
+                <imx-progress [attestationRun]="run" [limit]="$safeNavigationMigration(attestationRunConfig?.LimitGood)"></imx-progress>
               </div>
             </mat-expansion-panel>
             <mat-expansion-panel
@@ -94,7 +94,12 @@
                 <div class="imx-property-display">
                   <span>{{ '#LDS#Estimated progress on due date' | translate }}</span>
                   @if (run.DueDate.value && run.SecondsLeft.value > 0) {
-                    <imx-progress [attestationRun]="run" [limit]="attestationRunConfig?.LimitGood" [forecast]="true"> </imx-progress>
+                    <imx-progress
+                      [attestationRun]="run"
+                      [limit]="$safeNavigationMigration(attestationRunConfig?.LimitGood)"
+                      [forecast]="true"
+                    >
+                    </imx-progress>
                   } @else {
                     @if (!run.DueDate.value) {
                       <div>

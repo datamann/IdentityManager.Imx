@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ErrorHandler, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, Inject, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,9 +46,10 @@ import { ApplicationContent } from '../application-content.interface';
 import { SelectionContainer } from './selection-container';
 
 @Component({
-    selector: 'imx-edit-application',
-    templateUrl: './edit-application.component.html',
-    standalone: false
+  selector: 'imx-edit-application',
+  templateUrl: './edit-application.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditApplicationComponent implements ApplicationContent {
   public readonly applicationForm = new UntypedFormGroup({});

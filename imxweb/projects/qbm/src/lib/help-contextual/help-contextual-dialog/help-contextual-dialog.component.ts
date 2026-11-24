@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ChapterLink } from '@imx-modules/imx-api-qbm';
 import { ExtendedHelpContextualItem } from '../help-contextual.component';
@@ -37,6 +37,7 @@ import { HelpContextualService } from '../help-contextual.service';
   selector: 'imx-help-contextual-dialog',
   templateUrl: './help-contextual-dialog.component.html',
   styleUrls: ['./help-contextual-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HelpContextualDialogComponent {

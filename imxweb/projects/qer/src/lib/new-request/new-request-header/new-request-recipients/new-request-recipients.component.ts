@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, computed, OnDestroy, Signal } from '@angular/core';
+import { Component, computed, OnDestroy, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { MultiValue } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,18 +38,20 @@ import { RecipientsApiService } from './recipients-api.service';
   selector: 'imx-new-request-recipients',
   templateUrl: './new-request-recipients.component.html',
   styleUrls: ['./new-request-recipients.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class NewRequestRecipientsComponent implements OnDestroy {
   /**
    * Check if we have a multi or singular valued selection
    */
-  public isMultiValue = computed(() => [
-    SelectedProductSource.AllProducts,
-    SelectedProductSource.ReferenceUserProducts,
-    SelectedProductSource.ReferenceUserOrgs,
-    SelectedProductSource.ProductBundles
-  ].includes(this.orchestration.selectedView())
+  public isMultiValue = computed(() =>
+    [
+      SelectedProductSource.AllProducts,
+      SelectedProductSource.ReferenceUserProducts,
+      SelectedProductSource.ReferenceUserOrgs,
+      SelectedProductSource.ProductBundles,
+    ].includes(this.orchestration.selectedView()),
   );
 
   public nRecipients: Signal<number> = computed(() => {
@@ -66,7 +68,7 @@ export class NewRequestRecipientsComponent implements OnDestroy {
     private sidesheetService: EuiSidesheetService,
     private translateService: TranslateService,
     private confirmationService: ConfirmationService,
-  ) { }
+  ) {}
 
   ngOnDestroy(): void {
     // Make sure that once you navigate away the default user is set again within the service

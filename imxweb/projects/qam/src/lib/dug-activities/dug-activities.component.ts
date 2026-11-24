@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, InjectionToken, OnInit } from '@angular/core';
+import { Component, Inject, InjectionToken, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -41,10 +41,11 @@ export const DataViewSourceTrustee = new InjectionToken<DataViewSource<DugActivi
   templateUrl: './dug-activities.component.html',
   styleUrls: ['./dug-activities.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     { provide: DataViewSourceResource, useClass: DataViewSource },
-    { provide: DataViewSourceTrustee, useClass: DataViewSource }
-  ]
+    { provide: DataViewSourceTrustee, useClass: DataViewSource },
+  ],
 })
 export class DugActivitiesComponent implements OnInit {
   private mostActiveTrustees: TrusteeActivityData[];
@@ -69,7 +70,7 @@ export class DugActivitiesComponent implements OnInit {
     private readonly translateService: TranslateService,
     @Inject(DataViewSourceResource) public dataSourceResource: DataViewSource<DugActivityEntity>,
     @Inject(DataViewSourceTrustee) public dataSourceTrustee: DataViewSource<DugActivityEntity>,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     const over = this.loadingServiceEui.show();
@@ -94,7 +95,6 @@ export class DugActivitiesComponent implements OnInit {
       ];
       this.initTrustee();
       this.initResources();
-
     } finally {
       this.loadingServiceEui.hide(over);
     }

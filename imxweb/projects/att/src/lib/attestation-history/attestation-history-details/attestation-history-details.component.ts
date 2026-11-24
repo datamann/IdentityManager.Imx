@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiSidesheetRef, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -38,10 +38,11 @@ import { AttestationCasesService } from '../../decision/attestation-cases.servic
 import { AttestationHistoryActionService } from '../attestation-history-action.service';
 import { AttestationHistoryCase } from '../attestation-history-case';
 @Component({
-    selector: 'imx-attestation-history-details',
-    templateUrl: './attestation-history-details.component.html',
-    styleUrls: ['./attestation-history-details.component.scss'],
-    standalone: false
+  selector: 'imx-attestation-history-details',
+  templateUrl: './attestation-history-details.component.html',
+  styleUrls: ['./attestation-history-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationHistoryDetailsComponent implements OnDestroy, OnInit {
   public get canDecide(): boolean {

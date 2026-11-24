@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, Signal, WritableSignal, computed } from '@angular/core';
+import { Component, Input, Signal, WritableSignal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { FilterType } from '@imx-modules/imx-qbm-dbts';
 import { DataSourceToolbarFilter } from '../../data-source-toolbar/data-source-toolbar-filters.interface';
 import { DataViewSource } from '../data-view-source';
@@ -35,10 +35,11 @@ import { ExpressionFilter, KeywordFilter, SelectedFilter, SelectedFilterType } f
  * <imx-data-view-chipbar [dataSource]="dataSource"></imx-data-view-chipbar>
  */
 @Component({
-    selector: 'imx-data-view-chipbar',
-    templateUrl: './data-view-chipbar.component.html',
-    styleUrls: ['./data-view-chipbar.component.scss'],
-    standalone: false
+  selector: 'imx-data-view-chipbar',
+  templateUrl: './data-view-chipbar.component.html',
+  styleUrls: ['./data-view-chipbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewChipbarComponent {
   /**

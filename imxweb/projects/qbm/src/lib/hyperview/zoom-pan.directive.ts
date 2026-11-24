@@ -54,7 +54,7 @@ export class ZoomPanDirective implements OnDestroy {
   }
 
   @HostListener('wheel', ['$event'])
-  private scalingThrottled(event: WheelEvent) {
+  protected scalingThrottled(event: WheelEvent) {
     this.scaleStream$.next(event);
     return false;
   }
@@ -76,7 +76,7 @@ export class ZoomPanDirective implements OnDestroy {
   }
 
   @HostListener('mousedown', ['$event'])
-  private dragStart(event: MouseEvent) {
+  protected dragStart(event: MouseEvent) {
     //to get the current position of cursor inside the element
     const childElement = this.elementRef.nativeElement.children[0];
     this.relativePosition.x = childElement.hasAttribute('att-relative-x') ? Number(childElement.getAttribute('att-relative-x')) : 0;
@@ -88,7 +88,7 @@ export class ZoomPanDirective implements OnDestroy {
   }
 
   @HostListener('mousemove', ['$event'])
-  private dragging(event: MouseEvent) {
+  protected dragging(event: MouseEvent) {
     if (this.mouseDown) {
       const childElement = this.elementRef.nativeElement.children[0];
       const { x, y } = childElement.getBoundingClientRect();
@@ -104,13 +104,13 @@ export class ZoomPanDirective implements OnDestroy {
   }
 
   @HostListener('document:mouseup', ['$event'])
-  private dragend(event: MouseEvent) {
+  protected dragend(event: MouseEvent) {
     this.mouseDown = false;
     return false;
   }
 
   @HostListener('mouseover')
-  private hover(event: MouseEvent) {
+  protected hover() {
     this.renderer.setStyle(this.elementRef.nativeElement, 'cursor', 'move');
     return false;
   }

@@ -25,7 +25,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, ErrorHandler, OnDestroy, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { EuiLoadingService } from '@elemental-ui/core';
@@ -36,9 +36,10 @@ import { PersonService } from 'qer';
 import { ClaimDeviceService } from './claim-device.service';
 
 @Component({
-    styleUrls: ['./claim-device.component.scss'],
-    templateUrl: './claim-device.component.html',
-    standalone: false
+  styleUrls: ['./claim-device.component.scss'],
+  templateUrl: './claim-device.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ClaimDeviceComponent implements OnDestroy, OnInit {
   public get ownerDisplay(): string {

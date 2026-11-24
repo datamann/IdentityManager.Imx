@@ -25,7 +25,7 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -57,7 +57,8 @@ import { CartItemCheckStatus } from './cart-item-check-status.enum';
   styleUrls: ['./cart-items.component.scss'],
   selector: 'imx-cart-items',
   providers: [DataViewSource],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CartItemsComponent implements OnInit, OnChanges {
   public CartItemCheckStatus = CartItemCheckStatus;
@@ -156,18 +157,18 @@ export class CartItemsComponent implements OnInit, OnChanges {
       updated: observable,
       cloneItem: this.itemCanBeCloned(cartItem)
         ? async () => {
-          reloadItems = true;
-          this.logger.trace(this, 'shopping cart must be reloaded');
-          this.cartItemClone.cloneItemForPersons({
-            personOrderedFkRelations: cartItem.UID_PersonOrdered.GetMetadata().GetFkRelations(),
-            accProduct: {
-              DataValue: cartItem.UID_AccProduct.value,
-              DisplayValue: cartItem.UID_AccProduct.Column.GetDisplayValue(),
-            },
-            uidITShopOrg: cartItem.UID_ITShopOrg.value,
-            display: cartItem.GetEntity().GetDisplay(),
-          });
-        }
+            reloadItems = true;
+            this.logger.trace(this, 'shopping cart must be reloaded');
+            this.cartItemClone.cloneItemForPersons({
+              personOrderedFkRelations: cartItem.UID_PersonOrdered.GetMetadata().GetFkRelations(),
+              accProduct: {
+                DataValue: cartItem.UID_AccProduct.value,
+                DisplayValue: cartItem.UID_AccProduct.Column.GetDisplayValue(),
+              },
+              uidITShopOrg: cartItem.UID_ITShopOrg.value,
+              display: cartItem.GetEntity().GetDisplay(),
+            });
+          }
         : undefined,
     };
 
@@ -284,8 +285,8 @@ export class CartItemsComponent implements OnInit, OnChanges {
     const cartItem: PortalCartitem = event.item;
     event.selectableRows.push(
       cartItem.UID_ShoppingCartItemParent.value == null ||
-      cartItem.UID_ShoppingCartItemParent.value.length === 0 ||
-      cartItem.IsOptionalChild.value,
+        cartItem.UID_ShoppingCartItemParent.value.length === 0 ||
+        cartItem.IsOptionalChild.value,
     );
   }
 
@@ -306,8 +307,10 @@ export class CartItemsComponent implements OnInit, OnChanges {
    * @returns boolean indicating if the selected items can be edited
    */
   public itemsCanBeEdited(): boolean {
-    return this.selectedItems.length === 1
-      || (this.HasSelectedItems() && this.selectedItems.every((item) => !item.IsNoCopyParametersPerson.value));
+    return (
+      this.selectedItems.length === 1 ||
+      (this.HasSelectedItems() && this.selectedItems.every((item) => !item.IsNoCopyParametersPerson.value))
+    );
   }
 
   public async showValidationOverview(cartItem: PortalCartitem): Promise<void> {

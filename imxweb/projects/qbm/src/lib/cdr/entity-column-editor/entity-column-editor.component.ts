@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { IEntityColumn } from '@imx-modules/imx-qbm-dbts';
@@ -35,10 +35,11 @@ import { ColumnDependentReference } from '../column-dependent-reference.interfac
  * Provides a column editor component, that wraps around a {@link CdrEditor | column dependent reference editor}.
  */
 @Component({
-    selector: 'imx-entity-column-editor',
-    templateUrl: './entity-column-editor.component.html',
-    styleUrls: ['./entity-column-editor.component.scss'],
-    standalone: false
+  selector: 'imx-entity-column-editor',
+  templateUrl: './entity-column-editor.component.html',
+  styleUrls: ['./entity-column-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EntityColumnEditorComponent implements OnChanges {
   /**

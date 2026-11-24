@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { MultiValue, ValueStruct } from '@imx-modules/imx-qbm-dbts';
 import { BaseCdr, ClassloggerService, ColumnDependentReference, MetadataService } from 'qbm';
@@ -32,9 +32,10 @@ import { FilterChangedArgument } from './filter-changed-argument.interface';
 import { FilterElementModel } from './filter-element-model';
 
 @Component({
-    templateUrl: './edit-generic.component.html',
-    selector: 'imx-edit-generic',
-    standalone: false
+  templateUrl: './edit-generic.component.html',
+  selector: 'imx-edit-generic',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditGenericComponent implements OnChanges {
   public cdr: ColumnDependentReference;

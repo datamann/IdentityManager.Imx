@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output, Signal, computed } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { FilterType, IClientProperty } from '@imx-modules/imx-qbm-dbts';
@@ -41,9 +41,10 @@ import { SnackBarService } from '../../snackbar/snack-bar.service';
 import { DataViewSource } from '../data-view-source';
 
 @Component({
-    selector: 'imx-data-view-settings',
-    templateUrl: './data-view-settings.component.html',
-    standalone: false
+  selector: 'imx-data-view-settings',
+  templateUrl: './data-view-settings.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataViewSettingsComponent {
   /**
@@ -65,12 +66,11 @@ export class DataViewSettingsComponent {
     () => !!this.dataSource.viewConfig()?.viewConfigs && !!this.dataSource.viewConfig()?.viewConfigs?.length,
   );
 
-  
   /**
    * TODO: #703688
    * Checks if the export button should be disabled. It is disabled when a groupBy is active, because the export function does not support this at the moment and would export unexpected data.
    */
-  public disableExport = computed(() =>  !!this.dataSource.groupByColumn());
+  public disableExport = computed(() => !!this.dataSource.groupByColumn());
 
   constructor(
     private readonly sidesheetService: EuiSidesheetService,
@@ -102,7 +102,7 @@ export class DataViewSettingsComponent {
   }
 
   /**
-    * TODO: #703688
+   * TODO: #703688
    * Logs a warning when export is disabled and the settings menu has been opened.
    */
   public onSettingsMenuOpened(): void {

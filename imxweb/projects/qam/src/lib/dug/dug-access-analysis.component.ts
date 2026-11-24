@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DisplayColumns, EntitySchema, IClientProperty } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { DataViewSource, LocalDataViewInitParameters } from 'qbm';
@@ -36,6 +36,7 @@ import { DugAccessAnalysisService } from './dug-access-analysis.service';
   styleUrls: ['./dug-access-analysis.component.scss'],
   selector: 'imx-dge-access-analysis',
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DataViewSource],
 })
 export class DugAccessAnalysisComponent implements OnInit {
@@ -80,10 +81,7 @@ export class DugAccessAnalysisComponent implements OnInit {
   }
 
   public init() {
-    const data = DugAccessDetailEntity.buildEntities(
-      DugAccessDetailEntity.buildEntityData(this.identities),
-      this.entitySchema,
-    );
+    const data = DugAccessDetailEntity.buildEntities(DugAccessDetailEntity.buildEntityData(this.identities), this.entitySchema);
     const dataViewInitParameters: LocalDataViewInitParameters<DugAccessDetailEntity> = {
       data: data.Data,
       columnsToDisplay: this.displayColumns,

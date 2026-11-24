@@ -23,7 +23,7 @@
   <mat-card class="imx-card-fill">
     <imx-data-view-auto-table [dataSource]="dataSource" mode="manual" [selectable]="!selectedCompanyPolicy">
       @if (!selectedCompanyPolicy) {
-        <ng-container [matColumnDef]="entitySchema?.Columns?.UID_QERPolicy?.ColumnName">
+        <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_QERPolicy?.ColumnName)">
           <ng-container>
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchema?.Columns?.UID_QERPolicy?.Display }}
@@ -34,16 +34,16 @@
               <div>{{ item.UID_QERPolicy.Column.GetDisplayValue() }}</div>
               <div subtitle>
                 <span>{{ item.Description.Column.GetDisplayValue() }}</span>
-                @if (item.Description.Column.GetDisplayValue() && getSubtitleText(item?.GetEntity())) {
+                @if (item.Description.Column.GetDisplayValue() && getSubtitleText($safeNavigationMigration(item?.GetEntity()))) {
                   <span class="imx-padding-right-4">;</span>
                 }
-                <span>{{ getSubtitleText(item?.GetEntity()) }}</span>
+                <span>{{ getSubtitleText($safeNavigationMigration(item?.GetEntity())) }}</span>
               </div>
             </div>
           </td>
         </ng-container>
       }
-      <ng-container [matColumnDef]="entitySchema?.Columns?.ObjectKey?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.ObjectKey?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ '#LDS#Violating object' | translate }}
@@ -55,7 +55,7 @@
           </span>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="entitySchema?.Columns?.State?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.State?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchema?.Columns?.State?.Display }}

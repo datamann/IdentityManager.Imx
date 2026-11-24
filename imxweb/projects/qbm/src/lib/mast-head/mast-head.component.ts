@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, effect, Input, OnDestroy, Optional } from '@angular/core';
+import { Component, effect, Input, OnDestroy, Optional, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService, EuiTopNavigationItem } from '@elemental-ui/core';
@@ -108,7 +108,8 @@ import { MastHeadService } from './mast-head.service';
   selector: 'imx-mast-head',
   templateUrl: './mast-head.component.html',
   styleUrls: ['./mast-head.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MastHeadComponent implements OnDestroy {
   public isQueueFinished: boolean;
@@ -160,7 +161,7 @@ export class MastHeadComponent implements OnDestroy {
       this.authentication.onSessionResponse.subscribe(async (sessionState: ISessionState) => {
         this.sessionState = sessionState;
         if (this.sessionState.IsLoggedIn) await this.checkChatbotExtension();
-      })
+      }),
     );
 
     // apply custom logo from configuration

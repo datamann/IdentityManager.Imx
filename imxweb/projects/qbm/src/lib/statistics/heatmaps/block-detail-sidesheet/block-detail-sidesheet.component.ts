@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { EntitySchema } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -37,10 +37,11 @@ import { Block } from '../block-properties.interface';
 import { HeatmapDataTyped } from '../heatmap-data-typed';
 
 @Component({
-    selector: 'imx-block-detail-sidesheet',
-    templateUrl: './block-detail-sidesheet.component.html',
-    styleUrls: ['./block-detail-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-block-detail-sidesheet',
+  templateUrl: './block-detail-sidesheet.component.html',
+  styleUrls: ['./block-detail-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BlockDetailSidesheetComponent implements OnInit, OnDestroy {
   @ViewChild('chartWrapper', { read: ElementRef }) public chartWrapper: ElementRef<HTMLElement>;

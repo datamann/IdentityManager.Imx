@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -50,10 +50,11 @@ import { SourceDetectiveSidesheetComponent, SourceDetectiveSidesheetData, Source
 import { GroupMembershipsExtService } from './group-memberships-ext.service';
 
 @Component({
-    templateUrl: './group-memberships-ext.component.html',
-    styleUrls: ['./group-memberships-ext.component.scss'],
-    providers: [DataViewSource],
-    standalone: false
+  templateUrl: './group-memberships-ext.component.html',
+  styleUrls: ['./group-memberships-ext.component.scss'],
+  providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class GroupMembershipsExtComponent implements OnInit {
   @Input() public referrer: {

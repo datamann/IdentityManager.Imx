@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -35,10 +35,11 @@ import { ClassloggerService } from 'qbm';
  * @deprecated since v10.0.0
  */
 @Component({
-    selector: 'imx-user',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss'],
-    standalone: false
+  selector: 'imx-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class UserComponent implements OnChanges {
   @Input() public uid: IReadValue<any> | IWriteValue<any>;

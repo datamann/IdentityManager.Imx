@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalDgeResourcesbyid } from '../TypedClient';
 import { QamApiService } from '../qam-api-client.service';
@@ -33,10 +33,11 @@ type ComparisonData = { display: string; trusteeType: number; accessA?: string[]
 
 /** Displays a comparison between security entries on two resources. */
 @Component({
-    templateUrl: './access-comparison.component.html',
-    styleUrls: ['../qam.scss'],
-    selector: 'imx-dge-access-comparison',
-    standalone: false
+  templateUrl: './access-comparison.component.html',
+  styleUrls: ['../qam.scss'],
+  selector: 'imx-dge-access-comparison',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccessComparisonComponent implements OnInit {
   constructor(

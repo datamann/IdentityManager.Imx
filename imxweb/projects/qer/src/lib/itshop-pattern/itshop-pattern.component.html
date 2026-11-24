@@ -20,7 +20,7 @@
             </div>
           </td>
         </ng-container>
-        <ng-container [matColumnDef]="entitySchema?.Columns?.UID_Person?.ColumnName">
+        <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UID_Person?.ColumnName)">
           <ng-container>
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchema?.Columns?.UID_Person?.Display }}
@@ -32,7 +32,7 @@
             </span>
           </td>
         </ng-container>
-        <ng-container [matColumnDef]="entitySchema?.Columns?.IsPublicPattern?.ColumnName">
+        <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.IsPublicPattern?.ColumnName)">
           <ng-container>
             <th mat-header-cell *matHeaderCellDef>
               {{ entitySchema?.Columns?.IsPublicPattern?.Display }}
@@ -57,7 +57,7 @@
       data-imx-identifier="itshop-pattern-button-delete"
       [disabled]="!selectedItemsCanBeDeleted()"
       (click)="delete()"
-      >
+    >
       <eui-icon icon="delete"></eui-icon>
       <span>{{ '#LDS#Delete' | translate }}</span>
     </button>
@@ -67,7 +67,7 @@
         data-imx-identifier="itshop-pattern-button-view-publish"
         [disabled]="!selectedItemsCanBeUnpublished()"
         (click)="unpublish(selectedPatterns)"
-        >
+      >
         {{ '#LDS#Unshare' | translate }}
       </button>
     }
@@ -77,7 +77,7 @@
         data-imx-identifier="itshop-pattern-button-view-publish"
         [disabled]="!selectedItemsCanBePublished()"
         (click)="publish(selectedPatterns)"
-        >
+      >
         {{ '#LDS#Share' | translate }}
       </button>
     }

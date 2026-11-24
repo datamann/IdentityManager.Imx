@@ -33,7 +33,7 @@
     [matSortActive]="dataSource.sortId()"
     [matSortDirection]="dataSource.sortDirection()"
   >
-    <ng-container [matColumnDef]="entitySchema?.Columns?.DisplayOrg?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.DisplayOrg?.ColumnName)">
       <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
         {{ entitySchema?.Columns?.DisplayOrg?.Display }}
       </th>
@@ -48,7 +48,7 @@
         }
       </td>
     </ng-container>
-    <ng-container [matColumnDef]="entitySchema?.Columns?.UiOrderState?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.UiOrderState?.ColumnName)">
       <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
         {{ entitySchema?.Columns?.UiOrderState?.Display }}
       </th>
@@ -68,7 +68,7 @@
         }
       </td>
     </ng-container>
-    <ng-container [matColumnDef]="entitySchema?.Columns?.OrderDate?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.OrderDate?.ColumnName)">
       <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="dataSource.showOnlySelected()">
         {{ entitySchema?.Columns?.OrderDate?.Display }}
       </th>
@@ -76,7 +76,7 @@
         <div>{{ pwo.OrderDate?.Column.GetDisplayValue() }}</div>
       </td>
     </ng-container>
-    <ng-container [matColumnDef]="entitySchema?.Columns?.PWOPriority?.ColumnName">
+    <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.PWOPriority?.ColumnName)">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let pwo" role="gridcell">
         <div class="imx-icon-table-container">

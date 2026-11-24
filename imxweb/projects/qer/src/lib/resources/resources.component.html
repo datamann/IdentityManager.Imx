@@ -30,7 +30,7 @@
       </ng-container>
     }
     @if (entitySchema && entitySchema.Columns?.Requestable) {
-      <ng-container [matColumnDef]="entitySchema?.Columns?.Requestable?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(entitySchema?.Columns?.Requestable?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ entitySchema?.Columns?.Requestable?.Display }}

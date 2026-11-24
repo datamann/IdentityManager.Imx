@@ -24,20 +24,13 @@
  *
  */
 
-
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { ChatApiExtendedData } from '@imx-modules/imx-api-iqc';
-import {
-  EntitySchema,
-  ExtendedEntityCollectionData,
-  IClientProperty,
-  TypedEntityBuilder,
-  ValType
-} from '@imx-modules/imx-qbm-dbts';
+import { EntitySchema, ExtendedEntityCollectionData, IClientProperty, TypedEntityBuilder, ValType } from '@imx-modules/imx-qbm-dbts';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DataViewModule, DataViewSource, GenericTypedEntity, LocalDataViewInitParameters, SettingsService } from 'qbm';
 
@@ -61,6 +54,7 @@ import { DataViewModule, DataViewSource, GenericTypedEntity, LocalDataViewInitPa
     ></imx-data-view-auto-table>
     <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {
@@ -115,19 +109,18 @@ export class ChatbotDynamicTableComponent implements OnInit {
       if (column.Display && column.Display.startsWith('#LDS#')) column.Display = this.translateService.instant(column.Display!);
       return column;
     });
-    
+
     // Create the data
     const initParams: LocalDataViewInitParameters<GenericTypedEntity> = {
       data: this.createEntities().Data,
       columnsToDisplay: this.columnsToDisplay,
       schema: this.schema,
       highlightEntity: () => {},
-      localSource: true
+      localSource: true,
     };
-    this.dataSource.initLocal(initParams);    
+    this.dataSource.initLocal(initParams);
     this.dataSource.state.set({ PageSize: this.settingsService?.DefaultPageSize, StartIndex: 0 });
   }
-
 
   /**
    * Create a schema either from available properties input or from the data
@@ -136,11 +129,14 @@ export class ChatbotDynamicTableComponent implements OnInit {
     // If we have properties to display, then use those
     if (!!this.properties() && this.properties()!.length > 0) {
       this.schema = {
-        Columns: this.properties()!.reduce((schema, column) => {
-          schema[column.ColumnName!] = column
-          return schema
-        }, {} as { [id: string]: IClientProperty })
-      }
+        Columns: this.properties()!.reduce(
+          (schema, column) => {
+            schema[column.ColumnName!] = column;
+            return schema;
+          },
+          {} as { [id: string]: IClientProperty },
+        ),
+      };
       return;
     }
     // Otherwise create schema based on the first entity's columns

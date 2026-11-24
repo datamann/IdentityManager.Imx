@@ -25,7 +25,7 @@
  */
 
 import { KeyValue } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartOptions, donut } from 'billboard.js';
 import { SystemInfoService } from 'qbm';
@@ -33,10 +33,11 @@ import { ChartDto, PortalDgeResourcesbyid } from '../TypedClient';
 import { DugAccessAnalysisService } from './dug-access-analysis.service';
 
 @Component({
-    templateUrl: './dug-access-detail.component.html',
-    styleUrls: ['./dug-access-detail.component.scss'],
-    selector: 'imx-dge-access-detail',
-    standalone: false
+  templateUrl: './dug-access-detail.component.html',
+  styleUrls: ['./dug-access-detail.component.scss'],
+  selector: 'imx-dge-access-detail',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DugAccessDetailComponent implements OnInit {
   public LdsViewTitle =
@@ -68,8 +69,7 @@ export class DugAccessDetailComponent implements OnInit {
     private readonly dugAccessAnalysisService: DugAccessAnalysisService,
     private readonly systemInfoService: SystemInfoService,
     private readonly translate: TranslateService,
-  ) {
-  }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     setTimeout(async () => {
@@ -97,7 +97,7 @@ export class DugAccessDetailComponent implements OnInit {
     this.assignmentMethodChart = await this.getChart(
       'QAM_AccessAnalysis_TrusteeType_Chart',
       '#LDS#Access analysis via access assignment method',
-      '#LDS#Data unavailable.'
+      '#LDS#Data unavailable.',
     );
   }
 
@@ -121,7 +121,7 @@ export class DugAccessDetailComponent implements OnInit {
           type: donut(),
           columns: [],
           names: {},
-          empty: { label: { text: noDataText } }
+          empty: { label: { text: noDataText } },
         },
       };
     }

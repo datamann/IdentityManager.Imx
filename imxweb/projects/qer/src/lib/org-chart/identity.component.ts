@@ -24,17 +24,18 @@
  *
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { PortalPersonOrgdata } from '@imx-modules/imx-api-qer';
 import { XOrigin } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
 import { OrgChartService } from './org-chart.service';
 
 @Component({
-    styleUrls: ['./identity.component.scss'],
-    selector: 'imx-orgchart-identity',
-    templateUrl: './identity.component.html',
-    standalone: false
+  styleUrls: ['./identity.component.scss'],
+  selector: 'imx-orgchart-identity',
+  templateUrl: './identity.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IdentityComponent {
   constructor(

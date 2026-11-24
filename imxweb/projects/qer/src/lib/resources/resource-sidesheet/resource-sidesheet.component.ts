@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -33,10 +33,11 @@ import { IEntity } from '@imx-modules/imx-qbm-dbts';
 import { BaseCdr, ColumnDependentReference, ConfirmationService } from 'qbm';
 
 @Component({
-    selector: 'imx-resource-sidesheet',
-    templateUrl: './resource-sidesheet.component.html',
-    styleUrls: ['./resource-sidesheet.component.scss'],
-    standalone: false
+  selector: 'imx-resource-sidesheet',
+  templateUrl: './resource-sidesheet.component.html',
+  styleUrls: ['./resource-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ResourceSidesheetComponent implements OnDestroy {
   public cdrList: ColumnDependentReference[];

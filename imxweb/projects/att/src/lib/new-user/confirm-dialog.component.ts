@@ -24,13 +24,14 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ParameterizedText } from 'qbm';
 
 @Component({
-    templateUrl: './confirm-dialog.component.html',
-    standalone: false
+  templateUrl: './confirm-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ConfirmDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public ptext: ParameterizedText) {}

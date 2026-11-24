@@ -24,16 +24,17 @@
  *
  */
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { HELP_CONTEXTUAL, SideNavigationExtension, SystemInfoService } from 'qbm';
 import { UserModelService } from '../user/user-model.service';
 import { DataExplorerRegistryService } from './data-explorer-registry.service';
 
 @Component({
-    templateUrl: './data-explorer-view.component.html',
-    styleUrls: ['./data-explorer-view.component.scss'],
-    standalone: false
+  templateUrl: './data-explorer-view.component.html',
+  styleUrls: ['./data-explorer-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DataExplorerViewComponent implements OnInit {
   public isAdmin = true;

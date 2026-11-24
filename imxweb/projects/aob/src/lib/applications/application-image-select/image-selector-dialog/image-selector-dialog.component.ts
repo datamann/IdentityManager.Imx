@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -36,10 +36,11 @@ import { ImageSelectorDialogParameter } from './image-selector-dialog-parameter.
  * A dialog to select an icon from a predefined list or upload an own one.
  */
 @Component({
-    selector: 'imx-image-selector-dialog',
-    templateUrl: './image-selector-dialog.component.html',
-    styleUrls: ['./image-selector-dialog.component.scss'],
-    standalone: false
+  selector: 'imx-image-selector-dialog',
+  templateUrl: './image-selector-dialog.component.html',
+  styleUrls: ['./image-selector-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ImageSelectorDialogComponent implements OnDestroy {
   public get imageIsSelected(): boolean {

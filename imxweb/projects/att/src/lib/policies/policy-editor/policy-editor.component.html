@@ -4,17 +4,17 @@
     [isTotal]="true"
     testId="total-objects"
     #totalCount
-    [filterSubject]="filterModel?.totalSelectedObjectsSubject"
+    [filterSubject]="$safeNavigationMigration(filterModel?.totalSelectedObjectsSubject)"
     [popupTitle]="'#LDS#Heading Objects Matching All Conditions' | translate"
-    >
+  >
   </imx-selected-objects>
 </div>
 @if (showWarning) {
   <eui-alert class="imx-margin-vertical-30" type="warning" [condensed]="true" [colored]="true" [dismissable]="true">
     <div>
       {{
-      '#LDS#This policy affects many objects. Running this policy may take some time and generate notifications to many approvers.'
-      | translate
+        '#LDS#This policy affects many objects. Running this policy may take some time and generate notifications to many approvers.'
+          | translate
       }}
     </div>
   </eui-alert>
@@ -30,15 +30,10 @@
 <ng-container>
   @if (parametersReady && filterModel.uidAttestationObject != null) {
     @if (filterArray.controls.length > 1) {
-      <span class="imx-radio-group-caption">{{
-        '#LDS#How many conditions must be met?' | translate
-      }}</span>
+      <span class="imx-radio-group-caption">{{ '#LDS#How many conditions must be met?' | translate }}</span>
     }
     @if (filterArray.controls.length > 1) {
-      <mat-radio-group
-        class="imx-radio-group-flex-column imx-margin-top-15"
-        [formControl]="filterFormGroup.controls.concatenationType"
-        >
+      <mat-radio-group class="imx-radio-group-flex-column imx-margin-top-15" [formControl]="filterFormGroup.controls.concatenationType">
         <mat-radio-button [value]="'AND'" data-imx-identifier="policy-editor-radio-and">
           {{ '#LDS#All conditions have to be met.' | translate }}
         </mat-radio-button>
@@ -73,7 +68,7 @@
           (click)="addCondition()"
           mat-stroked-button
           data-imx-identifier="policy-editor-add-condition"
-          >
+        >
           {{ (filterArray.controls.length > 0 ? '#LDS#Add another condition' : '#LDS#Add condition') | translate }}
         </button>
       </mat-action-row>
@@ -86,4 +81,3 @@
     }
   }
 </ng-container>
-

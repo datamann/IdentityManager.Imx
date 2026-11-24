@@ -25,7 +25,7 @@
  */
 
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,10 +34,11 @@ import { ByRoleResult, ByRoleResultElement, SAPUserFunctionSrcPROF } from '@imx-
 import { SapRoleTreeNodeModel } from './../sap-compliance-violation.model';
 
 @Component({
-    selector: 'imx-sap-compliance-violation-views-by-role',
-    templateUrl: './sap-compliance-violation-views-by-role.component.html',
-    styleUrls: ['./sap-compliance-violation-views-by-role.component.scss'],
-    standalone: false
+  selector: 'imx-sap-compliance-violation-views-by-role',
+  templateUrl: './sap-compliance-violation-views-by-role.component.html',
+  styleUrls: ['./sap-compliance-violation-views-by-role.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SapComplianceViolationViewsByRoleComponent implements OnInit {
   @Input() set resultByRole(value: ByRoleResult) {

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
@@ -35,9 +35,10 @@ import { OwnerControlComponent } from 'qer';
 import { ProductOwnerSidesheetService } from './product-owner-sidesheet.service';
 
 @Component({
-    templateUrl: './product-owner-sidesheet.component.html',
-    styleUrls: ['./product-owner-sidesheet.component.scss'],
-    standalone: false
+  templateUrl: './product-owner-sidesheet.component.html',
+  styleUrls: ['./product-owner-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProductOwnerSidesheetComponent {
   public productOwnerCdr: BaseCdr;

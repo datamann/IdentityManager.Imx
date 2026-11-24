@@ -3,13 +3,13 @@
   <input
     matInput
     [formControl]="control"
-    [hidden]="control?.value?.length > 0"
-    [required]="valueWrapper?.isValueRequired"
+    [hidden]="$safeNavigationMigration(control?.value?.length) > 0"
+    [required]="$safeNavigationMigration(valueWrapper?.isValueRequired)"
     [readonly]="true"
-    [ngClass]="{ 'input-hidden': control?.value?.length > 0 }"
-    />
+    [ngClass]="{ 'input-hidden': $safeNavigationMigration(control?.value?.length) > 0 }"
+  />
   @if (control?.value) {
-    <img [src]="imageProvider.addBase64Prefix(control?.value)" alt="" />
+    <img [src]="imageProvider.addBase64Prefix($safeNavigationMigration(control?.value))" alt="" />
   }
   @if (valueWrapper?.canEdit) {
     <div matSuffix>
@@ -25,7 +25,7 @@
               type="button"
               (click)="change.emit()"
               [attr.data-imx-identifier]="'edit-image-button-change-' + valueWrapper?.name"
-              >
+            >
               {{ '#LDS#Change' | translate }}
             </button>
             @if (!hideRemoveButton) {
@@ -35,7 +35,7 @@
                 type="button"
                 (click)="remove.emit()"
                 [attr.data-imx-identifier]="'edit-image-button-remove-' + valueWrapper?.name"
-                >
+              >
                 {{ '#LDS#Remove' | translate }}
               </button>
             }
@@ -48,7 +48,7 @@
             type="button"
             (click)="change.emit()"
             [attr.data-imx-identifier]="'edit-image-button-add-' + valueWrapper?.name"
-            >
+          >
             {{ '#LDS#Add' | translate }}
           </button>
         }

@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,20 +32,21 @@ import { TypedEntity } from '@imx-modules/imx-qbm-dbts';
 import { SelectedElementsDialog } from './selected-elements-dialog/selected-elements-dialog.component';
 
 @Component({
-    selector: 'imx-selected-elements',
-    templateUrl: './selected-elements.component.html',
-    styleUrls: ['./selected-elements.component.scss'],
-    standalone: false
+  selector: 'imx-selected-elements',
+  templateUrl: './selected-elements.component.html',
+  styleUrls: ['./selected-elements.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectedElementsComponent {
   @Input() public selectedElements: TypedEntity[] = [];
   @Input() public tables: string[];
   @Input() public isLoading: boolean;
   @Input() public caption: string;
-  @Input() public dialogHeader: string;  
+  @Input() public dialogHeader: string;
   @Input() public showDeselectAll: boolean = false;
   @Input() public deselectAllCaption: string;
-  
+
   @Output() public openCustomSelectionDialog = new EventEmitter<void>();
   @Output() public onDeselectAllClicked = new EventEmitter<void>();
 
@@ -55,7 +56,7 @@ export class SelectedElementsComponent {
   ) {
     if (!this.caption) {
       this.caption = this.translate.instant('#LDS#Show selected');
-    }    
+    }
     if (!this.deselectAllCaption) {
       this.deselectAllCaption = this.translate.instant('#LDS#Deselect all');
     }

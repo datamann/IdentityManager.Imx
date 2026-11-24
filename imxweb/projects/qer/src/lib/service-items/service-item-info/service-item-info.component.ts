@@ -24,16 +24,17 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PortalShopServiceitems } from '@imx-modules/imx-api-qer';
 import { IWriteValue, MultiValue } from '@imx-modules/imx-qbm-dbts';
 
 @Component({
-    selector: 'imx-service-item-info',
-    templateUrl: './service-item-info.component.html',
-    styleUrls: ['./service-item-info.component.scss'],
-    standalone: false
+  selector: 'imx-service-item-info',
+  templateUrl: './service-item-info.component.html',
+  styleUrls: ['./service-item-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ServiceItemInfoComponent {
   constructor(

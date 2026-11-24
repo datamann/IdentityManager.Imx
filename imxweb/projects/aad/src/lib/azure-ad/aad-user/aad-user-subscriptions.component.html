@@ -22,8 +22,9 @@
       mode="manual"
       data-imx-identifier="aad-user-subscriptions-tabledata-table"
     >
-      <imx-data-table-column [entityColumn]="entitySchemaAadUser?.Columns?.ObjectKeyAADSubSku"> </imx-data-table-column>
-      <imx-data-table-column [entityColumn]="entitySchemaAadUser?.Columns?.XOrigin"> </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaAadUser?.Columns?.ObjectKeyAADSubSku)">
+      </imx-data-table-column>
+      <imx-data-table-column [entityColumn]="$safeNavigationMigration(entitySchemaAadUser?.Columns?.XOrigin)"> </imx-data-table-column>
     </imx-data-table>
     <imx-data-source-paginator data-imx-identifier="aad-user-subscriptions-paginator" [dst]="dst"> </imx-data-source-paginator>
   </mat-card>

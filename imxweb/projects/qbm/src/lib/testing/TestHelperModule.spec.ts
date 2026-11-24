@@ -24,13 +24,13 @@
  *
  */
 
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, provideZoneChangeDetection } from '@angular/core';
 import { TranslateDefaultParser, TranslateLoader, TranslateModule, TranslateNoOpLoader, TranslateParser } from '@ngx-translate/core';
 
 @NgModule({
   exports: [TranslateModule],
   imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })],
-  providers: [{ provide: TranslateParser, useClass: TranslateDefaultParser }],
+  providers: [provideZoneChangeDetection(), { provide: TranslateParser, useClass: TranslateDefaultParser }],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class TestHelperModule { }

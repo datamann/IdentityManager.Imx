@@ -24,7 +24,7 @@
  *
  */
 
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RulesMitigatingControls } from './rules-mitigating-controls';
 import { MitigatingControlsRulesService } from './mitigating-controls-rules.service';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
@@ -33,10 +33,11 @@ import { ConfirmationService, SnackBarService } from 'qbm';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'imx-mitigating-controls-rules',
-    templateUrl: './mitigating-controls-rules.component.html',
-    styleUrls: ['./mitigating-controls-rules.component.scss'],
-    standalone: false
+  selector: 'imx-mitigating-controls-rules',
+  templateUrl: './mitigating-controls-rules.component.html',
+  styleUrls: ['./mitigating-controls-rules.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MitigatingControlsRulesComponent implements OnInit, OnDestroy {
   @Input() public isMControlPerViolation: boolean;

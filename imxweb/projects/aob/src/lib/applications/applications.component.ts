@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 
@@ -39,10 +39,11 @@ import { ApplicationNavigationComponent } from './application-navigation/applica
 import { ApplicationsService } from './applications.service';
 
 @Component({
-    selector: 'imx-applications',
-    templateUrl: './applications.component.html',
-    styleUrls: ['./applications.component.scss'],
-    standalone: false
+  selector: 'imx-applications',
+  templateUrl: './applications.component.html',
+  styleUrls: ['./applications.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationsComponent implements OnDestroy, OnInit {
   private selectedApplication: PortalApplication | undefined;

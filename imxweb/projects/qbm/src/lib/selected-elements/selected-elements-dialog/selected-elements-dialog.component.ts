@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataModelFilterOption, DbObjectKey, DisplayColumns, EntitySchema, IClientProperty, TypedEntity } from '@imx-modules/imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,9 +46,10 @@ import { SelectedElementsDialogParameter, TypedEntityTableFilter } from './selec
  *   });
  */
 @Component({
-    templateUrl: './selected-elements-dialog.component.html',
-    styleUrls: ['./selected-elements-dialog.component.scss'],
-    standalone: false
+  templateUrl: './selected-elements-dialog.component.html',
+  styleUrls: ['./selected-elements-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectedElementsDialog implements OnInit {
   public readonly DisplayColumns = DisplayColumns; // Enables use of this static class in Angular Templates.

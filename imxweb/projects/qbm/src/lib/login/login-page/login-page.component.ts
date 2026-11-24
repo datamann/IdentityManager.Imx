@@ -28,7 +28,6 @@ import { HighContrastModeDetector } from '@angular/cdk/a11y';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   Component,
-  ComponentFactoryResolver,
   computed,
   effect,
   inject,
@@ -38,6 +37,7 @@ import {
   viewChild,
   viewChildren,
   WritableSignal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule, UntypedFormControl } from '@angular/forms';
@@ -88,6 +88,7 @@ import { TwoFactorAuthenticationComponent } from '../../two-factor-authenticatio
     TwoFactorAuthenticationComponent,
   ],
   templateUrl: './login-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent implements OnDestroy {
@@ -178,7 +179,6 @@ export class LoginPageComponent implements OnDestroy {
   private authentication = inject(AuthenticationService);
   private busyService = inject(EuiLoadingService);
   private captchaService = inject(CaptchaService);
-  private componentFactoryResolver = inject(ComponentFactoryResolver);
   private detector = inject(HighContrastModeDetector);
   private logger = inject(ClassloggerService);
   private recaptchaV3Service = inject(ReCaptchaV3Service);
@@ -187,7 +187,6 @@ export class LoginPageComponent implements OnDestroy {
   private splash = inject(SplashService);
   private themeService = inject(EuiThemeService);
   public elementalUiConfigService = inject(ElementalUiConfigService);
-
 
   constructor() {
     // Initital signals / computed signals
@@ -214,7 +213,7 @@ export class LoginPageComponent implements OnDestroy {
     effect(() => {
       // filter for any fields that are not in the login data or are empty
       const emptyInputs = this.authPropertyInput()?.filter(
-        (input) => !(input.name in this.loginData) || this.loginData[input.name].length === 0
+        (input) => !(input.name in this.loginData) || this.loginData[input.name].length === 0,
       );
       // Append capcha input if its there
       if (this.captchaComponent()) emptyInputs.push(this.captchaComponent()!.captchaInputField());
@@ -332,7 +331,7 @@ export class LoginPageComponent implements OnDestroy {
 
     if (configProvider?.customAuthFlow)
       this.directive()!.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(configProvider.customAuthFlow.getEntryComponent()),
+        configProvider.customAuthFlow.getEntryComponent(),
       );
   }
 

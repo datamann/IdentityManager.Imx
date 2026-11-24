@@ -24,7 +24,7 @@
  *
  */
 
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
@@ -33,10 +33,11 @@ import { Base64ImageService, EntityColumnContainer } from 'qbm';
 import { ImageSelectorDialogComponent } from './image-selector-dialog/image-selector-dialog.component';
 
 @Component({
-    selector: 'imx-application-image-select',
-    templateUrl: './application-image-select.component.html',
-    styleUrls: ['./application-image-select.component.scss'],
-    standalone: false
+  selector: 'imx-application-image-select',
+  templateUrl: './application-image-select.component.html',
+  styleUrls: ['./application-image-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ApplicationImageSelectComponent implements OnChanges, AfterViewInit {
   public readonly control = new UntypedFormControl();

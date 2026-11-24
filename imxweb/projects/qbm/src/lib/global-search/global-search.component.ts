@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EuiCoreModule, EuiSidesheetService } from '@elemental-ui/core';
@@ -38,17 +38,18 @@ import { GlobalSearchSidesheetComponent } from './sidesheet/sidesheet.component'
 
 /**
  * Global search component that will pop a sidesheet with a data table for searching for an object.
- * 
+ *
  * If there is no api search implemented for an application, this component will safely render empty.
- * 
+ *
  * So a portal needs to implement a GlobalSearchService for this to be used.
  */
 @Component({
   selector: 'imx-global-search',
   standalone: true,
   imports: [EuiCoreModule, MatButtonModule, MatTooltipModule, TranslateModule, GlobalSearchSidesheetComponent, HelpContextualModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    @if(searchService) {
+    @if (searchService) {
       <button matIconButton (click)="openSidesheet()" [matTooltip]="'#LDS#Search for objects in the database' | translate">
         <eui-icon icon="search" />
       </button>

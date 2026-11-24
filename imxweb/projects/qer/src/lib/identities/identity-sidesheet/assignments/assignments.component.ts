@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Injector, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormControl, FormGroup } from '@angular/forms';
 import { EuiSelectOption } from '@elemental-ui/core';
@@ -41,7 +41,8 @@ interface SelectorForm {
   selector: 'imx-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AssignmentsComponent implements OnInit {
   public currentTab: TabItem | undefined;
@@ -66,7 +67,7 @@ export class AssignmentsComponent implements OnInit {
     private readonly injector: Injector,
     private readonly translate: TranslateService,
     public elementalUiConfigService: ElementalUiConfigService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     const tabs: TabItem[] = [];

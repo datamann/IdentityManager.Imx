@@ -36,6 +36,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -59,10 +60,11 @@ import { SelectedObjectsComponent } from '../selected-objects/selected-objects.c
 import { FilterModel } from './filter-model';
 
 @Component({
-    templateUrl: './policy-editor.component.html',
-    selector: 'imx-policy-editor',
-    styleUrls: ['./policy-editor.component.scss'],
-    standalone: false
+  templateUrl: './policy-editor.component.html',
+  selector: 'imx-policy-editor',
+  styleUrls: ['./policy-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PolicyEditorComponent implements OnInit, OnDestroy, AfterViewInit {
   public parametersReady: boolean;

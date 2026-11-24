@@ -24,13 +24,14 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'imx-discrete-legend',
-    templateUrl: './discrete-legend.component.html',
-    styleUrls: ['./discrete-legend.component.scss'],
-    standalone: false
+  selector: 'imx-discrete-legend',
+  templateUrl: './discrete-legend.component.html',
+  styleUrls: ['./discrete-legend.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DiscreteLegendComponent {
   constructor() {}

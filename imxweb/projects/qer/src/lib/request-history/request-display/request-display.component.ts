@@ -24,7 +24,15 @@
  *
  */
 
-import { Component, ComponentFactoryResolver, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { PortalItshopRequests } from '@imx-modules/imx-api-qer';
@@ -33,9 +41,10 @@ import { ExtDirective } from 'qbm';
 import { RequestDisplayService } from './request-display.service';
 
 @Component({
-    template: `<ng-template imxExtd></ng-template>`,
-    selector: 'imx-request-display',
-    standalone: false
+  template: `<ng-template imxExtd></ng-template>`,
+  selector: 'imx-request-display',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestDisplayComponent implements OnInit, OnChanges {
   @ViewChild(ExtDirective, { static: true }) public readonly directive: ExtDirective;
@@ -46,7 +55,6 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
   private instance: any;
 
   constructor(
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
     private readonly logger: NGXLogger,
     private readonly requestDisplayService: RequestDisplayService,
   ) {}
@@ -59,7 +67,7 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
       if (selectedProvider) {
         this.directive.viewContainerRef.clear();
         this.instance = this.directive.viewContainerRef.createComponent(
-          this.componentFactoryResolver.resolveComponentFactory(selectedProvider),
+          selectedProvider,
         );
         this.instance.instance.isReadOnly = this.isReadOnly;
         this.instance.instance.personWantsOrg = this.personWantsOrg;
@@ -75,7 +83,7 @@ export class RequestDisplayComponent implements OnInit, OnChanges {
     if (selectedProvider) {
       this.directive.viewContainerRef.clear();
       this.instance = this.directive.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(selectedProvider),
+        selectedProvider,
       );
       this.instance.instance.isReadOnly = this.isReadOnly;
       this.instance.instance.personWantsOrg = this.personWantsOrg;

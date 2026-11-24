@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 
 import { ClassloggerService } from '../../classlogger/classlogger.service';
@@ -37,10 +37,11 @@ import { EditorBase } from '../editor-base';
  * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
-    selector: 'imx-edit-limited-value',
-    templateUrl: './edit-limited-value.component.html',
-    styleUrls: ['./edit-limited-value.component.scss'],
-    standalone: false
+  selector: 'imx-edit-limited-value',
+  templateUrl: './edit-limited-value.component.html',
+  styleUrls: ['./edit-limited-value.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class EditLimitedValueComponent extends EditorBase<string | number> {
   /**

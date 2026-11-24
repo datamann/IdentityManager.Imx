@@ -25,6 +25,7 @@
  */
 
 import { of, Subject } from 'rxjs';
+import { NgZone } from '@angular/core';
 import { ngMocks } from 'ng-mocks';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -44,6 +45,8 @@ export class QerDefaultMocks {
   } as unknown as AuthenticationService;
 
   public static registerDefaultMocks(): void {
+    // Angular's scheduler needs the real zone lifecycle observables.
+    ngMocks.globalKeep(NgZone);
     ngMocks.defaultMock(EuiSidesheetService, () => QerDefaultMocks.sidesheetServiceStub);
     ngMocks.defaultMock(RouteGuardService, () => ({}));
     ngMocks.defaultMock(AuthenticationService, () => QerDefaultMocks.authServiceStub);

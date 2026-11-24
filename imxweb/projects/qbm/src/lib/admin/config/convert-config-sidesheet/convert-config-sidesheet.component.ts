@@ -24,7 +24,7 @@
  *
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EuiSidesheetRef } from '@elemental-ui/core';
 import { ConfigService } from '../config.service';
 import { NodeSetting } from '../node-setting';
@@ -32,6 +32,7 @@ import { NodeSetting } from '../node-setting';
 @Component({
   templateUrl: './convert-config-sidesheet.component.html',
   styleUrls: ['./convert-config-sidesheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ConvertConfigSidesheetComponent {

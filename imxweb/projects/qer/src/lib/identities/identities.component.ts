@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -73,6 +73,7 @@ import { IdentitySidesheetComponent } from './identity-sidesheet/identity-sidesh
   templateUrl: './identities.component.html',
   styleUrls: ['./identities.component.scss'],
   providers: [DataViewSource],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideNavigationComponent {
@@ -102,6 +103,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
   public currentUser: string;
 
   public entitySchemaPersonReports: EntitySchema;
+  public departmentColumn: IClientProperty | undefined;
   public readonly DisplayColumns = DisplayColumns;
   public filterOptions: DataSourceToolbarFilter[] = [];
   public groupingOptions: DataModelProperty[] = [];
@@ -121,6 +123,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
 
   public busyService = new BusyService();
   private dataModel: DataModel;
+  private requestDepartment = false;
   private viewConfig: DataSourceToolbarViewConfig;
   private get viewConfigPath(): string {
     return this.isAdmin ? 'admin/person' : 'person/reports';
@@ -260,14 +263,26 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
   private async init(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
 
-    this.entitySchemaPersonReports = this.identitiesService.personReportsSchema;
+    const baseSchema = this.isAdmin ? this.identitiesService.adminPersonSchema : this.identitiesService.personReportsSchema;
+    // DataViewSource extends its local columns; do not mutate the shared API schema.
+    this.entitySchemaPersonReports = { ...baseSchema, Columns: { ...baseSchema.Columns } };
     try {
       this.projectConfig = await this.configService.getConfig();
       this.isCreationAllowed = this.projectConfig.PersonConfig?.EnableNewPerson ?? false;
+      this.dataModel = this.isAdmin ? await this.identitiesService.getDataModelAdmin() : await this.identitiesService.getDataModelReport();
+      const departmentProperty = this.dataModel.Properties?.find((property) => property.Property?.ColumnName === 'UID_Department');
+      this.departmentColumn = baseSchema.Columns.UID_Department ?? departmentProperty?.Property;
+      this.requestDepartment = !!this.departmentColumn && (!baseSchema.Columns.UID_Department || !!departmentProperty?.IsAdditionalColumn);
+      if (this.departmentColumn) {
+        this.entitySchemaPersonReports = {
+          ...this.entitySchemaPersonReports,
+          Columns: { ...this.entitySchemaPersonReports.Columns, UID_Department: this.departmentColumn },
+        };
+      }
       this.displayedColumns = [
         this.entitySchemaPersonReports.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
         this.entitySchemaPersonReports.Columns.IsSecurityIncident,
-        this.entitySchemaPersonReports.Columns.UID_Department,
+        ...(this.departmentColumn ? [this.departmentColumn] : []),
       ];
 
       if (!this.isAdmin) {
@@ -281,15 +296,13 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
       // Ensure this column is always added last
       this.displayedColumns.push(this.entitySchemaPersonReports.Columns.XMarkedForDeletion);
 
-      this.dataModel = this.isAdmin ? await this.identitiesService.getDataModelAdmin() : await this.identitiesService.getDataModelReport();
-
       this.viewConfig = await this.viewConfigService.getInitialDSTExtension(this.dataModel, this.viewConfigPath);
       const dataViewInitParameters: DataViewInitParameters<PortalAdminPerson | PortalPersonReports> = {
         execute: this.isAdmin
           ? (params: CollectionLoadParameters, signal: AbortSignal): Promise<TypedEntityCollectionData<PortalAdminPerson>> =>
-              this.identitiesService.getAllPersonAdmin(params, signal)
+              this.identitiesService.getAllPersonAdmin(this.withDepartment(params), signal)
           : (params: CollectionLoadParameters, signal: AbortSignal): Promise<TypedEntityCollectionData<PortalPersonReports>> =>
-              this.identitiesService.getReportsOfManager(params, signal),
+              this.identitiesService.getReportsOfManager(this.withDepartment(params), signal),
         schema: this.entitySchemaPersonReports,
         columnsToDisplay: this.displayedColumns,
         dataModel: this.dataModel,
@@ -310,10 +323,22 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
           this.onIdentityChanged(identity);
         },
       };
-      this.dataSource.init(dataViewInitParameters);
+      await this.dataSource.init(dataViewInitParameters);
     } finally {
       isBusy.endBusy();
     }
+  }
+
+  private withDepartment(params: CollectionLoadParameters): CollectionLoadParameters {
+    if (!this.requestDepartment) return params;
+    const properties = new Set(
+      (params.withProperties ?? '')
+        .split(',')
+        .map((name) => name.trim())
+        .filter(Boolean),
+    );
+    properties.add('UID_Department');
+    return { ...params, withProperties: [...properties].join(',') };
   }
 
   public async updateConfig(config: ViewConfigData): Promise<void> {

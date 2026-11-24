@@ -24,7 +24,18 @@
  *
  */
 
-import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, OnInit, output, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  output,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
@@ -51,6 +62,7 @@ enum FilterTypes {
   selector: 'imx-predefined-filter',
   templateUrl: './predefined-filter.component.html',
   styleUrls: ['./predefined-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class PredefinedFilterComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -165,10 +177,10 @@ export class PredefinedFilterComponent implements OnInit, AfterViewInit, OnDestr
     searchColumns: string[];
     keywords: string;
   } = {
-      filterColumns: {},
-      searchColumns: [],
-      keywords: '',
-    };
+    filterColumns: {},
+    searchColumns: [],
+    keywords: '',
+  };
 
   constructor(
     private readonly filterService: FilterWizardService,

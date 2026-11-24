@@ -5,5 +5,5 @@
   [matTooltip]="LdsTooltip | translate"
   [attr.aria-label]="LdsTooltip | translate"
 >
-  <eui-icon icon="cart" [matBadge]="pendingItems?.CountProductsInShoppingCart" matBadgeColor="accent"></eui-icon>
+  <eui-icon icon="cart" [matBadge]="$safeNavigationMigration(pendingItems?.CountProductsInShoppingCart)" matBadgeColor="accent"></eui-icon>
 </button>

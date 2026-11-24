@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -32,14 +32,15 @@ import { CdrSidesheetConfig } from './cdr-sidesheet-config';
 
 /**
  * @deprecated since v10.0.0
-  * 
+ *
  * Provides a side sheet, that displays a form with {@link CdrEditor | cdr editors}.
  *
  * Writeable properties can be edited.
  */
 @Component({
-    templateUrl: './cdr-sidesheet.component.html',
-    standalone: false
+  templateUrl: './cdr-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CdrSidesheetComponent {
   /**

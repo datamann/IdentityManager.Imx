@@ -21,7 +21,7 @@
 }
 
 @if (!expr?.Property?.LimitedValues && !expr?.Property?.SelectionTables) {
-  @switch (expr?.Property?.Type) {
+  @switch ($safeNavigationMigration(expr?.Property?.Type)) {
     @case (ValType.Bool) {
       <div class="operand">
         <mat-slide-toggle class="imx-margin-top-10" data-imx-identifier="single-value-toggle" [(ngModel)]="value" (change)="emitChanges()"

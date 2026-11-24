@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DynamicTabDataProviderDirective } from 'qbm';
 
 import { HelperAlertContent, ObjectAttestationStatistics } from 'qer';
@@ -32,9 +32,10 @@ import { Subscription } from 'rxjs';
 import { IdentityAttestationService } from '../../../identity-attestation.service';
 
 @Component({
-    templateUrl: './attestation-wrapper.component.html',
-    styleUrls: ['./attestation-wrapper.component.scss'],
-    standalone: false
+  templateUrl: './attestation-wrapper.component.html',
+  styleUrls: ['./attestation-wrapper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AttestationWrapperComponent implements OnInit, OnDestroy {
   public referrer: { objecttable: string; objectuid: string };

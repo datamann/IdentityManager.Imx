@@ -36,7 +36,7 @@
           </span>
         </td>
       </ng-container>
-      <ng-container [matColumnDef]="policySchema?.Columns?.CountOpen?.ColumnName">
+      <ng-container [matColumnDef]="$safeNavigationMigration(policySchema?.Columns?.CountOpen?.ColumnName)">
         <ng-container>
           <th mat-header-cell *matHeaderCellDef>
             {{ policySchema?.Columns?.CountOpen?.Display }}

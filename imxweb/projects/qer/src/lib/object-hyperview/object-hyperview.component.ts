@@ -24,7 +24,17 @@
  *
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { ShapeData } from '@imx-modules/imx-api-qer';
 import { DbObjectKey } from '@imx-modules/imx-qbm-dbts';
@@ -34,10 +44,11 @@ import { ObjectHyperview } from './object-hyperview.interface';
 import { ObjectHyperviewService } from './object-hyperview.service';
 
 @Component({
-    selector: 'imx-object-hyperview',
-    templateUrl: './object-hyperview.component.html',
-    styleUrls: ['./object-hyperview.component.scss'],
-    standalone: false
+  selector: 'imx-object-hyperview',
+  templateUrl: './object-hyperview.component.html',
+  styleUrls: ['./object-hyperview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ObjectHyperviewComponent implements OnInit, OnChanges, OnDestroy {
   /**

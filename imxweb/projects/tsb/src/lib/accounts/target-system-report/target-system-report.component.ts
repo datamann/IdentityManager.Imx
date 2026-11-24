@@ -26,7 +26,7 @@
 
 import { Overlay } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Injector, OnInit } from '@angular/core';
+import { Component, ElementRef, Injector, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiDownloadDirective, EuiDownloadService, EuiLoadingService } from '@elemental-ui/core';
 
 import { IEntity } from '@imx-modules/imx-qbm-dbts';
@@ -38,7 +38,8 @@ import { AccountsService } from '../accounts.service';
   selector: 'imx-target-system-report',
   templateUrl: './target-system-report.component.html',
   styleUrls: ['./target-system-report.component.scss'],
-  standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TargetSystemReportComponent implements OnInit {
   public showHelperAlert = true;
@@ -55,7 +56,7 @@ export class TargetSystemReportComponent implements OnInit {
     private readonly injector: Injector,
     private readonly overlay: Overlay,
     private readonly downloadService: EuiDownloadService,
-  ) { }
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.database = new FilterTreeDatabase(

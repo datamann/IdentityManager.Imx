@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -35,10 +35,11 @@ import { GenericStatisticEntity, StatisticsDataService } from '../statistics-dat
 import { StatisticsOrderingSidesheetComponent } from '../statistics-ordering-sidesheet/statistics-ordering-sidesheet.component';
 
 @Component({
-    selector: 'imx-favorites-tab',
-    templateUrl: './favorites-tab.component.html',
-    styleUrls: ['./favorites-tab.component.scss'],
-    standalone: false
+  selector: 'imx-favorites-tab',
+  templateUrl: './favorites-tab.component.html',
+  styleUrls: ['./favorites-tab.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FavoritesTabComponent implements OnInit, OnDestroy {
   public isSearch: boolean;

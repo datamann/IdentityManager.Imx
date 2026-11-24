@@ -24,15 +24,16 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { RelatedApplicationsService } from '../related-applications.service';
 
 @Component({
-    selector: 'imx-related-application-menu-item',
-    templateUrl: './related-application-menu-item.component.html',
-    styleUrls: ['./related-application-menu-item.component.scss'],
-    standalone: false
+  selector: 'imx-related-application-menu-item',
+  templateUrl: './related-application-menu-item.component.html',
+  styleUrls: ['./related-application-menu-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RelatedApplicationMenuItemComponent implements OnInit {
   showButton = false;

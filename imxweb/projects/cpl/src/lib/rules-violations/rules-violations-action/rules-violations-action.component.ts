@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
@@ -40,10 +40,11 @@ import { RulesViolationsAction } from './rules-violations-action.interface';
  * </ul>
  */
 @Component({
-    selector: 'imx-rules-violations-action',
-    templateUrl: './rules-violations-action.component.html',
-    styleUrls: ['./rules-violations-action.component.scss'],
-    standalone: false
+  selector: 'imx-rules-violations-action',
+  templateUrl: './rules-violations-action.component.html',
+  styleUrls: ['./rules-violations-action.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RulesViolationsActionComponent {
   /**

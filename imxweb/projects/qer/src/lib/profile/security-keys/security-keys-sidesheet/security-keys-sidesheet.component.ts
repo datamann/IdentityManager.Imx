@@ -24,7 +24,7 @@
  *
  */
 
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { PortalWebauthnkey } from '@imx-modules/imx-api-qer';
@@ -34,8 +34,9 @@ import { Subscription } from 'rxjs';
 import { SecurityKeysService } from '../security-keys.service';
 
 @Component({
-    templateUrl: './security-keys-sidesheet.component.html',
-    standalone: false
+  templateUrl: './security-keys-sidesheet.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecurityKeysSidesheetComponent implements OnDestroy {
   public readonly formGroup: UntypedFormGroup;
