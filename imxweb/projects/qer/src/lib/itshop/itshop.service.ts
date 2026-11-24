@@ -150,8 +150,8 @@ export class ItshopService {
     );
   }
 
-  public async getApprovers(uidRequest: string): Promise<TypedEntityCollectionData<PortalItshopPersondecision>> {
-    return this.qerClient.typedClient.PortalItshopPersondecision.Get(uidRequest);
+  public async getApprovers(uidRequest: string, signal?: AbortSignal): Promise<TypedEntityCollectionData<PortalItshopPersondecision>> {
+    return this.qerClient.typedClient.PortalItshopPersondecision.Get(uidRequest, {}, { signal });
   }
 
   public async getCarts(): Promise<TypedEntityCollectionData<PortalItshopCart>> {
