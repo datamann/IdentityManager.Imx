@@ -24,10 +24,10 @@
  *
  */
 
-import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { PortalShopServiceitems, PwoData, QerProjectConfig } from '@imx-modules/imx-api-qer';
+import { PortalShopServiceitems, QerProjectConfig } from '@imx-modules/imx-api-qer';
 import { EntityData } from '@imx-modules/imx-qbm-dbts';
 import moment from 'moment';
 import { BaseReadonlyCdr, BusyService, ClassloggerService, ColumnDependentReference, ExtService, IExtension } from 'qbm';
@@ -50,6 +50,7 @@ export class RequestInfoComponent implements OnInit, OnDestroy {
   @Input() public request: RequestParameterDataEntity;
   @Input() public userId: string;
   @Input() public isApproval: boolean;
+  @Output() public workflowActiveChange = new EventEmitter<boolean>();
 
   public parameters: (BaseReadonlyCdr | undefined)[];
   public propertyInfo: ColumnDependentReference[];
@@ -89,39 +90,7 @@ export class RequestInfoComponent implements OnInit, OnDestroy {
     const isBusy = this.busyService.beginBusy();
     try {
       this.projectConfig = await this.projectConfigService.getConfig();
-      this.propertyInfo =
-        this.request == null || this.request.propertyInfo == null ? [] : this.request.propertyInfo.filter((elem) => this.isForView(elem));
-
-      this.parameters = this.request.parameterColumns
-        .map((column) => {
-          return column != null ? new BaseReadonlyCdr(column) : undefined;
-        })
-        .filter((elem) => elem != null);
-
-      this.approverContainer = new ApproverContainer(
-        {
-          decisionLevel: this.request.DecisionLevel.value,
-          qerWorkingMethod: this.request.UID_QERWorkingMethod.value,
-          isInWorkflow: ['OrderProduct', 'OrderUnsubscribe', 'OrderProlongate'].includes(this.request.UiOrderState.value),
-          pwoData: this.request.pwoData,
-          approvers: (await this.itshopService.getApprovers(this.request.GetEntity().GetKeys()[0])).Data.map(
-            (elem) => elem.UID_Person.value,
-          ),
-        },
-        this.projectConfig.ITShopConfig,
-        this.logger,
-      );
-
-      //caches the sorted PWO data in case paging would be needed
-      this.sortedDataCache =
-        this.request.pwoData.WorkflowHistory?.Entities?.sort((item1, item2) => {
-          if (item1.Columns?.XDateInserted?.Value && item2.Columns?.XDateInserted.Value)
-            return moment(item1.Columns.XDateInserted.Value).isAfter(item2.Columns.XDateInserted.Value) ? 1 : -1;
-
-          return moment(item1.Columns?.DateHead.Value).isAfter(item2.Columns?.DateHead.Value) ? 1 : -1;
-        }) ?? [];
-
-      this.updateWorkflow();
+      await this.refreshWorkflow(this.request);
 
       this.isRoleAssignment = ['ESet', 'QERAssign'].includes(this.request.TableName.value);
       if (!this.isRoleAssignment) {
@@ -137,15 +106,45 @@ export class RequestInfoComponent implements OnInit, OnDestroy {
     this.logger.debug(this, 'approverContainer has been initialized');
   }
 
+  /** Refresh the open view without replacing the tabs or showing the initial loading screen. */
+  public async refreshWorkflow(request: RequestParameterDataEntity, signal?: AbortSignal): Promise<boolean> {
+    if (!this.projectConfig || signal?.aborted) return false;
+    const approvers = await this.itshopService.getApprovers(request.GetEntity().GetKeys()[0], signal);
+    if (signal?.aborted) return false;
+    const approverContainer = new ApproverContainer(
+      {
+        decisionLevel: request.DecisionLevel.value,
+        qerWorkingMethod: request.UID_QERWorkingMethod.value,
+        isInWorkflow: ['OrderProduct', 'OrderUnsubscribe', 'OrderProlongate'].includes(request.UiOrderState.value),
+        pwoData: request.pwoData,
+        approvers: approvers.Data.map((person) => person.UID_Person.value),
+      },
+      this.projectConfig.ITShopConfig,
+      this.logger,
+    );
+    // Preserve the number of loaded history pages, but replace entries instead of appending duplicates.
+    const lastPage = this.startIndex;
+    this.request = request;
+    this.approverContainer = approverContainer;
+    this.sortedDataCache = [...(request.pwoData.WorkflowHistory?.Entities ?? [])].sort((a, b) =>
+      moment(a.Columns?.XDateInserted?.Value ?? a.Columns?.DateHead?.Value).diff(
+        moment(b.Columns?.XDateInserted?.Value ?? b.Columns?.DateHead?.Value),
+      ),
+    );
+    this.propertyInfo = (request.propertyInfo ?? []).filter((property) => this.isForView(property));
+    this.parameters = request.parameterColumns.filter((column) => column != null).map((column) => new BaseReadonlyCdr(column!));
+    this.workflow = [];
+    for (let page = 0; page <= lastPage && (page === 0 || page < this.sortedDataCache.length); page += 100) this.updateWorkflow(page);
+    return true;
+  }
+
   public updateWorkflow(startIndex: number = 0) {
     this.startIndex = startIndex;
 
     /**calculate currently show workflow data */
     const workflowData = this.itshopService
       .createTypedHistory(this.sortedDataCache, this.startIndex)
-      .map(
-        (item, index) => new WorkflowHistoryItemWrapper(item, this.decisionHistory, this.getComplianceRule(index, this.request.pwoData)),
-      );
+      .map((item, index) => new WorkflowHistoryItemWrapper(item, this.decisionHistory, this.getComplianceRule(this.startIndex + index)));
 
     this.workflow.push(...workflowData); //add workflow data
     this.canLoadMore = this.workflow.length < (this.request.pwoData.WorkflowHistory?.Entities?.length ?? 0);
@@ -159,8 +158,8 @@ export class RequestInfoComponent implements OnInit, OnDestroy {
     return cdr.column.ColumnName !== 'PWOPriority' || cdr.column.GetValue() !== 0;
   }
 
-  private getComplianceRule(index: number, pwoData: PwoData): string {
-    const elem = pwoData.WorkflowHistory?.Entities?.[index].Columns?.UID_ComplianceRule;
+  private getComplianceRule(index: number): string {
+    const elem = this.sortedDataCache?.[index]?.Columns?.UID_ComplianceRule;
     return elem?.DisplayValue ?? '';
   }
 }

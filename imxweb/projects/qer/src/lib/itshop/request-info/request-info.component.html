@@ -1,7 +1,7 @@
 @if (isLoading) {
   <imx-busy-indicator></imx-busy-indicator>
 }
-<mat-tab-group mat-stretch-tabs="false" [ngClass]="{ hidden: isLoading }">
+<mat-tab-group mat-stretch-tabs="false" [ngClass]="{ hidden: isLoading }" (selectedIndexChange)="workflowActiveChange.emit($event === 1)">
   <mat-tab [label]="'#LDS#Heading Information' | translate">
     <div class="imx-request-information">
       <ng-content select="[info]"></ng-content>

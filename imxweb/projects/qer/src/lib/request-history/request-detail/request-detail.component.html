@@ -4,6 +4,7 @@
     [isApproval]="false"
     [request]="data.personWantsOrg"
     [userId]="data.userUid"
+    (workflowActiveChange)="workflowActive = $event"
   ></imx-requestinfo>
 
   @if (!data.isReadOnly && allowedActionCount > 0) {
